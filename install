@@ -1,0 +1,66 @@
+#!/bin/sh
+# -*- Mode: sh; charset: utf-8; tab-width: 2; indent-tabs-mode: nil -*-
+
+# Copyright © 2009 Jonathan Rascher.
+#
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+# REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+# AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+# OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+# PERFORMANCE OF THIS SOFTWARE.
+
+# This is an attempt at porting Alan Pinstein's and Ryan Bates's dotfile
+# installation utility [1] from a Ruby Rakefile to a POSIX shell script. Usage
+# is pretty simple. Symbolic links to any normal files in this directory that
+# don't have a ".local" extension will be created in the current user's home
+# directory. Additionally, any file that does have a ".local" extension will be
+# copied to (not linked in) the current user's home directory, provided that
+# there is not an existing file with the same name in the home directory. The
+# idea is that ".local" files will be used to store per-host settings and
+# things that should not be placed into version control (e.g., for privacy
+# reasons), while non-".local" files will store universal, public settings.
+
+# Links:
+# 1. Pinstein's original Rakefile is here <http://bit.ly/7WITQW>.
+
+for dotfile in *; do
+  if [ "$dotfile" != README -a "$dotfile" != install -a -f "$dotfile" ]; then
+    ext=$(printf %s "$dotfile" | sed 's/.*\.\(.*\)/\1/;t;d')
+    if [ "x$ext" = xlocal ]; then
+      local_dest=~/.$dotfile
+      local_src=$(readlink -f "$dotfile")
+      if [ -e "$local_dest" ]; then
+        printf '%s\n' "Local file $local_dest already exists; skipping."
+      else
+        printf '%s\n' "Copying local file $local_src to $local_dest."
+        cp "$local_src" "$local_dest"
+      fi
+    else
+      symlink=~/.$dotfile
+      symlink_dest=$(readlink -f "$dotfile")
+      if [ "$(readlink -f "$symlink")" = "$symlink_dest" ]; then
+        printf '%s\n' "Symbolic link $symlink already exists; skipping."
+      else
+        if [ -e "$symlink" ]; then
+          printf %s "File $symlink already exists. Replace? [y/N] "
+          read answer
+          if [ x"$answer" = xy -o x"$answer" = xY ]; then
+            printf '%s\n' "Removing $symlink."
+            rm -r "$symlink"
+            printf '%s\n' "Symbolically linking $symlink to $symlink_dest."
+            ln -s "$symlink_dest" "$symlink"
+          fi
+        else
+          printf '%s\n' "Symbolically linking $symlink to $symlink_dest."
+          ln -s "$symlink_dest" "$symlink"
+        fi
+      fi
+    fi
+  fi
+done

@@ -1,0 +1,34 @@
+set autoindent
+unset backup
+unset backwards
+unset boldtext
+set brackets ""')>]}"
+unset casesensitive
+set const
+unset cut
+set fill 0
+set historylog
+set matchbrackets "(<[{)>]}"
+set morespace
+unset mouse
+set multibuffer
+unset noconvert
+unset nofollow
+set nohelp
+set nowrap
+unset preserve
+set punct "!.?"
+set quickblank
+set quotestr "^([ 	]*[#:>\|}])+"
+unset rebinddelete
+unset rebindkeypad
+unset regexp
+set smarthome
+unset smooth
+set suspend
+set tabsize 2
+set tabstospaces
+unset tempfile
+unset view
+set whitespace "  "
+unset wordbounds
