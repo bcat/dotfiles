@@ -20,7 +20,9 @@ if grep -E '^(cygwin|linux|xterm)-?' <<<"$TERM" >/dev/null 2>&1; then
 fi
 
 # Set a flag if the system supports ACPI and has a battery.
-if type acpi >/dev/null 2>&1 && acpi | grep Battery >/dev/null 2>&1; then
+if type acpi >/dev/null 2>&1 && acpi 2>/dev/null |
+   grep Battery >/dev/null 2>&1
+then
   _bash_prompt_have_battery=1
 fi
 
