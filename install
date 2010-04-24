@@ -1,7 +1,7 @@
 #!/bin/sh
 # -*- Mode: sh; charset: utf-8; tab-width: 2; indent-tabs-mode: nil -*-
 
-# Copyright © 2009 Jonathan Rascher.
+# Copyright © 2009-2010 Jonathan Rascher.
 #
 # Permission to use, copy, modify, and/or distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -26,8 +26,37 @@
 # things that should not be placed into version control (e.g., for privacy
 # reasons), while non-".local" files will store universal, public settings.
 
+# Additionally, the installation of per-user scripts is now supported. If the
+# installation script finds a "bin" subdirectory of the current directory, it
+# will (if necessary) create a "bin" directory in the current user's home
+# directory, and then it will (if necessary) create symbolic links in the
+# "~/bin" directory which target the files placed in this directory's "bin"
+# subdirectory.
+
 # Links:
 # 1. Pinstein's original Rakefile is here <http://bit.ly/7WITQW>.
+
+handle_symlink () {
+  symlink=$1
+  symlink_dest=$2
+  if [ "$(readlink -f "$symlink")" = "$symlink_dest" ]; then
+    printf '%s\n' "Symbolic link $symlink already exists; skipping."
+  else
+    if [ -e "$symlink" ]; then
+      printf %s "File $symlink already exists. Replace? [y/N] "
+      read answer
+      if [ x"$answer" = xy -o x"$answer" = xY ]; then
+        printf '%s\n' "Removing $symlink."
+        rm -r "$symlink"
+        printf '%s\n' "Symbolically linking $symlink to $symlink_dest."
+        ln -s "$symlink_dest" "$symlink"
+      fi
+    else
+      printf '%s\n' "Symbolically linking $symlink to $symlink_dest."
+      ln -s "$symlink_dest" "$symlink"
+    fi
+  fi
+}
 
 for dotfile in *; do
   if [ "$dotfile" != README -a "$dotfile" != install -a -f "$dotfile" ]; then
@@ -44,23 +73,16 @@ for dotfile in *; do
     else
       symlink=~/.$dotfile
       symlink_dest=$(readlink -f "$dotfile")
-      if [ "$(readlink -f "$symlink")" = "$symlink_dest" ]; then
-        printf '%s\n' "Symbolic link $symlink already exists; skipping."
-      else
-        if [ -e "$symlink" ]; then
-          printf %s "File $symlink already exists. Replace? [y/N] "
-          read answer
-          if [ x"$answer" = xy -o x"$answer" = xY ]; then
-            printf '%s\n' "Removing $symlink."
-            rm -r "$symlink"
-            printf '%s\n' "Symbolically linking $symlink to $symlink_dest."
-            ln -s "$symlink_dest" "$symlink"
-          fi
-        else
-          printf '%s\n' "Symbolically linking $symlink to $symlink_dest."
-          ln -s "$symlink_dest" "$symlink"
-        fi
-      fi
+      handle_symlink "$symlink" "$symlink_dest"
     fi
   fi
 done
+
+if [ -d bin ]; then
+  [ -d ~/bin ] || mkdir ~/bin
+  for script in bin/*; do
+    symlink=~/$script
+    symlink_dest=$(readlink -f "$script")
+    handle_symlink "$symlink" "$symlink_dest"
+  done
+fi
