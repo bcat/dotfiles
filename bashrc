@@ -54,16 +54,6 @@ shopt -s extdebug
 function ls { command ls --color=auto "$@"; }
 function grep { command grep --color=auto "$@"; }
 
-# On Arch Linux only, define a convenient command for fetching a PKGBUILD from
-# the AUR.
-if [ -f /etc/arch-release ] && type curl >/dev/null 2>&1; then
-  aurget () {
-    for name; do
-      curl -O http://aur.archlinux.org/packages/"$name"/"$name".tar.gz
-    done
-  }
-fi
-
 # Customize the prompt. (The prompt code is quite long, so it lives in a
 # separate file.)
 [ -f ~/.bash_prompt ] && . ~/.bash_prompt
