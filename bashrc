@@ -24,7 +24,7 @@ HISTCONTROL=ignoredups:erasedups # Remove duplicate history entries.
 # goes to Glyph Lefkowitz. See also: <http://glyf.livejournal.com/63106.html>.
 _bashrc_prompt_command () {
   [ "$(type -t precmd)" = function ] && precmd
-   
+
   _bashrc_run_preexec=1
 }
 
@@ -33,10 +33,10 @@ _bashrc_debug_trap () {
     [ "$BASH_COMMAND" != _bashrc_prompt_command ] &&
       [ "$(type -t preexec)" = function ] && preexec "$(history 1 |
       sed 's/^[[:space:]]*[[:digit:]]\{1,\}[[:space:]]*//')"
-    
+
     unset _bashrc_run_preexec
   fi
-  
+
   return 0
 }
 

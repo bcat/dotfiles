@@ -7,9 +7,9 @@ shopt -u promptvars
 # sequences, so this shouldn't hurt. Hopefully.
 if grep -E '^(cygwin|linux|xterm)-?' <<<"$TERM" >/dev/null 2>&1; then
   _bash_prompt_term_reset=$'\033[m'
-  
+
   _bash_prompt_term_bold=$'\033[1m'
-  
+
   _bash_prompt_term_red=$'\033[31m'
   _bash_prompt_term_green=$'\033[32m'
   _bash_prompt_term_yellow=$'\033[33m'
@@ -46,23 +46,23 @@ fi
 
 preexec () {
   local cmd_line job_spec real_cmd
-  
+
   # Split the command line into multiple words.
   read -a cmd_line <<<"$1"
-  
+
   # Find job specification.
   case "${cmd_line[0]}" in
     fg) [ -n "${cmd_line[1]}" ] && job_spec=${cmd_line[1]} || job_spec=%% ;;
     %*) job_spec=${cmd_line[0]} ;;
   esac
-  
+
   # Get real command line.
   if [ -n "$job_spec" ] && jobs "$job_spec" 2>/dev/null; then
     real_cmd=$(jobs "$job_spec" | sed 's/[^ ]* *[^ ]* *\(.*\)/\1/')
   else
     real_cmd=$1
   fi
-  
+
   # Set the terminal title.
   _bash_prompt_title "$real_cmd"
 }
@@ -75,7 +75,7 @@ precmd () {
   PS2='> '
   PS3='#? '
   PS4='+ '
-  
+
   # Build the prompt.
   _bash_prompt_ps1_escape "$_bash_prompt_term_bold"
   _bash_prompt_ps1_build_machine
@@ -108,9 +108,9 @@ _bash_prompt_ps1_build_status () {
 _bash_prompt_ps1_build_battery () {
   if [ -n "$_bash_prompt_have_battery" ]; then
     local charge=$(acpi | sed 's/.*, \([[:digit:]]\{1,\}\)%.*/\1/')
-    
+
     _bash_prompt_ps1_append B:
-    
+
     if [ "$charge" -ge 90 ]; then
       _bash_prompt_ps1_escape "$_bash_prompt_term_green"
     elif [ "$charge" -ge 45 ]; then
@@ -118,11 +118,11 @@ _bash_prompt_ps1_build_battery () {
     else
       _bash_prompt_ps1_escape "$_bash_prompt_term_red"
     fi
-    
+
     _bash_prompt_ps1_append "$charge%"
     
     _bash_prompt_ps1_escape "$_bash_prompt_term_white"
-    
+
     return 0
   else
     return 1
@@ -133,9 +133,9 @@ _bash_prompt_ps1_build_load () {
   if [ -n "$_bash_prompt_have_uptime" ]; then
     local load=$(uptime | sed 's/.*: \([[:digit:].]*\).*/\1/')
     local load_int=${load/./}
-    
+
     _bash_prompt_ps1_append L:
-    
+
     if [ "$load_int" -lt $((_bash_prompt_cpu_count*50)) ]; then
       _bash_prompt_ps1_escape "$_bash_prompt_term_green"
     elif [ "$load_int" -lt $((_bash_prompt_cpu_count*100)) ]; then
@@ -143,11 +143,11 @@ _bash_prompt_ps1_build_load () {
     else
       _bash_prompt_ps1_escape "$_bash_prompt_term_red"
     fi
-    
+
     _bash_prompt_ps1_append "$load"
-    
+
     _bash_prompt_ps1_escape "$_bash_prompt_term_white"
-    
+
     return 0
   else
     return 1
@@ -156,9 +156,9 @@ _bash_prompt_ps1_build_load () {
 
 _bash_prompt_ps1_build_jobs () {
   local count=$(jobs | wc -l)
-  
+
   _bash_prompt_ps1_append J:
-  
+
   if [ "$count" -eq 0 ]; then
     _bash_prompt_ps1_escape "$_bash_prompt_term_green"
   elif [ "$count" -eq 1 ]; then
@@ -166,11 +166,11 @@ _bash_prompt_ps1_build_jobs () {
   else
     _bash_prompt_ps1_escape "$_bash_prompt_term_red"
   fi
-  
+
   _bash_prompt_ps1_append "$count"
-  
+
   _bash_prompt_ps1_escape "$_bash_prompt_term_white"
-  
+
   return 0
 }
 
@@ -202,7 +202,7 @@ _bash_prompt_ps1_append () {
       let ++_bash_prompt_col
     fi
   done
-  
+
   PS1=$PS1${1//\\/\\\\}
 }
 

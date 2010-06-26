@@ -1,7 +1,9 @@
 [user]
 	name = Jonathan Rascher
 	email = jon@bcat.name
+
 [core]
 	autocrlf = input
+
 [color]
 	ui = true
