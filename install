@@ -2,11 +2,11 @@
 # -*- Mode: sh; charset: utf-8; tab-width: 2; indent-tabs-mode: nil -*-
 
 # Copyright © 2009-2010 Jonathan Rascher.
-#
+
 # Permission to use, copy, modify, and/or distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
 # copyright notice and this permission notice appear in all copies.
-#
+
 # THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
 # REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
 # AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
@@ -25,64 +25,93 @@
 # idea is that ".local" files will be used to store per-host settings and
 # things that should not be placed into version control (e.g., for privacy
 # reasons), while non-".local" files will store universal, public settings.
+# Finally, all new symbolic links or copied files will be created with a dot
+# prefixed to their names, e.g., a file named "foobar" will be installed with
+# the name "~/.foobar".
 
-# Additionally, the installation of per-user scripts is now supported. If the
-# installation script finds a "bin" subdirectory of the current directory, it
-# will (if necessary) create a "bin" directory in the current user's home
-# directory, and then it will (if necessary) create symbolic links in the
-# "~/bin" directory which target the files placed in this directory's "bin"
-# subdirectory.
+# Additionally, dotfiles in arbitrary subdirectories are now supported. The
+# rules regarding local and nonlocal files also apply to files in
+# subdirectories. The dot prefixing behavior described above is usually applied
+# to files in subdirectories as well; however, if the highest subdirectory in
+# a file's path is named "bin", then no prefix is applied. Therefore, a file
+# named "cows/ducks" will be installed with the name "~/.cows/ducks", whereas
+# a file named "bin/prog" will be installed as "~/bin/prog".
 
 # Links:
 # 1. Pinstein's original Rakefile is here <http://bit.ly/7WITQW>.
 
-handle_symlink () {
-  symlink=$1
-  symlink_dest=$2
-  if [ "$(readlink -f "$symlink")" = "$symlink_dest" ]; then
-    printf '%s\n' "Symbolic link $symlink already exists; skipping."
+script=$(cat <<'EOT'
+
+dont_replace () {
+  what=$1
+  file=$2
+
+  printf '%s\n' "$what $file already exists. Replace? [y/N]"
+  read answer
+
+  [ x"$answer" != xy ] && [ x"$answer" != xY ]
+}
+
+handle_dir () {
+  dest=$1
+
+  if [ -d "$dest" ]; then
+    printf '%s\n' "Directory $dest already exists; skipping."
+    return
+  fi
+
+  [ -e "$dest" ] && dont_replace Directory "$dest" && return
+  rm -f "$dest"
+
+  printf '%s\n' "Creating directory $dest."
+  mkdir "$dest"
+}
+
+handle_file () {
+  dest=$1
+  src=$2
+
+  ext=$(printf %s "$src" | sed 's/.*\.\(.*\)/\1/;t;d')
+
+  if [ x"$ext" = xlocal ]; then
+    dest=$(printf %s "$dest" | cut -b -$(( ${#dest} - ${#ext} - 1 )))
   else
-    if [ -e "$symlink" ]; then
-      printf %s "File $symlink already exists. Replace? [y/N] "
-      read answer
-      if [ x"$answer" = xy -o x"$answer" = xY ]; then
-        printf '%s\n' "Removing $symlink."
-        rm -r "$symlink"
-        printf '%s\n' "Symbolically linking $symlink to $symlink_dest."
-        ln -s "$symlink_dest" "$symlink"
-      fi
-    else
-      printf '%s\n' "Symbolically linking $symlink to $symlink_dest."
-      ln -s "$symlink_dest" "$symlink"
+    if [ "$(readlink -f "$dest")" = "$src" ]; then
+      printf '%s\n' "Symbolic link $dest already exists; skipping."
+      return
     fi
+  fi
+
+  [ -e "$dest" ] && dont_replace File "$dest" && return
+  rm -rf "$dest"
+
+  if [ x"$ext" = xlocal ]; then
+    printf '%s\n' "Copying file $src to $dest."
+    cp "$src" "$dest"
+  else
+    printf '%s\n' "Symbolically linking $dest to $src."
+    ln -s "$src" "$dest"
   fi
 }
 
-for dotfile in *; do
-  if [ "$dotfile" != README -a "$dotfile" != install -a -f "$dotfile" ]; then
-    ext=$(printf %s "$dotfile" | sed 's/.*\.\(.*\)/\1/;t;d')
-    if [ "x$ext" = xlocal ]; then
-      local_dest=~/.$dotfile
-      local_src=$(readlink -f "$dotfile")
-      if [ -e "$local_dest" ]; then
-        printf '%s\n' "Local file $local_dest already exists; skipping."
-      else
-        printf '%s\n' "Copying local file $local_src to $local_dest."
-        cp "$local_src" "$local_dest"
-      fi
-    else
-      symlink=~/.$dotfile
-      symlink_dest=$(readlink -f "$dotfile")
-      handle_symlink "$symlink" "$symlink_dest"
-    fi
+for src; do
+  src=$(printf %s "$src" | sed 's:^./::')
+
+  if printf %s "$src" | grep -E '^bin($|/)' >/dev/null; then
+    dest=~/$src
+  else
+    dest=~/.$src
+  fi
+
+  if [ -d "$src" ]; then
+    handle_dir "$dest"
+  elif [ -f "$src" ]; then
+    handle_file "$dest" "$(readlink -f "$src")"
   fi
 done
 
-if [ -d bin ]; then
-  [ -d ~/bin ] || mkdir ~/bin
-  for script in bin/*; do
-    symlink=~/$script
-    symlink_dest=$(readlink -f "$script")
-    handle_symlink "$symlink" "$symlink_dest"
-  done
-fi
+EOT
+)
+
+find \! \( -name . -o -name README -o -name install \) -a \
+     \( -name .git -prune -o -exec sh -c "$script" sh {} + \)
