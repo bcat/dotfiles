@@ -49,7 +49,12 @@ dont_replace () {
   printf '%s\n' "$what $file already exists. Replace? [y/N]"
   read answer
 
-  [ x"$answer" != xy ] && [ x"$answer" != xY ]
+  if [ x"$answer" = xy ] || [ x"$answer" = xY ]; then
+    rm -rf "$file"
+    false
+  else
+    true
+  fi
 }
 
 handle_dir () {
@@ -61,7 +66,6 @@ handle_dir () {
   fi
 
   [ -e "$dest" ] && dont_replace Directory "$dest" && return
-  rm -f "$dest"
 
   printf '%s\n' "Creating directory $dest."
   mkdir "$dest"
@@ -83,7 +87,6 @@ handle_file () {
   fi
 
   [ -e "$dest" ] && dont_replace File "$dest" && return
-  rm -rf "$dest"
 
   if [ x"$ext" = xlocal ]; then
     printf '%s\n' "Copying file $src to $dest."
