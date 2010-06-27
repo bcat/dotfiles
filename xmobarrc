@@ -1,0 +1,7 @@
+Config { font     = "xft:Envy Code R-10"
+       , bgColor  = "black"
+       , fgColor  = "gray"
+       , position = TopSize L 100 24
+       , commands = [ Run StdinReader ]
+       , alignSep = ""
+       , template = "%StdinReader%" }
