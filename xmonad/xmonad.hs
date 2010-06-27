@@ -6,7 +6,6 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
-import XMonad.Layout.Grid
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ThreeColumns
@@ -39,9 +38,9 @@ main = do
                         ||| Mirror (Tall 1 (3 / 100) (1 / 2))
                         ||| ThreeCol 1 (3 / 100) (-1 / 3)
                         ||| Full
-        , manageHook      = (className =? "stalonetray" --> doIgnore)
-                        <+> (className =? "Bsnes" --> doCenterFloat)
+        , manageHook      = (className =? "Bsnes" --> doCenterFloat)
                         <+> (className =? "Gcalctool" -->doCenterFloat)
+                        <+> (className =? "stalonetray" --> doIgnore)
                         <+> (className =? "Totem" --> doCenterFloat)
                         <+> (title =? "glxgears" --> doCenterFloat)
                         <+> (isSplash --> doIgnore)
