@@ -8,6 +8,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Spacing
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.Run
 
@@ -31,13 +32,13 @@ main = do
     xmonad $ ewmh defaultConfig
         { terminal        = "gnome-terminal"
         , layoutHook      = layoutHintsWithPlacement (0.5, 0.5) $
+                            spacing 3 $
                             avoidStruts $
                             smartBorders $
                             Tall 1 (3 / 100) (56 / 100)
                         ||| Tall 1 (3 / 100) (1 / 2)
                         ||| Mirror (Tall 1 (3 / 100) (1 / 2))
                         ||| ThreeCol 1 (3 / 100) (-1 / 3)
-                        ||| Full
         , manageHook      = (className =? "Bsnes" --> doCenterFloat)
                         <+> (className =? "Gcalctool" -->doCenterFloat)
                         <+> (className =? "stalonetray" --> doIgnore)
