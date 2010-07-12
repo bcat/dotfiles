@@ -11,11 +11,13 @@ set history=999
 set backspace=indent,eol,start
 
 " Make indentation behave in a civilized manner.
-set autoindent
-set smartindent
 set tabstop=2
 set shiftwidth=2
 set expandtab
+
+set autoindent
+set smartindent
+set smarttab
 
 filetype plugin indent on
 autocmd FileType css        setlocal tabstop=4 shiftwidth=4
