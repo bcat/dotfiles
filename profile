@@ -6,15 +6,7 @@ then
 fi
 
 # Set the preferred editor.
-if command -v nano >/dev/null; then
-  export EDITOR=$(command -v nano)
-  export FCEDIT=$(command -v nano)
-  export VISUAL=$(command -v nano)
-elif command -v pico >/dev/null; then
-  export EDITOR=$(command -v pico)
-  export FCEDIT=$(command -v pico)
-  export VISUAL=$(command -v pico)
-elif command -v vim >/dev/null; then
+if command -v vim >/dev/null; then
   export EDITOR=$(command -v vim)
   export FCEDIT=$(command -v vim)
   export VISUAL=$(command -v vim)
@@ -22,6 +14,14 @@ elif command -v vi >/dev/null; then
   export EDITOR=$(command -v vi)
   export FCEDIT=$(command -v vi)
   export VISUAL=$(command -v vi)
+elif command -v nano >/dev/null; then
+  export EDITOR=$(command -v nano)
+  export FCEDIT=$(command -v nano)
+  export VISUAL=$(command -v nano)
+elif command -v pico >/dev/null; then
+  export EDITOR=$(command -v pico)
+  export FCEDIT=$(command -v pico)
+  export VISUAL=$(command -v pico)
 fi
 
 # Set the preferred pager.
