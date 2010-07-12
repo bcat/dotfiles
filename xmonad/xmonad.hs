@@ -35,7 +35,7 @@ main = do
                             spacing 3 $
                             avoidStruts $
                             smartBorders $
-                            Tall 1 (3 / 100) (56 / 100)
+                            Tall 1 (3 / 100) (59 / 100)
                         ||| Tall 1 (3 / 100) (1 / 2)
                         ||| Mirror (Tall 1 (3 / 100) (1 / 2))
                         ||| ThreeCol 1 (3 / 100) (-1 / 3)
