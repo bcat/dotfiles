@@ -66,3 +66,8 @@ if has("gui_running")
 elseif &t_Co == 88 || &t_Co == 256
   colorscheme desert256-transparent
 endif
+
+" If possible, enable mouse support.
+if has("mouse")
+  set mouse=a
+endif

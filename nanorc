@@ -10,7 +10,7 @@ set fill 0
 set historylog
 set matchbrackets "(<[{)>]}"
 set morespace
-unset mouse
+set mouse
 set multibuffer
 unset noconvert
 unset nofollow
