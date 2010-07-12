@@ -1,5 +1,6 @@
 " This configuration is based on the example vimrc included with Arch Linux,
-" as well as the vimrc file Ben Breedlove sent me to look at. (Thanks Ben!)
+" the Vim Tips Wiki, and the vimrc file Ben Breedlove sent me to look at.
+" (Thanks, Ben!)
 
 " Enable Vim improvements at the expense of losing full vi compatibility.
 set nocompatible
@@ -47,7 +48,21 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-" If possible, set up a nice color scheme.
-if &t_Co == 88 || &t_Co == 256 || has("gui_running")
+" If possible, set up a nice color scheme and font.
+if has("gui_running")
+  colorscheme desert
+
+  if has("gui_gtk2")
+    set guifont=Envy\ Code\ R\ 10
+  elseif has("gui_photon")
+    set guifont=Envy\ Code\ R\ s:10
+  elseif has("gui_kde")
+    set guifont=Envy\ Code\ R/10/-1/5/50/0/0/0/1/0
+  elseif has("x11")
+    set guifont=-*-Envy\ Code\ R-medium-r-normal-*-*-180-*-*-m-*-*
+  else
+    set guifont=Envy_Code_R:h10:cDEFAULT
+  endif
+elseif &t_Co == 88 || &t_Co == 256
   colorscheme desert256-transparent
 endif
