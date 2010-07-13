@@ -5,6 +5,14 @@
 " Enable Vim improvements at the expense of losing full vi compatibility.
 set nocompatible
 
+" Set display options.
+set laststatus=2
+set number
+set numberwidth=5
+set ruler
+set showcmd
+
+" If possible, make search a bit nicer.
 " Give us a big command history.
 set history=999
 
@@ -15,26 +23,45 @@ set backspace=indent,eol,start
 set tabstop=2
 set shiftwidth=2
 set expandtab
-
-set autoindent
-set smartindent
 set smarttab
+set autoindent
 
-filetype plugin indent on
-autocmd FileType css        setlocal tabstop=4 shiftwidth=4
-autocmd FileType haskell    setlocal tabstop=4 shiftwidth=4
-autocmd FileType html       setlocal tabstop=4 shiftwidth=4
-autocmd FileType javascript setlocal tabstop=4 shiftwidth=4
-autocmd FileType php        setlocal tabstop=4 shiftwidth=4
-autocmd FileType python     setlocal tabstop=4 shiftwidth=4
+" Enable settings specific to various file formats.
+filetype on
+filetype plugin on
+filetype indent on
 
-" Set display options.
-set ruler
-set number
-set numberwidth=5
-set showcmd
-set incsearch
-set laststatus=2
+" If possible, tweak the indentation settings a bit for certain file formats.
+if has("autocmd")
+  autocmd FileType css        setlocal tabstop=4 shiftwidth=4
+  autocmd FileType haskell    setlocal tabstop=4 shiftwidth=4
+  autocmd FileType html       setlocal tabstop=4 shiftwidth=4
+  autocmd FileType javascript setlocal tabstop=4 shiftwidth=4
+  autocmd FileType php        setlocal tabstop=4 shiftwidth=4
+  autocmd FileType python     setlocal tabstop=4 shiftwidth=4
+  autocmd FileType sql        setlocal tabstop=4 shiftwidth=4
+endif
+
+" If possible, make indentation smarter.
+if has("smartindent")
+  set smartindent
+endif
+
+" If possible, enable fancy search settings.
+if has("extra_search")
+  set incsearch
+  set hlsearch
+endif
+
+" If possible, enable mouse support.
+if has("mouse")
+  set mouse=a
+endif
+
+" If possible, enable syntax highlighting.
+if has("syntax") && (&t_Co > 2 || has("gui_running"))
+  syntax on
+endif
 
 " All the xterm-like terminals I use support 256 colors, so let's make Vim
 " aware of that.
@@ -42,16 +69,11 @@ if &term == "xterm"
   set t_Co=256
 endif
 
-" If possible, enable syntax highlighting and other pretty things.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
-
 " If possible, set up a nice color scheme and font.
 if has("gui_running")
   colorscheme desert
 
+  " See also: <http://vim.wikia.com/wiki/Setting_the_font_in_the_GUI>.
   if has("gui_gtk2")
     set guifont=Envy\ Code\ R\ 10
   elseif has("gui_photon")
@@ -65,9 +87,4 @@ if has("gui_running")
   endif
 elseif &t_Co == 88 || &t_Co == 256
   colorscheme desert256-transparent
-endif
-
-" If possible, enable mouse support.
-if has("mouse")
-  set mouse=a
 endif
