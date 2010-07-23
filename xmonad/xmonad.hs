@@ -32,7 +32,7 @@ main = do
     xmonad $ ewmh defaultConfig
         { terminal        = "gnome-terminal"
         , layoutHook      = layoutHintsWithPlacement (0.5, 0.5) $
-                            spacing 3 $
+                            spacing 2 $
                             avoidStruts $
                             smartBorders $
                             Tall 1 (3 / 100) (59 / 100)
