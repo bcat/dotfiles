@@ -6,8 +6,11 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.IM
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.NoBorders
+import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Spacing
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.Run
@@ -17,7 +20,7 @@ workspaceName "2" = "2-aux"
 workspaceName "3" = "3-term"
 workspaceName "4" = "4-write"
 workspaceName "5" = "5-media"
-workspaceName "6" = "6-comm"
+workspaceName "6" = "6-im"
 workspaceName "7" = "7-mail"
 workspaceName "8" = "8-winxp"
 workspaceName "9" = "9-temp"
@@ -29,17 +32,19 @@ isSplash =
 main = do
     xmobar <- spawnPipe "xmobar ~/.xmobarrc"
 
-    xmonad $ ewmh defaultConfig
+    xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
         { terminal        = "gnome-terminal"
         , layoutHook      = layoutHintsWithPlacement (0.5, 0.5) $
                             spacing 2 $
                             avoidStruts $
                             smartBorders $
+                            onWorkspace "6" (gridIM (15 / 100) (Role "roster")) $
                             Tall 1 (3 / 100) (59 / 100)
                         ||| Tall 1 (3 / 100) (1 / 2)
                         ||| Mirror (Tall 1 (3 / 100) (1 / 2))
                         ||| ThreeCol 1 (3 / 100) (-1 / 3)
         , manageHook      = (className =? "Bsnes" --> doCenterFloat)
+                        <+> (className =? "Gajim.py" --> doShift "6")
                         <+> (className =? "Gcalctool" -->doCenterFloat)
                         <+> (className =? "stalonetray" --> doIgnore)
                         <+> (className =? "Totem" --> doCenterFloat)
@@ -61,6 +66,9 @@ main = do
                                                     . wrap "{" "}"
                                                     . workspaceName
                                 , ppHiddenNoWindows = wrap "<" ">"
+                                                    . workspaceName
+                                , ppUrgent          = xmobarColor "yellow" "red"
+                                                    . wrap "*" "*"
                                                     . workspaceName
                                 , ppTitle           = xmobarColor "green" ""
                                                     . shorten 255
