@@ -15,9 +15,9 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.Run
 
-workspaceName "1" = "1-main"
-workspaceName "2" = "2-aux"
-workspaceName "3" = "3-term"
+workspaceName "1" = "1-uno"
+workspaceName "2" = "2-dos"
+workspaceName "3" = "3-tres"
 workspaceName "4" = "4-write"
 workspaceName "5" = "5-media"
 workspaceName "6" = "6-im"
