@@ -47,6 +47,7 @@ main = do
                         <+> (className =? "Gajim.py" --> doShift "6")
                         <+> (className =? "Gcalctool" -->doCenterFloat)
                         <+> (className =? "stalonetray" --> doIgnore)
+                        <+> (className =? "Thunderbird" --> doShift "7")
                         <+> (className =? "Totem" --> doCenterFloat)
                         <+> (title =? "glxgears" --> doCenterFloat)
                         <+> (isSplash --> doIgnore)
