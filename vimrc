@@ -88,3 +88,10 @@ if has("gui_running")
 elseif &t_Co == 88 || &t_Co == 256
   colorscheme desert256-transparent
 endif
+
+" If possible, highlight trailing whitespace.
+" See also: <http://vim.wikia.com/wiki/Highlight_unwanted_spaces>.
+if has("autocmd") && has("syntax") && (&t_Co > 2 || has("gui_running"))
+  highlight ExtraWhitespace ctermbg=red guibg=red
+  autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
+endif
