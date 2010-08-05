@@ -45,7 +45,7 @@ main = do
                             Tall 1 (1 / 100) (59 / 100)
                         ||| named "Wide" (Mirror (Tall 1 (1 / 100) (1 / 2)))
                         ||| ThreeCol 1 (3 / 100) (-1 / 3)
-                        ||| Grid
+                        ||| named "Grid" (GridRatio 1)
                         ||| Full
         , manageHook      = (className =? "Bsnes" --> doCenterFloat)
                         <+> (className =? "Gajim.py" --> doShift "6")
