@@ -7,8 +7,10 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.Grid
 import XMonad.Layout.IM
 import XMonad.Layout.LayoutHints
+import XMonad.Layout.Named
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Spacing
@@ -34,15 +36,17 @@ main = do
 
     xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
         { terminal        = "gnome-terminal"
-        , layoutHook      = layoutHintsWithPlacement (0.5, 0.5) $
+        , layoutHook      = (nameTail . nameTail . nameTail) $
+                            layoutHintsWithPlacement (0.5, 0.5) $
                             spacing 2 $
                             avoidStruts $
                             smartBorders $
                             onWorkspace "6" (gridIM (15 / 100) (Role "roster")) $
-                            Tall 1 (3 / 100) (59 / 100)
-                        ||| Tall 1 (3 / 100) (1 / 2)
-                        ||| Mirror (Tall 1 (3 / 100) (1 / 2))
+                            Tall 1 (1 / 100) (59 / 100)
+                        ||| named "Wide" (Mirror (Tall 1 (1 / 100) (1 / 2)))
                         ||| ThreeCol 1 (3 / 100) (-1 / 3)
+                        ||| Grid
+                        ||| Full
         , manageHook      = (className =? "Bsnes" --> doCenterFloat)
                         <+> (className =? "Gajim.py" --> doShift "6")
                         <+> (className =? "Gcalctool" -->doCenterFloat)
