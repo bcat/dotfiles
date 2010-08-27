@@ -47,7 +47,11 @@ main = do
                         ||| ThreeCol 1 (3 / 100) (-1 / 3)
                         ||| named "Grid" (GridRatio 1)
                         ||| Full
-        , manageHook      = (className =? "Bsnes" --> doCenterFloat)
+        , manageHook      = (className =? "Bsnes-accuracy" --> doCenterFloat)
+                        <+> (className =? "Bsnes-compatibility"
+                                 --> doCenterFloat)
+                        <+> (className =? "Bsnes-performance"
+                                 --> doCenterFloat)
                         <+> (className =? "Gajim.py" --> doShift "6")
                         <+> (className =? "Gcalctool" -->doCenterFloat)
                         <+> (className =? "stalonetray" --> doIgnore)
