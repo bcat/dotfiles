@@ -1,4 +1,5 @@
 import IO
+
 import XMonad
 import XMonad.Config.Gnome
 import XMonad.Hooks.DynamicLog
@@ -13,75 +14,109 @@ import XMonad.Layout.LayoutHints
 import XMonad.Layout.Named
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
-import XMonad.Layout.Spacing
+import XMonad.Layout.Reflect
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.Run
+
+import qualified XMonad.StackSet as W
+
+-- Helper functions.
+gajimRoster = Role "roster"
+skypeRoster = Title "Skype™ 2.1 (Beta) for Linux"
+         `Or` Title "bcat24 - Skype™ (Beta)"
+
+doSink   = ask >>= doF . W.sink
+isSplash = isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
 
 workspaceName "1" = "1-uno"
 workspaceName "2" = "2-dos"
 workspaceName "3" = "3-tres"
 workspaceName "4" = "4-write"
 workspaceName "5" = "5-media"
-workspaceName "6" = "6-im"
+workspaceName "6" = "6-chat"
 workspaceName "7" = "7-mail"
 workspaceName "8" = "8-winxp"
 workspaceName "9" = "9-temp"
 workspaceName x   = x
 
-isSplash =
-    isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
+-- Layout settings.
+tallLayout     = named "tall" $ Tall 1 (1 / 100) (59 / 100)
+wideLayout     = named "wide" $ Mirror $ Tall 1 (1 / 100) (1 / 2)
+threeColLayout = named "3col" $ ThreeCol 1 (3 / 100) (-1 / 3)
+gridLayout     = named "grid" $ GridRatio 1
+fullLayout     = named "full" $ Full
 
+chatLayout = named "chat"
+           $ withIM (15 / 100) gajimRoster
+           $ reflectHoriz
+           $ withIM (15 / 85) skypeRoster
+           $ reflectHoriz
+           $ Grid
+
+-- Manage hooks.
+
+manageIgnores = composeOne $ map (-?> doIgnore)
+    [ isSplash
+    , className =? "stalonetray" ]
+manageFloats  = composeOne $ map (-?> doCenterFloat)
+    [ className =? "Bsnes-accuracy"
+    , className =? "Bsnes-compatibility"
+    , className =? "Bsnes-performance"
+    , className =? "Gcalctool"
+    , className =? "Totem"
+    , title     =? "glxgears" ]
+manageSinks   = composeOne $ map (-?> doSink)
+    [ className =? "Skype" {- A bit too general, but OK for now. -} ]
+manageChat    = composeOne $ map (-?> doShift "6")
+    [ className =? "Gajim.py"
+    , className =? "Skype" ]
+manageEmail   = composeOne $ map (-?> doShift "7")
+    [ className =? "Thunderbird" ]
+
+-- Log hooks.
+xmobarLogHook xmobar = dynamicLogWithPP xmobarPP
+        { ppCurrent         = xmobarColor "yellow" ""
+                            . wrap "[" "]"
+                            . workspaceName
+        , ppVisible         = xmobarColor "yellow" ""
+                            . wrap "(" ")"
+                            . workspaceName
+        , ppHidden          = xmobarColor "white" ""
+                            . wrap "{" "}"
+                            . workspaceName
+        , ppHiddenNoWindows = wrap "<" ">"
+                            . workspaceName
+        , ppUrgent          = xmobarColor "yellow" "red"
+                            . wrap "*" "*"
+                            . workspaceName
+        , ppTitle           = xmobarColor "green" ""
+                            . shorten 255
+        , ppOutput          = hPutStrLn xmobar }
+
+-- Main configuration.
 main = do
     xmobar <- spawnPipe "xmobar ~/.xmobarrc"
 
     xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
         { terminal        = "gnome-terminal"
-        , layoutHook      = (nameTail . nameTail . nameTail) $
-                            layoutHintsWithPlacement (0.5, 0.5) $
-                            spacing 2 $
-                            avoidStruts $
-                            smartBorders $
-                            onWorkspace "6" (gridIM (15 / 100) (Role "roster")) $
-                            Tall 1 (1 / 100) (59 / 100)
-                        ||| named "Wide" (Mirror (Tall 1 (1 / 100) (1 / 2)))
-                        ||| ThreeCol 1 (3 / 100) (-1 / 3)
-                        ||| named "Grid" (GridRatio 1)
-                        ||| Full
-        , manageHook      = (className =? "Bsnes-accuracy" --> doCenterFloat)
-                        <+> (className =? "Bsnes-compatibility"
-                                 --> doCenterFloat)
-                        <+> (className =? "Bsnes-performance"
-                                 --> doCenterFloat)
-                        <+> (className =? "Gajim.py" --> doShift "6")
-                        <+> (className =? "Gcalctool" -->doCenterFloat)
-                        <+> (className =? "stalonetray" --> doIgnore)
-                        <+> (className =? "Thunderbird" --> doShift "7")
-                        <+> (className =? "Totem" --> doCenterFloat)
-                        <+> (title =? "glxgears" --> doCenterFloat)
-                        <+> (isSplash --> doIgnore)
-                        <+> manageDocks
-                        <+> (manageHook defaultConfig)
-        , handleEventHook = fullscreenEventHook
-                        <+> handleEventHook defaultConfig
+        , layoutHook      = nameTail
+                          $ layoutHintsWithPlacement (0.5, 0.5)
+                          $ avoidStruts
+                          $ smartBorders
+                          $ onWorkspace "6" chatLayout
+                          $ tallLayout
+                        ||| wideLayout
+                        ||| threeColLayout
+                        ||| gridLayout
+                        ||| fullLayout
+        , manageHook      = composeAll [ manageIgnores
+                                       , manageFloats
+                                       , manageSinks
+                                       , manageChat
+                                       , manageEmail
+                                       , manageDocks ]
+        , handleEventHook = fullscreenEventHook -- Needs xmonad-contrib-darcs.
         , modMask         = mod4Mask
-        , logHook         = dynamicLogWithPP xmobarPP
-                                { ppCurrent         = xmobarColor "yellow" ""
-                                                    . wrap "[" "]"
-                                                    . workspaceName
-                                , ppVisible         = xmobarColor "yellow" ""
-                                                    . wrap "(" ")"
-                                                    . workspaceName
-                                , ppHidden          = xmobarColor "white" ""
-                                                    . wrap "{" "}"
-                                                    . workspaceName
-                                , ppHiddenNoWindows = wrap "<" ">"
-                                                    . workspaceName
-                                , ppUrgent          = xmobarColor "yellow" "red"
-                                                    . wrap "*" "*"
-                                                    . workspaceName
-                                , ppTitle           = xmobarColor "green" ""
-                                                    . shorten 255
-                                , ppOutput          = hPutStrLn xmobar }
-                         >> setWMName "LG3D"
-                         >> logHook defaultConfig
+        , logHook         = xmobarLogHook xmobar
+                         >> setWMName "LG3D" -- Nasty hack for Java Swing.
         , startupHook     = gnomeRegister }
