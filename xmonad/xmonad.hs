@@ -67,6 +67,9 @@ manageFloats  = composeOne $ map (-?> doCenterFloat)
     , title     =? "glxgears" ]
 manageSinks   = composeOne $ map (-?> doSink)
     [ className =? "Skype" {- A bit too general, but OK for now. -} ]
+manageMedia   = composeOne $ map (-?> doShift "5")
+    [ className =? "Quodlibet"
+    , className =? "Totem" ]
 manageChat    = composeOne $ map (-?> doShift "6")
     [ className =? "Gajim.py"
     , className =? "Skype" ]
@@ -112,6 +115,7 @@ main = do
         , manageHook      = composeAll [ manageIgnores
                                        , manageFloats
                                        , manageSinks
+                                       , manageMedia
                                        , manageChat
                                        , manageEmail
                                        , manageDocks ]
