@@ -12,7 +12,6 @@ set numberwidth=5
 set ruler
 set showcmd
 
-" If possible, make search a bit nicer.
 " Give us a big command history.
 set history=999
 
