@@ -1,0 +1,31 @@
+! Set some pretty colors for urxvt. Sources:
+! * Colors 1 and 9   - <http://github.com/miroalgo/colours/blob/master/byte>
+! * Colors 2 and 10  - GNOME Terminal Rxvt color scheme
+! * Colors 5 and 13  - <http://cinderwick.ca/files/configs/Xdefaults>
+! * All other colors - <http://dotfiles.org/~caio/.Xdefaults>
+URxvt.depth:        32
+URxvt.background:   [88]#000000
+URxvt.foreground:   #ffffff
+URxvt.color0:       #676767
+URxvt.color8:       #757575
+URxvt.color1:       #ce5666
+URxvt.color9:       #952743
+URxvt.color2:       #00cd00
+URxvt.color10:      #00ff00
+URxvt.color3:       #e8ae5b
+URxvt.color11:      #ffa75d
+URxvt.color4:       #71c5f4
+URxvt.color12:      #67cde9
+URxvt.color5:       #ce5c00
+URxvt.color13:      #f57900
+URxvt.color6:       #21f1ea
+URxvt.color14:      #36fffc
+URxvt.color7:       #f1f1f1
+URxvt.color15:      #ffffff
+
+! Configure the font and some other things for urxvt.
+URxvt.font:         xft:Envy Code R-10
+URxvt.urgentOnBell: true
+URxvt.scrollBar:    false
+URxvt.saveLines:    16384
+URxvt.cursorBlink:  true

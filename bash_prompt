@@ -5,7 +5,7 @@ shopt -u promptvars
 # use. It would be better to use tput here, but it's sadly absent on Cygwin,
 # and probably other platforms, too. Anyway, we only use a few basic escape
 # sequences, so this shouldn't hurt. Hopefully.
-if grep -E '^(cygwin|linux|xterm)-?' <<<"$TERM" >/dev/null 2>&1; then
+if grep -E '^(cygwin|linux|rxvt|xterm)-?' <<<"$TERM" >/dev/null 2>&1; then
   _bash_prompt_term_reset=$'\033[m'
 
   _bash_prompt_term_bold=$'\033[1m'
@@ -221,7 +221,7 @@ _bash_prompt_ps1_escape () {
 # xterm-like terminals. If COMMAND is not provided, the name of the currently-
 # executing shell will be substituted.
 _bash_prompt_title () {
-  if grep -E '^(cygwin|xterm)-?' <<<"$TERM" >/dev/null 2>&1; then
+  if grep -E '^(cygwin|rxvt|xterm)-?' <<<"$TERM" >/dev/null 2>&1; then
     printf '\033]0;%s\a' "${1:-$0} - $USER@$HOSTNAME:${PWD/#$HOME/~}"
   fi
 }
