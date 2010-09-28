@@ -12,7 +12,7 @@ shopt -s cdspell      # Perform typo-correction on cd destination directories.
 shopt -s checkhash    # Confirm locations of hashed commands.
 shopt -s checkwinsize # Update LINES and COLUMNS variables after each command.
 shopt -s cmdhist      # Save multi-line commands in a single history entry.
-shopt -s extglob      # Enable extended pattern mattching features.
+shopt -s extglob      # Enable extended pattern matching features.
 shopt -s histappend   # Append to history file instead of overwriting it.
 shopt -s histverify   # Verify history substitutions before executing them.
 shopt -s huponexit    # Send SIGHUP to background jobs on exit.

@@ -120,7 +120,7 @@ _bash_prompt_ps1_build_battery () {
     fi
 
     _bash_prompt_ps1_append "$charge%"
-    
+
     _bash_prompt_ps1_escape "$_bash_prompt_term_white"
 
     return 0
