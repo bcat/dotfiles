@@ -1,3 +1,12 @@
+! Set up font rendering settings.
+Xft.antialias: true
+Xft.dpi:       96
+Xft.hinting:   true
+Xft.hintstyle: hintslight
+Xft.rgba:      rgb
+Xft.lcdfilter: lcddefault
+Xft.autohint:  true
+
 ! Set some pretty colors for urxvt. Sources:
 ! * Colors 1 and 9   - <http://github.com/miroalgo/colours/blob/master/byte>
 ! * Colors 2 and 10  - GNOME Terminal Rxvt color scheme
