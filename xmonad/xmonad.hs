@@ -101,7 +101,7 @@ main = do
     xmobar <- spawnPipe "xmobar ~/.xmobarrc"
 
     xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
-        { terminal        = "gnome-terminal"
+        { terminal        = "urxvt"
         , layoutHook      = nameTail
                           $ layoutHintsWithPlacement (0.5, 0.5)
                           $ avoidStruts
