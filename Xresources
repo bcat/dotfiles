@@ -1,35 +1,43 @@
 ! Set up font rendering settings.
-Xft.antialias: true
-Xft.dpi:       96
-Xft.hinting:   true
-Xft.hintstyle: hintslight
-Xft.rgba:      rgb
-Xft.lcdfilter: lcddefault
-Xft.autohint:  true
+Xft.antialias:      true
+Xft.dpi:            96
+Xft.hinting:        true
+Xft.hintstyle:      hintslight
+Xft.rgba:           rgb
+Xft.lcdfilter:      lcddefault
+Xft.autohint:       true
 
-! Set some pretty colors for urxvt. Sources:
-! * Colors 1 and 9   - <http://github.com/miroalgo/colours/blob/master/byte>
-! * Colors 2 and 10  - GNOME Terminal Rxvt color scheme
-! * Colors 5 and 13  - <http://cinderwick.ca/files/configs/Xdefaults>
-! * All other colors - <http://dotfiles.org/~caio/.Xdefaults>
+! Set some pretty colors for urxvt. Based on these:
+! * desert-inspired colors by Vincenzo Colosimo -
+!     <http://vico.kleinplanet.de/files/dot.Xdefaults>
+! * byte color scheme by miroalgo -
+!     <http://github.com/miroalgo/colours/blob/master/byte>
 URxvt.depth:        32
-URxvt.background:   [88]#000000
+URxvt.background:   [86]#000000
 URxvt.foreground:   #ffffff
-URxvt.color0:       #676767
-URxvt.color8:       #757575
-URxvt.color1:       #ce5666
-URxvt.color9:       #952743
-URxvt.color2:       #00cd00
-URxvt.color10:      #00ff00
-URxvt.color3:       #e8ae5b
-URxvt.color11:      #ffa75d
-URxvt.color4:       #71c5f4
-URxvt.color12:      #67cde9
-URxvt.color5:       #ce5c00
-URxvt.color13:      #f57900
-URxvt.color6:       #21f1ea
-URxvt.color14:      #36fffc
-URxvt.color7:       #f1f1f1
+! (black)
+URxvt.color0:       #333333
+URxvt.color8:       #333333
+! (red)
+URxvt.color1:       #eea0a0
+URxvt.color9:       #bb4f50
+! (green)
+URxvt.color2:       #98fb98
+URxvt.color10:      #9acd32
+! (yellow)
+URxvt.color3:       #f0e68c
+URxvt.color11:      #f0e68c
+! (blue)
+URxvt.color4:       #778baf
+URxvt.color12:      #778baf
+! (magenta)
+URxvt.color5:       #eea0a0
+URxvt.color13:      #bb4f50
+! (cyan)
+URxvt.color6:       #87ceeb
+URxvt.color14:      #87ceeb
+! (white)
+URxvt.color7:       #ffffff
 URxvt.color15:      #ffffff
 
 ! Configure the font and some other things for urxvt.
