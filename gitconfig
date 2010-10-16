@@ -3,7 +3,7 @@
 	email = jon@bcat.name
 
 [core]
-	autocrlf = input
+	autocrlf = false
 
 [color]
 	ui = true
