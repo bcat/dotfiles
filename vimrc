@@ -69,10 +69,18 @@ if &term == "xterm"
   set t_Co=256
 endif
 
-" If possible, set up a nice color scheme and font.
 if has("gui_running")
-  colorscheme desert
+  " Make the default gVim Window larger.
+  set lines=50
+  set columns=132
 
+  " Kill off the gVim toolbar and scrollbar, and fix the tear-off menus.
+  " See also: <http://vim.wikia.com/wiki/Hide_toolbar_or_menus_to_see_more_text>
+  set guioptions-=t
+  set guioptions-=T
+  set guioptions-=r
+
+  " Set a pretty font. :)
   " See also: <http://vim.wikia.com/wiki/Setting_the_font_in_the_GUI>.
   if has("gui_gtk2")
     set guifont=Envy\ Code\ R\ 10
@@ -85,7 +93,18 @@ if has("gui_running")
   else
     set guifont=Envy_Code_R:h10:cDEFAULT
   endif
+
+  " If possible, enable spell checking. (Only do this for gVim as it's just
+  " too ugly in the terminal.)
+  if has("spell")
+    set spell
+    set spellfile=~/.vim/spellfile.add
+  endif
+
+  " Set a nice color scheme.
+  colorscheme desert
 elseif &t_Co == 88 || &t_Co == 256
+  " Set a nice color scheme.
   colorscheme desert256-transparent
 endif
 
