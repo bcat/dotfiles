@@ -11,6 +11,7 @@ set number
 set numberwidth=5
 set ruler
 set showcmd
+set linebreak
 
 " Give us a big command history.
 set history=999
