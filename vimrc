@@ -31,6 +31,11 @@ filetype on
 filetype plugin on
 filetype indent on
 
+let g:tex_flavor="latex"
+
+" Configure the LaTeX Box plugin.
+let g:LatexBox_latexmk_options="-pvc"
+
 " If possible, tweak the indentation settings a bit for certain file formats.
 if has("autocmd")
   autocmd FileType css        setlocal tabstop=4 shiftwidth=4
