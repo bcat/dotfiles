@@ -112,5 +112,8 @@ endif
 " See also: <http://vim.wikia.com/wiki/Highlight_unwanted_spaces>.
 if has("autocmd") && has("syntax") && (&t_Co > 2 || has("gui_running"))
   highlight ExtraWhitespace ctermbg=red guibg=red
-  autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
+  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+  autocmd BufWinLeave * call clearmatches()
 endif
