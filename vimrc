@@ -53,11 +53,6 @@ if has("extra_search")
   set hlsearch
 endif
 
-" If possible, enable spell checking.
-if has("spell")
-  set spell
-endif
-
 " If possible, enable mouse support.
 if has("mouse")
   set mouse=a
