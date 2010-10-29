@@ -42,6 +42,7 @@ URxvt.color15:      #ffffff
 
 ! Configure the font and some other things for urxvt.
 URxvt.font:         xft:Envy Code R-10
+URxvt.boldFont:
 URxvt.urgentOnBell: true
 URxvt.scrollBar:    false
 URxvt.saveLines:    16384
