@@ -190,7 +190,7 @@ _bash_prompt_ps1_build_symbol () {
 }
 
 # _bash_prompt_ps1_append STRING
-# 
+#
 # Append STRING to PS1. Backslashes will be doubled to ensure proper display.
 # $_bash_prompt_line and $_bash_prompt_col will be updated as appropriate.
 _bash_prompt_ps1_append () {
@@ -207,7 +207,7 @@ _bash_prompt_ps1_append () {
 }
 
 # _bash_prompt_ps1_escape STRING
-# 
+#
 # Append STRING to PS1. Backslashes will be doubled to ensure proper display.
 # \[ and \] markers will be added to mark the string as an escape sequence.
 # $_bash_prompt_line and $_bash_prompt_col will not be updated.
@@ -216,7 +216,7 @@ _bash_prompt_ps1_escape () {
 }
 
 # _bash_prompt_title [COMMAND]
-# 
+#
 # Output an escape sequence to set the terminal's title bar. Only works on
 # xterm-like terminals. If COMMAND is not provided, the name of the currently-
 # executing shell will be substituted.
