@@ -60,7 +60,7 @@ preexec () {
   if [ -n "$job_spec" ] && jobs "$job_spec" 2>/dev/null; then
     real_cmd=$(jobs "$job_spec" | sed 's/[^ ]* *[^ ]* *\(.*\)/\1/')
   else
-    real_cmd=$1
+    real_cmd=$(sed 's/ *$//' <<<"$1")
   fi
 
   # Set the terminal title.
