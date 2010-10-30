@@ -1,3 +1,0 @@
-#!/bin/sh
-[ x"$1" != x ] && rsync -vrt --delete \
-  kkjrascher.dnsalias.net:/home/public/Music/Compressed/ "$1"
