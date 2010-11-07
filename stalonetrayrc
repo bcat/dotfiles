@@ -1,7 +1,0 @@
-background black
-geometry 1x1-0+1
-grow_gravity NE
-icon_gravity NE
-kludges force_icons_size
-max_geometry 0x1
-window_strut top
