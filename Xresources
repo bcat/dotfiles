@@ -1,48 +1,51 @@
 ! Set up font rendering settings.
-Xft.antialias:      true
-Xft.dpi:            96
-Xft.hinting:        true
-Xft.hintstyle:      hintslight
-Xft.rgba:           rgb
-Xft.lcdfilter:      lcddefault
-Xft.autohint:       true
+Xft.antialias:         true
+Xft.dpi:               96
+Xft.hinting:           true
+Xft.hintstyle:         hintslight
+Xft.rgba:              rgb
+Xft.lcdfilter:         lcddefault
+Xft.autohint:          true
 
 ! Set some pretty colors for urxvt. Based on these:
 ! * desert-inspired colors by Vincenzo Colosimo -
 !     <http://vico.kleinplanet.de/files/dot.Xdefaults>
 ! * byte color scheme by miroalgo -
 !     <http://github.com/miroalgo/colours/blob/master/byte>
-URxvt.depth:        32
-URxvt.background:   [86]#000000
-URxvt.foreground:   #ffffff
+URxvt.depth:           32
+URxvt.background:      [86]#000000
+URxvt.foreground:      #ffffff
 ! (black)
-URxvt.color0:       #666666
-URxvt.color8:       #666666
+URxvt.color0:          #666666
+URxvt.color8:          #666666
 ! (red)
-URxvt.color1:       #eea0a0
-URxvt.color9:       #bb4f50
+URxvt.color1:          #eea0a0
+URxvt.color9:          #bb4f50
 ! (green)
-URxvt.color2:       #98fb98
-URxvt.color10:      #9acd32
+URxvt.color2:          #98fb98
+URxvt.color10:         #9acd32
 ! (yellow)
-URxvt.color3:       #f0e68c
-URxvt.color11:      #f0e68c
+URxvt.color3:          #f0e68c
+URxvt.color11:         #f0e68c
 ! (blue)
-URxvt.color4:       #778baf
-URxvt.color12:      #778baf
+URxvt.color4:          #778baf
+URxvt.color12:         #778baf
 ! (magenta)
-URxvt.color5:       #eea0a0
-URxvt.color13:      #bb4f50
+URxvt.color5:          #eea0a0
+URxvt.color13:         #bb4f50
 ! (cyan)
-URxvt.color6:       #87ceeb
-URxvt.color14:      #87ceeb
+URxvt.color6:          #87ceeb
+URxvt.color14:         #87ceeb
 ! (white)
-URxvt.color7:       #ffffff
-URxvt.color15:      #ffffff
+URxvt.color7:          #ffffff
+URxvt.color15:         #ffffff
 
 ! Configure the font and some other things for urxvt.
-URxvt.font:         xft:Envy Code R-10
-URxvt.urgentOnBell: true
-URxvt.scrollBar:    false
-URxvt.saveLines:    16384
-URxvt.cursorBlink:  true
+URxvt.font:            xft:Envy Code R-10
+URxvt.urgentOnBell:    true
+URxvt.scrollBar:       false
+URxvt.saveLines:       16384
+URxvt.cursorBlink:     true
+URxvt.perl-ext-common: default,matcher,clipboard
+URxvt.urlLauncher:     xdg-open
+URxvt.matcher.button:  1
