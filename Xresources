@@ -46,6 +46,6 @@ URxvt.urgentOnBell:    true
 URxvt.scrollBar:       false
 URxvt.saveLines:       16384
 URxvt.cursorBlink:     true
-URxvt.perl-ext-common: default,matcher,clipboard
+URxvt.perl-ext-common: default,matcher
 URxvt.urlLauncher:     xdg-open
 URxvt.matcher.button:  1
