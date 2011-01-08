@@ -91,14 +91,19 @@ if has("gui_running")
   set guioptions-=T
   set guioptions-=r
 
-  " Set a pretty font. :)
+  " Set a pretty font. :) To make things a bit more cross-platform, we
+  " actually specific several fonts: a primary and a few fallbacks.
   " See also: <http://vim.wikia.com/wiki/Setting_the_font_in_the_GUI>.
   if has("gui_gtk2")
     set guifont=Envy\ Code\ R\ 10
-  elseif has("x11")
-    set guifont=-*-Envy\ Code\ R-medium-r-normal-*-*-180-*-*-m-*-*
+    set guifont+=Consolas\ 10
+    set guifont+=DejaVu\ Sans\ Mono\ 10
+    set guifont+=Courier\ New\ 10
   else
     set guifont=Envy_Code_R:h10:cDEFAULT
+    set guifont+=Consolas:h10:cDEFAULT
+    set guifont+=DejaVu_Sans_Mono:h10:cDEFAULT
+    set guifont+=Courier_New:h10:cDEFAULT
   endif
 
   " Enable highlighting of misspelled words in gVim only.
