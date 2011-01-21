@@ -42,6 +42,7 @@ if has("autocmd")
   autocmd FileType haskell    setlocal tabstop=4 shiftwidth=4
   autocmd FileType html       setlocal tabstop=4 shiftwidth=4
   autocmd FileType javascript setlocal tabstop=4 shiftwidth=4
+  autocmd FileType markdown   setlocal tabstop=4 shiftwidth=4
   autocmd FileType php        setlocal tabstop=4 shiftwidth=4
   autocmd FileType python     setlocal tabstop=4 shiftwidth=4
   autocmd FileType sql        setlocal tabstop=4 shiftwidth=4
