@@ -1,0 +1,33 @@
+snippet template "Basic LaTeX template for math homework, essays, or other short documents" b
+\documentclass[letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{microtype}
+\usepackage[xspace]{ellipsis}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{enumerate}
+
+\usepackage[dvipsnames,usenames]{color}
+\usepackage[colorlinks,urlcolor=Bittersweet]{hyperref}
+\hypersetup{pdfpagemode=UseNone,
+            pdftitle={${1:${2:[term]}: ${3:[course]}: ${4:[assignment]}}},
+            pdfauthor={Jonathan Rascher},
+            pdfstartview=FitH,
+            pdfprintscaling=None}
+
+\begin{document}
+  \title{$1}
+  \author{Jonathan Rascher}
+  \maketitle
+
+  $0
+
+\end{document}
+endsnippet
