@@ -1,17 +1,52 @@
 snippet template "Basic LaTeX template for math homework, essays, or other short documents" b
 \documentclass[letterpaper]{article}
 
+\usepackage{amsmath}
+\usepackage{amsthm}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage{amssymb}
 
-\usepackage{microtype}
 \usepackage[xspace]{ellipsis}
+\usepackage{enumerate}
+
+\usepackage[dvipsnames,usenames]{color}
+\usepackage[colorlinks,urlcolor=RawSienna]{hyperref}
+\hypersetup{pdfpagemode=UseNone,
+            pdftitle={${1:${2:[term]}: ${3:[course]}: ${4:[assignment]}}},
+            pdfauthor={Jonathan Rascher},
+            pdfstartview=FitH,
+            pdfprintscaling=None}
+
+\begin{document}
+  \title{$1}
+  \author{Jonathan Rascher}
+  \maketitle
+
+  $0
+
+\end{document}
+endsnippet
+
+snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires XeTeX)" b
+\documentclass[letterpaper]{article}
 
 \usepackage{amsmath}
-\usepackage{amssymb}
 \usepackage{amsthm}
 
+\usepackage{fouriernc}
+\usepackage{mathspec}
+\setallmainfonts(Digits,Latin)
+                [BoldFont={*-Bold},
+                 ItalicFont={*-Italic},
+                 BoldItalicFont={*-BoldItalic},
+                 Kerning=Off,
+                 Ligatures=TeX]
+                {Vollkorn}
+
+\usepackage[xspace]{ellipsis}
 \usepackage{enumerate}
 
 \usepackage[dvipsnames,usenames]{color}
