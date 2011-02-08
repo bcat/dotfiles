@@ -1,41 +1,41 @@
 #!/bin/sh
-# -*- Mode: sh; charset: utf-8; tab-width: 2; indent-tabs-mode: nil -*-
 
-# Copyright © 2009-2010 Jonathan Rascher.
+# Copyright © 2009-2011 Jonathan Rascher.
 
 # Permission to use, copy, modify, and/or distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
 # copyright notice and this permission notice appear in all copies.
 
-# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-# REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-# AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-# OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-# PERFORMANCE OF THIS SOFTWARE.
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+# SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+# WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
+# OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+# CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 # This is an attempt at porting Alan Pinstein's and Ryan Bates's dotfile
 # installation utility [1] from a Ruby Rakefile to a POSIX shell script. Usage
 # is pretty simple. Symbolic links to any normal files in this directory that
 # don't have a ".local" extension will be created in the current user's home
-# directory. Additionally, any file that does have a ".local" extension will be
-# copied to (not linked in) the current user's home directory, provided that
-# there is not an existing file with the same name in the home directory. The
-# idea is that ".local" files will be used to store per-host settings and
+# directory. Additionally, any file that does have a ".local" extension will
+# be copied to (not linked in) the current user's home directory, provided
+# that there is not an existing file with the same name in the home directory.
+# The idea is that ".local" files will be used to store per-host settings and
 # things that should not be placed into version control (e.g., for privacy
 # reasons), while non-".local" files will store universal, public settings.
 # Finally, all new symbolic links or copied files will be created with a dot
-# prefixed to their names, e.g., a file named "foobar" will be installed with
-# the name "~/.foobar".
+# prefixed to their names, e.g., a file named `foobar` will be installed with
+# the name `~/.foobar`.
 
 # Additionally, dotfiles in arbitrary subdirectories are now supported. The
 # rules regarding local and nonlocal files also apply to files in
-# subdirectories. The dot prefixing behavior described above is usually applied
-# to files in subdirectories as well; however, if the highest subdirectory in
-# a file's path is named "bin", then no prefix is applied. Therefore, a file
-# named "cows/ducks" will be installed with the name "~/.cows/ducks", whereas
-# a file named "bin/prog" will be installed as "~/bin/prog".
+# subdirectories. The dot prefixing behavior described above is usually
+# applied to files in subdirectories as well; however, if the highest
+# subdirectory in a file's path is named `bin`, then no prefix is applied.
+# Therefore, a file named `cows/ducks` will be installed with the name
+# `~/.cows/ducks`, whereas a file named `bin/prog` will be installed as
+# `~/bin/prog`.
 
 # Links:
 # 1. Pinstein's original Rakefile is here <http://bit.ly/7WITQW>.
