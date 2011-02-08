@@ -6,11 +6,12 @@
 set nocompatible
 
 " Set display options.
-set laststatus=2
-set number
-set numberwidth=5
-set ruler
 set showcmd
+set laststatus=2
+set ruler
+set relativenumber
+set numberwidth=5
+set colorcolumn=+2
 set linebreak
 
 " Give us a big command history.
@@ -19,12 +20,20 @@ set history=999
 " Make backspace act normally.
 set backspace=indent,eol,start
 
-" Make indentation behave in a civilized manner.
-set tabstop=2
-set shiftwidth=2
+" Make indentation and wrapping behave in a civilized manner.
+set autoindent
 set expandtab
 set smarttab
-set autoindent
+
+set tabstop=2
+set shiftwidth=2
+
+set textwidth=78
+
+" Make indentation smarter.
+if has("smartindent")
+  set smartindent
+endif
 
 " Enable settings specific to various file formats.
 filetype on
@@ -36,21 +45,17 @@ let g:tex_flavor="latex"
 " Configure the LaTeX Box plugin.
 let g:LatexBox_latexmk_options="-pvc"
 
-" Tweak the indentation settings a bit for certain file formats.
+" Tweak the indentation and wrapping settings a bit for certain file formats.
 if has("autocmd")
-  autocmd FileType css        setlocal tabstop=4 shiftwidth=4
+  autocmd FileType css        setlocal tabstop=4 shiftwidth=4 textwidth=100
   autocmd FileType haskell    setlocal tabstop=4 shiftwidth=4
-  autocmd FileType html       setlocal tabstop=4 shiftwidth=4
-  autocmd FileType javascript setlocal tabstop=4 shiftwidth=4
-  autocmd FileType markdown   setlocal tabstop=4 shiftwidth=4
-  autocmd FileType php        setlocal tabstop=4 shiftwidth=4
+  autocmd FileType html       setlocal tabstop=4 shiftwidth=4 textwidth=100
+  autocmd FileType javascript setlocal tabstop=4 shiftwidth=4 textwidth=100
+  autocmd FileType markdown   setlocal tabstop=4 shiftwidth=4 textwidth=0
+  autocmd FileType php        setlocal tabstop=4 shiftwidth=4 textwidth=100
   autocmd FileType python     setlocal tabstop=4 shiftwidth=4
-  autocmd FileType sql        setlocal tabstop=4 shiftwidth=4
-endif
-
-" Make indentation smarter.
-if has("smartindent")
-  set smartindent
+  autocmd FileType sql        setlocal tabstop=4 shiftwidth=4 textwidth=100
+  autocmd FileType tex        setlocal                        textwidth=0
 endif
 
 " Enable fancy search settings.
