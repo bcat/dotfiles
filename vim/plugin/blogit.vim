@@ -20,6 +20,11 @@
 " Version:      1.4.3
 " Last Change:  2010 January 01
 
+" Modified by Jonathan Rascher to bail out cleanly if Python is not supported.
+
+if !has("python")
+  finish
+end
 
 runtime! passwords.vim
 command! -bang -nargs=* Blogit exec('py blogit.command("<bang>", <f-args>)')
