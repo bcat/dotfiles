@@ -9,7 +9,7 @@ set nocompatible
 set showcmd
 set laststatus=2
 set ruler
-set relativenumber
+set number
 set numberwidth=5
 set colorcolumn=+2
 set linebreak
@@ -35,6 +35,11 @@ if has("smartindent")
   set smartindent
 endif
 
+" Load plugins 'n' stuff with Pathogen.
+set runtimepath+=~/.vim/bundle/pathogen
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 " Enable settings specific to various file formats.
 filetype on
 filetype plugin on
@@ -49,7 +54,7 @@ let g:LatexBox_latexmk_options="-pvc"
 if has("autocmd")
   autocmd FileType css        setlocal tabstop=4 shiftwidth=4 textwidth=100
   autocmd FileType haskell    setlocal tabstop=4 shiftwidth=4
-  autocmd FileType html       setlocal tabstop=4 shiftwidth=4 textwidth=100
+  autocmd FileType html       setlocal tabstop=4 shiftwidth=4 textwidth=0
   autocmd FileType javascript setlocal tabstop=4 shiftwidth=4 textwidth=100
   autocmd FileType markdown   setlocal tabstop=4 shiftwidth=4 textwidth=0
   autocmd FileType php        setlocal tabstop=4 shiftwidth=4 textwidth=100
