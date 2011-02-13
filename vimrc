@@ -36,6 +36,10 @@ if has("smartindent")
 endif
 
 " Load plugins 'n' stuff with Pathogen.
+if !has("python")
+  let g:pathogen_disabled=["blogit"]
+end
+
 set runtimepath+=~/.vim/bundle/pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
