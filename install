@@ -117,4 +117,4 @@ EOT
 )
 
 find \! \( -name . -o -name README -o -name install \) -a \
-     \( -name .git -prune -o -exec sh -c "$script" sh {} + \)
+     \( -name '.git*' -prune -o -exec sh -c "$script" sh {} + \)
