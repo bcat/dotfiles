@@ -5,6 +5,9 @@
 " Enable Vim improvements at the expense of losing full vi compatibility.
 set nocompatible
 
+" Disable swap files. (Not sure if this is wise or not.)
+set noswapfile
+
 " Set display options.
 set showcmd
 set laststatus=2
