@@ -41,6 +41,7 @@ if !has("python")
 end
 
 set runtimepath+=~/.vim/bundle/pathogen
+set runtimepath+=~/_vim/bundle/pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
