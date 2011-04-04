@@ -4,6 +4,12 @@ snippet template "Basic LaTeX template for math homework, essays, or other short
 \usepackage{amsmath}
 \usepackage{amsthm}
 
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -11,6 +17,7 @@ snippet template "Basic LaTeX template for math homework, essays, or other short
 
 \usepackage[xspace]{ellipsis}
 \usepackage{enumerate}
+\usepackage[all]{xy}
 
 \usepackage[dvipsnames,usenames]{color}
 \usepackage[colorlinks,urlcolor=RawSienna]{hyperref}
@@ -36,6 +43,12 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
 \usepackage{amsmath}
 \usepackage{amsthm}
 
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+
 \usepackage{fouriernc}
 \usepackage{mathspec}
 \setallmainfonts(Digits,Latin)
@@ -48,6 +61,7 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
 
 \usepackage[xspace]{ellipsis}
 \usepackage{enumerate}
+\usepackage[all]{xy}
 
 \usepackage[dvipsnames,usenames]{color}
 \usepackage[colorlinks,urlcolor=RawSienna]{hyperref}
