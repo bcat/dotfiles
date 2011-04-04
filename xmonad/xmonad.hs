@@ -1,9 +1,12 @@
+import Data.Monoid
 import IO
 
 import XMonad
-import XMonad.Config.Gnome
-import XMonad.Hooks.DynamicLog
+import XMonad.Config.Desktop
+import XMonad.Config.Xfce
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ICCCMFocus
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
@@ -20,7 +23,7 @@ import XMonad.Util.Run
 
 import qualified XMonad.StackSet as W
 
--- Helper functions.
+-- Helper functions
 gajimRoster = Role "roster"
 skypeRoster = Title "Skype™ 2.1 (Beta) for Linux"
          `Or` Title "bcat24 - Skype™ (Beta)"
@@ -31,15 +34,15 @@ isSplash = isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
 workspaceName "1" = "1-uno"
 workspaceName "2" = "2-dos"
 workspaceName "3" = "3-tres"
-workspaceName "4" = "4-write"
+workspaceName "4" = "4-quatro"
 workspaceName "5" = "5-media"
 workspaceName "6" = "6-chat"
-workspaceName "7" = "7-mail"
+workspaceName "7" = "7-bkrg"
 workspaceName "8" = "8-winxp"
 workspaceName "9" = "9-temp"
 workspaceName x   = x
 
--- Layout settings.
+-- Layout settings
 tallLayout     = named "tall" $ Tall 1 (1 / 100) (59 / 100)
 wideLayout     = named "wide" $ Mirror $ Tall 1 (1 / 100) (1 / 2)
 threeColLayout = named "3col" $ ThreeCol 1 (3 / 100) (-1 / 3)
@@ -53,7 +56,7 @@ chatLayout = named "chat"
            $ reflectHoriz
            $ Grid
 
--- Manage hooks.
+-- Manage hooks
 
 manageIgnores = composeOne $ map (-?> doIgnore)
     [ isSplash ]
@@ -65,7 +68,7 @@ manageFloats  = composeOne $ map (-?> doCenterFloat)
     , className =? "Totem"
     , title     =? "glxgears" ]
 manageSinks   = composeOne $ map (-?> doSink)
-    [ className =? "Skype" {- A bit too general, but OK for now. -} ]
+    [ className =? "Skype" {- A bit too general, but OK for now -} ]
 manageMedia   = composeOne $ map (-?> doShift "5")
     [ className =? "Quodlibet"
     , className =? "Totem" ]
@@ -75,7 +78,7 @@ manageChat    = composeOne $ map (-?> doShift "6")
 manageEmail   = composeOne $ map (-?> doShift "7")
     [ className =? "Thunderbird" ]
 
--- Log hooks.
+-- Log hooks
 xmobarLogHook xmobar = dynamicLogWithPP xmobarPP
         { ppCurrent         = xmobarColor "yellow" ""
                             . wrap "[" "]"
@@ -95,15 +98,15 @@ xmobarLogHook xmobar = dynamicLogWithPP xmobarPP
                             . shorten 255
         , ppOutput          = hPutStrLn xmobar }
 
--- Main configuration.
+-- Main configuration
 main = do
     xmobar <- spawnPipe "xmobar ~/.xmobarrc"
 
-    xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
+    xmonad $ withUrgencyHook NoUrgencyHook $ xfceConfig
         { terminal        = "urxvt"
         , layoutHook      = nameTail
                           $ layoutHintsWithPlacement (0.5, 0.5)
-                          $ avoidStruts
+                          $ desktopLayoutModifiers
                           $ smartBorders
                           $ onWorkspace "6" chatLayout
                           $ tallLayout
@@ -116,10 +119,12 @@ main = do
                                        , manageSinks
                                        , manageMedia
                                        , manageChat
-                                       , manageEmail
-                                       , manageDocks ]
-        , handleEventHook = fullscreenEventHook -- Needs xmonad-contrib-darcs.
+                                       , manageEmail ]
+                        <+> manageHook xfceConfig
+        , handleEventHook = mappend fullscreenEventHook
+                          $ handleEventHook xfceConfig
         , modMask         = mod4Mask
         , logHook         = xmobarLogHook xmobar
-                         >> setWMName "LG3D" -- Nasty hack for Java Swing.
-        , startupHook     = gnomeRegister }
+                         >> setWMName "LG3D" {- Nasty hack for Java Swing -}
+                         >> takeTopFocus
+                         >> logHook xfceConfig }

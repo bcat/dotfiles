@@ -2,6 +2,7 @@ Config { font     = "xft:Envy Code R-10"
        , bgColor  = "black"
        , fgColor  = "gray"
        , position = TopSize L 85 24
+       , lowerOnStart = False
        , commands = [ Run StdinReader ]
        , alignSep = ""
        , template = "%StdinReader%" }
