@@ -38,6 +38,12 @@ if has("smartindent")
   set smartindent
 endif
 
+" Set up custom key bindings.
+let mapleader=","
+let maplocalleader=","
+
+nnoremap <Leader><Leader> :noh<CR>
+
 " Load plugins 'n' stuff with Pathogen.
 if !has("python")
   let g:pathogen_disabled=["blogit"]
