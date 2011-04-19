@@ -247,3 +247,4 @@ plugin
 plugins
 amsmath
 simplecv
+hyperref
