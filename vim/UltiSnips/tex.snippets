@@ -1,8 +1,8 @@
 snippet template "Basic LaTeX template for math homework, essays, or other short documents" b
 \documentclass[letterpaper]{article}
 
-\usepackage{amsmath}
-\usepackage{amsthm}
+% Load math packages.
+\usepackage{mathtools,amsthm}
 
 \newtheorem{thm}{Theorem}
 \newtheorem{lem}[thm]{Lemma}
@@ -10,22 +10,38 @@ snippet template "Basic LaTeX template for math homework, essays, or other short
 \theoremstyle{definition}
 \newtheorem{defn}[thm]{Definition}
 
+% Load font packages.
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{amssymb}
+\usepackage{lmodern,amssymb,mathrsfs}
 
-\usepackage[xspace]{ellipsis}
-\usepackage{enumerate}
+% Load graphics packages.
 \usepackage[all]{xy}
 
+% Load miscellaneous packages.
+\usepackage{ellipsis,enumerate}
+
+% Configure PDF stuff.
 \usepackage[dvipsnames,usenames]{color}
 \usepackage[colorlinks,urlcolor=RawSienna]{hyperref}
 \hypersetup{pdfpagemode=UseNone,
-            pdftitle={${1:${2:[term]}: ${3:[course]}: ${4:[assignment]}}},
+            pdftitle={Spring 2011: MTH*300*1: Homework 4},
             pdfauthor={Jonathan Rascher},
             pdfstartview=FitH,
             pdfprintscaling=None}
+
+% Declare shorthand commands for absolute value and norm.
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+% Extend amsmath to support augmented matrices.
+% Source: <http://texblog.net/latex-archive/maths/amsmath-matrix/>.
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
 
 \begin{document}
   \title{$1}
@@ -40,8 +56,8 @@ endsnippet
 snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires XeTeX)" b
 \documentclass[letterpaper]{article}
 
-\usepackage{amsmath}
-\usepackage{amsthm}
+% Load math packages.
+\usepackage{mathtools,amsthm}
 
 \newtheorem{thm}{Theorem}
 \newtheorem{lem}[thm]{Lemma}
@@ -49,8 +65,8 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
 \theoremstyle{definition}
 \newtheorem{defn}[thm]{Definition}
 
-\usepackage{fouriernc}
-\usepackage{mathspec}
+% Load font packages.
+\usepackage{fouriernc,mathspec,mathrsfs}
 \setallmainfonts(Digits,Latin)
                 [BoldFont={*-Bold},
                  ItalicFont={*-Italic},
@@ -59,10 +75,13 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
                  Ligatures=TeX]
                 {Vollkorn}
 
-\usepackage[xspace]{ellipsis}
-\usepackage{enumerate}
+% Load graphics packages.
 \usepackage[all]{xy}
 
+% Load miscellaneous packages.
+\usepackage{ellipsis,enumerate}
+
+% Configure PDF stuff.
 \usepackage[dvipsnames,usenames]{color}
 \usepackage[colorlinks,urlcolor=RawSienna]{hyperref}
 \hypersetup{pdfpagemode=UseNone,
@@ -70,6 +89,19 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
             pdfauthor={Jonathan Rascher},
             pdfstartview=FitH,
             pdfprintscaling=None}
+
+% Declare shorthand commands for absolute value and norm.
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+% Extend amsmath to support augmented matrices.
+% Source: <http://texblog.net/latex-archive/maths/amsmath-matrix/>.
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
 
 \begin{document}
   \title{$1}
