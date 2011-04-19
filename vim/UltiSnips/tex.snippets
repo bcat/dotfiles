@@ -19,16 +19,19 @@ snippet template "Basic LaTeX template for math homework, essays, or other short
 \usepackage[all]{xy}
 
 % Load miscellaneous packages.
-\usepackage{ellipsis,enumerate}
+\usepackage{enumerate,multicol}
 
 % Configure PDF stuff.
 \usepackage[dvipsnames,usenames]{color}
 \usepackage[colorlinks,urlcolor=RawSienna]{hyperref}
 \hypersetup{pdfpagemode=UseNone,
-            pdftitle={Spring 2011: MTH*300*1: Homework 4},
+            pdftitle={${1:${2:[term]}: ${3:[course]}: ${4:[assignment]}}},
             pdfauthor={Jonathan Rascher},
             pdfstartview=FitH,
             pdfprintscaling=None}
+
+% Load packages which must come after hyperref.
+\usepackage{ellipsis}
 
 % Declare shorthand commands for absolute value and norm.
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
@@ -79,7 +82,7 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
 \usepackage[all]{xy}
 
 % Load miscellaneous packages.
-\usepackage{ellipsis,enumerate}
+\usepackage{enumerate,multicol}
 
 % Configure PDF stuff.
 \usepackage[dvipsnames,usenames]{color}
@@ -89,6 +92,9 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
             pdfauthor={Jonathan Rascher},
             pdfstartview=FitH,
             pdfprintscaling=None}
+
+% Load packages which must come after hyperref.
+\usepackage{ellipsis}
 
 % Declare shorthand commands for absolute value and norm.
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
