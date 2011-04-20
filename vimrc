@@ -60,6 +60,7 @@ filetype plugin on
 filetype indent on
 
 let g:tex_flavor="latex"
+let g:tex_stylish=1
 
 " Configure the LaTeX Box plugin.
 let g:LatexBox_latexmk_options="-pvc"
