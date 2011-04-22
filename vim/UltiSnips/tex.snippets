@@ -13,22 +13,27 @@ snippet template "Basic LaTeX template for math homework, essays, or other short
 % Load font packages.
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern,amssymb,mathrsfs}
+\usepackage{microtype,lmodern,amssymb,mathrsfs}
 
 % Load graphics packages.
 \usepackage[all]{xy}
 
 % Load miscellaneous packages.
-\usepackage{enumerate,multicol}
+\usepackage{enumerate,fixltx2e,multicol}
 
 % Configure PDF stuff.
 \usepackage[dvipsnames,usenames]{color}
-\usepackage[colorlinks,urlcolor=RawSienna]{hyperref}
-\hypersetup{pdfpagemode=UseNone,
-            pdftitle={${1:${2:[term]}: ${3:[course]}: ${4:[assignment]}}},
-            pdfauthor={Jonathan Rascher},
-            pdfstartview=FitH,
-            pdfprintscaling=None}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  linkcolor=RawSienna,
+  citecolor=RawSienna,
+  urlcolor=RawSienna,
+  pdfpagemode=UseNone,
+  pdftitle=${1:${2:[term]}: ${3:[course]}: ${4:[assignment]}},
+  pdfauthor=Jonathan Rascher,
+  pdfstartview=FitH,
+  pdfprintscaling=None}
 
 % Load packages that must come after hyperref.
 \usepackage{ellipsis}
@@ -82,16 +87,21 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
 \usepackage[all]{xy}
 
 % Load miscellaneous packages.
-\usepackage{enumerate,multicol}
+\usepackage{enumerate,fixltx2e,multicol}
 
 % Configure PDF stuff.
 \usepackage[dvipsnames,usenames]{color}
-\usepackage[colorlinks,urlcolor=RawSienna]{hyperref}
-\hypersetup{pdfpagemode=UseNone,
-            pdftitle={${1:${2:[term]}: ${3:[course]}: ${4:[assignment]}}},
-            pdfauthor={Jonathan Rascher},
-            pdfstartview=FitH,
-            pdfprintscaling=None}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  linkcolor=RawSienna,
+  citecolor=RawSienna,
+  urlcolor=RawSienna,
+  pdfpagemode=UseNone,
+  pdftitle=${1:${2:[term]}: ${3:[course]}: ${4:[assignment]}},
+  pdfauthor=Jonathan Rascher,
+  pdfstartview=FitH,
+  pdfprintscaling=None}
 
 % Load packages that must come after hyperref.
 \usepackage{ellipsis}
