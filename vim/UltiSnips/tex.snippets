@@ -2,7 +2,7 @@ snippet template "Basic LaTeX template for math homework, essays, or other short
 \documentclass[letterpaper]{article}
 
 % Load math packages.
-\usepackage{mathtools,amsthm}
+\usepackage{mathtools,amsthm,amssymb,mathrsfs}
 
 \newtheorem{thm}{Theorem}
 \newtheorem{lem}[thm]{Lemma}
@@ -13,7 +13,7 @@ snippet template "Basic LaTeX template for math homework, essays, or other short
 % Load font packages.
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{microtype,lmodern,amssymb,mathrsfs}
+\usepackage{lmodern,microtype}
 
 % Load graphics packages.
 \usepackage[all]{xy}
@@ -21,7 +21,7 @@ snippet template "Basic LaTeX template for math homework, essays, or other short
 % Load miscellaneous packages.
 \usepackage{enumerate,fixltx2e,multicol}
 
-% Configure PDF stuff.
+% Configure PDF links and metadata.
 \usepackage[dvipsnames,usenames]{color}
 \usepackage{hyperref}
 \hypersetup{
@@ -38,7 +38,17 @@ snippet template "Basic LaTeX template for math homework, essays, or other short
 % Load packages that must come after hyperref.
 \usepackage{ellipsis}
 
-% Declare shorthand commands for absolute value and norm.
+% Prefer variant forms of epsilon and phi.
+\let\oldepsilon\epsilon
+\let\oldphi\phi
+
+\let\epsilon\varepsilon
+\let\phi\varphi
+
+\let\varepsilon\oldepsilon
+\let\varphi\oldphi
+
+% Declare useful shorthand commands.
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
 
@@ -65,7 +75,7 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
 \documentclass[letterpaper]{article}
 
 % Load math packages.
-\usepackage{mathtools,amsthm}
+\usepackage{mathtools,amsthm,amssymb,mathrsfs}
 
 \newtheorem{thm}{Theorem}
 \newtheorem{lem}[thm]{Lemma}
@@ -74,7 +84,7 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
 \newtheorem{defn}[thm]{Definition}
 
 % Load font packages.
-\usepackage{fouriernc,mathspec,mathrsfs}
+\usepackage{fouriernc,mathspec}
 \setallmainfonts(Digits,Latin)
                 [BoldFont={*-Bold},
                  ItalicFont={*-Italic},
@@ -89,7 +99,7 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
 % Load miscellaneous packages.
 \usepackage{enumerate,fixltx2e,multicol}
 
-% Configure PDF stuff.
+% Configure PDF links and metadata.
 \usepackage[dvipsnames,usenames]{color}
 \usepackage{hyperref}
 \hypersetup{
@@ -106,7 +116,17 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
 % Load packages that must come after hyperref.
 \usepackage{ellipsis}
 
-% Declare shorthand commands for absolute value and norm.
+% Prefer variant forms of epsilon and phi.
+\let\oldepsilon\epsilon
+\let\oldphi\phi
+
+\let\epsilon\varepsilon
+\let\phi\varphi
+
+\let\varepsilon\oldepsilon
+\let\varphi\oldphi
+
+% Declare useful shorthand commands.
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
 
