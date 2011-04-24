@@ -19,7 +19,7 @@ snippet template "Basic LaTeX template for math homework, essays, or other short
 \usepackage[all]{xy}
 
 % Load miscellaneous packages.
-\usepackage{enumerate,fixltx2e,multicol}
+\usepackage{enumerate,etoolbox,fixltx2e,multicol}
 
 % Configure PDF links and metadata.
 \usepackage[dvipsnames,usenames]{color}
@@ -39,14 +39,16 @@ snippet template "Basic LaTeX template for math homework, essays, or other short
 \usepackage{ellipsis}
 
 % Prefer variant forms of epsilon and phi.
-\let\oldepsilon\epsilon
-\let\oldphi\phi
+\makeatletter
+  \let\preamble@oldepsilon\epsilon
+  \let\preamble@oldphi\phi
 
-\let\epsilon\varepsilon
-\let\phi\varphi
+  \let\epsilon\varepsilon
+  \let\phi\varphi
 
-\let\varepsilon\oldepsilon
-\let\varphi\oldphi
+  \let\varepsilon\preamble@oldepsilon
+  \let\varphi\preamble@oldphi
+\makeatother
 
 % Declare useful shorthand commands.
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
@@ -55,10 +57,10 @@ snippet template "Basic LaTeX template for math homework, essays, or other short
 % Extend amsmath to support augmented matrices.
 % Source: <http://texblog.net/latex-archive/maths/amsmath-matrix/>.
 \makeatletter
-\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
-  \hskip -\arraycolsep
-  \let\@ifnextchar\new@ifnextchar
-  \array{#1}}
+  \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+    \hskip -\arraycolsep
+    \let\@ifnextchar\new@ifnextchar
+    \array{#1}}
 \makeatother
 
 \begin{document}
@@ -84,12 +86,13 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
 \newtheorem{defn}[thm]{Definition}
 
 % Load font packages.
+%
+% XXX: XeTeX doesn't automatically find Vollkorn styles for some reason.
 \usepackage{fouriernc,mathspec}
 \setallmainfonts(Digits,Latin)
                 [BoldFont={*-Bold},
                  ItalicFont={*-Italic},
                  BoldItalicFont={*-BoldItalic},
-                 Kerning=Off,
                  Ligatures=TeX]
                 {Vollkorn}
 
@@ -97,7 +100,7 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
 \usepackage[all]{xy}
 
 % Load miscellaneous packages.
-\usepackage{enumerate,fixltx2e,multicol}
+\usepackage{enumerate,etoolbox,fixltx2e,multicol}
 
 % Configure PDF links and metadata.
 \usepackage[dvipsnames,usenames]{color}
@@ -117,14 +120,16 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
 \usepackage{ellipsis}
 
 % Prefer variant forms of epsilon and phi.
-\let\oldepsilon\epsilon
-\let\oldphi\phi
+\makeatletter
+  \let\preamble@oldepsilon\epsilon
+  \let\preamble@oldphi\phi
 
-\let\epsilon\varepsilon
-\let\phi\varphi
+  \let\epsilon\varepsilon
+  \let\phi\varphi
 
-\let\varepsilon\oldepsilon
-\let\varphi\oldphi
+  \let\varepsilon\preamble@oldepsilon
+  \let\varphi\preamble@oldphi
+\makeatother
 
 % Declare useful shorthand commands.
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
@@ -133,10 +138,31 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
 % Extend amsmath to support augmented matrices.
 % Source: <http://texblog.net/latex-archive/maths/amsmath-matrix/>.
 \makeatletter
-\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
-  \hskip -\arraycolsep
-  \let\@ifnextchar\new@ifnextchar
-  \array{#1}}
+  \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+    \hskip -\arraycolsep
+    \let\@ifnextchar\new@ifnextchar
+    \array{#1}}
+\makeatother
+
+% XXX: Vollkorn has overly tight kerning between the letters \`m\` and \`n\` and
+%      the apostrophe/right single quote character. This makes phrases like
+%      "Dean's List" look awkward and unbalanced. We hack our way around this
+%      issue by manually kerning these pairs using XeTeX character classes.
+\makeatletter
+  \let\preamble@vollkornfamily\f@family
+
+  \XeTeXinterchartokenstate=1
+
+  \newXeTeXintercharclass\preamble@apostrophecc
+  \newXeTeXintercharclass\preamble@vollkornkernhackcc
+
+  \XeTeXcharclass\`\'=\preamble@apostrophecc
+  \XeTeXcharclass\`\m=\preamble@vollkornkernhackcc
+  \XeTeXcharclass\`\n=\preamble@vollkornkernhackcc
+
+  \XeTeXinterchartoks\preamble@vollkornkernhackcc\preamble@apostrophecc={%
+    \ifdefstrequal{\f@family}{\preamble@vollkornfamily}{%
+      \kern -0.6pt}{}}
 \makeatother
 
 \begin{document}
