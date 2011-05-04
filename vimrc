@@ -39,6 +39,8 @@ if has("smartindent")
 endif
 
 " Set up custom key bindings.
+command W w !sudo tee % >/dev/null
+
 let mapleader=","
 let maplocalleader=","
 
