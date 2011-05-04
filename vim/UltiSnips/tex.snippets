@@ -61,8 +61,15 @@ snippet template "Basic LaTeX template for math homework, essays, or other short
 \makeatother
 
 % Declare useful shorthand commands.
+\newcommand*\N{\mathbb N}
+\newcommand*\Z{\mathbb Z}
+\newcommand*\Q{\mathbb Q}
+\newcommand*\R{\mathbb R}
+
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+\newcommand*\vr[1]{\mathbf{#1}}
 
 % Extend amsmath to support augmented matrices.
 % Source: <http://texblog.net/latex-archive/maths/amsmath-matrix/>.
@@ -142,8 +149,15 @@ snippet fancytemplate "Basic LaTeX template made slightly more awesome (requires
 \makeatother
 
 % Declare useful shorthand commands.
+\newcommand*\N{\mathbb N}
+\newcommand*\Z{\mathbb Z}
+\newcommand*\Q{\mathbb Q}
+\newcommand*\R{\mathbb R}
+
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+\newcommand*\vr[1]{\mathbf{#1}}
 
 % Extend amsmath to support augmented matrices.
 % Source: <http://texblog.net/latex-archive/maths/amsmath-matrix/>.
