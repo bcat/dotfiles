@@ -74,6 +74,8 @@
 
 \newcommand*\vr[1]{\mathbf{#1}}
 
+\newcommand\autorefwrap[3]{\hyperref[#1]{#2\autoref*{#1}#3}}
+
 % Extend amsmath to support augmented matrices.
 % Source: <http://texblog.net/latex-archive/maths/amsmath-matrix/>.
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
