@@ -30,7 +30,7 @@
 \RequirePackage{tikz}
 
 % Load miscellaneous packages.
-\RequirePackage{enumerate,etoolbox,fixltx2e,multicol}
+\RequirePackage{etoolbox,fixltx2e,multicol}
 
 % Configure PDF links and metadata.
 \RequirePackage[pdfusetitle]{hyperref}
