@@ -100,7 +100,7 @@ handle_file () {
 for src; do
   src=$(printf %s "$src" | sed 's:^./::')
 
-  if printf %s "$src" | grep -E '^bin($|/)' >/dev/null; then
+  if printf %s "$src" | grep -E '^(bin|texmf)($|/)' >/dev/null; then
     dest=~/$src
   else
     dest=~/.$src
