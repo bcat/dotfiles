@@ -56,6 +56,14 @@
 \let\varepsilon\bcathw@oldepsilon
 \let\varphi\bcathw@oldphi
 
+% Patch up `\left` and `\right` to fix spacing.
+% Source: <http://tex.stackexchange.com/questions/2607/#2610>.
+\let\bcathw@oldleft\left
+\let\bcathw@oldright\right
+
+\renewcommand*\left{\mathopen{}\mathclose\bgroup\bcathw@oldleft}
+\renewcommand*\right{\aftergroup\egroup\bcathw@oldright}
+
 % Declare useful shorthand commands.
 \newcommand*\N{\mathbb N}
 \newcommand*\Z{\mathbb Z}
