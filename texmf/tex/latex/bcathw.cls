@@ -66,6 +66,7 @@
 \DeclareMathOperator\adj{adj}
 \DeclareMathOperator\nullity{nullity}
 \DeclareMathOperator\Tr{Tr}
+\DeclareMathOperator\range{range}
 \DeclareMathOperator\rank{rank}
 \DeclareMathOperator\spans{span}
 
