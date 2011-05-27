@@ -86,6 +86,7 @@
 \newcommand*\vr[1]{\mathbf{#1}}
 
 \newcommand*\nbds[1][-]{\nobreakdashes#1\hspace{0pt}}
+\newcommand*\nextline{\leavevmode\@afterheading}
 
 \newcommand\autorefwrap[3]{\hyperref[#1]{#2\autoref*{#1}#3}}
 
