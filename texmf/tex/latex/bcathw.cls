@@ -19,6 +19,7 @@
 
 \declaretheoremstyle[notefont=,notebraces={}{}]{exer*}
 \declaretheorem[numbered=no,name=Exercise,style=exer*]{exer*}
+\declaretheorem[numbered=no,name=\!\!,style=exer*]{exer**}
 
 % Load font packages.
 \RequirePackage[utf8]{inputenc}
