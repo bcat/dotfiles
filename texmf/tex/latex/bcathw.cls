@@ -29,6 +29,7 @@
 % Load graphics packages.
 \RequirePackage[dvipsnames,usenames]{color}
 \RequirePackage{tikz}
+\usetikzlibrary{arrows,backgrounds,decorations.markings}
 
 % Load miscellaneous packages.
 \RequirePackage{etoolbox,fixltx2e,multicol}
