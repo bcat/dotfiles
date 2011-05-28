@@ -4,19 +4,6 @@
 % Load math packages.
 \RequirePackage{mathtools,thmtools,amssymb,mathrsfs}
 
-\declaretheorem[name=Theorem]{thm}
-\declaretheorem[sibling=thm,name=Proposition]{prop}
-\declaretheorem[sibling=thm,name=Lemma]{lem}
-\declaretheorem[sibling=thm,name=cor]{cor}
-
-\declaretheorem[sibling=thm,name=Definition,style=definition]{defn}
-\declaretheorem[sibling=thm,name=Example,style=definition]{xmp}
-\declaretheorem[sibling=thm,name=Exercise,style=definition]{exer}
-
-\declaretheoremstyle[notefont=,notebraces={}{}]{exer*}
-\declaretheorem[numbered=no,name=Exercise,style=exer*]{exer*}
-\declaretheorem[numbered=no,name=\!\!,style=exer*]{exer**}
-
 % Load graphics packages.
 \RequirePackage[dvipsnames,usenames]{color}
 \RequirePackage{tikz}
@@ -37,7 +24,53 @@
   pdfprintscaling=None}
 
 % Load packages that must come after hyperref.
+\RequirePackage[capitalize]{cleveref}
 \RequirePackage{ellipsis}
+
+% Set up theorem-like environments. (Must happen after cleveref is included.)
+\declaretheoremstyle[notefont=,notebraces={}{}]{exer*}
+
+\declaretheorem[
+  numbered=no,
+  name=Exercise,
+  refname={Exercise,Exercises},
+  style=exer*]{exer*}
+\declaretheorem[
+  numbered=no,
+  name=\!\!,
+  style=exer*]{exer**}
+
+\declaretheorem[
+  name=Theorem,
+  refname={Theorem,Theorems}]{thm}
+\declaretheorem[
+  sibling=thm,
+  name=Proposition,
+  refname={Proposition,Propositions}]{prop}
+\declaretheorem[
+  sibling=thm,
+  name=Lemma,
+  refname={lemma,lemmas}]{lem}
+\declaretheorem[
+  sibling=thm,
+  name=Corollary,
+  refname={Corollary,Corollaries}]{cor}
+
+\declaretheorem[
+  sibling=thm,
+  name=Definition,
+  refname={Definition,Definitions},
+  style=definition]{defn}
+\declaretheorem[
+  sibling=thm,
+  name=Example,
+  refname={Example,Examples},
+  style=definition]{xmp}
+\declaretheorem[
+  sibling=thm,
+  name=Exercise,
+  refname={Exercise,Exercises},
+  style=definition]{exer}
 
 % Prefer variant forms of epsilon and phi.
 \let\bcathw@oldepsilon\epsilon
