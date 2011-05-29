@@ -12,7 +12,8 @@
 % Load font packages.
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
-\RequirePackage{mathptmx,microtype}
+\RequirePackage{amssymb,mathrsfs,mathptmx,microtype}
+\DeclareMathAlphabet{\mathcal}{OMS}{lmsy}{m}{n}
 
 % Load common preamble stuff.
 \RequirePackage{bcat}

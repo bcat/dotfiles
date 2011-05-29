@@ -2,7 +2,7 @@
 \ProvidesPackage{bcat}[2011/05/28 Jonathan Rascher's preamble]
 
 % Load math packages.
-\RequirePackage{mathtools,thmtools,amssymb,mathrsfs}
+\RequirePackage{mathtools,thmtools}
 
 % Load graphics packages.
 \RequirePackage[dvipsnames,usenames]{color}
@@ -90,29 +90,33 @@
 \renewcommand*\left{\mathopen{}\mathclose\bgroup\bcathw@oldleft}
 \renewcommand*\right{\aftergroup\egroup\bcathw@oldright}
 
-% Declare useful shorthand commands.
+% Define useful shorthand commands.
+\newcommand*\C{\mathbb C}
 \newcommand*\N{\mathbb N}
-\newcommand*\Z{\mathbb Z}
 \newcommand*\Q{\mathbb Q}
 \newcommand*\R{\mathbb R}
-\newcommand*\C{\mathbb C}
+\newcommand*\Z{\mathbb Z}
+\newcommand*\bb[1]{\mathbb{#1}}
+\newcommand*\mc[1]{\mathcal{#1}}
+\newcommand*\mf[1]{\mathfrak{#1}}
+\newcommand*\ms[1]{\mathscr{#1}}
+\newcommand*\vr[1]{\mathbf{#1}}
 
+% Define commands for custom math functions.
 \DeclareMathOperator\adj{adj}
 \DeclareMathOperator\nullity{nullity}
-\DeclareMathOperator\Tr{Tr}
 \DeclareMathOperator\range{range}
 \DeclareMathOperator\rank{rank}
 \DeclareMathOperator\spans{span}
+\DeclareMathOperator\Tr{Tr}
 
+% Define commands for custom math delimiter structures.
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
 
-\newcommand*\vr[1]{\mathbf{#1}}
-
+% Define commands for typographical tweaks.
 \newcommand*\nbds[1][-]{\nobreakdashes#1\hspace{0pt}}
 \newcommand*\nextline{\leavevmode\@afterheading}
-
-\newcommand\autorefwrap[3]{\hyperref[#1]{#2\autoref*{#1}#3}}
 
 % Extend amsmath to support augmented matrices.
 % Source: <http://texblog.net/latex-archive/maths/amsmath-matrix/>.
@@ -120,3 +124,6 @@
   \hskip -\arraycolsep
   \let\@ifnextchar\new@ifnextchar
   \array{#1}}
+
+% Deprecated commands. Do not use these in new files.
+\newcommand\autorefwrap[3]{\hyperref[#1]{#2\autoref*{#1}#3}}

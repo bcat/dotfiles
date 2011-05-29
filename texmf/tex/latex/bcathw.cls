@@ -8,7 +8,7 @@
 % Load font packages.
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
-\RequirePackage{lmodern,microtype}
+\RequirePackage{amssymb,mathrsfs,lmodern,microtype}
 
 % Load common preamble stuff.
 \RequirePackage{bcat}
