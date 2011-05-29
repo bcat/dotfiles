@@ -56,6 +56,9 @@ set runtimepath+=~/_vim/bundle/pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+" Customize the UltiSnips search path to avoid default snippets.
+let g:UltiSnipsSnippetDirectories=["snippets"]
+
 " Enable settings specific to various file formats.
 filetype on
 filetype plugin on
