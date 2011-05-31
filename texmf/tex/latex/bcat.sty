@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bcat}[2011/05/28 Jonathan Rascher's preamble]
+\ProvidesPackage{bcat}[2011/05/31 Jonathan Rascher's preamble]
 
 % Load math packages.
 \RequirePackage{mathtools,thmtools}
@@ -73,22 +73,22 @@
   style=definition]{exer}
 
 % Prefer variant forms of epsilon and phi.
-\let\bcathw@oldepsilon\epsilon
-\let\bcathw@oldphi\phi
+\let\bcat@oldepsilon\epsilon
+\let\bcat@oldphi\phi
 
 \let\epsilon\varepsilon
 \let\phi\varphi
 
-\let\varepsilon\bcathw@oldepsilon
-\let\varphi\bcathw@oldphi
+\let\varepsilon\bcat@oldepsilon
+\let\varphi\bcat@oldphi
 
 % Patch up `\left` and `\right` to fix spacing.
 % Source: <http://tex.stackexchange.com/questions/2607/#2610>.
-\let\bcathw@oldleft\left
-\let\bcathw@oldright\right
+\let\bcat@oldleft\left
+\let\bcat@oldright\right
 
-\renewcommand*\left{\mathopen{}\mathclose\bgroup\bcathw@oldleft}
-\renewcommand*\right{\aftergroup\egroup\bcathw@oldright}
+\renewcommand*\left{\mathopen{}\mathclose\bgroup\bcat@oldleft}
+\renewcommand*\right{\aftergroup\egroup\bcat@oldright}
 
 % Define useful shorthand commands.
 \newcommand*\C{\mathbb C}
@@ -103,12 +103,13 @@
 \newcommand*\vr[1]{\mathbf{#1}}
 
 % Define commands for custom math functions.
+\DeclareMathOperator\Comp{Comp}
+\DeclareMathOperator\Tr{Tr}
 \DeclareMathOperator\adj{adj}
 \DeclareMathOperator\nullity{nullity}
 \DeclareMathOperator\range{range}
 \DeclareMathOperator\rank{rank}
 \DeclareMathOperator\spans{span}
-\DeclareMathOperator\Tr{Tr}
 
 % Define commands for custom math delimiter structures.
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
