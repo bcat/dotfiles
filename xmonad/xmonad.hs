@@ -59,7 +59,8 @@ chatLayout = named "chat"
 -- Manage hooks
 
 manageIgnores = composeOne $ map (-?> doIgnore)
-    [ isSplash ]
+    [ isSplash,
+      className =? "stalonetray" ]
 manageFloats  = composeOne $ map (-?> doCenterFloat)
     [ className =? "Bsnes-accuracy"
     , className =? "Bsnes-compatibility"

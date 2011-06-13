@@ -1,0 +1,5 @@
+background black
+geometry 15x1+1560+1
+icon_gravity NE
+max_geometry 15x1
+window_strut top

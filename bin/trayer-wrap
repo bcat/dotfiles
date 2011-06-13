@@ -1,3 +1,0 @@
-#!/bin/sh
-exec trayer --edge top --align right --width 15 --height 24 \
-            --SetPartialStrut true --transparent true --alpha 0 --tint 0
