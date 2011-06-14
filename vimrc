@@ -14,7 +14,9 @@ set laststatus=2
 set ruler
 set number
 set numberwidth=5
-set colorcolumn=+2
+if exists("&colorcolumn")
+  set colorcolumn=+2
+endif
 set linebreak
 
 " Give us a big command history.
