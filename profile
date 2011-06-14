@@ -59,5 +59,8 @@ if type fortune >/dev/null 2>&1; then
   ;; esac
 fi
 
+# If there is a local .profile file, source that now.
+[ -f ~/.profile.local ] && . ~/.profile.local
+
 # If we're running bash, source ~/.bashrc now.
 [ -n "$BASH" ] && [ -f ~/.bashrc ] && . ~/.bashrc

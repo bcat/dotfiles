@@ -60,3 +60,6 @@ function grep { command grep --color=auto "$@"; }
 
 # Set up some fancy auto-completion.
 [ -f /etc/bash_completion ] && . /etc/bash_completion
+
+# If there is a local .bashrc file, source that now.
+[ -f ~/.bashrc.local ] && . ~/.bashrc.local
