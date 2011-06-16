@@ -102,6 +102,7 @@ xmobarLogHook xmobar = dynamicLogWithPP xmobarPP
 -- Main configuration
 main = do
     xmobar <- spawnPipe "xmobar ~/.xmobarrc"
+    spawn "stalonetray-xmonad"
 
     xmonad $ withUrgencyHook NoUrgencyHook $ xfceConfig
         { terminal        = "urxvt"
