@@ -76,8 +76,6 @@ manageMedia   = composeOne $ map (-?> doShift "5")
 manageChat    = composeOne $ map (-?> doShift "6")
     [ className =? "Gajim.py"
     , className =? "Skype" ]
-manageEmail   = composeOne $ map (-?> doShift "7")
-    [ className =? "Thunderbird" ]
 
 -- Log hooks
 xmobarLogHook xmobar = dynamicLogWithPP xmobarPP
@@ -120,8 +118,7 @@ main = do
                                        , manageFloats
                                        , manageSinks
                                        , manageMedia
-                                       , manageChat
-                                       , manageEmail ]
+                                       , manageChat ]
                         <+> manageHook xfceConfig
         , handleEventHook = mappend fullscreenEventHook
                           $ handleEventHook xfceConfig
