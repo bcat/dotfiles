@@ -24,6 +24,9 @@ import XMonad.Util.Run
 import qualified XMonad.StackSet as W
 
 -- Helper functions
+gimpToolbox = Role "gimp-toolbox"
+gimpDock = Role "gimp-dock"
+
 gajimRoster = Role "roster"
 skypeRoster = Title "Skype™ 2.1 (Beta) for Linux"
          `Or` Title "bcat24 - Skype™ (Beta)"
@@ -34,7 +37,7 @@ isSplash = isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
 workspaceName "1" = "1-uno"
 workspaceName "2" = "2-dos"
 workspaceName "3" = "3-tres"
-workspaceName "4" = "4-quatro"
+workspaceName "4" = "4-gimp"
 workspaceName "5" = "5-media"
 workspaceName "6" = "6-chat"
 workspaceName "7" = "7-bkrg"
@@ -48,6 +51,12 @@ wideLayout     = named "wide" $ Mirror $ Tall 1 (1 / 100) (1 / 2)
 threeColLayout = named "3col" $ ThreeCol 1 (3 / 100) (-1 / 3)
 gridLayout     = named "grid" $ GridRatio 1
 fullLayout     = named "full" $ Full
+
+gimpLayout = named "gimp"
+           $ withIM (15 / 100) gimpToolbox
+           $ reflectHoriz
+           $ withIM (15 / 85) gimpDock
+           $ Full
 
 chatLayout = named "chat"
            $ withIM (15 / 100) gajimRoster
@@ -108,6 +117,7 @@ main = do
                           $ layoutHintsWithPlacement (0.5, 0.5)
                           $ desktopLayoutModifiers
                           $ smartBorders
+                          $ onWorkspace "4" gimpLayout
                           $ onWorkspace "6" chatLayout
                           $ tallLayout
                         ||| wideLayout
