@@ -72,7 +72,8 @@ manageIgnores = composeOne $ map (-?> doIgnore)
     [ isSplash,
       className =? "stalonetray" ]
 manageFloats  = composeOne $ map (-?> doCenterFloat)
-    [ className =? "Bsnes-accuracy"
+    [ isDialog
+    , className =? "Bsnes-accuracy"
     , className =? "Bsnes-compatibility"
     , className =? "Bsnes-performance"
     , className =? "Gcalctool"
