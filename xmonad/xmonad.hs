@@ -108,6 +108,7 @@ xmobarLogHook xmobar = dynamicLogWithPP xmobarPP
 
 -- Main configuration
 main = do
+    spawn "xcompmgr-xmonad"
     xmobar <- spawnPipe "xmobar ~/.xmobarrc"
     spawn "stalonetray-xmonad"
 
