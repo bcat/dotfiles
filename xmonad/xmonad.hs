@@ -3,7 +3,7 @@ import IO
 
 import XMonad
 import XMonad.Config.Desktop
-import XMonad.Config.Xfce
+import XMonad.Config.Gnome
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ICCCMFocus
@@ -116,7 +116,7 @@ main = do
     xmobar <- spawnPipe "xmobar ~/.xmobarrc"
     spawn "stalonetray-xmonad"
 
-    xmonad $ withUrgencyHook NoUrgencyHook $ xfceConfig
+    xmonad $ withUrgencyHook NoUrgencyHook $ gnomeConfig
         { terminal        = "urxvt"
         , layoutHook      = nameTail
                           $ layoutHintsWithPlacement (0.5, 0.5)
@@ -135,11 +135,11 @@ main = do
                                        , manageGimp
                                        , manageMedia
                                        , manageChat ]
-                        <+> manageHook xfceConfig
+                        <+> manageHook gnomeConfig
         , handleEventHook = mappend fullscreenEventHook
-                          $ handleEventHook xfceConfig
+                          $ handleEventHook gnomeConfig
         , modMask         = mod4Mask
         , logHook         = xmobarLogHook xmobar
                          >> setWMName "LG3D" {- Nasty hack for Java Swing -}
                          >> takeTopFocus
-                         >> logHook xfceConfig }
+                         >> logHook gnomeConfig }
