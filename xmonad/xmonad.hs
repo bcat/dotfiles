@@ -56,7 +56,8 @@ gimpLayout = named "gimp"
            $ withIM (15 / 100) gimpToolbox
            $ reflectHoriz
            $ withIM (15 / 85) gimpDock
-           $ Full
+           $ reflectHoriz
+           $ Grid
 
 chatLayout = named "chat"
            $ withIM (15 / 100) gajimRoster
@@ -79,6 +80,8 @@ manageFloats  = composeOne $ map (-?> doCenterFloat)
     , title     =? "glxgears" ]
 manageSinks   = composeOne $ map (-?> doSink)
     [ className =? "Skype" {- A bit too general, but OK for now -} ]
+manageGimp    = composeOne $ map (-?> doShift "4")
+    [ className =? "Gimp-2.6" ]
 manageMedia   = composeOne $ map (-?> doShift "5")
     [ className =? "Quodlibet"
     , className =? "Totem" ]
@@ -128,6 +131,7 @@ main = do
         , manageHook      = composeAll [ manageIgnores
                                        , manageFloats
                                        , manageSinks
+                                       , manageGimp
                                        , manageMedia
                                        , manageChat ]
                         <+> manageHook xfceConfig
