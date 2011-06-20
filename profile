@@ -46,19 +46,6 @@ elif [ -d /usr/lib/jvm/java-gcj ]; then
   export JAVA_HOME=/usr/lib/jvm/java-gcj
 fi
 
-# If we have fortune and this is an interactive shell, print a fortune cookie.
-if type fortune >/dev/null 2>&1; then
-  case "$-" in *i*)
-    if type cowsay >/dev/null 2>&1; then
-      fortune | cowsay -n
-    else
-      printf '\n'
-      fortune
-      printf '\n'
-    fi
-  ;; esac
-fi
-
 # If there is a local .profile file, source that now.
 [ -f ~/.profile.local ] && . ~/.profile.local
 
