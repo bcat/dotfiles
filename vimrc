@@ -97,12 +97,6 @@ if has("mouse")
   set mouse=a
 endif
 
-" All the xterm-like terminals I use support 256 colors, so let's make Vim
-" aware of that.
-if &term == "xterm"
-  set t_Co=256
-endif
-
 " Enable syntax highlighting.
 if has("syntax") && (&t_Co > 2 || has("gui_running"))
   syntax on

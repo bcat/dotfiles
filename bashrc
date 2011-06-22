@@ -4,6 +4,10 @@ case "$-" in
   *) return ;;
 esac
 
+# All our xterm-like terminals support 256 colors, so let's select the right
+# terminal type.
+[ "$TERM" = xterm ] && export TERM=xterm-256color
+
 # If we have fortune and this is an interactive shell, print a fortune cookie.
 if type fortune >/dev/null 2>&1; then
   case "$-" in *i*)
