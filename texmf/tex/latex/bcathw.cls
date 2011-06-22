@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bcathw}[2011/05/31 Jonathan Rascher's homework class]
+\ProvidesClass{bcathw}[2011/06/22 Jonathan Rascher's homework class]
 
 % Load e-TeX helper commands.
 \RequirePackage{etoolbox}
@@ -31,7 +31,7 @@
     \RequirePackage{fullpage}
     \RequirePackage[doublespacing]{setspace}}}
 
-% Declare option to typeset the document in MLA style. (Incomplete!)
+% Declare option to typeset the document in MLA style.
 \DeclareOption{mla}{
   % The MLA style option is heavily reliant on the specific formatting of the
   % AMS article class, so make sure that's used as the base document class.
@@ -95,7 +95,42 @@
 
       \centering\@title
 
-      \endgroup}}
+      \endgroup}
+
+    % Hijack the `quotation` environment for MLA-style block quotations that
+    % begin a new paragraph.
+    \renewenvironment{quotation}{%
+      \list{}{%
+        \setlength\topsep{0pt}%
+        \setlength\leftmargin{1in}%
+        \setlength\listparindent{0.25in}%
+        \setlength\itemindent{\listparindent}}%
+      \item\relax}{%
+      \endlist}
+
+    % Hijack the `quote` environment for MLA-style block quotations that do not
+    % begin a new paragraph.
+    \renewenvironment{quote}{%
+      \list{}{%
+        \setlength\topsep{0pt}%
+        \setlength\leftmargin{1in}%
+        \setlength\listparindent{0.25in}}%
+      \item\relax}{%
+      \endlist}
+
+    % Reformat the bibliography to function as an MLA "Works Cited" list.
+    \renewenvironment{thebibliography}[1]{%
+      \pagebreak%
+      \centering Works Cited
+
+      \list{}{%
+        \setlength\topsep{0pt}%
+        \setlength\leftmargin{0.5in}%
+        \setlength\itemindent{-0.5in}}}{%
+      \def\@noitemerror{\@latex@warning{Empty `thebibliography` environment.}}%
+      \endlist}
+
+    \def\@bibitem#1{\item\relax}}
 
   % Set a half-inch paragraph indent as specified by MLA.
   \AtBeginDocument{
