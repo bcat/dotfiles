@@ -1,4 +1,4 @@
-# Make sure the system games directory is referenced in the search path
+# Make sure the system games directory is referenced in the search path.
 if [ -d /usr/games ] &&
    ! printf '%s\n' "$PATH" | grep -E "(^|:)/usr/games($|:)" >/dev/null
 then
