@@ -1,0 +1,11 @@
+# @title Set up editor preferences
+# @description Sets up tab width, print margin, line numbers, etc.
+# @audit_type RECONCILE
+file_export_version=3.0
+
+/instance/org.eclipse.ui.editors/spacesForTabs=true
+/instance/org.eclipse.ui.editors/printMarginColumn=100
+/instance/org.eclipse.ui.editors/tabWidth=2
+/instance/org.eclipse.ui.editors/printMargin=2
+/instance/org.eclipse.ui.editors/lineNumberRuler=true
+/instance/org.eclipse.ui.editors/AbstractTextEditor.Accessibility.UseCustomCarets=false

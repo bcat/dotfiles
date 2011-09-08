@@ -1,0 +1,8 @@
+# @title Set up font preferences
+# @description Set Envy Code R as the preferred code font
+# @audit_type RECONCILE
+file_export_version=3.0
+
+/instance/org.eclipse.jdt.ui/org.eclipse.jface.textfont=1|Envy Code R|10.0|0|GTK|1|;
+
+/instance/org.eclipse.ui.workbench/org.eclipse.jface.textfont=1|Envy Code R|10.0|0|GTK|1|;
