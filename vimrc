@@ -140,7 +140,7 @@ if has("gui_running")
   endif
 
   " Set a nice color scheme.
-  colorscheme desert
+  colorscheme cheesebox
 elseif &t_Co == 88 || &t_Co == 256
   " Set a nice color scheme.
   colorscheme desert256-transparent
