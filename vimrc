@@ -153,13 +153,3 @@ endif
 if has("gui_running") || &t_Co >= 88
   colorscheme cheesebox
 endif
-
-" Highlight trailing whitespace.
-" See also: <http://vim.wikia.com/wiki/Highlight_unwanted_spaces>.
-if has("autocmd") && has("syntax") && (&t_Co > 2 || has("gui_running"))
-  highlight ExtraWhitespace ctermbg=red guibg=red
-  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-  autocmd BufWinLeave * call clearmatches()
-endif

@@ -1,3 +1,6 @@
+[submodule "vim/bundle/bad-whitespace"]
+	path = vim/bundle/bad-whitespace
+	url = git@github.com:bcat/vim-bad-whitespace.git
 [submodule "vim/bundle/blogit"]
 	path = vim/bundle/blogit
 	url = git://git.symlink.me/pub/romain/blogit.git
