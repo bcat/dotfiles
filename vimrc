@@ -52,10 +52,10 @@ command W w !sudo tee % >/dev/null
 let mapleader=","
 let maplocalleader=","
 
-nnoremap <Leader><Leader> :noh<CR>
-nnoremap <Leader>c :exe ":colo" g:colors_name<CR>
+nnoremap <Leader><Leader> :nohlsearch<CR>
+nnoremap <Leader>c :execute ":colorscheme" g:colors_name<CR>
 
-noremap <Leader>s :cal <SID>SynStack()<CR>
+noremap <Leader>t :call <SID>SynStack()<CR>
 
 " Load plugins 'n' stuff with Pathogen.
 if !has("python")
