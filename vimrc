@@ -54,7 +54,9 @@ let maplocalleader=","
 
 nnoremap <Leader><Leader> :nohlsearch<CR>
 nnoremap <Leader>c :execute ":colorscheme" g:colors_name<CR>
+nnoremap <Leader>s :set spell!<CR>
 
+noremap <Leader><Space> :EraseBadWhitespace<CR>
 noremap <Leader>t :call <SID>SynStack()<CR>
 
 " Load plugins 'n' stuff with Pathogen.
