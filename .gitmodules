@@ -4,6 +4,9 @@
 [submodule "vim/bundle/cheesebox"]
 	path = vim/bundle/cheesebox
 	url = git@github.com:bcat/cheesebox.vim.git
+[submodule "vim/bundle/csapprox"]
+	path = vim/bundle/csapprox
+	url = git://github.com/godlygeek/csapprox.git
 [submodule "vim/bundle/latex-box"]
 	path = vim/bundle/latex-box
 	url = git://github.com/vim-scripts/LaTeX-Box.git

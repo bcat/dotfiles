@@ -147,12 +147,11 @@ if has("gui_running")
   if has("spell")
     set spell
   endif
+endif
 
-  " Set a nice color scheme.
+" Set a nice color scheme.
+if has("gui_running") || &t_Co >= 88
   colorscheme cheesebox
-elseif &t_Co == 88 || &t_Co == 256
-  " Set a nice color scheme.
-  colorscheme desert256-transparent
 endif
 
 " Highlight trailing whitespace.
