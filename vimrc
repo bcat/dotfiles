@@ -152,5 +152,5 @@ endif
 
 " Set a nice color scheme.
 if has("gui_running") || &t_Co >= 88
-  colorscheme cheesebox
+  colorscheme abbott
 endif
