@@ -10,6 +10,9 @@
 [submodule "vim/bundle/csapprox"]
 	path = vim/bundle/csapprox
 	url = git://github.com/godlygeek/csapprox.git
+[submodule "vim/bundle/hexhighlight"]
+	path = vim/bundle/hexhighlight
+	url = git://github.com/yurifury/hexHighlight.git
 [submodule "vim/bundle/latex-box"]
 	path = vim/bundle/latex-box
 	url = git://github.com/vim-scripts/LaTeX-Box.git

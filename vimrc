@@ -40,24 +40,23 @@ if has("smartindent")
   set smartindent
 endif
 
-" Set up some vimrc-local functions.
-" See also: <http://vimcasts.org/episodes/creating-colorschemes-for-vim/>
-function! <SID>SynStack()
-  echo map(synstack(line("."), col(".")), 'synIDattr(v:val, "name")')
-endfunction
-
 " Set up custom key bindings.
+" See also: <http://stackoverflow.com/q/726920/152208>
+" See also: <http://vimcasts.org/episodes/creating-colorschemes-for-vim/>
 command W w !sudo tee % >/dev/null
 
 let mapleader=","
 let maplocalleader=","
 
-nnoremap <Leader><Leader> :nohlsearch<CR>
-nnoremap <Leader>c :execute ":colorscheme" g:colors_name<CR>
-nnoremap <Leader>s :set spell!<CR>
+nnoremap <silent> <Leader><Leader> :nohlsearch<CR>
+nnoremap <silent> <Leader>s :set spell!<CR>
 
-noremap <Leader><Space> :EraseBadWhitespace<CR>
-noremap <Leader>t :call <SID>SynStack()<CR>
+noremap <silent> <Leader><Space> :EraseBadWhitespace<CR>
+nmap <silent> <Leader>cc <Plug>RefreshColorScheme
+nmap <silent> <Leader>ch <Plug>HexHighlightToggle
+nmap <silent> <Leader>cr <Plug>HexHighlightRefresh
+noremap <silent> <Leader>cs :echo map(synstack(line("."), col(".")),
+      \ 'synIDattr(v:val, "name")')<CR>
 
 " Load plugins 'n' stuff with Pathogen.
 if !has("python")
