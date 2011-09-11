@@ -9,11 +9,14 @@ set nocompatible
 set noswapfile
 
 " Set display options.
+set lazyredraw
 set showcmd
 set laststatus=2
 set ruler
 set number
 set numberwidth=5
+set wildmenu
+set cursorline
 if exists("&colorcolumn")
   set colorcolumn=+2
 endif
@@ -105,6 +108,7 @@ endif
 " Enable mouse support.
 if has("mouse")
   set mouse=a
+  set mousefocus
 endif
 
 " Enable syntax highlighting.
