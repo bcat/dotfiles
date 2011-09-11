@@ -112,10 +112,10 @@ if has("syntax") && (&t_Co > 2 || has("gui_running"))
   syntax on
 endif
 
-" Set a custom dictionary for spell checking, but don't enable bad word
-" highlighting by default. (It's just too ugly in a terminal.)
+" Set a custom dictionary for spell checking, and enable bad word by default.
 if has("spell")
   set spellfile=~/.vim/spellfile.add
+  set spell
 endif
 
 if has("gui_running")
@@ -142,11 +142,6 @@ if has("gui_running")
     set guifont+=Consolas:h10:cDEFAULT
     set guifont+=DejaVu_Sans_Mono:h10:cDEFAULT
     set guifont+=Courier_New:h10:cDEFAULT
-  endif
-
-  " Enable highlighting of misspelled words in gVim only.
-  if has("spell")
-    set spell
   endif
 endif
 
