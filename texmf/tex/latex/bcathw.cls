@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bcathw}[2011/06/22 Jonathan Rascher's homework class]
+\ProvidesClass{bcathw}[2011/09/16 Jonathan Rascher's homework class]
 
 % Load e-TeX helper commands.
 \RequirePackage{etoolbox}
@@ -8,6 +8,7 @@
 \newcommand*\@bcathw@setupclass\relax
 \newcommand*\@bcathw@setuplayout\relax
 \newcommand*\@bcathw@setupfonts\relax
+\newcommand*\@bcathw@setupmargins\relax
 
 % Declare option to extend the AMS article class. (Default.)
 \DeclareOption{amsart}{
@@ -30,6 +31,12 @@
   \renewcommand*\@bcathw@setuplayout{
     \RequirePackage{fullpage}
     \RequirePackage[doublespacing]{setspace}}}
+
+% Declare option to typeset the document with tiny margins. This is useful for
+% full page diagrams.
+\DeclareOption{diagram}{
+  \renewcommand*\@bcathw@setuplayout{
+    \RequirePackage[margin=0.25in]{geometry}}}
 
 % Declare option to typeset the document in MLA style.
 \DeclareOption{mla}{
@@ -168,23 +175,36 @@
     \RequirePackage{amssymb,mathrsfs,mathptmx}
     \DeclareMathAlphabet{\mathcal}{OMS}{lmsy}{m}{n}}}
 
+% Declare option to use standard LaTeX margin notes.
+\DeclareOption{normalmargins}{
+  \renewcommand*\@bcathw@setupmargins\relax}
+
+% Declare option to use smaller text for margin notes. (Default.)
+\DeclareOption{compactmargins}{
+  \renewcommand*\@bcathw@setupmargins{
+    \appto\@marginparreset{
+      \footnotesize}}}
+
 % Process class options, passing unrecognized options on to amsart or article.
 \DeclareOption*{
   \PassOptionsToClass{\CurrentOption}{amsart}
   \PassOptionsToClass{\CurrentOption}{article}}
-\ExecuteOptions{amsart,latex,lmodern}
+\ExecuteOptions{amsart,latex,lmodern,compactmargins}
 \ProcessOptions\relax
 
 % Load the base document class.
 \@bcathw@setupclass
 
-% Load geometry packages.
+% Configure page geometry.
 \@bcathw@setuplayout
 
-% Load font packages.
+% Configure text and math fonts.
 \RequirePackage[utf8]{inputenc}
 \@bcathw@setupfonts
 \RequirePackage{microtype}
+
+% Configure margin notes.
+\@bcathw@setupmargins
 
 % Load common preamble stuff.
 \RequirePackage{bcat}

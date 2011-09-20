@@ -1,16 +1,14 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bcat}[2011/06/16 Jonathan Rascher's preamble]
+\ProvidesPackage{bcat}[2011/09/16 Jonathan Rascher's preamble]
 
 % Load math packages.
-\RequirePackage{mathtools,thmtools}
+\RequirePackage{mathtools,thmtools,centernot}
 
 % Load graphics packages.
 \RequirePackage[dvipsnames,usenames]{color}
-\RequirePackage{tikz}
-\usetikzlibrary{arrows,backgrounds,decorations.markings}
 
 % Load miscellaneous packages.
-\RequirePackage{etoolbox,fixltx2e,multicol}
+\RequirePackage{etoolbox,fixltx2e,marginfix,multicol}
 
 % Configure PDF links and metadata.
 \RequirePackage[pdfusetitle]{hyperref}
@@ -73,22 +71,22 @@
   style=definition]{exer}
 
 % Prefer variant forms of epsilon and phi.
-\let\bcat@oldepsilon\epsilon
-\let\bcat@oldphi\phi
+\let\@bcat@oldepsilon\epsilon
+\let\@bcat@oldphi\phi
 
 \let\epsilon\varepsilon
 \let\phi\varphi
 
-\let\varepsilon\bcat@oldepsilon
-\let\varphi\bcat@oldphi
+\let\varepsilon\@bcat@oldepsilon
+\let\varphi\@bcat@oldphi
 
 % Patch up `\left` and `\right` to fix spacing.
 % Source: <http://tex.stackexchange.com/questions/2607/#2610>.
-\let\bcat@oldleft\left
-\let\bcat@oldright\right
+\let\@bcat@oldleft\left
+\let\@bcat@oldright\right
 
-\renewcommand*\left{\mathopen{}\mathclose\bgroup\bcat@oldleft}
-\renewcommand*\right{\aftergroup\egroup\bcat@oldright}
+\renewcommand*\left{\mathopen{}\mathclose\bgroup\@bcat@oldleft}
+\renewcommand*\right{\aftergroup\egroup\@bcat@oldright}
 
 % Define useful shorthand commands.
 \newcommand*\padic{$p$\nbds adic}
@@ -102,17 +100,26 @@
 \newcommand*\bb[1]{\mathbb{#1}}
 \newcommand*\mc[1]{\mathcal{#1}}
 \newcommand*\mf[1]{\mathfrak{#1}}
+\newcommand*\mr[1]{\mathrm{#1}}
 \newcommand*\ms[1]{\mathscr{#1}}
 \newcommand*\vr[1]{\mathbf{#1}}
+
+% Define commands for use in lecture/study notes.
+\newcommand*\dfn[1]{\emph{#1}}
 
 % Define commands for custom math functions.
 \DeclareMathOperator\Comp{Comp}
 \DeclareMathOperator\Tr{Tr}
 \DeclareMathOperator\adj{adj}
+\DeclareMathOperator\lcm{lcm}
 \DeclareMathOperator\nullity{nullity}
 \DeclareMathOperator\range{range}
 \DeclareMathOperator\rank{rank}
 \DeclareMathOperator\spans{span}
+
+% Define commands for custom math operators and relations.
+\newcommand*\divides{\mid}
+\newcommand*\ndivides{\centernot\mid}
 
 % Define commands for custom math delimiter structures.
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
@@ -128,6 +135,3 @@
   \hskip -\arraycolsep
   \let\@ifnextchar\new@ifnextchar
   \array{#1}}
-
-% Deprecated commands. Do not use these in new files.
-\newcommand\autorefwrap[3]{\hyperref[#1]{#2\autoref*{#1}#3}}
