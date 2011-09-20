@@ -16,7 +16,6 @@ set ruler
 set number
 set numberwidth=5
 set wildmenu
-set cursorline
 if exists("&colorcolumn")
   set colorcolumn=+2
 endif
