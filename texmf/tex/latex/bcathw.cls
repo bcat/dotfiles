@@ -36,7 +36,7 @@
 % full page diagrams.
 \DeclareOption{diagram}{
   \renewcommand*\@bcathw@setuplayout{
-    \RequirePackage[margin=0.25in]{geometry}}}
+    \RequirePackage[margin=0.28in]{geometry}}}
 
 % Declare option to typeset the document in MLA style.
 \DeclareOption{mla}{
