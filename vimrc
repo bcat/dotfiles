@@ -20,6 +20,7 @@ if exists("&colorcolumn")
   set colorcolumn=+2
 endif
 set linebreak
+set scrolloff=4
 
 " Give us a big command history.
 set history=999
