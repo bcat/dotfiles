@@ -18,6 +18,7 @@ import XMonad.Layout.Named
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Reflect
+import XMonad.Layout.Spiral
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.Run
 
@@ -47,7 +48,7 @@ workspaceName x   = x
 
 -- Layout settings
 tallLayout     = named "tall" $ Tall 1 (1 / 100) (59 / 100)
-wideLayout     = named "wide" $ Mirror $ Tall 1 (1 / 100) (1 / 2)
+spiralLayout   = named "sprl" $ spiral (9 / 10)
 threeColLayout = named "3col" $ ThreeCol 1 (3 / 100) (-1 / 3)
 gridLayout     = named "grid" $ GridRatio 1
 fullLayout     = named "full" $ Full
@@ -125,7 +126,7 @@ main = do
                           $ onWorkspace "4" gimpLayout
                           $ onWorkspace "6" chatLayout
                           $ tallLayout
-                        ||| wideLayout
+                        ||| spiralLayout
                         ||| threeColLayout
                         ||| gridLayout
                         ||| fullLayout
