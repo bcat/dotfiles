@@ -63,11 +63,12 @@ trap _bashrc_debug_trap DEBUG
 set -o functrace
 shopt -s extdebug
 
-# Give ls and grep some color.
+# Give certain commands some color.
 #
 # We use BASH-style function syntax here instead of POSIX syntax because some
 # overclever sysadmins/distros decide to alias `ls' in /etc/bash.bashrc, which
 # breaks the cleaner-looking `ls () { ... }' method of function definition.
+function cower { command cower --color=auto "$@"; }
 function ls { command ls --color=auto "$@"; }
 function grep { command grep --color=auto "$@"; }
 
