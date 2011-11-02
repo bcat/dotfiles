@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bcat}[2011/10/29 Jonathan Rascher's preamble]
+\ProvidesPackage{bcat}[2011/11/01 Jonathan Rascher's preamble]
 
 % Load math packages.
 \RequirePackage{mathtools,thmtools,centernot}
@@ -8,7 +8,8 @@
 \RequirePackage[dvipsnames,usenames]{color}
 
 % Load miscellaneous packages.
-\RequirePackage{etoolbox,fixltx2e,marginfix,multicol}
+\RequirePackage{etoolbox,floatrow,fixltx2e,marginfix,multicol}
+\floatsetup[table]{style=plaintop}
 
 % Configure PDF links and metadata.
 \RequirePackage[pdfusetitle]{hyperref}
