@@ -1,14 +1,62 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bcat}[2011/11/01 Jonathan Rascher's preamble]
+\ProvidesPackage{bcat}[2011/11/07 Jonathan Rascher's preamble]
+
+% Load e-TeX and KOMA-script helper commands.
+\RequirePackage{etoolbox,scrlfile}
 
 % Load math packages.
 \RequirePackage{mathtools,thmtools,centernot}
+
+% Save the thmtools version of `\@xa` so we can restore it later. (This is
+% needed to prevent conflicts with tkz-base.
+\let\@bcat@oldxa\@xa
+\AfterPackage*{tkz-base}{
+  \let\@xa\@bcat@oldxa
+  \AfterEndEnvironment{tikzpicture}{
+    \let\@xa\@bcat@oldxa}}
+
+% Set up theorem-like environments.
+\declaretheoremstyle[notefont=,notebraces={}{}]{exer*}
+
+\declaretheorem[
+  name=Theorem]{thm}
+\declaretheorem[
+  sibling=thm,
+  name=Proposition]{prop}
+\declaretheorem[
+  sibling=thm,
+  name=Lemma]{lem}
+\declaretheorem[
+  sibling=thm,
+  name=Corollary]{cor}
+
+\declaretheorem[
+  sibling=thm,
+  name=Definition,
+  style=definition]{defn}
+\declaretheorem[
+  sibling=thm,
+  name=Example,
+  style=definition]{xmp}
+
+\declaretheorem[
+  sibling=thm,
+  name=Exercise,
+  style=definition]{exer}
+\declaretheorem[
+  numbered=no,
+  name=Exercise,
+  style=exer*]{exer*}
+\declaretheorem[
+  numbered=no,
+  name=\!\!,
+  style=exer*]{exer**}
 
 % Load graphics packages.
 \RequirePackage[dvipsnames,usenames]{color}
 
 % Load miscellaneous packages.
-\RequirePackage{etoolbox,floatrow,fixltx2e,marginfix,multicol}
+\RequirePackage{floatrow,fixltx2e,marginfix,multicol}
 \floatsetup[table]{style=plaintop}
 
 % Configure PDF links and metadata.
@@ -23,53 +71,20 @@
   pdfprintscaling=None}
 
 % Load packages that must come after hyperref.
-\RequirePackage[capitalize]{cleveref}
 \RequirePackage{ellipsis}
 
-% Set up theorem-like environments. (Must happen after cleveref is included.)
-\declaretheoremstyle[notefont=,notebraces={}{}]{exer*}
+% Make sure touchy packages are loaded LAST!
+\AtEndPreamble{
+  % Load cleveref for fancy references.
+  \RequirePackage{cleveref}
 
-\declaretheorem[
-  numbered=no,
-  name=Exercise,
-  refname={Exercise,Exercises},
-  style=exer*]{exer*}
-\declaretheorem[
-  numbered=no,
-  name=\!\!,
-  style=exer*]{exer**}
-
-\declaretheorem[
-  name=Theorem,
-  refname={Theorem,Theorems}]{thm}
-\declaretheorem[
-  sibling=thm,
-  name=Proposition,
-  refname={Proposition,Propositions}]{prop}
-\declaretheorem[
-  sibling=thm,
-  name=Lemma,
-  refname={lemma,lemmas}]{lem}
-\declaretheorem[
-  sibling=thm,
-  name=Corollary,
-  refname={Corollary,Corollaries}]{cor}
-
-\declaretheorem[
-  sibling=thm,
-  name=Definition,
-  refname={Definition,Definitions},
-  style=definition]{defn}
-\declaretheorem[
-  sibling=thm,
-  name=Example,
-  refname={Example,Examples},
-  style=definition]{xmp}
-\declaretheorem[
-  sibling=thm,
-  name=Exercise,
-  refname={Exercise,Exercises},
-  style=definition]{exer}
+  \crefname{thm}{Theorem}{Theorems}
+  \crefname{prop}{Proposition}{Propositions}
+  \crefname{lem}{Lemma}{Lemmas}
+  \crefname{defn}{Definition}{Definitions}
+  \crefname{xmp}{Example}{Examples}
+  \crefname{exer}{Exercise}{Exercises}
+  \crefname{exer*}{Exercise}{Exercises}}
 
 % Prefer variant forms of epsilon and phi.
 \let\@bcat@oldepsilon\epsilon
