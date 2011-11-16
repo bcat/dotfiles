@@ -74,10 +74,8 @@ manageIgnores = composeOne $ map (-?> doIgnore)
       className =? "stalonetray" ]
 manageFloats  = composeOne $ map (-?> doCenterFloat)
     [ isDialog
-    , className =? "Bsnes-accuracy"
-    , className =? "Bsnes-compatibility"
-    , className =? "Bsnes-performance"
     , className =? "Gcalctool"
+    , className =? "Phoenix"
     , className =? "Totem"
     , title     =? "glxgears" ]
 manageSinks   = composeOne $ map (-?> doSink)
