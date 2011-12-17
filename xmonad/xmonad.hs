@@ -4,20 +4,20 @@ import IO
 import XMonad
 import XMonad.Config.Desktop
 import XMonad.Config.Gnome
-import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ICCCMFocus
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.Fullscreen
 import XMonad.Layout.Grid
 import XMonad.Layout.IM
 import XMonad.Layout.LayoutHints
-import XMonad.Layout.Named
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Reflect
+import XMonad.Layout.Renamed
 import XMonad.Layout.Spiral
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.Run
@@ -26,7 +26,7 @@ import qualified XMonad.StackSet as W
 
 -- Helper functions
 gimpToolbox = Role "gimp-toolbox"
-gimpDock = Role "gimp-dock"
+gimpDock    = Role "gimp-dock"
 
 gajimRoster = Role "roster"
 skypeRoster = Title "Skype™ 2.1 (Beta) for Linux"
@@ -47,20 +47,20 @@ workspaceName "9" = "9-temp"
 workspaceName x   = x
 
 -- Layout settings
-tallLayout     = named "tall" $ Tall 1 (1 / 100) (59 / 100)
-spiralLayout   = named "sprl" $ spiral (9 / 10)
-threeColLayout = named "3col" $ ThreeCol 1 (3 / 100) (-1 / 3)
-gridLayout     = named "grid" $ GridRatio 1
-fullLayout     = named "full" $ Full
+tallLayout     = renamed [ Replace "tall" ] $ Tall 1 (1 / 100) (59 / 100)
+spiralLayout   = renamed [ Replace "sprl" ] $ spiral (9 / 10)
+threeColLayout = renamed [ Replace "3col" ] $ ThreeCol 1 (3 / 100) (-1 / 3)
+gridLayout     = renamed [ Replace "grid" ] $ GridRatio 1
+fullLayout     = renamed [ Replace "full" ] $ Full
 
-gimpLayout = named "gimp"
+gimpLayout = renamed [ Replace "gimp" ]
            $ withIM (15 / 100) gimpToolbox
            $ reflectHoriz
            $ withIM (15 / 85) gimpDock
            $ reflectHoriz
            $ Grid
 
-chatLayout = named "chat"
+chatLayout = renamed [ Replace "chat" ]
            $ withIM (15 / 100) gajimRoster
            $ reflectHoriz
            $ withIM (15 / 85) skypeRoster
@@ -117,7 +117,8 @@ main = do
 
     xmonad $ withUrgencyHook NoUrgencyHook $ gnomeConfig
         { terminal        = "urxvt"
-        , layoutHook      = nameTail
+        , layoutHook      = renamed [ CutWordsLeft 1 ]
+                          $ fullscreenFull
                           $ layoutHintsWithPlacement (0.5, 0.5)
                           $ desktopLayoutModifiers
                           $ smartBorders
@@ -133,10 +134,12 @@ main = do
                                        , manageSinks
                                        , manageGimp
                                        , manageMedia
-                                       , manageChat ]
+                                       , manageChat
+                                       , fullscreenManageHook ]
                         <+> manageHook gnomeConfig
-        , handleEventHook = mappend fullscreenEventHook
-                          $ handleEventHook gnomeConfig
+        , handleEventHook = fullscreenEventHook
+                        <+> hintsEventHook
+                        <+> handleEventHook gnomeConfig
         , modMask         = mod4Mask
         , logHook         = xmobarLogHook xmobar
                          >> setWMName "LG3D" {- Nasty hack for Java Swing -}
