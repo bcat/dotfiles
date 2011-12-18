@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bcat}[2011/11/14 Jonathan Rascher's preamble]
+\ProvidesPackage{bcat}[2011/12/17 Jonathan Rascher's preamble]
 
 % Load e-TeX and KOMA-script helper commands.
 \RequirePackage{etoolbox,scrlfile}
@@ -136,8 +136,8 @@
 \DeclareMathOperator\spans{span}
 
 % Define commands for custom math operators and relations.
-\newcommand*\divides{\mid}
-\newcommand*\ndivides{\centernot\mid}
+\ifundef\divides{\newcommand*\divides{\mid}}{}
+\ifundef\ndivides{\newcommand*\ndivides{\centernot\divides}}{}
 
 % Define commands for custom math delimiter structures.
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
