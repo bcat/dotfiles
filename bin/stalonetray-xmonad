@@ -1,4 +1,0 @@
-#!/bin/sh
-killall -q stalonetray
-stalonetray --geometry 15x1+"$(expr $(xrandr | grep +0+0 | \
-  sed 's/.* \([0-9]\{1,\}\)x.*/\1/') - 360)"+0

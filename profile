@@ -12,6 +12,13 @@ then
   export PATH=$HOME/bin:$PATH
 fi
 
+# Make sure the Haskell Cabal bin directory is referenced in the search path.
+if [ -d ~/.cabal/bin ] &&
+   ! printf '%s\n' "$PATH" | grep -E "(^|:)$HOME/.cabal/bin($|:)" >/dev/null
+then
+  export PATH=$HOME/.cabal/bin:$PATH
+fi
+
 # Set the preferred editor.
 if command -v vim >/dev/null; then
   export EDITOR=$(command -v vim)

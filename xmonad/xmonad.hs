@@ -1,5 +1,8 @@
 import Data.Monoid
+import DBus.Client.Simple
 import IO
+import System.Taffybar.XMonadLog
+import Web.Encodings
 
 import XMonad
 import XMonad.Config.Desktop
@@ -20,7 +23,7 @@ import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed
 import XMonad.Layout.Spiral
 import XMonad.Layout.ThreeColumns
-import XMonad.Util.Run
+import XMonad.Util.SpawnOnce
 
 import qualified XMonad.StackSet as W
 
@@ -34,6 +37,12 @@ skypeRoster = Title "Skype™ 2.1 (Beta) for Linux"
 
 doSink   = ask >>= doF . W.sink
 isSplash = isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
+
+taffybarColor fg bg = wrap t "</span>"
+  where t = concat [ "<span "
+                   , wrap "color='" "'" fg
+                   , wrap "bgcolor='" "'" bg
+                   , ">" ]
 
 workspaceName "1" = "1-uno"
 workspaceName "2" = "2-dos"
@@ -90,30 +99,33 @@ manageChat    = composeOne $ map (-?> doShift "6")
     , className =? "Skype" ]
 
 -- Log hooks
-xmobarLogHook xmobar = dynamicLogWithPP xmobarPP
-        { ppCurrent         = xmobarColor "yellow" ""
+taffybarLogHook client = dbusLog client defaultPP
+        { ppCurrent         = taffybarColor "yellow" ""
+                            . encodeHtml
                             . wrap "[" "]"
                             . workspaceName
-        , ppVisible         = xmobarColor "yellow" ""
+        , ppVisible         = taffybarColor "yellow" ""
+                            . encodeHtml
                             . wrap "(" ")"
                             . workspaceName
-        , ppHidden          = xmobarColor "white" ""
+        , ppHidden          = taffybarColor "white" ""
+                            . encodeHtml
                             . wrap "{" "}"
                             . workspaceName
-        , ppHiddenNoWindows = wrap "<" ">"
+        , ppHiddenNoWindows = encodeHtml
+                            . wrap "<" ">"
                             . workspaceName
-        , ppUrgent          = xmobarColor "yellow" "red"
+        , ppUrgent          = taffybarColor "yellow" "red"
+                            . encodeHtml
                             . wrap "*" "*"
                             . workspaceName
-        , ppTitle           = xmobarColor "green" ""
-                            . shorten 255
-        , ppOutput          = hPutStrLn xmobar }
+        , ppTitle           = taffybarColor "green" ""
+                            . encodeHtml
+                            . shorten 255 }
 
 -- Main configuration
 main = do
-    spawn "xcompmgr-xmonad"
-    xmobar <- spawnPipe "xmobar ~/.xmobarrc"
-    spawn "stalonetray-xmonad"
+    dbusClient <- connectSession
 
     xmonad $ withUrgencyHook NoUrgencyHook $ gnomeConfig
         { terminal        = "urxvt"
@@ -141,7 +153,10 @@ main = do
                         <+> hintsEventHook
                         <+> handleEventHook gnomeConfig
         , modMask         = mod4Mask
-        , logHook         = xmobarLogHook xmobar
+        , logHook         = taffybarLogHook dbusClient
                          >> setWMName "LG3D" {- Nasty hack for Java Swing -}
                          >> takeTopFocus
-                         >> logHook gnomeConfig }
+                         >> logHook gnomeConfig
+        , startupHook     = spawnOnce "xcompmgr"
+                         >> spawnOnce "taffybar"
+                         >> startupHook gnomeConfig }

@@ -1,0 +1,14 @@
+style "default" {
+  bg[NORMAL]   = "black"
+  fg[NORMAL]   = "gray"
+  text[NORMAL] = "gray"
+  font_name    = "Envy Code R 10"
+}
+
+style "notification-button" = "default" {
+  fg[NORMAL]   = "red"
+  text[NORMAL] = "red"
+}
+
+widget "Taffybar*" style "default"
+widget "*NotificationCloseButton" style "notification-button"
