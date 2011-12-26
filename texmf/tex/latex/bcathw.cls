@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bcathw}[2011/09/16 Jonathan Rascher's homework class]
+\ProvidesClass{bcathw}[2011/12/26 Jonathan Rascher's homework class]
 
 % Load e-TeX helper commands.
 \RequirePackage{etoolbox}
@@ -151,12 +151,23 @@
 % Declare option to typeset the document in Latin Modern. (Default.)
 \DeclareOption{lmodern}{
   \renewcommand*\@bcathw@setupfonts{
+    \RequirePackage[utf8]{inputenc}
     \RequirePackage[T1]{fontenc}
     \RequirePackage{amssymb,mathrsfs,lmodern}}}
+
+% Declare option to typeset the document in Cambria (XeTeX/LuaTeX-only).
+\DeclareOption{cambria}{
+  \renewcommand*\@bcathw@setupfonts{
+    \RequirePackage{unicode-math}
+    \setmainfont[Ligatures=TeX,Numbers=OldStyle]{Cambria}
+    \setmathfont[math-style=TeX,slash-delimiter=frac]{Cambria Math}
+    \preto\@settitle{
+      \addfontfeature{Numbers=Lining}}}}
 
 % Declare option to typeset the document in Minion Pro.
 \DeclareOption{minion}{
   \renewcommand*\@bcathw@setupfonts{
+    \RequirePackage[utf8]{inputenc}
     \RequirePackage{mathrsfs}
     \RequirePackage[fullfamily,minionint]{MinionPro}
     \preto\@settitle{
@@ -165,12 +176,14 @@
 % Declare option to typeset the document in a Palatino clone.
 \DeclareOption{palatino}{
   \renewcommand*\@bcathw@setupfonts{
+    \RequirePackage[utf8]{inputenc}
     \RequirePackage[T1]{fontenc}
     \RequirePackage{amssymb,mathrsfs,mathpazo}}}
 
 % Declare option to typeset the document in a Times clone.
 \DeclareOption{times}{
   \renewcommand*\@bcathw@setupfonts{
+    \RequirePackage[utf8]{inputenc}
     \RequirePackage[T1]{fontenc}
     \RequirePackage{amssymb,mathrsfs,mathptmx}
     \DeclareMathAlphabet{\mathcal}{OMS}{lmsy}{m}{n}}}
@@ -199,7 +212,6 @@
 \@bcathw@setuplayout
 
 % Configure text and math fonts.
-\RequirePackage[utf8]{inputenc}
 \@bcathw@setupfonts
 \RequirePackage{microtype}
 
