@@ -109,7 +109,7 @@
         \setlength\topsep{\z@}%
         \setlength\leftmargin{1in}%
         \setlength\listparindent{0.25in}%
-        \setlength\itemindent{\listparindent}%
+        \itemindent\listparindent%
       }%
       \item\relax
     }{\endlist}
