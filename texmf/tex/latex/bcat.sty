@@ -1,8 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bcat}[2011/12/26 Jonathan Rascher's preamble]
+\ProvidesPackage{bcat}[2012/01/01 Jonathan Rascher's preamble]
 
-% Load e-TeX and KOMA-script helper commands, as well as LaTeX fixes.
-\RequirePackage{etoolbox,fixltx2e,scrlfile}
+% Load LaTeX fixes as well as e-TeX and KOMA-script helper commands.
+\RequirePackage{fixltx2e,etoolbox,scrlfile}
 
 % Load math packages.
 \RequirePackage{mathtools,thmtools,centernot}
@@ -82,24 +82,24 @@
 \renewcommand*\right{\aftergroup\egroup\bcat@oldright}
 
 % Define useful shorthand commands.
-\newcommand*\padic{$p$\nbds adic}
+\newrobustcmd*\padic{\(p\)\nbds adic}
 
-\newcommand*\C{\mathbb C}
-\newcommand*\N{\mathbb N}
-\newcommand*\Q{\mathbb Q}
-\newcommand*\R{\mathbb R}
-\newcommand*\Z{\mathbb Z}
+\newrobustcmd*\C{\mathbb C}
+\newrobustcmd*\N{\mathbb N}
+\newrobustcmd*\Q{\mathbb Q}
+\newrobustcmd*\R{\mathbb R}
+\newrobustcmd*\Z{\mathbb Z}
 
-\newcommand*\bb[1]{\mathbb{#1}}
-\newcommand*\mc[1]{\mathcal{#1}}
-\newcommand*\mf[1]{\mathfrak{#1}}
-\newcommand*\mi[1]{\mathit{#1}}
-\newcommand*\mr[1]{\mathrm{#1}}
-\newcommand*\ms[1]{\mathscr{#1}}
-\newcommand*\vr[1]{\mathbf{#1}}
+\let\bb\mathbb
+\let\mc\mathcal
+\let\mf\mathfrak
+\let\mi\mathit
+\let\mr\mathrm
+\let\ms\mathscr
+\let\vr\mathbf
 
 % Define commands for use in lecture/study notes.
-\newcommand*\dfn[1]{\emph{#1}}
+\let\dfn\emph
 
 % Define commands for custom math functions.
 \DeclareMathOperator\Comp{Comp}
@@ -113,16 +113,16 @@
 \DeclareMathOperator\spans{span}
 
 % Define commands for custom math operators and relations.
-\ifundef\divides{\newcommand*\divides{\mid}}{}
-\ifundef\ndivides{\newcommand*\ndivides{\centernot\divides}}{}
+\providerobustcmd*\divides{\mid}
+\providerobustcmd*\ndivides{\centernot\divides}
 
 % Define commands for custom math delimiter structures.
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
 
 % Define commands for typographical tweaks.
-\newcommand*\nbds[1][-]{\nobreakdashes#1\hspace{\z@}}
-\newcommand*\nextline{\leavevmode\@afterheading}
+\newrobustcmd*\nbds[1][-]{\nobreakdashes#1\hspace{\z@}}
+\newrobustcmd*\nextline{\leavevmode\@afterheading}
 
 % Extend amsmath to support augmented matrices.
 % Source: <http://texblog.net/latex-archive/maths/amsmath-matrix/>.

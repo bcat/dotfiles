@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bcathw}[2011/12/26 Jonathan Rascher's homework class]
+\ProvidesClass{bcathw}[2012/01/01 Jonathan Rascher's homework class]
 
 % Load e-TeX helper commands and TeX engine conditionals.
 \RequirePackage{etoolbox,iftex}
@@ -89,16 +89,16 @@
     \def\maketitle{%
       \begingroup
         \setlength\parindent{\z@}%
+        %
         \authors
 
         \bcathw@mlainstructor
 
         \bcathw@mlacourse
 
-        \@date
-
         \centering
         \@title
+
       \endgroup
     }
 
@@ -150,9 +150,10 @@
   \AtBeginDocument{\setlength\parindent{0.5in}}
 
   % Define some commands to store MLA-specific title information.
-  \newcommand*\mlaauthor[1]{\def\bcathw@mlaauthor{#1}}
-  \newcommand*\mlainstructor[1]{\def\bcathw@mlainstructor{#1}}
-  \newcommand*\mlacourse[1]{\def\bcathw@mlacourse{#1}}}
+  \newrobustcmd*\mlaauthor[1]{\gdef\bcathw@mlaauthor{#1}}
+  \newrobustcmd*\mlainstructor[1]{\gdef\bcathw@mlainstructor{#1}}
+  \newrobustcmd*\mlacourse[1]{\gdef\bcathw@mlacourse{#1}}
+}
 
 % Declare option to typeset the document in Latin Modern. (Default.)
 \DeclareOption{lmodern}{
@@ -194,7 +195,7 @@
   \def\bcathw@setupfonts{
     \RequirePackage[T1]{fontenc}
     \RequirePackage{amssymb,mathrsfs,mathptmx}
-    \DeclareMathAlphabet{\mathcal}{OMS}{lmsy}{m}{n}
+    \DeclareMathAlphabet\mathcal{OMS}{lmsy}{m}{n}
   }
 }
 
