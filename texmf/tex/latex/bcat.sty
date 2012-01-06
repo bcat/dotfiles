@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bcat}[2012/01/01 Jonathan Rascher's preamble]
+\ProvidesPackage{bcat}[2012/01/05 Jonathan Rascher's preamble]
 
 % Load LaTeX fixes as well as e-TeX and KOMA-script helper commands.
 \RequirePackage{fixltx2e,etoolbox,scrlfile}
@@ -98,8 +98,9 @@
 \let\ms\mathscr
 \let\vr\mathbf
 
-% Define commands for use in lecture/study notes.
+% Define semantic commands for marking up text.
 \let\dfn\emph
+\let\pub\emph
 
 % Define commands for custom math functions.
 \DeclareMathOperator\Comp{Comp}
@@ -118,16 +119,17 @@
 
 % Define commands for custom math delimiter structures.
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\ideal{\langle}{\rangle}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
 
 % Define commands for typographical tweaks.
-\newrobustcmd*\nbds[1][-]{\nobreakdashes#1\hspace{\z@}}
+\newrobustcmd*\nbds{\nobreakdashes-\hskip\z@skip}
 \newrobustcmd*\nextline{\leavevmode\@afterheading}
 
 % Extend amsmath to support augmented matrices.
 % Source: <http://texblog.net/latex-archive/maths/amsmath-matrix/>.
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
-  \hskip -\arraycolsep
+  \hskip-\arraycolsep
   \let\@ifnextchar\new@ifnextchar
   \array{#1}%
 }

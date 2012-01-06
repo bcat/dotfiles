@@ -1,19 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bcathw}[2012/01/01 Jonathan Rascher's homework class]
+\ProvidesClass{bcathw}[2012/01/06 Jonathan Rascher's homework class]
 
 % Load e-TeX helper commands and TeX engine conditionals.
 \RequirePackage{etoolbox,iftex}
-
-% Declare option to extend the AMS article class. (Default.)
-\DeclareOption{amsart}{\def\bcathw@setupclass{\LoadClass{amsart}}}
-
-% Declare option to extend the standard LaTeX article class.
-\DeclareOption{article}{
-  \def\bcathw@setupclass{
-    \LoadClass{article}
-    \RequirePackage{amsthm}
-  }
-}
 
 % Declare option to typeset the document with normal LaTeX margins. (Default.)
 \DeclareOption{latex}{\let\bcathw@setuplayout\relax}
@@ -35,10 +24,6 @@
 
 % Declare option to typeset the document in MLA style.
 \DeclareOption{mla}{
-  % The MLA style option is heavily reliant on the specific formatting of the
-  % AMS article class, so make sure that's used as the base document class.
-  \ExecuteOptions{amsart}
-
   \def\bcathw@setuplayout{
     % Use 1 inch margins and double spacing.
     \RequirePackage[margin=1in,headheight=14pt,headsep=22.135pt]{geometry}
@@ -88,17 +73,13 @@
     % Typeset the document's title in the usual (ugly) MLA style.
     \def\maketitle{%
       \begingroup
-        \setlength\parindent{\z@}%
+        \parindent\z@skip
         %
-        \authors
-
-        \bcathw@mlainstructor
-
-        \bcathw@mlacourse
-
-        \centering
-        \@title
-
+        \authors\par
+        \bcathw@mlainstructor\par
+        \bcathw@mlacourse\par
+        %
+        \centering\@title\par
       \endgroup
     }
 
@@ -106,35 +87,33 @@
     % begin a new paragraph.
     \renewenvironment{quotation}{%
       \list{}{%
-        \setlength\topsep{\z@}%
-        \setlength\leftmargin{1in}%
-        \setlength\listparindent{0.25in}%
-        \itemindent\listparindent%
+        \topsep\z@skip
+        \deflength\leftmargin{1in}%
+        \deflength\listparindent{0.25in}%
+        \itemindent\listparindent
       }%
-      \item\relax
+      \item[]
     }{\endlist}
 
     % Hijack the ``quote'' environment for MLA-style block quotations that do
     % not begin a new paragraph.
     \renewenvironment{quote}{%
       \list{}{%
-        \setlength\topsep{\z@}%
-        \setlength\leftmargin{1in}%
-        \setlength\listparindent{0.25in}
+        \topsep\z@skip
+        \deflength\leftmargin{1in}%
+        \deflength\listparindent{0.25in}%
       }%
-      \item\relax
+      \item[]
     }{\endlist}
 
     % Reformat the bibliography to function as an MLA "Works Cited" list.
     \renewenvironment{thebibliography}[1]{%
-      \pagebreak
-      \centering
-      Works Cited
-
+      \pagebreak\centering Works Cited\par
+      %
       \list{}{%
-        \setlength\topsep{\z@}%
-        \setlength\leftmargin{0.5in}%
-        \setlength\itemindent{-0.5in}%
+        \topsep\z@skip
+        \deflength\leftmargin{0.5in}%
+        \deflength\itemindent{-0.5in}%
       }%
     }{%
       \def\@noitemerror{%
@@ -143,11 +122,11 @@
       \endlist
     }
 
-    \def\@bibitem#1{\item\relax}
+    \def\@bibitem#1{\item[]}
   }
 
   % Set a half-inch paragraph indent as specified by MLA.
-  \AtBeginDocument{\setlength\parindent{0.5in}}
+  \AtBeginDocument{\deflength\parindent{0.5in}}
 
   % Define some commands to store MLA-specific title information.
   \newrobustcmd*\mlaauthor[1]{\gdef\bcathw@mlaauthor{#1}}
@@ -167,9 +146,13 @@
 \DeclareOption{cambria}{
   \def\bcathw@setupfonts{
     \RequirePackage{unicode-math}
-    \setmainfont[Ligatures=TeX,Numbers=OldStyle]{Cambria}
+    \setmainfont[Renderer=Basic,Ligatures=TeX,Numbers=OldStyle]{Cambria}
+    \newfontfamily\liningfamily[Renderer=Basic,Ligatures=TeX]{Cambria}
     \setmathfont[math-style=TeX,slash-delimiter=frac]{Cambria Math}
-    \preto\@settitle{\addfontfeature{Numbers=Lining}}
+
+    \linespread{1.04}
+
+    \preto\@settitle{\liningfamily}
   }
 }
 
@@ -178,15 +161,8 @@
   \def\bcathw@setupfonts{
     \RequirePackage{mathrsfs}
     \RequirePackage[fullfamily,minionint]{MinionPro}
-    \preto\@settitle{\figureversion{lf}}
-  }
-}
 
-% Declare option to typeset the document in a Palatino clone.
-\DeclareOption{palatino}{
-  \def\bcathw@setupfonts{
-    \RequirePackage[T1]{fontenc}
-    \RequirePackage{amssymb,mathrsfs,mathpazo}
+    \preto\@settitle{\figureversion{lf}}
   }
 }
 
@@ -195,6 +171,7 @@
   \def\bcathw@setupfonts{
     \RequirePackage[T1]{fontenc}
     \RequirePackage{amssymb,mathrsfs,mathptmx}
+
     \DeclareMathAlphabet\mathcal{OMS}{lmsy}{m}{n}
   }
 }
@@ -207,15 +184,11 @@
   \def\bcathw@setupmargins{\appto\@marginparreset{\footnotesize}}
 }
 
-% Process class options, passing unrecognized options on to amsart or article.
-\DeclareOption*{
-  \PassOptionsToClass{\CurrentOption}{amsart}
-  \PassOptionsToClass{\CurrentOption}{article}}
-\ExecuteOptions{amsart,latex,lmodern,compactmargins}
+% Process class options, passing unrecognized options on to ``amsart''.
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{amsart}}
+\ExecuteOptions{latex,lmodern,compactmargins}
 \ProcessOptions\relax
-
-% Load the base document class.
-\bcathw@setupclass
+\LoadClass{amsart}
 
 % Configure page geometry.
 \bcathw@setuplayout
