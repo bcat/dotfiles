@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bcathw}[2012/01/09 Jonathan Rascher's homework class]
+\ProvidesClass{bcathw}[2012/01/10 Jonathan Rascher's homework class]
 
 % Load e-TeX helper commands and TeX engine conditionals.
 \RequirePackage{etoolbox,iftex}
@@ -92,6 +92,7 @@
       \authors\par
       \bcathw@mlainstructor\par
       \bcathw@mlacourse\par
+      \@date\par
       %
       \centering\@title\par
       \endgroup
