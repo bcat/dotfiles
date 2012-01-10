@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bcat}[2012/01/09 Jonathan Rascher's preamble]
+\ProvidesPackage{bcat}[2012/01/10 Jonathan Rascher's preamble]
 
 % Load LaTeX fixes as well as e-TeX and KOMA-script helper commands.
 \RequirePackage{fixltx2e,etoolbox,scrlfile}
@@ -93,8 +93,8 @@
 \let\vr\mathbf
 
 % Define semantic commands for marking up text.
-\let\dfn\emph
-\let\pub\emph
+\newcommand*\dfn{\emph}
+\newcommand*\pub{\emph}
 
 % Define commands for custom math functions.
 \DeclareMathOperator\Comp   {Comp}
