@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bcat}[2012/01/06 Jonathan Rascher's preamble]
+\ProvidesPackage{bcat}[2012/01/09 Jonathan Rascher's preamble]
 
 % Load LaTeX fixes as well as e-TeX and KOMA-script helper commands.
 \RequirePackage{fixltx2e,etoolbox,scrlfile}
@@ -7,8 +7,8 @@
 % Load math packages.
 \RequirePackage{mathtools,thmtools,centernot}
 
-% Save the thmtools version of ``\@xa'' so we can restore it later. (This is
-% needed to prevent conflicts with tkz-base.
+% Save the ``thmtools'' version of ``\@xa'' so we can restore it later. (This
+% hack is necessary to prevent conflicts with ``tkz-base''.)
 \let\bcat@oldxa\@xa
 \AfterPackage*{tkz-base}{
   \let\@xa\bcat@oldxa
@@ -18,17 +18,17 @@
 % Set up theorem-like environments.
 \declaretheoremstyle[notefont=,notebraces={}{}]{exer*}
 
-\declaretheorem[name=Theorem]{thm}
+\declaretheorem[name=Theorem]                {thm}
 \declaretheorem[sibling=thm,name=Proposition]{prop}
-\declaretheorem[sibling=thm,name=Lemma]{lem}
-\declaretheorem[sibling=thm,name=Corollary]{cor}
+\declaretheorem[sibling=thm,name=Lemma]      {lem}
+\declaretheorem[sibling=thm,name=Corollary]  {cor}
 
 \declaretheorem[sibling=thm,name=Definition,style=definition]{defn}
-\declaretheorem[sibling=thm,name=Example,style=definition]{xmp}
+\declaretheorem[sibling=thm,name=Example,style=definition   ]{xmp}
 
 \declaretheorem[sibling=thm,name=Exercise,style=definition]{exer}
-\declaretheorem[numbered=no,name=Exercise,style=exer*]{exer*}
-\declaretheorem[numbered=no,name=\!\!,style=exer*]{exer**}
+\declaretheorem[numbered=no,name=Exercise,style=exer*]     {exer*}
+\declaretheorem[numbered=no,name=\!\!,style=exer*]         {exer**}
 
 % Load graphics packages.
 \RequirePackage[dvipsnames]{xcolor}
@@ -46,6 +46,7 @@
   pdfstartview=FitH,
   pdfprintscaling=None,
 }
+\urlstyle{same}
 
 % Load packages that must come after hyperref.
 \RequirePackage{ellipsis}
@@ -54,34 +55,27 @@
 \AtEndPreamble{
   % Load cleveref for fancy references.
   \RequirePackage{cleveref}
-  \crefname{thm}{Theorem}{Theorems}
-  \crefname{prop}{Proposition}{Propositions}
-  \crefname{lem}{Lemma}{Lemmas}
-  \crefname{defn}{Definition}{Definitions}
-  \crefname{xmp}{Example}{Examples}
-  \crefname{exer}{Exercise}{Exercises}
-  \crefname{exer*}{Exercise}{Exercises}
+
+  \crefname{thm}  {Theorem}    {Theorems}
+  \crefname{prop} {Proposition}{Propositions}
+  \crefname{lem}  {Lemma}      {Lemmas}
+  \crefname{defn} {Definition} {Definitions}
+  \crefname{xmp}  {Example}    {Examples}
+  \crefname{exer} {Exercise}   {Exercises}
+  \crefname{exer*}{Exercise}   {Exercises}
 }
-
-% Prefer variant forms of epsilon and phi.
-\let\bcat@oldepsilon\epsilon
-\let\bcat@oldphi\phi
-
-\let\epsilon\varepsilon
-\let\phi\varphi
-
-\let\varepsilon\bcat@oldepsilon
-\let\varphi\bcat@oldphi
 
 % Patch up `\left` and `\right` to fix spacing.
 % Source: <http://tex.stackexchange.com/a/2610/1301>.
-\let\bcat@oldleft\left
+\let\bcat@oldleft \left
 \let\bcat@oldright\right
 
-\renewcommand*\left{\mathopen{}\mathclose\bgroup\bcat@oldleft}
-\renewcommand*\right{\aftergroup\egroup\bcat@oldright}
+\renewrobustcmd*\left {\mathopen{}\mathclose\bgroup\bcat@oldleft}
+\renewrobustcmd*\right{\aftergroup\egroup\bcat@oldright}
 
 % Define useful shorthand commands.
+\newrobustcmd*\thoughtbreak{\par{\centering\raisebox{-.4ex}{*\quad*\quad*}\par}}
+
 \newrobustcmd*\padic{\(p\)\nbds adic}
 
 \newrobustcmd*\C{\mathbb C}
@@ -103,33 +97,33 @@
 \let\pub\emph
 
 % Define commands for custom math functions.
-\DeclareMathOperator\Comp{Comp}
-\DeclareMathOperator\Tr{Tr}
-\DeclareMathOperator\adj{adj}
-\DeclareMathOperator\chr{chr}
-\DeclareMathOperator\lcm{lcm}
+\DeclareMathOperator\Comp   {Comp}
+\DeclareMathOperator\Tr     {Tr}
+\DeclareMathOperator\adj    {adj}
+\DeclareMathOperator\chr    {chr}
+\DeclareMathOperator\lcm    {lcm}
 \DeclareMathOperator\nullity{nullity}
-\DeclareMathOperator\range{range}
-\DeclareMathOperator\rank{rank}
-\DeclareMathOperator\spans{span}
+\DeclareMathOperator\range  {range}
+\DeclareMathOperator\rank   {rank}
+\DeclareMathOperator\spans  {span}
 
 % Define commands for custom math operators and relations.
-\providerobustcmd*\divides{\mid}
+\providerobustcmd*\divides {\mid}
 \providerobustcmd*\ndivides{\centernot\divides}
 
 % Define commands for custom math delimiter structures.
-\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\abs  {\lvert} {\rvert}
 \DeclarePairedDelimiter\ideal{\langle}{\rangle}
-\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\norm {\lVert} {\rVert}
 
 % Define commands for typographical tweaks.
-\newrobustcmd*\nbds{\nobreakdashes-\hspace{\z@}}
+\newrobustcmd*\nbds    {\nobreakdashes-\hspace{0pt}}
 \newrobustcmd*\nextline{\leavevmode\@afterheading}
 
 % Extend amsmath to support augmented matrices.
 % Source: <http://texblog.net/latex-archive/maths/amsmath-matrix/>.
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
-  \hskip-\arraycolsep
+  \hskip -\arraycolsep
   \let\@ifnextchar\new@ifnextchar
   \array{#1}%
 }
