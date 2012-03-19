@@ -15,7 +15,7 @@
 	url = git://github.com/yurifury/hexHighlight.git
 [submodule "vim/bundle/latex-box"]
 	path = vim/bundle/latex-box
-	url = git://github.com/vim-scripts/LaTeX-Box.git
+	url = git://github.com/LaTeX-Box-Team/LaTeX-Box.git
 [submodule "vim/bundle/pathogen"]
 	path = vim/bundle/pathogen
 	url = git://github.com/tpope/vim-pathogen.git
@@ -24,4 +24,4 @@
 	url = git://github.com/vim-scripts/syntaxhaskell.vim.git
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
-	url = git://github.com/rygwdn/ultisnips.git
+	url = git://github.com/SirVer/ultisnips.git
