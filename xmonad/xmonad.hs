@@ -1,8 +1,6 @@
 import Data.Monoid
 import DBus.Client.Simple
-import IO
 import System.Taffybar.XMonadLog
-import Web.Encodings
 
 import XMonad
 import XMonad.Config.Desktop
@@ -37,12 +35,6 @@ skypeRoster = Title "Skype™ 2.1 (Beta) for Linux"
 
 doSink   = ask >>= doF . W.sink
 isSplash = isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
-
-taffybarColor fg bg = wrap t "</span>"
-  where t = concat [ "<span "
-                   , wrap "color='" "'" fg
-                   , wrap "bgcolor='" "'" bg
-                   , ">" ]
 
 workspaceName "1" = "1-uno"
 workspaceName "2" = "2-dos"
@@ -95,32 +87,27 @@ manageMedia   = composeOne $ map (-?> doShift "5")
     [ className =? "Quodlibet"
     , className =? "Totem" ]
 manageChat    = composeOne $ map (-?> doShift "6")
-    [ className =? "Gajim.py"
+    [ className =? "Gajim"
     , className =? "Skype" ]
 
 -- Log hooks
-taffybarLogHook client = dbusLog client defaultPP
+taffybarLogHook client = dbusLogWithPP client taffybarDefaultPP
         { ppCurrent         = taffybarColor "yellow" ""
-                            . encodeHtml
                             . wrap "[" "]"
                             . workspaceName
         , ppVisible         = taffybarColor "yellow" ""
-                            . encodeHtml
                             . wrap "(" ")"
                             . workspaceName
         , ppHidden          = taffybarColor "white" ""
-                            . encodeHtml
                             . wrap "{" "}"
                             . workspaceName
-        , ppHiddenNoWindows = encodeHtml
+        , ppHiddenNoWindows = taffybarEscape
                             . wrap "<" ">"
                             . workspaceName
         , ppUrgent          = taffybarColor "yellow" "red"
-                            . encodeHtml
                             . wrap "*" "*"
                             . workspaceName
         , ppTitle           = taffybarColor "green" ""
-                            . encodeHtml
                             . shorten 255 }
 
 -- Main configuration
@@ -157,6 +144,6 @@ main = do
                          >> setWMName "LG3D" {- Nasty hack for Java Swing -}
                          >> takeTopFocus
                          >> logHook gnomeConfig
-        , startupHook     = spawnOnce "xcompmgr"
+        , startupHook     = spawnOnce "compton"
                          >> spawnOnce "taffybar"
                          >> startupHook gnomeConfig }
