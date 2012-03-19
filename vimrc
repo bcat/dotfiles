@@ -134,7 +134,7 @@ if has("gui_running")
   set guioptions-=r
 
   " Set a pretty font. :) To make things a bit more cross-platform, we
-  " actually specific several fonts: a primary and a few fallbacks.
+  " actually specify several fonts: a primary and a few fallbacks.
   " See also: <http://vim.wikia.com/wiki/Setting_the_font_in_the_GUI>.
   if has("gui_gtk2")
     set guifont=Envy\ Code\ R\ 10
