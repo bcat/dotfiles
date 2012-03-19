@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright © 2009-2011 Jonathan Rascher.
+# Copyright © 2009--12 Jonathan Rascher.
 
 # Permission to use, copy, modify, and/or distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -91,6 +91,7 @@ handle_file () {
   if [ x"$ext" = xlocal ]; then
     printf '%s\n' "Copying file $src to $dest."
     cp "$src" "$dest"
+    chmod g-rwx,o-rwx "$dest"
   else
     printf '%s\n' "Symbolically linking $dest to $src."
     ln -s "$src" "$dest"
