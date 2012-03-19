@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{bcathw}[2012/01/10 Jonathan Rascher's homework class]
+\ProvidesClass{bcathw}[2012/02/08 Jonathan Rascher's homework class]
 
 % Load e-TeX helper commands and TeX engine conditionals.
 \RequirePackage{etoolbox,iftex}
@@ -9,7 +9,7 @@
 \DeclareOption{latex}{
   \ExecuteOptions{10pt,lmodern,singlespacing}
 
-  \let\bcathw@setuplayout\relax
+  \def\bcathw@setuplayout{\bcathw@amsfixes}
 }
 
 % Declare option to typeset the document with tiny margins, in single-spaced
@@ -17,7 +17,11 @@
 \DeclareOption{diagram}{
   \ExecuteOptions{10pt,lmodern,singlespacing}
 
-  \def\bcathw@setuplayout{\RequirePackage[margin=0.28in]{geometry}}
+  \def\bcathw@setuplayout{
+    \bcathw@amsfixes
+
+    \RequirePackage[margin=0.28in]{geometry}
+  }
 }
 
 % Declare option to typeset the document with "standard" college essay
@@ -27,9 +31,10 @@
   \ExecuteOptions{12pt,times,doublespacing}
 
   \def\bcathw@setuplayout{
-    \RequirePackage{fullpage}
+    \bcathw@amsfixes
+    \bcathw@essayindents
 
-    \deflength\parindent{0.5in}
+    \RequirePackage{fullpage}
   }
 }
 
@@ -37,11 +42,14 @@
 % ``quote'', and ``thebibliography'' environments are redefined to match MLA
 % formatting conventions. Also, the font is set to Times at 12pt, though this
 % is not a strict MLA requirement.
-\DeclareOption{mla}{
+\DeclareOption{mlastyle}{
   % Default to 12pt Times, double-spaced.
   \ExecuteOptions{12pt,times,doublespacing}
 
   \def\bcathw@setuplayout{
+    % Follow MLA style for paragraph indentation and block quotations.
+    \AtEndOfClass{\bcathw@essayindents}
+
     % Use one-inch margins and position headers in the MLA-specified location.
     \RequirePackage[margin=1in,headheight=14pt,headsep=22.135pt]{geometry}
 
@@ -64,20 +72,22 @@
     % Use the MLA date format.
     \renewcommand*\today{%
       \number\day
+      \space
       \ifcase\month
-        \or\ Jan.\@
-        \or\ Feb.\@
-        \or\ Mar.\@
-        \or\ Apr.\@
-        \or\ May\@
-        \or\ June
-        \or\ July
-        \or\ Aug.\@
-        \or\ Sept.\@
-        \or\ Oct.\@
-        \or\ Nov.\@
-        \or\ Dec.\@
+        \or Jan.%
+        \or Feb.%
+        \or Mar.%
+        \or Apr.%
+        \or May%
+        \or June%
+        \or July%
+        \or Aug.%
+        \or Sept.%
+        \or Oct.%
+        \or Nov.%
+        \or Dec.%
       \fi
+      \space
       \number\year
     }
 
@@ -98,55 +108,73 @@
       \endgroup
     }
 
-    % Hijack the ``quotation'' environment for MLA-style block quotations that
-    % begin a new paragraph.
-    \renewenvironment{quotation}{%
-      \list{}{%
-        \deflength\topsep{0pt}%
-        \deflength\leftmargin{1in}%
-        \deflength\listparindent{0.25in}%
-        \deflength\itemindent{\listparindent}%
-      }%
-      \item\relax
-    }{\endlist}
-
-    % Hijack the ``quote'' environment for MLA-style block quotations that do
-    % not begin a new paragraph.
-    \renewenvironment{quote}{%
-      \list{}{%
-        \deflength\topsep{0pt}%
-        \deflength\leftmargin{1in}%
-        \deflength\listparindent{0.25in}%
-      }%
-      \item\relax
-    }{\endlist}
-
     % Reformat the bibliography to function as an MLA "Works Cited" list.
-    \renewenvironment{thebibliography}[1]{%
-      \pagebreak\centering Works Cited\par
-      %
-      \list{}{%
-        \deflength\topsep{0pt}%
-        \deflength\leftmargin{0.5in}%
-        \deflength\itemindent{-0.5in}%
-      }%
+    \renewcommand*\refname{Works Cited}
+    \renewcommand*\bibliofont{\normalsize}
+    \renewcommand*\@biblabel[1]{\relax}
+
+    \preto\@bibtitlestyle{\pagebreak}
+
+    \patchcmd\thebibliography{%
+      \leftmargin\labelwidth \advance\leftmargin\labelsep
     }{%
-      \def\@noitemerror{%
-        \@latex@warning{Empty ``thebibliography'' environment}%
-      }%
-      \endlist
-    }
-
-    \def\@bibitem##1{\item\relax}
-
-    % Set a half-inch paragraph indent as specified by MLA.
-    \deflength\parindent{0.5in}
+      \deflength\topsep{0pt}%
+      \deflength\leftmargin{0.5in}%
+      \deflength\itemindent{-0.5in}%
+    }{}{}
 
     % Define some commands to store MLA-specific title information.
     \newrobustcmd*\mlaauthor[1]{\gdef\bcathw@mlaauthor{##1}}
     \newrobustcmd*\mlainstructor[1]{\gdef\bcathw@mlainstructor{##1}}
     \newrobustcmd*\mlacourse[1]{\gdef\bcathw@mlacourse{##1}}
   }
+}
+
+% Declare helper command to typeset the date, if present, in the title rather
+% than in a footnote.
+\newcommand*\bcathw@amsfixes{
+  \preto\@adminfootnotes{%
+    \begingroup
+    \let\@date\empty
+  }
+
+  \appto\@adminfootnotes{\endgroup}
+
+  \preto\@setabstract{%
+    \ifdefempty\@date{}{%
+      \begin{trivlist}
+        \deflength\@topsep{30pt-\baselineskip}%
+        \centering
+        \footnotesize
+        %
+        \item\relax \MakeUppercase{\@date}%
+      \end{trivlist}
+    }%
+  }
+}
+
+% Declare helper command to use normal college essay indentation.
+\newcommand*\bcathw@essayindents{%
+  \deflength\parindent{0.5in}
+
+  \renewenvironment{quotation}{%
+    \list{}{%
+      \deflength\topsep{0pt}%
+      \deflength\leftmargin{1in}%
+      \deflength\listparindent{0.25in}%
+      \deflength\itemindent{\listparindent}%
+    }%
+  \item\relax
+  }{\endlist}
+
+  \renewenvironment{quote}{%
+    \list{}{%
+      \deflength\topsep{0pt}%
+      \deflength\leftmargin{1in}%
+      \deflength\listparindent{0.25in}%
+    }%
+  \item\relax
+  }{\endlist}
 }
 
 % Declare options to set the body text size.
@@ -178,6 +206,7 @@
 
     \SetSinglespace{1.044}
     \preto\@settitle{\liningfamily}
+    \pretocmd\@biblabel{\figureversion{lf}}{}{}
   }
 }
 
@@ -190,6 +219,7 @@
 
     \bcathw@swapgreek
     \preto\@settitle{\figureversion{lf}}
+    \pretocmd\@biblabel{\figureversion{lf,tab}}{}{}
   }
 }
 

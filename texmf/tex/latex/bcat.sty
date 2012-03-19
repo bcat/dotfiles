@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bcat}[2012/01/10 Jonathan Rascher's preamble]
+\ProvidesPackage{bcat}[2012/03/03 Jonathan Rascher's preamble]
 
 % Load LaTeX fixes as well as e-TeX and KOMA-script helper commands.
 \RequirePackage{fixltx2e,etoolbox,scrlfile}
@@ -47,6 +47,7 @@
   pdfprintscaling=None,
 }
 \urlstyle{same}
+\appto\UrlNoBreaks{\do\:}
 
 % Load packages that must come after hyperref.
 \RequirePackage{ellipsis}
@@ -74,7 +75,27 @@
 \renewrobustcmd*\right{\aftergroup\egroup\bcat@oldright}
 
 % Define useful shorthand commands.
-\newrobustcmd*\thoughtbreak{\par{\centering\raisebox{-.4ex}{*\quad*\quad*}\par}}
+\newrobustcmd*\thoughtskip{%
+  \begingroup
+  \par
+  \noindent
+  \null
+  \ifdimcomp{\pagegoal-\pagetotal}{>}{3\baselineskip}{}{%
+    \centering
+    \raisebox{-.5ex}{*}%
+  }%
+  \par
+  \endgroup
+}
+
+\newrobustcmd*\thoughtbreak{%
+  \begingroup
+  \par
+  \centering
+  \raisebox{-.5ex}{*\quad*\quad*}%
+  \par
+  \endgroup
+}
 
 \newrobustcmd*\padic{\(p\)\nbds adic}
 
@@ -97,7 +118,10 @@
 \newcommand*\pub{\emph}
 
 % Define commands for custom math functions.
+\DeclareMathOperator\Aut    {Aut}
 \DeclareMathOperator\Comp   {Comp}
+\DeclareMathOperator\Gal    {Gal}
+\DeclareMathOperator\Inn    {Inn}
 \DeclareMathOperator\Tr     {Tr}
 \DeclareMathOperator\adj    {adj}
 \DeclareMathOperator\chr    {chr}
