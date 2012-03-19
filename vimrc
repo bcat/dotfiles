@@ -62,10 +62,6 @@ noremap <silent> <Leader>cs :echo map(synstack(line("."), col(".")),
       \ 'synIDattr(v:val, "name")')<CR>
 
 " Load plugins 'n' stuff with Pathogen.
-if !has("python")
-  let g:pathogen_disabled=["blogit"]
-end
-
 set runtimepath+=~/.vim/bundle/pathogen
 set runtimepath+=~/_vim/bundle/pathogen
 call pathogen#runtime_append_all_bundles()
@@ -84,6 +80,10 @@ let g:tex_stylish=1
 
 " Configure the LaTeX Box plugin.
 let g:LatexBox_latexmk_options="-pvc"
+
+" Configure the VimRepress plugin. Storing blog settings in a separate file
+" allows us to keep blog passwords out of version control.
+runtime vimrepress
 
 " Tweak the indentation and wrapping settings a bit for certain file formats.
 if has("autocmd")

@@ -22,3 +22,6 @@
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
 	url = git://github.com/SirVer/ultisnips.git
+[submodule "vim/bundle/vimrepress"]
+	path = vim/bundle/vimrepress
+	url = git://github.com/connermcd/VimRepress.git
