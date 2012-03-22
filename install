@@ -61,7 +61,8 @@ handle_dir () {
   dest=$1
 
   if [ -d "$dest" ]; then
-    printf '%s\n' "Directory $dest already exists; skipping."
+    [ x"$verbose" = x1 ] \
+        && printf '%s\n' "Directory $dest already exists; skipping."
     return
   fi
 
@@ -81,7 +82,8 @@ handle_file () {
     dest=$(printf %s "$dest" | cut -b -$(( ${#dest} - ${#ext} - 1 )))
   else
     if [ "$(readlink -f "$dest")" = "$src" ]; then
-      printf '%s\n' "Symbolic link $dest already exists; skipping."
+      [ x"$verbose" = x1 ] \
+          && printf '%s\n' "Symbolic link $dest already exists; skipping."
       return
     fi
   fi
@@ -97,6 +99,22 @@ handle_file () {
     ln -s "$src" "$dest"
   fi
 }
+
+lbrace={
+rbrace=}
+
+check_symlinks=
+verbose=
+
+while getopts cv opt; do
+  case $opt in
+  c) check_symlinks=1;;
+  v) verbose=1;;
+  \?) exit 1;;
+  esac
+done
+
+shift $(expr $OPTIND - 1)
 
 for src; do
   src=$(printf %s "$src" | sed 's:^./::')
@@ -114,8 +132,19 @@ for src; do
   fi
 done
 
+if [ x"$check_symlinks" = x1 ]; then
+  broken_symlink_script=$(cat <<'EOU'
+for symlink; do
+  printf '%s\n' "Broken symbolic link (deleted dotfile?) $symlink."
+done
+EOU
+)
+  find -L ~ -type l \
+       -exec sh -c "$broken_symlink_script" "$0" "$lbrace$rbrace" +
+fi
+
 EOT
 )
 
-find \! \( -name . -o -name README -o -name install \) -a \
-     \( -name '.git*' -prune -o -exec sh -c "$script" sh {} + \)
+find \! \( -name . -o -name README -o -name install \) \
+     -a \( -name '.git*' -prune -o -exec sh -c "$script" "$0" "$@" {} + \)
