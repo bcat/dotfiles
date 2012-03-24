@@ -43,7 +43,7 @@ workspaceName "4" = "4-gimp"
 workspaceName "5" = "5-media"
 workspaceName "6" = "6-chat"
 workspaceName "7" = "7-bkrg"
-workspaceName "8" = "8-winxp"
+workspaceName "8" = "8-virt"
 workspaceName "9" = "9-temp"
 workspaceName x   = x
 
