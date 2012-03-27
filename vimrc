@@ -8,6 +8,9 @@ set nocompatible
 " Disable swap files. (Not sure if this is wise or not.)
 set noswapfile
 
+" Allow modified buffers to live in the background
+set hidden
+
 " Set display options.
 set lazyredraw
 set showcmd
