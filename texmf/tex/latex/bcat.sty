@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bcat}[2012/03/03 Jonathan Rascher's preamble]
+\ProvidesPackage{bcat}[2012/04/04 Jonathan Rascher's preamble]
 
 % Load LaTeX fixes as well as e-TeX and KOMA-script helper commands.
 \RequirePackage{fixltx2e,etoolbox,scrlfile}
@@ -114,14 +114,17 @@
 \let\vr\mathbf
 
 % Define semantic commands for marking up text.
-\newcommand*\dfn{\emph}
-\newcommand*\pub{\emph}
+\newcommand*\dfn    {\emph}
+\newcommand*\pub    {\emph}
+\newcommand*\code[1]{{\texttt{\small#1}}}
 
 % Define commands for custom math functions.
 \DeclareMathOperator\Aut    {Aut}
 \DeclareMathOperator\Comp   {Comp}
 \DeclareMathOperator\Gal    {Gal}
+\DeclareMathOperator\Imm    {Im}
 \DeclareMathOperator\Inn    {Inn}
+\DeclareMathOperator\Real   {Re}
 \DeclareMathOperator\Tr     {Tr}
 \DeclareMathOperator\adj    {adj}
 \DeclareMathOperator\chr    {chr}
@@ -142,7 +145,7 @@
 
 % Define commands for typographical tweaks.
 \newrobustcmd*\nbds    {\nobreakdashes-\hspace{0pt}}
-\newrobustcmd*\nextline{\leavevmode\@afterheading}
+\newrobustcmd*\nextline{\leavevmode\@afterheading\nopagebreak}
 
 % Extend amsmath to support augmented matrices.
 % Source: <http://texblog.net/latex-archive/maths/amsmath-matrix/>.
