@@ -1,6 +1,0 @@
-background black
-icon_gravity NE
-kludges force_icons_size
-max_geometry 15x1
-window_layer top
-window_strut top
