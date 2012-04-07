@@ -7,37 +7,34 @@ Xft.rgba:              rgb
 Xft.lcdfilter:         lcddefault
 Xft.autohint:          true
 
-! Set some pretty colors for urxvt. Based on these:
-! * desert-inspired colors by Vincenzo Colosimo -
-!     <http://vico.kleinplanet.de/files/dot.Xdefaults>
-! * byte color scheme by miroalgo -
-!     <http://github.com/miroalgo/colours/blob/master/byte>
+! Set some pretty colors for urxvt. Based on my personal Vim theme:
+! <https://github.com/bcat/abbott.vim>.
 URxvt.depth:           32
-URxvt.background:      [86]#000000
-URxvt.foreground:      #ffffff
+URxvt.background:      #1f1912
+URxvt.foreground:      #d7f2b6
 ! (black)
-URxvt.color0:          #666666
-URxvt.color8:          #666666
+URxvt.color0:          #000000
+URxvt.color8:          #d7f2b6
 ! (red)
-URxvt.color1:          #eea0a0
-URxvt.color9:          #bb4f50
+URxvt.color1:          #d80450
+URxvt.color9:          #ec6c99
 ! (green)
-URxvt.color2:          #98fb98
-URxvt.color10:         #9acd32
+URxvt.color2:          #76bc20
+URxvt.color10:         #94d900
 ! (yellow)
-URxvt.color3:          #f0e68c
-URxvt.color11:         #f0e68c
+URxvt.color3:          #fbb32f
+URxvt.color11:         #e5e339
 ! (blue)
-URxvt.color4:          #778baf
-URxvt.color12:         #778baf
+URxvt.color4:          #3f91e1
+URxvt.color12:         #3f91e1
 ! (magenta)
-URxvt.color5:          #eea0a0
-URxvt.color13:         #bb4f50
+URxvt.color5:          #eec0f7
+URxvt.color13:         #eec0f7
 ! (cyan)
-URxvt.color6:          #87ceeb
-URxvt.color14:         #87ceeb
+URxvt.color6:          #8cbdda
+URxvt.color14:         #8cbdda
 ! (white)
-URxvt.color7:          #ffffff
+URxvt.color7:          #1f1912
 URxvt.color15:         #ffffff
 
 ! Configure the font and some other things for urxvt.
