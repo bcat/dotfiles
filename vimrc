@@ -73,6 +73,13 @@ call pathogen#helptags()
 " Customize the UltiSnips search path to avoid default snippets.
 let g:UltiSnipsSnippetDirectories=["snippets"]
 
+" Configure the LaTeX Box plugin.
+let g:LatexBox_latexmk_options="-pvc"
+
+" Configure the VimRepress plugin. Storing blog settings in a separate file
+" allows us to keep blog passwords out of version control.
+runtime vimrepress
+
 " Enable settings specific to various file formats.
 filetype on
 filetype plugin on
@@ -80,13 +87,6 @@ filetype indent on
 
 let g:tex_flavor="latex"
 let g:tex_stylish=1
-
-" Configure the LaTeX Box plugin.
-let g:LatexBox_latexmk_options="-pvc"
-
-" Configure the VimRepress plugin. Storing blog settings in a separate file
-" allows us to keep blog passwords out of version control.
-runtime vimrepress
 
 " Tweak the indentation and wrapping settings a bit for certain file formats.
 if has("autocmd")
