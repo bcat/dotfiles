@@ -40,7 +40,9 @@
 # Links:
 # 1. Pinstein's original Rakefile is here <http://bit.ly/7WITQW>.
 
-script=$(cat <<'EOT'
+# XXX: Do not change this to a newer $(...) style command substitution; that
+# inexplicably breaks old versions of bash 3.
+script=`cat <<'EOT'
 
 dont_replace () {
   what=$1
@@ -144,7 +146,7 @@ EOU
 fi
 
 EOT
-)
+`
 
 find \! \( -name . -o -name README -o -name install \) \
      -a \( -name '.git*' -prune -o -exec sh -c "$script" "$0" "$@" {} + \)
