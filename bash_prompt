@@ -84,6 +84,7 @@ precmd () {
   _bash_prompt_ps1_append ' '
   _bash_prompt_ps1_build_directory
   _bash_prompt_ps1_append $'\n'
+  _bash_prompt_ps1_escape "$_bash_prompt_term_reset"
   _bash_prompt_ps1_build_symbol
   _bash_prompt_ps1_escape "$_bash_prompt_term_reset"
   _bash_prompt_ps1_escape "$(_bash_prompt_title)"
@@ -181,8 +182,8 @@ _bash_prompt_ps1_build_directory () {
 }
 
 _bash_prompt_ps1_build_symbol () {
-  _bash_prompt_ps1_escape "$_bash_prompt_term_white"
   if [ "$UID" -eq 0 ]; then
+    _bash_prompt_ps1_escape "$_bash_prompt_term_red"
     _bash_prompt_ps1_append '# '
   else
     _bash_prompt_ps1_append '$ '
