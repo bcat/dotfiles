@@ -13,6 +13,9 @@
 [submodule "vim/bundle/latex-box"]
 	path = vim/bundle/latex-box
 	url = git://github.com/LaTeX-Box-Team/LaTeX-Box.git
+[submodule "vim/bundle/lusty"]
+	path = vim/bundle/lusty
+	url = git://github.com/sjbach/lusty.git
 [submodule "vim/bundle/pathogen"]
 	path = vim/bundle/pathogen
 	url = git://github.com/tpope/vim-pathogen.git
