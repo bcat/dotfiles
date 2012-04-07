@@ -64,6 +64,12 @@ nnoremap <silent> <Leader>cr <Plug>HexHighlightRefresh
 noremap <silent> <Leader>cs :echo map(synstack(line("."), col(".")),
       \ 'synIDattr(v:val, "name")')<CR>
 
+nnoremap <silent> <Leader>aj :LustyJuggler<CR>
+nnoremap <silent> <Leader>af :LustyFilesystemExplorer<CR>
+nnoremap <silent> <Leader>ar :LustyFilesystemExplorerFromHere<CR>
+nnoremap <silent> <Leader>ab :LustyBufferExplorer<CR>
+nnoremap <silent> <Leader>ag :LustyBufferGrep<CR>
+
 " Load plugins 'n' stuff with Pathogen.
 set runtimepath+=~/.vim/bundle/pathogen
 set runtimepath+=~/_vim/bundle/pathogen
@@ -75,6 +81,11 @@ let g:UltiSnipsSnippetDirectories=["snippets"]
 
 " Configure the LaTeX Box plugin.
 let g:LatexBox_latexmk_options="-pvc"
+
+" Disable default mappings for the LustyExplorer and LustyJuggler plugins to
+" avoid conflicts with LaTeX Box.
+let g:LustyExplorerDefaultMappings=0
+let g:LustyJugglerDefaultMappings=0
 
 " Configure the VimRepress plugin. Storing blog settings in a separate file
 " allows us to keep blog passwords out of version control.
