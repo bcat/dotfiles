@@ -70,7 +70,6 @@ shopt -s extdebug
 # breaks the cleaner-looking `ls () { ... }' method of function definition.
 eval $(dircolors ~/.config/lscolors/LS_COLORS)
 
-function cower { command cower --color=auto "$@"; }
 function ls { command ls --color=auto "$@"; }
 function grep { command grep --color=auto "$@"; }
 
