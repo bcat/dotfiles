@@ -68,6 +68,8 @@ shopt -s extdebug
 # We use BASH-style function syntax here instead of POSIX syntax because some
 # overclever sysadmins/distros decide to alias `ls' in /etc/bash.bashrc, which
 # breaks the cleaner-looking `ls () { ... }' method of function definition.
+eval $(dircolors ~/.config/lscolors/LS_COLORS)
+
 function cower { command cower --color=auto "$@"; }
 function ls { command ls --color=auto "$@"; }
 function grep { command grep --color=auto "$@"; }

@@ -1,3 +1,6 @@
+[submodule "config/lscolors"]
+	path = config/lscolors
+	url = git://github.com/trapd00r/LS_COLORS.git
 [submodule "vim/bundle/abbott"]
 	path = vim/bundle/abbott
 	url = git@github.com:bcat/abbott.vim.git
