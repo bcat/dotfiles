@@ -58,9 +58,9 @@ nnoremap <silent> <Leader><Leader> :nohlsearch<CR>
 nnoremap <silent> <Leader>s :set spell!<CR>
 
 noremap <silent> <Leader><Space> :EraseBadWhitespace<CR>
-nnoremap <silent> <Leader>cc <Plug>RefreshColorScheme
-nnoremap <silent> <Leader>ch <Plug>HexHighlightToggle
-nnoremap <silent> <Leader>cr <Plug>HexHighlightRefresh
+nmap <silent> <Leader>cc <Plug>RefreshColorScheme
+nmap <silent> <Leader>ch <Plug>HexHighlightToggle
+nmap <silent> <Leader>cr <Plug>HexHighlightRefresh
 noremap <silent> <Leader>cs :echo map(synstack(line("."), col(".")),
       \ 'synIDattr(v:val, "name")')<CR>
 
