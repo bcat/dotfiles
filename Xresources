@@ -32,8 +32,8 @@ URxvt.color12:         #d8ff84
 URxvt.color5:          #f63f05
 URxvt.color13:         #e6a2f3
 ! (cyan:     pastel_blue / pastel_blue)
-URxvt.color6:          #8ccdea
-URxvt.color14:         #8ccdea
+URxvt.color6:          #8ccdf0
+URxvt.color14:         #8ccdf0
 ! (white:          brown / tan)
 URxvt.color7:          #1f1912
 URxvt.color15:         #fee3b4
