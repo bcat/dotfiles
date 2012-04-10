@@ -93,11 +93,11 @@ manageChat    = composeOne $ map (-?> doShift "6")
 -- Log hooks
 taffybarLogHook client = dbusLogWithPP client taffybarDefaultPP
         { ppCurrent         = wrap "<b>" "</b>"
-                            . taffybarColor "#d8ff84" ""
+                            . taffybarColor "#8ccdf0" ""
                             . wrap "[" "]"
                             . workspaceName
         , ppVisible         = wrap "<b>" "</b>"
-                            . taffybarColor "#d8ff84" ""
+                            . taffybarColor "#8ccdf0" ""
                             . wrap "(" ")"
                             . workspaceName
         , ppHidden          = wrap "<b>" "</b>"
