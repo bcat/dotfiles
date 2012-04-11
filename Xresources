@@ -49,6 +49,7 @@ URxvt.saveLines:         16384
 URxvt.cursorBlink:       true
 URxvt.pointerBlank:      true
 URxvt.pointerBlankDelay: 987654321
+URxvt.secondaryWheel:    true
 URxvt.perl-ext-common:   default,matcher
 URxvt.urlLauncher:       xdg-open
 URxvt.matcher.button:    1
