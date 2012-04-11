@@ -144,9 +144,10 @@ if has("gui_running")
 
   " Kill off the gVim toolbar and scrollbar, and fix the tear-off menus.
   " See also: <http://vim.wikia.com/wiki/Hide_toolbar_or_menus_to_see_more_text>
+  set guioptions-=m
+  set guioptions-=r
   set guioptions-=t
   set guioptions-=T
-  set guioptions-=r
 
   " Set a pretty font. :) To make things a bit more cross-platform, we
   " actually specify several fonts: a primary and a few fallbacks.
