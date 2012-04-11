@@ -1,49 +1,52 @@
 ! Set up font rendering settings.
-Xft.antialias:         true
-Xft.dpi:               96
-Xft.hinting:           true
-Xft.hintstyle:         hintslight
-Xft.rgba:              rgb
-Xft.lcdfilter:         lcddefault
-Xft.autohint:          true
+Xft.antialias:           true
+Xft.dpi:                 96
+Xft.hinting:             true
+Xft.hintstyle:           hintslight
+Xft.rgba:                rgb
+Xft.lcdfilter:           lcddefault
+Xft.autohint:            true
 
 ! Set some pretty colors for urxvt. Based on my personal Vim theme:
 ! <https://github.com/bcat/abbott.vim>.
-URxvt.depth:           32
+URxvt.depth:             32
 ! (default:        brown / mint_green)
-URxvt.background:      #1f1912
-URxvt.foreground:      #d5fac8
+URxvt.background:        #1f1912
+URxvt.foreground:        #d5fac8
 ! (black:     dark_brown / light_brown)
-URxvt.color0:          #0a0806
-URxvt.color8:          #816749
+URxvt.color0:            #0a0806
+URxvt.color8:            #816749
 ! (red:              red / pink)
-URxvt.color1:          #d80450
-URxvt.color9:          #ec6c99
+URxvt.color1:            #d80450
+URxvt.color9:            #ec6c99
 ! (green:          green / lime_green)
-URxvt.color2:          #76bc20
-URxvt.color10:         #94d900
+URxvt.color2:            #76bc20
+URxvt.color10:           #94d900
 ! (yellow:        orange / yellow)
-URxvt.color3:          #fbb32f
-URxvt.color11:         #e5e339
+URxvt.color3:            #fbb32f
+URxvt.color11:           #e5e339
 ! (blue:            blue / pastel_green)
-URxvt.color4:          #3f91f1
-URxvt.color12:         #d8ff84
+URxvt.color4:            #3f91f1
+URxvt.color12:           #d8ff84
 ! (magenta: burnt_orange / lavender)
-URxvt.color5:          #f63f05
-URxvt.color13:         #e6a2f3
+URxvt.color5:            #f63f05
+URxvt.color13:           #e6a2f3
 ! (cyan:     pastel_blue / pastel_blue)
-URxvt.color6:          #8ccdf0
-URxvt.color14:         #8ccdf0
+URxvt.color6:            #8ccdf0
+URxvt.color14:           #8ccdf0
 ! (white:          brown / tan)
-URxvt.color7:          #1f1912
-URxvt.color15:         #fee3b4
+URxvt.color7:            #1f1912
+URxvt.color15:           #fee3b4
 
 ! Configure the font and some other things for urxvt.
 URxvt.font:            xft:Envy Code R-10
-URxvt.urgentOnBell:    true
-URxvt.scrollBar:       false
-URxvt.saveLines:       16384
-URxvt.cursorBlink:     true
-URxvt.perl-ext-common: default,matcher
-URxvt.urlLauncher:     xdg-open
-URxvt.matcher.button:  1
+URxvt.urgentOnBell:      true
+URxvt.scrollBar:         false
+URxvt.scrollTtyOutput:   false
+URxvt.scrollWithBuffer:  true
+URxvt.scrollTtyKeypress: true
+URxvt.saveLines:         16384
+URxvt.cursorBlink:       true
+URxvt.perl-ext-common:   default,matcher
+URxvt.urlLauncher:       xdg-open
+URxvt.matcher.button:    1
