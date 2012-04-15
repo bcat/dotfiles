@@ -33,7 +33,8 @@ shopt -s histverify   # Verify history substitutions before executing them.
 shopt -s huponexit    # Send SIGHUP to background jobs on exit.
 shopt -s xpg_echo     # Make echo POSIX-compliant WRT escape sequences.
 
-HISTCONTROL=ignoredups:erasedups # Remove duplicate history entries.
+HISTCONTROL=ignoreboth:erasedups # Remove duplicate history entries and don't
+                                 # save commands beginning with spaces.
 
 # Emulate ZSH's precmd and preexec functions. Credit for the technique used
 # goes to Glyph Lefkowitz. See also: <http://glyf.livejournal.com/63106.html>.
