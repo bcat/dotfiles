@@ -8,17 +8,15 @@ esac
 # terminal type.
 [ "$TERM" = xterm ] && export TERM=xterm-256color
 
-# If we have fortune and this is an interactive shell, print a fortune cookie.
+# If we have fortune, print a fortune cookie.
 if type fortune >/dev/null 2>&1; then
-  case "$-" in *i*)
-    if type cowsay >/dev/null 2>&1; then
-      fortune | cowsay -n
-    else
-      printf '\n'
-      fortune
-      printf '\n'
-    fi
-  ;; esac
+  if type cowsay >/dev/null 2>&1; then
+    fortune | cowsay -n
+  else
+    printf '\n'
+    fortune
+    printf '\n'
+  fi
 fi
 
 # Set shell options and variables.
