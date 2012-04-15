@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bcat}[2012/04/04 Jonathan Rascher's preamble]
+\ProvidesPackage{bcat}[2012/04/13 Jonathan Rascher's preamble]
 
 % Load LaTeX fixes as well as e-TeX and KOMA-script helper commands.
 \RequirePackage{fixltx2e,etoolbox,scrlfile}
@@ -137,6 +137,7 @@
 % Define commands for custom math operators and relations.
 \providerobustcmd*\divides {\mid}
 \providerobustcmd*\ndivides{\centernot\divides}
+\newrobustcmd*    \relates {\mathrel{\mathrm R}}
 
 % Define commands for custom math delimiter structures.
 \DeclarePairedDelimiter\abs  {\lvert} {\rvert}
