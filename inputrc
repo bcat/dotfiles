@@ -1,0 +1,6 @@
+# Include the system's readline configuration.
+$include /etc/inputrc
+
+# Make the up and down arrow keys match on partially typed commands.
+"\e[A": history-search-backward
+"\e[B": history-search-forward
