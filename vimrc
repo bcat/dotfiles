@@ -145,6 +145,7 @@ if has("gui_running")
   " Kill off the gVim toolbar and scrollbar, and fix the tear-off menus.
   " See also: <http://vim.wikia.com/wiki/Hide_toolbar_or_menus_to_see_more_text>
   set guioptions-=m
+  set guioptions-=L
   set guioptions-=r
   set guioptions-=t
   set guioptions-=T
