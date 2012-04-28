@@ -1,4 +1,6 @@
 ACCA
+ACL
+ACLs
 ACT's
 API
 APIs
@@ -141,6 +143,7 @@ Frome
 Fulgentius
 GCD
 GDR
+GPS
 GWT
 Gao
 Gavras
@@ -149,6 +152,7 @@ Gerla
 Geryon
 Giambattista
 Giangiacomo
+GitHub
 Gmail
 Golota
 Gondo
@@ -209,6 +213,7 @@ Katok's
 Kemper
 Kitano
 Kitano's
+Kitt
 Knott
 Krantz
 Krauss
@@ -331,6 +336,7 @@ Pottersfield
 PowerPoint
 Propp
 QuickTime
+README
 RHS
 RLY
 RPC
@@ -359,6 +365,7 @@ SIGPIPE
 SIGTERM
 SOA
 SPC
+SSN
 San Dimas
 Schmid
 Schmitz
@@ -455,6 +462,9 @@ antiheros
 attribute's
 auteurs
 autocomplete
+autonumber
+autonumbered
+autonumbering
 backend
 backstory
 bcat
@@ -501,6 +511,7 @@ dogfooding
 doorjamb
 doorjambs
 dropbox
+dropdown
 eHarmony
 ecofact
 ecofacts
@@ -524,6 +535,9 @@ filesystem
 filmmaking
 gVim
 gameplay
+geocode
+geocoding
+geolocation
 hardcoded
 high's
 hostname
@@ -543,6 +557,7 @@ interactional
 intercultural
 intrapersonal
 isometry
+jQuery
 joinable
 jon@bcat.name
 jonathan rascher
@@ -699,26 +714,11 @@ von Donnersmarck's
 w.r.t.
 w00t
 widescreen
+wildcard
+wildcards
 woot
 workflow
 worldview
 x86
 yay
 zooarchaeology
-README
-ACL
-ACLs
-dropdown
-wildcard
-wildcards
-SSN
-Kitt
-GitHub
-autonumber
-autonumbered
-autonumbering
-jQuery
-geolocation
-GPS
-geocode
-geocoding
