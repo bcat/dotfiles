@@ -8,8 +8,10 @@ set nocompatible
 " Disable swap files. (Not sure if this is wise or not.)
 set noswapfile
 
-" Allow modified buffers to live in the background
+" Allow modified buffers to live in the background, and automatically reload
+" externally modified files, provided that there are no unsaved changes.
 set hidden
+set autoread
 
 " Set display options.
 set lazyredraw
