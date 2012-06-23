@@ -30,8 +30,8 @@ gimpToolbox = Role "gimp-toolbox"
 gimpDock    = Role "gimp-dock"
 
 gajimRoster = Role "roster"
-skypeRoster = Title "Skype™ 2.1 (Beta) for Linux"
-         `Or` Title "bcat24 - Skype™ (Beta)"
+skypeRoster = Title "Skype™ 4.0 for Linux"
+         `Or` Title "bcat24 - Skype™"
 
 doSink   = ask >>= doF . W.sink
 isSplash = isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
