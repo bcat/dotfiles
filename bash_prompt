@@ -108,7 +108,9 @@ _bash_prompt_ps1_build_status () {
 
 _bash_prompt_ps1_build_battery () {
   if [ -n "$_bash_prompt_have_battery" ]; then
-    local charge=$(acpi | sed 's/.*, \([[:digit:]]\{1,\}\)%.*/\1/')
+    local charges=($(acpi | sed 's/.*, \([[:digit:]]\{1,\}\)%.*/\1/'))
+    local charge=$(expr \( $(printf '%s + ' "${charges[@]}" | head -c -3) \) \
+                   / ${#charges[@]})
 
     _bash_prompt_ps1_append B:
 
