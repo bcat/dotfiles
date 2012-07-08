@@ -44,16 +44,6 @@ type lesspipe >/dev/null 2>&1 && eval "$(lesspipe)"
 
 export LESS='-M -R'
 
-# Eclipse on Ubuntu doesn't respect the user's default JVM setting, so we have
-# to manually set JAVA_HOME.
-if [ -d /usr/lib/jvm/java-6-openjdk ]; then
-  export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
-elif [ -d /usr/lib/jvm/java-6-sun ]; then
-  export JAVA_HOME=/usr/lib/jvm/java-6-sun
-elif [ -d /usr/lib/jvm/java-gcj ]; then
-  export JAVA_HOME=/usr/lib/jvm/java-gcj
-fi
-
 # If there is a local .profile file, source that now.
 [ -f ~/.profile.local ] && . ~/.profile.local
 
