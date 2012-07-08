@@ -1,23 +1,17 @@
-# Make sure the system games directory is referenced in the search path.
-if [ -d /usr/games ] &&
-   ! printf '%s\n' "$PATH" | grep -E "(^|:)/usr/games($|:)" >/dev/null
-then
-  export PATH=/usr/games:$PATH
-fi
+# Make sure various directories are referenced in the search path.
+_profile_add_to_path () {
+  if [ -d "$1" ] &&
+     ! printf '%s\n' "$PATH" | grep -E "(^|:)$1($|:)" /dev/null
+  then
+    export PATH=$1:$PATH
+  fi
+}
 
-# Make sure the home bin directory is referenced in the search path.
-if [ -d ~/bin ] &&
-   ! printf '%s\n' "$PATH" | grep -E "(^|:)$HOME/bin($|:)" >/dev/null
-then
-  export PATH=$HOME/bin:$PATH
-fi
+_profile_add_to_path /usr/games
+_profile_add_to_path /opt/haskell-platform/bin
 
-# Make sure the Haskell Cabal bin directory is referenced in the search path.
-if [ -d ~/.cabal/bin ] &&
-   ! printf '%s\n' "$PATH" | grep -E "(^|:)$HOME/.cabal/bin($|:)" >/dev/null
-then
-  export PATH=$HOME/.cabal/bin:$PATH
-fi
+_profile_add_to_path ~/bin
+_profile_add_to_path ~/.cabal/bin
 
 # Set the preferred editor.
 if command -v vim >/dev/null; then
