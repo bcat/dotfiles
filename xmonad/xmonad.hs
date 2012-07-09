@@ -3,6 +3,7 @@ import DBus.Client.Simple
 import System.Taffybar.XMonadLog
 
 import XMonad
+import XMonad.Actions.GridSelect
 import XMonad.Config.Desktop
 import XMonad.Config.Gnome
 import XMonad.Hooks.DynamicLog
@@ -21,6 +22,7 @@ import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed
 import XMonad.Layout.Spiral
 import XMonad.Layout.ThreeColumns
+import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
 
 import qualified XMonad.StackSet as W
@@ -152,3 +154,4 @@ main = do
         , startupHook     = spawnOnce "compton"
                          >> spawnOnce "taffybar"
                          >> startupHook gnomeConfig }
+        `additionalKeysP` [ ("M-g", goToSelected defaultGSConfig) ]
