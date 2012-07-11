@@ -8,6 +8,7 @@ import XMonad.Config.Desktop
 import XMonad.Config.Gnome
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ICCCMFocus
+import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
@@ -72,23 +73,24 @@ chatLayout = renamed [ Replace "chat" ]
 
 -- Manage hooks
 
-manageIgnores = composeOne $ map (-?> doIgnore)
+manageInsertPosition = insertPosition Master Newer
+manageIgnores        = composeOne $ map (-?> doIgnore)
     [ isSplash,
       className =? "stalonetray" ]
-manageFloats  = composeOne $ map (-?> doCenterFloat)
+manageFloats         = composeOne $ map (-?> doCenterFloat)
     [ isDialog
     , className =? "Gcalctool"
     , className =? "Phoenix"
     , className =? "Totem"
     , title     =? "glxgears" ]
-manageSinks   = composeOne $ map (-?> doSink)
+manageSinks          = composeOne $ map (-?> doSink)
     [ className =? "Skype" {- A bit too general, but OK for now -} ]
-manageGimp    = composeOne $ map (-?> doShift "4")
+manageGimp           = composeOne $ map (-?> doShift "4")
     [ className =? "Gimp-2.6" ]
-manageMedia   = composeOne $ map (-?> doShift "5")
+manageMedia          = composeOne $ map (-?> doShift "5")
     [ className =? "Quodlibet"
     , className =? "Totem" ]
-manageChat    = composeOne $ map (-?> doShift "6")
+manageChat           = composeOne $ map (-?> doShift "6")
     [ className =? "Gajim"
     , className =? "Skype" ]
 
@@ -135,7 +137,8 @@ main = do
                         ||| threeColLayout
                         ||| gridLayout
                         ||| fullLayout
-        , manageHook      = composeAll [ manageIgnores
+        , manageHook      = composeAll [ manageInsertPosition
+                                       , manageIgnores
                                        , manageFloats
                                        , manageSinks
                                        , manageGimp
