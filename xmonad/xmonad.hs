@@ -35,9 +35,8 @@ gajimRoster = Role "roster"
 skypeRoster = Title "Skype™ 4.0 for Linux"
          `Or` Title "bcat24 - Skype™"
 
-doSink         = ask >>= doF . W.sink
-doCenterFloat' = doCenterFloat <+> doF W.shiftMaster
-isSplash       = isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
+doSink   = ask >>= doF . W.sink
+isSplash = isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
 
 workspaceName "1" = "1-uno"
 workspaceName "2" = "2-dos"
@@ -76,7 +75,7 @@ chatLayout = renamed [ Replace "chat" ]
 manageIgnores = composeOne $ map (-?> doIgnore)
     [ isSplash,
       className =? "stalonetray" ]
-manageFloats  = composeOne $ map (-?> doCenterFloat')
+manageFloats  = composeOne $ map (-?> doCenterFloat)
     [ isDialog
     , className =? "Gcalctool"
     , className =? "Phoenix"
