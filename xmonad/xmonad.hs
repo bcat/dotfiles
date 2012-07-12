@@ -90,6 +90,7 @@ manageMedia   = composeOne $ map (-?> doShift "5")
     , className =? "Totem" ]
 manageChat    = composeOne $ map (-?> doShift "6")
     [ className =? "Gajim"
+    , className =? "Gajim.py"
     , className =? "Skype" ]
 
 -- Log hooks
