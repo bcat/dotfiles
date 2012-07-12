@@ -73,10 +73,8 @@ chatLayout = renamed [ Replace "chat" ]
            $ Grid
 
 -- Manage hooks
-
 manageIgnores = composeOne $ map (-?> doIgnore)
-    [ isSplash,
-      className =? "stalonetray" ]
+    [ isSplash ]
 manageFloats  = composeOne $ map (-?> doCenterFloat)
     [ isDialog
     , className =? "Gcalctool"
