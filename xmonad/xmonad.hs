@@ -12,10 +12,12 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.Dishes
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Grid
 import XMonad.Layout.IM
 import XMonad.Layout.LayoutHints
+import XMonad.Layout.Magnifier
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Reflect
@@ -51,10 +53,10 @@ workspaceName x   = x
 
 -- Layout settings
 tallLayout     = renamed [ Replace "tall" ] $ Tall 1 (1 / 100) (59 / 100)
-spiralLayout   = renamed [ Replace "sprl" ] $ spiral (9 / 10)
-threeColLayout = renamed [ Replace "3col" ] $ ThreeCol 1 (3 / 100) (-1 / 3)
-gridLayout     = renamed [ Replace "grid" ] $ GridRatio 1
 fullLayout     = renamed [ Replace "full" ] $ Full
+dishLayout     = renamed [ Replace "dish" ] $ magnifiercz' 1.333 $ Dishes 2 (1 / 5)
+spiralLayout   = renamed [ Replace "sprl" ] $ magnifiercz' 1.333 $ spiral (5 / 6)
+gridLayout     = renamed [ Replace "grid" ] $ GridRatio 1
 
 gimpLayout = renamed [ Replace "gimp" ]
            $ withIM (15 / 100) gimpToolbox
@@ -132,10 +134,10 @@ main = do
                           $ onWorkspace "4" gimpLayout
                           $ onWorkspace "6" chatLayout
                           $ tallLayout
-                        ||| spiralLayout
-                        ||| threeColLayout
-                        ||| gridLayout
                         ||| fullLayout
+                        ||| dishLayout
+                        ||| spiralLayout
+                        ||| gridLayout
         , manageHook      = composeAll [ manageIgnores
                                        , transience'
                                        , manageFloats
