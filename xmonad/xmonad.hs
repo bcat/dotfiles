@@ -137,6 +137,7 @@ main = do
                         ||| gridLayout
                         ||| fullLayout
         , manageHook      = composeAll [ manageIgnores
+                                       , transience'
                                        , manageFloats
                                        , manageSinks
                                        , manageGimp
