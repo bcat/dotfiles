@@ -73,25 +73,25 @@ chatLayout = renamed [ Replace "chat" ]
            $ Grid
 
 -- Manage hooks
-manageIgnores = composeOne $ map (-?> doIgnore)
-    [ isSplash ]
+manageChat    = composeOne $ map (-?> doShift "6")
+    [ className =? "Gajim"
+    , className =? "Gajim.py"
+    , className =? "Skype" ]
+manageMedia   = composeOne $ map (-?> doShift "5")
+    [ className =? "Quodlibet"
+    , className =? "Totem" ]
+manageGimp    = composeOne $ map (-?> doShift "4")
+    [ className =? "Gimp-2.6" ]
+manageSinks   = composeOne $ map (-?> doSink)
+    [ className =? "Skype" {- A bit too general, but OK for now -} ]
 manageFloats  = composeOne $ map (-?> doCenterFloat)
     [ isDialog
     , className =? "Gcalctool"
     , className =? "Phoenix"
     , className =? "Totem"
     , title     =? "glxgears" ]
-manageSinks   = composeOne $ map (-?> doSink)
-    [ className =? "Skype" {- A bit too general, but OK for now -} ]
-manageGimp    = composeOne $ map (-?> doShift "4")
-    [ className =? "Gimp-2.6" ]
-manageMedia   = composeOne $ map (-?> doShift "5")
-    [ className =? "Quodlibet"
-    , className =? "Totem" ]
-manageChat    = composeOne $ map (-?> doShift "6")
-    [ className =? "Gajim"
-    , className =? "Gajim.py"
-    , className =? "Skype" ]
+manageIgnores = composeOne $ map (-?> doIgnore)
+    [ isSplash ]
 
 -- Log hooks
 taffybarLogHook client = dbusLogWithPP client taffybarDefaultPP
@@ -136,24 +136,23 @@ main = do
                         ||| dishLayout
                         ||| spiralLayout
                         ||| gridLayout
-        , manageHook      = composeAll [ manageIgnores
+        , manageHook      = composeAll [ fullscreenManageHook
                                        , transience'
-                                       , manageFloats
-                                       , manageSinks
-                                       , manageGimp
-                                       , manageMedia
                                        , manageChat
-                                       , fullscreenManageHook ]
+                                       , manageMedia
+                                       , manageGimp
+                                       , manageSinks
+                                       , manageFloats
+                                       , manageIgnores ]
                         <+> manageHook gnomeConfig
         , handleEventHook = fullscreenEventHook
                         <+> hintsEventHook
                         <+> handleEventHook gnomeConfig
         , modMask         = mod4Mask
         , logHook         = taffybarLogHook dbusClient
-                         >> setWMName "LG3D" {- Nasty hack for Java Swing -}
                          >> takeTopFocus
                          >> logHook gnomeConfig
-        , startupHook     = spawnOnce "compton"
-                         >> spawnOnce "taffybar"
+        , startupHook     = spawnOnce "taffybar"
+                         >> spawnOnce "compton"
                          >> startupHook gnomeConfig }
         `additionalKeysP` [ ("M-g", goToSelected defaultGSConfig) ]
