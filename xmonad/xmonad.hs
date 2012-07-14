@@ -137,7 +137,6 @@ main = do
                         ||| spiralLayout
                         ||| gridLayout
         , manageHook      = composeAll [ fullscreenManageHook
-                                       , transience'
                                        , manageChat
                                        , manageMedia
                                        , manageGimp
