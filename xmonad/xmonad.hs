@@ -54,8 +54,12 @@ workspaceName x   = x
 -- Layout settings
 tallLayout     = renamed [ Replace "tall" ] $ Tall 1 (1 / 100) (59 / 100)
 fullLayout     = renamed [ Replace "full" ] $ Full
-dishLayout     = renamed [ Replace "dish" ] $ magnifiercz' 1.333 $ Dishes 2 (1 / 5)
-spiralLayout   = renamed [ Replace "sprl" ] $ magnifiercz' 1.333 $ spiral (5 / 6)
+dishLayout     = renamed [ Replace "dish" ]
+               $ magnifiercz' 1.333
+               $ Dishes 2 (1 / 5)
+spiralLayout   = renamed [ Replace "sprl" ]
+               $ magnifiercz' 1.333
+               $ spiral (5 / 6)
 gridLayout     = renamed [ Replace "grid" ] $ GridRatio 1
 
 gimpLayout = renamed [ Replace "gimp" ]
