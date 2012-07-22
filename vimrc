@@ -28,7 +28,7 @@ set linebreak
 set scrolloff=4
 
 " Give us a big command history.
-set history=999
+set history=500
 
 " Make backspace act normally.
 set backspace=indent,eol,start
