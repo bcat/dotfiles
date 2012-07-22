@@ -23,7 +23,7 @@ fi
 set -o emacs     # Use emacs-style editing commands.
 set -o noclobber # Don't allow redirections to overwrite existing files.
 
-shopt -s cdspell      # Perform typo-correction on cd destination directories.
+shopt -s cdspell      # Perform typo-correction on `cd` destinations.
 shopt -s checkhash    # Confirm locations of hashed commands.
 shopt -s checkwinsize # Update LINES and COLUMNS variables after each command.
 shopt -s cmdhist      # Save multi-line commands in a single history entry.
@@ -31,12 +31,12 @@ shopt -s extglob      # Enable extended pattern matching features.
 shopt -s histappend   # Append to history file instead of overwriting it.
 shopt -s histverify   # Verify history substitutions before executing them.
 shopt -s huponexit    # Send SIGHUP to background jobs on exit.
-shopt -s xpg_echo     # Make echo POSIX-compliant WRT escape sequences.
+shopt -s xpg_echo     # Make echo POSIX-compliant w.r.t. escape sequences.
 
 HISTCONTROL=ignoreboth:erasedups # Remove duplicate history entries and don't
                                  # save commands beginning with spaces.
 
-# Emulate ZSH's precmd and preexec functions. Credit for the technique used
+# Emulate ZSH's `precmd` and `preexec` functions. Credit for the technique
 # goes to Glyph Lefkowitz. See also: <http://glyf.livejournal.com/63106.html>.
 _bashrc_prompt_command () {
   [ "$(type -t precmd)" = function ] && precmd
