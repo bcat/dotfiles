@@ -139,6 +139,13 @@ if has("spell")
   set spell
 endif
 
+" GNU Screen and tmux support setting the window title, but don't declare that
+" in their terminfo entry.
+if &term =~ "^screen-\\?"
+  set t_ts=]2;
+  set t_fs=
+endif
+
 if has("gui_running")
   " Make the default gVim Window larger.
   set lines=50

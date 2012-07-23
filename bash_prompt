@@ -225,7 +225,7 @@ _bash_prompt_ps1_escape () {
 # executing shell will be substituted.
 _bash_prompt_title () {
   if grep -E '^(cygwin|rxvt|screen|xterm)-?' <<<"$TERM" >/dev/null 2>&1; then
-    printf '\033]0;%s\a' "${1:-$0} - $USER@$HOSTNAME:${PWD/#$HOME/~}"
+    printf '\033]2;%s\a' "${1:-$0} (${PWD/#$HOME/~})"
   fi
 }
 
