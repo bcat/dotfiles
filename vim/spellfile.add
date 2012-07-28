@@ -109,7 +109,6 @@ Delos
 Digg
 Dindia
 Dindia's
-Doclet
 Doinel
 Donnersmarck
 Donnersmarck's
@@ -377,6 +376,7 @@ Rascher
 Rascher's
 Ratzer
 RealPlayer
+RecordIO
 Renk
 Renk's
 Renteln
@@ -394,6 +394,7 @@ SIGTERM
 SOA
 SPC
 SSN
+SSTable
 SVDP
 San Dimas
 Schmid
@@ -440,6 +441,7 @@ Thomae's
 TikZ
 Timmerman
 Titchmarsh
+ToC
 Tomasulo
 Tonnies
 Transjordan
@@ -549,8 +551,10 @@ deontological
 deontologically
 deontologist
 deus ex machina
+devrel
 diff
 do ut des
+doclet
 docstring
 dogfood
 dogfooding
@@ -567,6 +571,7 @@ electronegativity
 electrophilic
 emo
 endian
+enum
 errno
 euthanize
 euthanized
@@ -697,6 +702,7 @@ qtd.
 quantifiably
 reddit
 refactor
+regex
 resume's
 rxvt
 rxvt-unicode
