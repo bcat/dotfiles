@@ -91,6 +91,7 @@ manageSinks   = composeOne $ map (-?> doSink)
 manageFloats  = composeOne $ map (-?> doCenterFloat)
     [ isDialog
     , className =? "Gcalctool"
+    , className =? "Gitk"
     , className =? "Phoenix"
     , className =? "Totem"
     , title     =? "glxgears" ]
