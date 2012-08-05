@@ -126,6 +126,7 @@ EINVAL
 EOF
 EOL
 EVT
+EasyMock
 Elmasri
 Enzo
 Euhemerist
@@ -208,6 +209,7 @@ Indo-European
 Indo-Europeans
 Iulus
 JDBC
+JProfiler
 JRE
 JSDoc
 JSON
@@ -534,6 +536,8 @@ collectivistic
 complemental
 componentwise
 config
+contractualize
+contractualizes
 coprime
 coset
 cosets
@@ -555,6 +559,7 @@ devrel
 diff
 do ut des
 doclet
+doclets
 docstring
 dogfood
 dogfooding
@@ -694,6 +699,7 @@ prepopulate
 prewashed
 profferer
 profferers
+proto
 protohistory
 pseudocode
 pthreads
