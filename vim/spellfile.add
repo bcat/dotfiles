@@ -68,6 +68,7 @@ CSS3
 CTA
 CTV
 Cacus
+Caja
 Calloway
 Cambria
 Carathéodory
@@ -119,6 +120,7 @@ DuPage
 Dumézil
 Dundes
 Dyalog
+E4X
 ECMA
 EER
 EFF
@@ -179,6 +181,7 @@ Google's
 Grattan
 Greco
 Grubitz
+Guice
 Guilbault
 Gurnee
 HTML5
@@ -213,11 +216,15 @@ Indo-European
 Indo-Europeans
 Iulus
 JDBC
+JDK
+JNI
 JProfiler
 JRE
+JS
 JSDoc
 JSON
 JSP
+JVM
 Jalul
 Javadoc
 Jay-Z's
@@ -332,6 +339,7 @@ Netflix
 Nikhil
 ODBC
 OLT
+OOM
 OOP
 OSI
 OSIX
@@ -350,6 +358,7 @@ PHP's
 PID
 PIDs
 PKGBUILD
+POJO
 POJOs
 POSIX
 POV
@@ -385,6 +394,7 @@ Rascher's
 Ratzer
 RealPlayer
 RecordIO
+RegExp
 Renk
 Renk's
 Renteln
@@ -464,8 +474,10 @@ UFD
 UI
 UML
 URIs
+URLs
 Umayri
 Umm
+V8
 VM
 VMs
 Vergil
@@ -536,6 +548,7 @@ blogger
 bloggers
 blogging
 blogs
+bytecode
 cherrypick
 cinematographically
 cleveref
@@ -711,6 +724,7 @@ profferer
 profferers
 proto
 protohistory
+protos
 pseudocode
 pthreads
 px
@@ -743,6 +757,7 @@ starfields
 stderr
 stdin
 stdout
+struct
 stylesheet
 subadditive
 subcollection
