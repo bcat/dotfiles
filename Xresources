@@ -11,7 +11,7 @@ Xft.autohint:            true
 ! <https://github.com/bcat/abbott.vim>.
 URxvt.depth:             32
 ! (default:        brown / mint_green)
-URxvt.background:        [90]#1f1912
+URxvt.background:        [93]#1f1912
 URxvt.foreground:        #d5fac8
 ! (black:     dark_brown / light_brown)
 URxvt.color0:            #0a0806
