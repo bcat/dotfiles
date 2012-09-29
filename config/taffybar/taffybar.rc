@@ -1,8 +1,8 @@
-style "default" {
+style "taffybar" {
   bg[NORMAL]   = "#1f1912"
   fg[NORMAL]   = "#d5fac8"
   text[NORMAL] = "#d5fac8"
   font_name    = "Envy Code R 10"
 }
 
-widget "Taffybar*" style "default"
+widget "Taffybar*" style "taffybar"
