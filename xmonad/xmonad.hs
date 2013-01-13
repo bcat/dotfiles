@@ -1,5 +1,5 @@
 import Data.Monoid
-import DBus.Client.Simple
+import DBus.Client
 import System.Taffybar.XMonadLog
 
 import XMonad
