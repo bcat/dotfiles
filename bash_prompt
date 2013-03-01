@@ -38,7 +38,7 @@ elif [[ $TERM =~ ^(rxvt|screen|xterm)-? ]]; then
 fi
 
 # Set a flag if the system supports ACPI and has a battery.
-if type acpi >/dev/null 2>&1 && [[ $(acpi) =~ Battery ]]; then
+if type acpi >/dev/null 2>&1 && [[ $(acpi 2>/dev/null) =~ Battery ]]; then
   _bash_prompt_have_battery=1
 fi
 
