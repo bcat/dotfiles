@@ -41,7 +41,7 @@ set smarttab
 set tabstop=2
 set shiftwidth=2
 
-set textwidth=78
+set textwidth=80
 
 " Make indentation smarter.
 if has("smartindent")
