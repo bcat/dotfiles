@@ -115,6 +115,8 @@ filetype on
 filetype plugin on
 filetype indent on
 
+let g:java_highlight_functions="style"
+
 let g:tex_indent_and=0
 let g:tex_flavor="latex"
 let g:tex_stylish=1
