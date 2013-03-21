@@ -52,7 +52,7 @@ workspaceName "9" = "9-temp"
 workspaceName x   = x
 
 -- Layout settings
-tallLayout     = renamed [ Replace "tall" ] $ Tall 1 (1 / 100) (59 / 100)
+tallLayout     = renamed [ Replace "tall" ] $ Tall 1 (1 / 100) (6 / 10)
 fullLayout     = renamed [ Replace "full" ] $ Full
 dishLayout     = renamed [ Replace "dish" ]
                $ magnifiercz' 1.333
