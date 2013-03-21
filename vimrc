@@ -76,6 +76,7 @@ nnoremap <silent> <Leader>ar :LustyFilesystemExplorerFromHere<CR>
 nnoremap <silent> <Leader>ab :LustyBufferExplorer<CR>
 nnoremap <silent> <Leader>ag :LustyBufferGrep<CR>
 
+nnoremap <silent> <Leader>ea :ProjectTreeToggle<CR>
 nnoremap <silent> <Leader>ee :JavaSearchContext<CR>
 nnoremap <silent> <Leader>ef :LocateFile<CR>
 nnoremap <silent> <Leader>eo :JavaImportOrganize<CR>
@@ -99,8 +100,11 @@ let g:LustyExplorerDefaultMappings=0
 let g:LustyJugglerDefaultMappings=0
 
 " Configure the Eclim plugin.
-let g:EclimJavaSearchSingleResult="edit"
+let g:EclimBuffersDefaultAction="edit"
+let g:EclimDefaultFileOpenAction="edit"
+let g:EclimJavaHierarchyDefaultAction="edit"
 let g:EclimLocateFileDefaultAction="edit"
+let g:EclimProjectTreeExpandPathOnOpen=1
 
 " Configure the VimRepress plugin. Storing blog settings in a separate file
 " allows us to keep blog passwords out of version control.
