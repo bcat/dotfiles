@@ -15,6 +15,7 @@ Abdullah
 Abelian
 Abeln
 Abeln's
+AdWords
 Akira
 Almas
 Anberlin
@@ -260,6 +261,7 @@ Kitano
 Kitano's
 Kitt
 Kitt's
+Kix
 Knott
 Kraken
 Krantz
@@ -353,6 +355,9 @@ Neorealist
 Neorealists
 Netflix
 Nikhil
+OAuth
+OAuth1
+OAuth2
 OCD
 ODBC
 OLT
@@ -451,6 +456,7 @@ Shedd
 Sheerin
 Shinichi
 Sieland
+Singhal
 Skynyrd
 Smalltown
 Soares
@@ -584,6 +590,7 @@ checkbox
 cherrypick
 cinematographically
 cleveref
+codebase
 codomain
 codomains
 cofounder
@@ -612,6 +619,10 @@ deobfuscator
 deontological
 deontologically
 deontologist
+deserialize
+deserialized
+deserializer
+deserializers
 deus ex machina
 diff
 do ut des
@@ -668,6 +679,7 @@ iPods
 iTunes
 iff
 iframe
+iframes
 infima
 infimum
 injectivity
@@ -685,8 +697,10 @@ kern
 ketones
 keybinding
 keybindings
+lifecycle
 lithic
 lithics
+localizable
 marginless
 may've
 measurability
@@ -767,6 +781,7 @@ profferers
 proto
 protohistory
 protos
+proxied
 pseudocode
 pthreads
 px
@@ -783,6 +798,7 @@ rxvt
 rxvt-unicode
 sacramentality
 sacrificium
+sandboxed
 screenreader
 screenshot
 screenshots
@@ -810,6 +826,8 @@ subcollection
 subcover
 subfolder
 subfolders
+submenu
+submenus
 subqueries
 subquery
 subring
@@ -865,6 +883,7 @@ von Donnersmarck
 von Donnersmarck's
 w.r.t.
 w00t
+whitelisted
 widescreen
 wildcard
 wildcards
