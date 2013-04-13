@@ -162,6 +162,11 @@ if &term =~ "^screen-\\?"
   set t_fs=
 endif
 
+" urxvt implements a nonstandard mouse protocol (1015).
+if &term =~ "^rxvt-unicode-\\?"
+  set ttymouse=urxvt
+endif
+
 if has("gui_running")
   " Make the default gVim Window larger.
   set lines=50
