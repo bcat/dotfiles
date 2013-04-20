@@ -53,10 +53,7 @@ if has("smartindent")
 endif
 
 " Set up custom key bindings.
-" See also: <http://stackoverflow.com/q/726920/152208>
 " See also: <http://vimcasts.org/episodes/creating-colorschemes-for-vim/>
-command W w !sudo tee % >/dev/null
-
 let mapleader=","
 let maplocalleader=","
 

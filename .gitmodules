@@ -10,6 +10,9 @@
 [submodule "vim/bundle/csapprox"]
 	path = vim/bundle/csapprox
 	url = git://github.com/godlygeek/csapprox.git
+[submodule "vim/bundle/eunuch"]
+	path = vim/bundle/eunuch
+	url = git://github.com/tpope/vim-eunuch.git
 [submodule "vim/bundle/hexhighlight"]
 	path = vim/bundle/hexhighlight
 	url = git://github.com/yurifury/hexHighlight.git
