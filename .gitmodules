@@ -4,6 +4,9 @@
 [submodule "vim/bundle/abbott"]
 	path = vim/bundle/abbott
 	url = git@github.com:bcat/abbott.vim.git
+[submodule "vim/bundle/abolish"]
+	path = vim/bundle/abolish
+	url = git://github.com/tpope/vim-abolish.git
 [submodule "vim/bundle/bad-whitespace"]
 	path = vim/bundle/bad-whitespace
 	url = git://github.com/bitc/vim-bad-whitespace.git
