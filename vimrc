@@ -85,7 +85,7 @@ nnoremap <silent> <Leader>ep :ProjectProblems!<CR>
 " Load plugins 'n' stuff with Pathogen.
 set runtimepath+=~/.vim/bundle/pathogen
 set runtimepath+=~/_vim/bundle/pathogen
-call pathogen#runtime_append_all_bundles()
+call pathogen#incubate()
 call pathogen#helptags()
 
 " Customize the UltiSnips search path to avoid default snippets.
