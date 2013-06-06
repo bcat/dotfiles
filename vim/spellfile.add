@@ -6,6 +6,7 @@ ACM's
 ACPI
 ACT's
 AFAICT
+APA
 API
 APIs
 APL
@@ -72,6 +73,7 @@ CSS
 CSS3
 CTA
 CTV
+CacheService
 Cacus
 Caja
 Calloway
@@ -209,6 +211,7 @@ Hippomenes
 Hoagland
 Hofsted
 Hogben
+HtmlService
 Huberman
 Huberman's
 HuffPo
@@ -238,6 +241,7 @@ JProfiler
 JRE
 JS
 JSDoc
+JSNI
 JSON
 JSP
 JVM
@@ -356,6 +360,7 @@ Neorealist
 Neorealists
 Netflix
 Nikhil
+NoSQL
 OAuth
 OAuth1
 OAuth2
@@ -434,6 +439,7 @@ SFT
 SIGHUP
 SIGPIPE
 SIGTERM
+SMS
 SOA
 SPC
 SSN
@@ -448,6 +454,7 @@ Schutz
 Schutz's
 Schwarz
 Scottsboro
+ScriptDb
 Segan
 Seibel
 Seybold
@@ -503,6 +510,7 @@ UI
 UML
 URIs
 URLs
+UiApp
 Umayri
 Umm
 V8
@@ -515,6 +523,7 @@ Viacom's
 Vico
 Vollkorn
 WGBH
+WIP
 WLOG
 WTF
 WampServer
@@ -541,6 +550,7 @@ YAML
 Yakuza
 YouTube
 ZDNet
+ZXing
 Zanotti
 Zapf
 Zend
@@ -558,9 +568,12 @@ antiderivatives
 antidifferentiating
 antiheros
 app
+app's
 apps
+async
 attribute's
 auteurs
+auth
 autocomplete
 automagic
 automagically
@@ -572,6 +585,7 @@ backends
 backstory
 backtick
 backticks
+barcode
 bcat
 bcat24
 bcat2448
@@ -592,6 +606,7 @@ cherrypick
 cinematographically
 cleveref
 codebase
+codepath
 codomain
 codomains
 cofounder
@@ -602,6 +617,7 @@ config
 contractualize
 contractualizes
 coprime
+copypasta
 coset
 cosets
 counterintuitively
@@ -652,6 +668,7 @@ euthanized
 euthanizes
 exljbris
 facework
+fallback
 familias
 fangirl
 fangirling
@@ -674,6 +691,7 @@ hostname
 hyperlink
 hyperlinks
 hyperref
+iOS
 iPhone
 iPod
 iPods
@@ -684,6 +702,7 @@ iframes
 infima
 infimum
 injectivity
+inline
 inode
 inodes
 interactional
@@ -705,6 +724,8 @@ localizable
 marginless
 may've
 measurability
+metacharacter
+metacharacters
 metacommunicate
 metacommunicates
 metadata
@@ -748,6 +769,7 @@ nonnegativity
 nonnull
 nonprime
 nonresidue
+nullary
 nullspace
 numen
 numen's
@@ -796,11 +818,13 @@ refactors
 regex
 regexs
 resume's
+run's
 rxvt
 rxvt-unicode
 sacramentality
 sacrificium
 sandboxed
+sandboxing
 screenreader
 screenshot
 screenshots
@@ -815,6 +839,8 @@ servlets
 shmup
 should've
 simplecv
+smartphone
+smartphones
 solvability
 starfield
 starfields
@@ -853,6 +879,7 @@ syscall
 syscalls
 texting
 thmette
+thunks
 timestamp
 timestamping
 tl;dr
@@ -869,6 +896,8 @@ underserved
 unescaped
 unfazed
 unfused
+unhighlight
+unhighlights
 unkerned
 unmerged
 unstyled
@@ -897,3 +926,4 @@ worldview
 x86
 yay
 zooarchaeology
+ಠ‿ಠ
