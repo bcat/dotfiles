@@ -116,8 +116,8 @@ let g:tex_indent_and=0
 let g:tex_flavor="latex"
 let g:tex_stylish=1
 
-" Tweak the indentation and wrapping settings a bit for certain file formats.
 if has("autocmd")
+  " Tweak the indentation and wrapping settings a bit for certain file formats.
   autocmd FileType css        setlocal tabstop=4 shiftwidth=4 textwidth=100
   autocmd FileType haskell    setlocal tabstop=4 shiftwidth=4
   autocmd FileType html       setlocal tabstop=4 shiftwidth=4 textwidth=0
@@ -127,6 +127,9 @@ if has("autocmd")
   autocmd FileType python     setlocal tabstop=4 shiftwidth=4
   autocmd FileType sql        setlocal tabstop=4 shiftwidth=4 textwidth=100
   autocmd FileType tex        setlocal                        textwidth=0
+
+  " Highlight Google Apps Script source files as JavaScript.
+  autocmd BufNewFile,BufRead *.gs set filetype=javascript
 endif
 
 " Enable fancy search settings.
