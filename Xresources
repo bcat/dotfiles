@@ -12,7 +12,7 @@ Xft.autohint:            true
 URxvt.depth:             32
 ! (default:        brown / mint_green)
 URxvt.background:        #1f1912
-URxvt.foreground:        #d5fac8
+URxvt.foreground:        #bdf7a9
 ! (black:     dark_brown / light_brown)
 URxvt.color0:            #0a0806
 URxvt.color8:            #816749
