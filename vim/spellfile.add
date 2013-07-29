@@ -42,6 +42,7 @@ Bachofen's
 Bahadir
 Bassam
 Bazin
+Bibstro
 Binford
 Birkerts
 Birkerts's
@@ -65,6 +66,7 @@ CDD
 CGI
 CLS
 CLs
+CORS
 CSApprox
 CSC
 CSC's
@@ -175,6 +177,7 @@ GDR
 GPS
 GTK
 GViz
+GViz's
 GWT
 Gaia
 Gajim
@@ -243,6 +246,7 @@ JS
 JSDoc
 JSNI
 JSON
+JSONP
 JSP
 JVM
 Jalul
@@ -280,6 +284,7 @@ L'Avventura
 L'Hospital's
 LHS
 LIHEAP
+LTR
 La terra trema
 Ladri di biciclette
 Lafsky
@@ -412,8 +417,10 @@ README
 RHS
 RLY
 RPC
+RPCs
 RREF
 RTC
+RTL
 Rackham
 Rall
 Ramanujan
@@ -510,7 +517,10 @@ UFD
 UI
 UML
 URIs
+URL's
 URLs
+UTC
+UTF
 UUID
 UiApp
 Umayri
@@ -543,8 +553,11 @@ Win32
 Wipeout
 WordPress
 WordPress's
+XHR
 XHTML
 XMonad
+XPC
+XSRF
 XSS
 XeTeX
 Xenophanes
@@ -585,6 +598,7 @@ autonumbering
 backend
 backend's
 backends
+backoff
 backstory
 backtick
 backticks
@@ -644,6 +658,7 @@ deserialize
 deserialized
 deserializer
 deserializers
+deserializing
 deus ex machina
 diff
 do ut des
@@ -688,6 +703,7 @@ geocode
 geocoding
 geolocation
 hacky
+hardcode
 hardcoded
 high's
 hijab
@@ -714,6 +730,7 @@ intercultural
 intrapersonal
 isometry
 jQuery
+jobset
 joinable
 jon@bcat.name
 jonathan rascher
@@ -722,6 +739,7 @@ ketones
 keybinding
 keybindings
 lifecycle
+linkify
 lithic
 lithics
 localizable
@@ -746,6 +764,7 @@ mockup
 mockups
 modded
 modding
+modeless
 modeline
 modelines
 monic
@@ -795,6 +814,7 @@ plugins
 pointwise
 polychronic
 polychronicity
+popup
 precompiler
 prefetch
 prefetching
@@ -807,6 +827,8 @@ prewashed
 probers
 profferer
 profferers
+programmatically
+prompt's
 proto
 protohistory
 protos
@@ -816,6 +838,7 @@ pthreads
 px
 qtd.
 quantifiably
+quickfix
 reddit
 refactor
 refactored
@@ -823,6 +846,8 @@ refactors
 regex
 regexs
 resume's
+retryability
+retryable
 run's
 rxvt
 rxvt-unicode
@@ -847,6 +872,7 @@ simplecv
 smartphone
 smartphones
 solvability
+spreadsheet's
 starfield
 starfields
 stderr
@@ -857,6 +883,8 @@ stylesheet
 subadditive
 subcollection
 subcover
+subdomain
+subdomains
 subfolder
 subfolders
 submenu
@@ -884,6 +912,7 @@ syscall
 syscalls
 texting
 thmette
+throbber
 thunks
 timestamp
 timestamping
@@ -897,6 +926,7 @@ tput
 transgender
 unassailed
 unbirth
+undeletion
 underserved
 unescaped
 unfazed
@@ -905,6 +935,7 @@ unhighlight
 unhighlights
 unkerned
 unmerged
+unsanitized
 unstyled
 untame
 uploader
@@ -921,6 +952,7 @@ von Donnersmarck
 von Donnersmarck's
 w.r.t.
 w00t
+whitelist
 whitelisted
 widescreen
 wildcard
@@ -929,6 +961,7 @@ woot
 workflow
 worldview
 x86
+xkcd
 yay
 zooarchaeology
 ಠ‿ಠ
