@@ -23,6 +23,9 @@ set numberwidth=5
 set wildmenu
 if exists("&colorcolumn")
   set colorcolumn=+2
+  if has("autocmd")
+    autocmd FileType qf setlocal colorcolumn=
+  endif
 endif
 set linebreak
 set scrolloff=4
@@ -149,10 +152,15 @@ if has("syntax") && (&t_Co > 2 || has("gui_running"))
   syntax on
 endif
 
-" Set a custom dictionary for spell checking, and enable bad word by default.
+" Set a custom dictionary for spell checking, enabling bad word highlighting by
+" default, but don't check spelling in quickfix windows, 'cause that's silly.
 if has("spell")
   set spellfile=~/.vim/spellfile.add
   set spell
+
+  if has("autocmd")
+    autocmd FileType qf setlocal nospell
+  endif
 endif
 
 " GNU Screen and tmux support setting the window title, but don't declare that
