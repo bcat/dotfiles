@@ -192,12 +192,14 @@ if has("gui_running")
   " actually specify several fonts: a primary and a few fallbacks.
   " See also: <http://vim.wikia.com/wiki/Setting_the_font_in_the_GUI>.
   if has("gui_gtk2")
-    set guifont=Envy\ Code\ R\ 10
+    set guifont=GohuFont\ 7
+    set guifont+=Envy\ Code\ R\ 10
     set guifont+=Consolas\ 10
     set guifont+=DejaVu\ Sans\ Mono\ 10
     set guifont+=Courier\ New\ 10
   else
-    set guifont=Envy_Code_R:h10:cDEFAULT
+    set guifont=GohuFont:h10:cDEFAULT
+    set guifont+=Envy_Code_R:h10:cDEFAULT
     set guifont+=Consolas:h10:cDEFAULT
     set guifont+=DejaVu_Sans_Mono:h10:cDEFAULT
     set guifont+=Courier_New:h10:cDEFAULT

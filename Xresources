@@ -39,7 +39,7 @@ URxvt.color7:            #1f1912
 URxvt.color15:           #fee3b4
 
 ! Configure the font and some other things for urxvt.
-URxvt.font:              xft:Envy Code R-10
+URxvt.font:              xft:GohuFont
 URxvt.urgentOnBell:      true
 URxvt.scrollBar:         false
 URxvt.scrollTtyOutput:   false
