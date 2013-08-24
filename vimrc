@@ -79,6 +79,7 @@ nnoremap <silent> <Leader>ag :LustyBufferGrep<CR>
 nnoremap <silent> <Leader>ea :ProjectTreeToggle<CR>
 nnoremap <silent> <Leader>ee :JavaSearchContext<CR>
 nnoremap <silent> <Leader>ef :LocateFile<CR>
+nnoremap <silent> <Leader>eh :JavaCallHierarchy<CR>
 nnoremap <silent> <Leader>eo :JavaImportOrganize<CR>
 nnoremap <silent> <Leader>ep :ProjectProblems!<CR>
 
@@ -102,6 +103,7 @@ let g:LustyJugglerDefaultMappings=0
 " Configure the Eclim plugin.
 let g:EclimBuffersDefaultAction="edit"
 let g:EclimDefaultFileOpenAction="edit"
+let g:EclimJavaCallHierarchyDefaultAction="edit"
 let g:EclimJavaHierarchyDefaultAction="edit"
 let g:EclimLocateFileDefaultAction="edit"
 let g:EclimProjectTreeExpandPathOnOpen=1
