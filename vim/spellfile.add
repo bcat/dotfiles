@@ -75,6 +75,7 @@ CSS
 CSS3
 CTA
 CTV
+CWS
 CacheService
 Cacus
 Caja
@@ -204,6 +205,7 @@ Gurnee
 HTML5
 HTTPS
 HW
+Hamcrest
 Hartl
 Helenus
 Helft
@@ -248,6 +250,7 @@ JSNI
 JSON
 JSONP
 JSP
+JUnit
 JVM
 Jalul
 Javadoc
@@ -333,6 +336,7 @@ Meiley
 Mellen
 Mifune
 Mifune's
+Mockito
 Moivre
 Moivre's
 Monotype
@@ -658,6 +662,7 @@ deserialize
 deserialized
 deserializer
 deserializers
+deserializes
 deserializing
 deus ex machina
 diff
@@ -681,6 +686,7 @@ electrophilic
 emo
 endian
 enum
+enums
 errno
 euthanize
 euthanized
@@ -729,6 +735,7 @@ interactional
 intercultural
 intrapersonal
 isometry
+iterable
 jQuery
 jobset
 joinable
@@ -823,6 +830,7 @@ preimage
 preimages
 preincarnate
 prepopulate
+presubmit
 prewashed
 probers
 profferer
@@ -862,6 +870,7 @@ seamonster
 sedentism
 sensibilism
 sensibilist
+serialVersionUID
 serializability
 serializable
 servlet
@@ -889,6 +898,8 @@ subfolder
 subfolders
 submenu
 submenus
+subpath
+subpaths
 subqueries
 subquery
 subring
@@ -935,8 +946,14 @@ unhighlight
 unhighlights
 unkerned
 unmerged
+unproxied
 unsanitized
+unscoped
 unstyled
+unsubscribe
+unsubscribed
+unsubscribes
+unsubscribing
 untame
 uploader
 uploaders
