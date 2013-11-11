@@ -11,6 +11,7 @@ _profile_add_to_path /usr/games
 _profile_add_to_path /opt/haskell-platform/bin
 
 _profile_add_to_path ~/bin
+_profile_add_to_path ~/bin/gsutil
 _profile_add_to_path ~/.cabal/bin
 
 # Set the preferred editor.
