@@ -199,6 +199,7 @@ Google's
 Grattan
 Greco
 Grubitz
+Gson
 Guice
 Guilbault
 Gurnee
@@ -254,6 +255,7 @@ JUnit
 JVM
 Jalul
 Javadoc
+Javadoc's
 Jay-Z's
 Jean-Luc
 Jerash
@@ -561,10 +563,14 @@ XHR
 XHTML
 XMonad
 XPC
+XSL
+XSLT
 XSRF
 XSS
+Xalan
 XeTeX
 Xenophanes
+Xerces
 YAML
 Yakuza
 YouTube
@@ -577,6 +583,7 @@ Zend's
 Zooarchaeological
 accessor
 admin
+affinitized
 aixterm
 al-Khwarizmi
 alkene
@@ -621,12 +628,16 @@ blogger
 bloggers
 blogging
 blogs
+bork
+borked
+builtin
 bytecode
 changelist
 checkbox
 cherrypick
 cinematographically
 cleveref
+clickable
 codebase
 codepath
 codomain
@@ -636,6 +647,8 @@ collectivistic
 complemental
 componentwise
 config
+configs
+constant's
 contractualize
 contractualizes
 coprime
@@ -653,11 +666,14 @@ definedness
 deintensify
 demercuration
 deobfuscated
+deobfuscates
+deobfuscating
 deobfuscation
 deobfuscator
 deontological
 deontologically
 deontologist
+deserialization
 deserialize
 deserialized
 deserializer
@@ -666,10 +682,12 @@ deserializes
 deserializing
 deus ex machina
 diff
+diffs
 do ut des
 doclet
 doclets
 docstring
+doctype
 dogfood
 dogfooding
 doorjamb
@@ -701,6 +719,7 @@ farfetched
 favicon
 filesystem
 filmmaking
+followup
 frontend
 frontends
 gVim
@@ -729,6 +748,7 @@ infima
 infimum
 injectivity
 inline
+inlined
 inode
 inodes
 interactional
@@ -764,6 +784,7 @@ microtypographic
 microtypography
 middleware
 might've
+minification
 miscommunications
 misconfigured
 mise en scène
@@ -777,6 +798,7 @@ modelines
 monic
 monochronic
 monochronicity
+monomorphic
 monospaced
 multimap
 multiplayer
@@ -808,8 +830,12 @@ numina
 octothorpe
 octothorpes
 offline
+omnibox
+omnibox's
 overanalysis
 oxymercuration
+param
+params
 parentheticals
 paritals
 paywalled
@@ -822,6 +848,10 @@ pointwise
 polychronic
 polychronicity
 popup
+postprocess
+postprocessed
+postprocesses
+postprocessing
 precompiler
 prefetch
 prefetching
@@ -830,8 +860,13 @@ preimage
 preimages
 preincarnate
 prepopulate
+prerender
+prerendered
+prerendering
+prerenders
 presubmit
 prewashed
+proactively
 probers
 profferer
 profferers
@@ -853,7 +888,9 @@ refactored
 refactors
 regex
 regexs
+repo
 resume's
+rethrow
 retryability
 retryable
 run's
@@ -873,6 +910,7 @@ sensibilist
 serialVersionUID
 serializability
 serializable
+serializer
 servlet
 servlets
 shmup
@@ -898,6 +936,8 @@ subfolder
 subfolders
 submenu
 submenus
+subpackage
+subpackages
 subpath
 subpaths
 subqueries
@@ -910,6 +950,9 @@ sucky
 superclasses
 superkey
 superkeys
+supertype
+supertype's
+supertypes
 suprema
 supremum
 surjection
@@ -935,8 +978,11 @@ tortious
 totient
 tput
 transgender
+typesafe
+typesafety
 unassailed
 unbirth
+uncached
 undeletion
 underserved
 unescaped
@@ -944,8 +990,13 @@ unfazed
 unfused
 unhighlight
 unhighlights
+uninstall
+uninstalled
+uninstalling
+uninstalls
 unkerned
 unmerged
+unminified
 unproxied
 unsanitized
 unscoped
@@ -960,6 +1011,7 @@ uploaders
 urxvt
 vararg
 varargs
+versioned
 viewership
 viewport
 vimrc
