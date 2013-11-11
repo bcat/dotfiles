@@ -106,6 +106,7 @@ let g:EclimDefaultFileOpenAction="edit"
 let g:EclimJavaCallHierarchyDefaultAction="edit"
 let g:EclimJavaHierarchyDefaultAction="edit"
 let g:EclimLocateFileDefaultAction="edit"
+let g:EclimLoggingDisabled=1
 let g:EclimProjectTreeExpandPathOnOpen=1
 
 " Configure the VimRepress plugin. Storing blog settings in a separate file
