@@ -1,5 +1,6 @@
 AAP
 ACCA
+ACK
 ACL
 ACLs
 ACM's
@@ -8,6 +9,7 @@ ACT's
 AFAICT
 APA
 API
+API's
 APIs
 APL
 AST
@@ -125,6 +127,7 @@ DevRel
 Digg
 Dindia
 Dindia's
+DoSing
 Doinel
 Donnersmarck
 Donnersmarck's
@@ -176,6 +179,7 @@ GC
 GCD
 GDR
 GPS
+GSLB
 GTK
 GViz
 GViz's
@@ -287,6 +291,7 @@ Kuntz
 Kuntz's
 L'Avventura
 L'Hospital's
+LG'd
 LHS
 LIHEAP
 LTR
@@ -350,6 +355,7 @@ Musa
 MySQL
 Müller
 Müller's
+NAK
 NCAM
 NCC's
 NCUR
@@ -379,6 +385,7 @@ OCD
 ODBC
 OLT
 OOM
+OOMs
 OOP
 OSI
 OSIX
@@ -401,6 +408,7 @@ POJO
 POJOs
 POSIX
 POV
+PTAL
 Palaephatus
 Palatino
 Palinurus
@@ -425,6 +433,7 @@ RLY
 RPC
 RPCs
 RREF
+RSS
 RTC
 RTL
 Rackham
@@ -449,6 +458,7 @@ Rolle's
 Rutulians
 SCAP
 SFT
+SIDs
 SIGHUP
 SIGPIPE
 SIGTERM
@@ -582,7 +592,9 @@ Zend
 Zend's
 Zooarchaeological
 accessor
+add-on's
 admin
+admins
 affinitized
 aixterm
 al-Khwarizmi
@@ -622,6 +634,7 @@ biconditional
 biconditionals
 bijectivity
 biomechanical
+bitmask
 blog
 blogged
 blogger
@@ -630,6 +643,7 @@ blogging
 blogs
 bork
 borked
+bsoares
 builtin
 bytecode
 changelist
@@ -639,7 +653,9 @@ cinematographically
 cleveref
 clickable
 codebase
+codenames
 codepath
+codepaths
 codomain
 codomains
 cofounder
@@ -692,17 +708,20 @@ dogfood
 dogfooding
 doorjamb
 doorjambs
+downintegrate
 dropbox
 dropdown
 eHarmony
 ecofact
 ecofacts
+edit's
 egocentrism
 eigenspace
 electronegativity
 electrophilic
 emo
 endian
+eng
 enum
 enums
 errno
@@ -720,6 +739,7 @@ favicon
 filesystem
 filmmaking
 followup
+forward's
 frontend
 frontends
 gVim
@@ -765,6 +785,7 @@ kern
 ketones
 keybinding
 keybindings
+killswitch
 lifecycle
 linkify
 lithic
@@ -822,6 +843,7 @@ nonnegativity
 nonnull
 nonprime
 nonresidue
+nullability
 nullary
 nullspace
 numen
@@ -832,6 +854,7 @@ octothorpes
 offline
 omnibox
 omnibox's
+omniboxes
 overanalysis
 oxymercuration
 param
@@ -859,6 +882,7 @@ prehension
 preimage
 preimages
 preincarnate
+preorder
 prepopulate
 prerender
 prerendered
@@ -883,16 +907,22 @@ qtd.
 quantifiably
 quickfix
 reddit
+redoable
 refactor
 refactored
 refactors
 regex
 regexs
 repo
+repro
 resume's
+retether
 rethrow
+rethrown
+rethrows
 retryability
 retryable
+rollout
 run's
 rxvt
 rxvt-unicode
@@ -915,6 +945,8 @@ servlet
 servlets
 shmup
 should've
+showstopper
+showstoppers
 simplecv
 smartphone
 smartphones
@@ -936,6 +968,8 @@ subfolder
 subfolders
 submenu
 submenus
+submodel
+submodels
 subpackage
 subpackages
 subpath
@@ -947,7 +981,9 @@ subrings
 subsubfolder
 subsubfolders
 sucky
+suggestable
 superclasses
+superinterface
 superkey
 superkeys
 supertype
@@ -964,6 +1000,7 @@ symlinks
 synecdoche
 syscall
 syscalls
+tetherable
 texting
 thmette
 throbber
@@ -985,6 +1022,7 @@ unbirth
 uncached
 undeletion
 underserved
+undoable
 unescaped
 unfazed
 unfused
@@ -995,6 +1033,7 @@ uninstalled
 uninstalling
 uninstalls
 unkerned
+unlaunched
 unmerged
 unminified
 unproxied
@@ -1006,6 +1045,7 @@ unsubscribed
 unsubscribes
 unsubscribing
 untame
+untether
 uploader
 uploaders
 urxvt
