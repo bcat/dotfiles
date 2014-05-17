@@ -124,9 +124,9 @@ let g:tex_stylish=1
 
 if has("autocmd")
   " Tweak the indentation and wrapping settings a bit for certain file formats.
-  autocmd FileType css        setlocal tabstop=4 shiftwidth=4 textwidth=100
+  autocmd FileType css        setlocal tabstop=2 shiftwidth=2 textwidth=80
   autocmd FileType haskell    setlocal tabstop=4 shiftwidth=4
-  autocmd FileType html       setlocal tabstop=4 shiftwidth=4 textwidth=0
+  autocmd FileType html       setlocal tabstop=2 shiftwidth=2 textwidth=80
   autocmd FileType java       setlocal tabstop=2 shiftwidth=2 textwidth=100
   autocmd FileType markdown   setlocal tabstop=4 shiftwidth=4 textwidth=0
   autocmd FileType php        setlocal tabstop=4 shiftwidth=4 textwidth=100
