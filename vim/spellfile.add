@@ -1,7 +1,7 @@
-AAP
 ACCA
 ACK
 ACL
+ACL's
 ACLs
 ACM's
 ACPI
@@ -45,6 +45,7 @@ Bahadir
 Bassam
 Bazin
 Bibstro
+Bigtable
 Binford
 Birkerts
 Birkerts's
@@ -117,6 +118,7 @@ DMCA's
 DMLs
 DMV
 DNE
+DOSing
 DPI
 Dardanus
 De Sica
@@ -173,6 +175,7 @@ Fontenelle
 Fontspring
 Forum Boarium
 Freakonomics
+Freebird
 Frome
 Fulgentius
 GC
@@ -180,6 +183,8 @@ GCD
 GDR
 GPS
 GSLB
+GSLB's
+GSLBs
 GTK
 GViz
 GViz's
@@ -270,6 +275,8 @@ JetBlue's
 Jetpack
 Jong-il
 Jong-il's
+Jotspot
+JsTD
 KTHXBYE
 Kanigel
 Katok
@@ -398,11 +405,13 @@ OpenType
 Ophüls
 Ou
 P.S.
+P4
 PDFs
 PHP
 PHP's
 PID
 PIDs
+PII
 PKGBUILD
 POJO
 POJOs
@@ -427,6 +436,7 @@ PowerPoint
 Propp
 QPS
 QuickTime
+RE2
 README
 RHS
 RLY
@@ -538,6 +548,7 @@ URLs
 UTC
 UTF
 UUID
+UX
 UiApp
 Umayri
 Umm
@@ -659,6 +670,7 @@ codepaths
 codomain
 codomains
 cofounder
+collab
 collectivistic
 complemental
 componentwise
@@ -672,12 +684,16 @@ copypasta
 coset
 cosets
 counterintuitively
+cred
+creds
 ctor
 cultic
 cyclotomic
 daemonize
 daemonizing
 dash's
+datacenter
+datacenters
 definedness
 deintensify
 demercuration
@@ -738,6 +754,7 @@ farfetched
 favicon
 filesystem
 filmmaking
+fixup
 followup
 forward's
 frontend
@@ -792,6 +809,7 @@ lithic
 lithics
 localizable
 marginless
+marshalls
 may've
 measurability
 memcache
@@ -838,6 +856,7 @@ nonconstant
 nondifferentiable
 nonidentity
 nonintersecting
+nonissue
 nonmeasurable
 nonnegativity
 nonnull
@@ -856,6 +875,7 @@ omnibox
 omnibox's
 omniboxes
 overanalysis
+overprovisioned
 oxymercuration
 param
 params
@@ -912,9 +932,14 @@ refactor
 refactored
 refactors
 regex
+regexen
 regexs
 repo
 repro
+reshard
+resharded
+resharding
+reshards
 resume's
 retether
 rethrow
@@ -943,6 +968,8 @@ serializable
 serializer
 servlet
 servlets
+sharded
+sharding
 shmup
 should've
 showstopper
@@ -951,15 +978,20 @@ simplecv
 smartphone
 smartphones
 solvability
+spammy
 spreadsheet's
 starfield
 starfields
 stderr
 stdin
 stdout
+stringified
+stringifing
+stringify
 struct
 stylesheet
 subadditive
+subclassed
 subcollection
 subcover
 subdomain
@@ -1010,6 +1042,7 @@ timestamping
 tl;dr
 tmux
 to've
+toString
 toolbar
 tortious
 totient
@@ -1023,6 +1056,7 @@ uncached
 undeletion
 underserved
 undoable
+undrain
 unescaped
 unfazed
 unfused
@@ -1036,6 +1070,8 @@ unkerned
 unlaunched
 unmerged
 unminified
+unpersisted
+unprefixed
 unproxied
 unsanitized
 unscoped
