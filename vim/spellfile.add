@@ -34,6 +34,7 @@ Arianna
 Ascanius
 Atalanta Fugiens
 Atticus
+AutoValue
 B.S.
 BCNF
 BFS
@@ -50,6 +51,7 @@ Binford
 Birkerts
 Birkerts's
 BitTorrent
+Blobstore
 Boing
 Bollywood
 Bolzano
@@ -118,6 +120,7 @@ DMCA's
 DMLs
 DMV
 DNE
+DNS
 DOSing
 DPI
 Dardanus
@@ -129,6 +132,7 @@ DevRel
 Digg
 Dindia
 Dindia's
+DoS
 DoSing
 Doinel
 Donnersmarck
@@ -181,13 +185,16 @@ Fulgentius
 GC
 GCD
 GDR
+GFS
 GPS
+GSE
 GSLB
 GSLB's
 GSLBs
 GTK
 GViz
 GViz's
+GWS
 GWT
 Gaia
 Gajim
@@ -327,6 +334,7 @@ Lynyrd
 Lévi-Strauss
 Lévi-Strauss's
 MCT
+MDB
 MLA
 MNI
 MP3s
@@ -440,6 +448,7 @@ RE2
 README
 RHS
 RLY
+RNG
 RPC
 RPCs
 RREF
@@ -447,6 +456,8 @@ RSS
 RTC
 RTL
 Rackham
+Rakefile
+Rakefiles
 Rall
 Ramanujan
 Ramanujan's
@@ -694,6 +705,8 @@ daemonizing
 dash's
 datacenter
 datacenters
+datastore
+datastores
 definedness
 deintensify
 demercuration
@@ -705,6 +718,8 @@ deobfuscator
 deontological
 deontologically
 deontologist
+dep
+deps
 deserialization
 deserialize
 deserialized
@@ -724,6 +739,8 @@ dogfood
 dogfooding
 doorjamb
 doorjambs
+dotfile
+dotfiles
 downintegrate
 dropbox
 dropdown
@@ -756,6 +773,7 @@ filesystem
 filmmaking
 fixup
 followup
+foobar
 forward's
 frontend
 frontends
@@ -767,6 +785,7 @@ geolocation
 hacky
 hardcode
 hardcoded
+hashCode
 high's
 hijab
 hostname
@@ -797,7 +816,6 @@ jQuery
 jobset
 joinable
 jon@bcat.name
-jonathan rascher
 kern
 ketones
 keybinding
@@ -807,6 +825,7 @@ lifecycle
 linkify
 lithic
 lithics
+localhost
 localizable
 marginless
 marshalls
@@ -874,6 +893,7 @@ offline
 omnibox
 omnibox's
 omniboxes
+optionally
 overanalysis
 overprovisioned
 oxymercuration
@@ -993,6 +1013,8 @@ stylesheet
 subadditive
 subclassed
 subcollection
+subcontext
+subcontexts
 subcover
 subdomain
 subdomains
@@ -1085,6 +1107,7 @@ untether
 uploader
 uploaders
 urxvt
+v2
 vararg
 varargs
 versioned
