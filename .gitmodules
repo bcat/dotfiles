@@ -10,6 +10,9 @@
 [submodule "vim/bundle/bad-whitespace"]
 	path = vim/bundle/bad-whitespace
 	url = git://github.com/bitc/vim-bad-whitespace.git
+[submodule "vim/bundle/commentary"]
+	path = vim/bundle/commentary
+	url = git://github.com/tpope/vim-commentary.git
 [submodule "vim/bundle/csapprox"]
 	path = vim/bundle/csapprox
 	url = git://github.com/godlygeek/csapprox.git
