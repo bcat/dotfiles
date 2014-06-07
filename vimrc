@@ -136,6 +136,10 @@ if has("autocmd")
 
   " Highlight Google Apps Script source files as JavaScript.
   autocmd BufNewFile,BufRead *.gs set filetype=javascript
+
+  " Highlight build system stuff as Python.
+  autocmd BufNewFile,BufRead BUILD set filetype=python
+  autocmd BufNewFile,BufRead build_defs set filetype=python
 endif
 
 " Enable fancy search settings.
