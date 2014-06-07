@@ -34,6 +34,9 @@
 [submodule "vim/bundle/php-stuff"]
 	path = vim/bundle/php-stuff
 	url = git://github.com/paulyg/Vim-PHP-Stuff.git
+[submodule "vim/bundle/sensible"]
+	path = vim/bundle/sensible
+	url = git://github.com/tpope/vim-sensible.git
 [submodule "vim/bundle/protobuf"]
 	path = vim/bundle/protobuf
 	url = git://github.com/willnorris/vim-protobuf.git

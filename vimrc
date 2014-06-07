@@ -8,19 +8,13 @@ set nocompatible
 " Disable swap files. (Not sure if this is wise or not.)
 set noswapfile
 
-" Allow modified buffers to live in the background, and automatically reload
-" externally modified files, provided that there are no unsaved changes.
+" Allow modified buffers to live in the background.
 set hidden
-set autoread
 
 " Set display options.
 set lazyredraw
-set showcmd
-set laststatus=2
-set ruler
 set number
 set numberwidth=5
-set wildmenu
 if exists("&colorcolumn")
   set colorcolumn=+2
   if has("autocmd")
@@ -30,20 +24,12 @@ endif
 set linebreak
 set scrolloff=4
 
-" Give us a big command history.
-set history=500
-
-" Make backspace act normally.
-set backspace=indent,eol,start
-
 " Don't show the stupid preview window for completions, and narrow down
 " available completions as characters are typed.
 set completeopt=menu,longest
 
 " Make indentation and wrapping behave in a civilized manner.
-set autoindent
 set expandtab
-set smarttab
 
 set tabstop=2
 set shiftwidth=2
@@ -143,7 +129,6 @@ endif
 
 " Enable fancy search settings.
 if has("extra_search")
-  set incsearch
   set hlsearch
 endif
 
