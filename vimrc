@@ -94,10 +94,6 @@ let g:EclimLocateFileDefaultAction="edit"
 let g:EclimLoggingDisabled=1
 let g:EclimProjectTreeExpandPathOnOpen=1
 
-" Configure the VimRepress plugin. Storing blog settings in a separate file
-" allows us to keep blog passwords out of version control.
-runtime vimrepress
-
 " Enable settings specific to various file formats.
 filetype on
 filetype plugin on
