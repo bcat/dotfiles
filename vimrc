@@ -74,8 +74,9 @@ runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
-" Customize the UltiSnips search path to avoid default snippets.
-let g:UltiSnipsSnippetDirectories=["snippets"]
+" Customize the UltiSnips search path to avoid default snippets. We can't just
+" call this directory "snippets" since that name is reserved for snipMate.
+let g:UltiSnipsSnippetDirectories=["ultisnips"]
 
 " Configure the LaTeX Box plugin.
 let g:LatexBox_latexmk_options="-pvc"
