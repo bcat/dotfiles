@@ -15,29 +15,29 @@ _profile_add_to_path ~/bin/gsutil
 _profile_add_to_path ~/.cabal/bin
 
 # Set the preferred editor.
-if command -v vim >/dev/null; then
-  export EDITOR=$(command -v vim)
-  export FCEDIT=$(command -v vim)
-  export VISUAL=$(command -v vim)
-elif command -v vi >/dev/null; then
-  export EDITOR=$(command -v vi)
-  export FCEDIT=$(command -v vi)
-  export VISUAL=$(command -v vi)
-elif command -v nano >/dev/null; then
-  export EDITOR=$(command -v nano)
-  export FCEDIT=$(command -v nano)
-  export VISUAL=$(command -v nano)
-elif command -v pico >/dev/null; then
-  export EDITOR=$(command -v pico)
-  export FCEDIT=$(command -v pico)
-  export VISUAL=$(command -v pico)
+if which vim >/dev/null; then
+  export EDITOR=$(which vim)
+  export FCEDIT=$(which vim)
+  export VISUAL=$(which vim)
+elif which vi >/dev/null; then
+  export EDITOR=$(which vi)
+  export FCEDIT=$(which vi)
+  export VISUAL=$(which vi)
+elif which nano >/dev/null; then
+  export EDITOR=$(which nano)
+  export FCEDIT=$(which nano)
+  export VISUAL=$(which nano)
+elif which pico >/dev/null; then
+  export EDITOR=$(which pico)
+  export FCEDIT=$(which pico)
+  export VISUAL=$(which pico)
 fi
 
 # Set the preferred pager.
-if command -v less >/dev/null; then
-  export PAGER=$(command -v less)
-elif command -v more >/dev/null; then
-  export PAGER=$(command -v more)
+if which less >/dev/null; then
+  export PAGER=$(which less)
+elif which more >/dev/null; then
+  export PAGER=$(which more)
 fi
 
 # Make less a little bit nicer.
@@ -46,7 +46,7 @@ type lesspipe >/dev/null 2>&1 && eval "$(lesspipe)"
 export LESS='-M -R'
 
 # Don't output noisy, useless diffs when submitting Perforce changelists.
-export P4DIFF=$(command -v true)
+export P4DIFF=$(which true)
 
 # If there is a local .profile file, source that now.
 [ -f ~/.profile.local ] && . ~/.profile.local
