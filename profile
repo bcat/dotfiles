@@ -7,6 +7,10 @@ _profile_add_to_path () {
   fi
 }
 
+_profile_add_to_path /sbin
+_profile_add_to_path /usr/sbin
+_profile_add_to_path /usr/local/sbin
+
 _profile_add_to_path /usr/games
 _profile_add_to_path /opt/haskell-platform/bin
 
