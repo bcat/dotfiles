@@ -35,6 +35,9 @@ shopt -s xpg_echo     # Make echo POSIX-compliant w.r.t. escape sequences.
 
 HISTCONTROL=ignoreboth:erasedups # Remove duplicate history entries and don't
                                  # save commands beginning with spaces.
+HISTFILESIZE=1000                # Increase command history size on disk...
+HISTSIZE=1000                    # ... and in memory.
+unset HISTTIMEFORMAT             # Remove dumb history timestamps people set.
 
 # Emulate ZSH's `precmd` and `preexec` functions. Credit for the technique
 # goes to Glyph Lefkowitz. See also: <http://glyf.livejournal.com/63106.html>.
