@@ -94,6 +94,8 @@ let g:EclimJavaHierarchyDefaultAction="edit"
 let g:EclimLocateFileDefaultAction="edit"
 let g:EclimLoggingDisabled=1
 let g:EclimProjectTreeExpandPathOnOpen=1
+let g:EclimPythonValidate=0
+let g:EclimTempFilesEnable=0
 
 " Enable settings specific to various file formats.
 filetype on
