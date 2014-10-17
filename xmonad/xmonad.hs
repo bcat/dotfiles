@@ -1,6 +1,7 @@
 import Data.Monoid
-import DBus.Client
-import System.Taffybar.XMonadLog
+
+import System.Taffybar.Hooks.PagerHints
+import System.Taffybar.TaffyPager
 
 import XMonad
 import XMonad.Actions.GridSelect
@@ -39,17 +40,6 @@ skypeRoster = Title "Skype™ 4.0 for Linux"
 
 doSink   = ask >>= doF . W.sink
 isSplash = isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
-
-workspaceName "1" = "1-uno"
-workspaceName "2" = "2-dos"
-workspaceName "3" = "3-tres"
-workspaceName "4" = "4-gimp"
-workspaceName "5" = "5-media"
-workspaceName "6" = "6-chat"
-workspaceName "7" = "7-bkrg"
-workspaceName "8" = "8-virt"
-workspaceName "9" = "9-temp"
-workspaceName x   = x
 
 -- Layout settings
 tallLayout     = renamed [ Replace "tall" ] $ Tall 1 (1 / 100) (6 / 10)
@@ -98,36 +88,9 @@ manageFloats  = composeOne $ map (-?> doCenterFloat)
 manageIgnores = composeOne $ map (-?> doIgnore)
     [ isSplash ]
 
--- Log hooks
-taffybarLogHook client = dbusLogWithPP client taffybarDefaultPP
-        { ppCurrent         = wrap "<b>" "</b>"
-                            . taffybarColor "#8ccdf0" ""
-                            . wrap "[" "]"
-                            . workspaceName
-        , ppVisible         = wrap "<b>" "</b>"
-                            . taffybarColor "#8ccdf0" ""
-                            . wrap "(" ")"
-                            . workspaceName
-        , ppHidden          = wrap "<b>" "</b>"
-                            . taffybarEscape
-                            . wrap "{" "}"
-                            . workspaceName
-        , ppHiddenNoWindows = wrap "<b>" "</b>"
-                            . taffybarColor "#816749" ""
-                            . wrap "<" ">"
-                            . workspaceName
-        , ppUrgent          = wrap "<b>" "</b>"
-                            . taffybarColor "#1f1912" "#ec6c99"
-                            . wrap "*" "*"
-                            . workspaceName
-        , ppTitle           = taffybarColor "#94d900" ""
-                            . shorten 255 }
-
 -- Main configuration
 main = do
-    dbusClient <- connectSession
-
-    xmonad $ withUrgencyHook NoUrgencyHook $ gnomeConfig
+    xmonad $ withUrgencyHook NoUrgencyHook $ pagerHints $ gnomeConfig
         { terminal        = "urxvt"
         , layoutHook      = renamed [ CutWordsLeft 1 ]
                           $ fullscreenFull
@@ -153,8 +116,7 @@ main = do
                         <+> hintsEventHook
                         <+> handleEventHook gnomeConfig
         , modMask         = mod4Mask
-        , logHook         = taffybarLogHook dbusClient
-                         >> takeTopFocus
+        , logHook         = takeTopFocus
                          >> logHook gnomeConfig
         , startupHook     = spawnOnce "taffybar"
                          >> spawnOnce "compton"
