@@ -19,28 +19,28 @@ _profile_prepend_to_path ~/bin/gsutil
 _profile_prepend_to_path ~/.cabal/bin
 
 # Set the preferred editor.
-if which vim >/dev/null; then
+if which vim >/dev/null 2>&1; then
   export EDITOR=$(which vim)
   export FCEDIT=$(which vim)
   export VISUAL=$(which vim)
-elif which vi >/dev/null; then
+elif which vi >/dev/null 2>&1; then
   export EDITOR=$(which vi)
   export FCEDIT=$(which vi)
   export VISUAL=$(which vi)
-elif which nano >/dev/null; then
+elif which nano >/dev/null 2>&1; then
   export EDITOR=$(which nano)
   export FCEDIT=$(which nano)
   export VISUAL=$(which nano)
-elif which pico >/dev/null; then
+elif which pico >/dev/null 2>&1; then
   export EDITOR=$(which pico)
   export FCEDIT=$(which pico)
   export VISUAL=$(which pico)
 fi
 
 # Set the preferred pager.
-if which less >/dev/null; then
+if which less >/dev/null 2>&1; then
   export PAGER=$(which less)
-elif which more >/dev/null; then
+elif which more >/dev/null 2>&1; then
   export PAGER=$(which more)
 fi
 
