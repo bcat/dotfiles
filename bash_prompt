@@ -239,7 +239,7 @@ _bash_prompt_ps1_build_directory () {
   _bash_prompt_ps1_escape "$_bash_prompt_term_blue"
   _bash_prompt_ps1_append ' '
   _bash_prompt_ps1_append \
-      "$(_bash_prompt_truncate "${PWD/#$HOME/~}" \
+      "$(_bash_prompt_truncate "${PWD/#$HOME/'~'}" \
       $(( COLUMNS - _bash_prompt_col)) left)"
 }
 
@@ -285,7 +285,7 @@ _bash_prompt_ps1_escape () {
 # executing shell will be substituted.
 _bash_prompt_title () {
   if [[ $TERM =~ ^(cygwin|rxvt|screen|xterm)-? ]]; then
-    printf '\033]2;%s\a' "${1:-$0} (${PWD/#$HOME/~})"
+    printf '\033]2;%s\a' "${1:-$0} (${PWD/#$HOME/'~'})"
   fi
 }
 
