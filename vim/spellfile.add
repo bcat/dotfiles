@@ -48,6 +48,7 @@ Bassam
 Bazin
 Bibstro
 Bigtable
+Bigtables
 Binford
 Birkerts
 Birkerts's
@@ -157,6 +158,7 @@ EINTR
 EINVAL
 EOF
 EOL
+EUC
 EVT
 EasyMock
 Eclim
@@ -180,6 +182,7 @@ Fertigo
 Firefox
 Flickr
 Flobots
+FlumeJava
 Fontenelle
 Fontspring
 Forum Boarium
@@ -190,6 +193,7 @@ Fulgentius
 GC
 GCD
 GDR
+GData
 GFS
 GPS
 GSE
@@ -263,6 +267,7 @@ Iulus
 JARs
 JDBC
 JDK
+JIT
 JNI
 JProfiler
 JRE
@@ -347,6 +352,7 @@ MDB
 MLA
 MNI
 MP3s
+MSCR
 MTH
 MVC
 MVT
@@ -624,6 +630,8 @@ Zanotti
 Zapf
 Zend
 Zend's
+ZipIt
+ZipIt's
 Zooarchaeological
 accessor
 add-on's
@@ -644,6 +652,7 @@ app's
 apps
 async
 attribute's
+auditable
 auteurs
 auth
 autocomplete
@@ -707,6 +716,7 @@ configs
 constant's
 contractualize
 contractualizes
+contrib
 coprime
 copypasta
 coset
@@ -737,6 +747,8 @@ deontologically
 deontologist
 dep
 deps
+deque
+deques
 deserialization
 deserialize
 deserialized
@@ -745,6 +757,7 @@ deserializers
 deserializes
 deserializing
 deus ex machina
+dev
 diff
 diffs
 do ut des
@@ -841,6 +854,7 @@ ketones
 keybinding
 keybindings
 killswitch
+level's
 lexer
 lexer's
 lexers
@@ -856,6 +870,12 @@ marshalls
 may've
 measurability
 memcache
+memoization
+memoize
+memoized
+memoizer
+memoizes
+memoizing
 metacharacter
 metacharacters
 metacommunicate
@@ -936,6 +956,7 @@ pointwise
 polychronic
 polychronicity
 popup
+postMessage
 postprocess
 postprocessed
 postprocesses
@@ -962,6 +983,8 @@ profferers
 programmatically
 prompt's
 proto
+protobuf
+protobufs
 protohistory
 protos
 proxied
@@ -969,10 +992,15 @@ pseudocode
 pthreads
 px
 qtd.
+qual
 quantifiably
 quickfix
 reddit
 redoable
+reenable
+reenabled
+reenables
+reenabling
 refactor
 refactored
 refactors
@@ -1098,6 +1126,7 @@ toolbar
 tortious
 totient
 tput
+tradeoff
 transgender
 typesafe
 typesafety
@@ -1124,18 +1153,22 @@ unmarking
 unmarks
 unmerged
 unminified
+unobfuscated
 unpersisted
 unprefixed
 unproxied
 unsanitized
 unscoped
 unstyled
+unsubmitted
 unsubscribe
 unsubscribed
 unsubscribes
 unsubscribing
 untame
 untether
+untethers
+untimed
 uploader
 uploaders
 urxvt
@@ -1153,8 +1186,11 @@ von Donnersmarck
 von Donnersmarck's
 w.r.t.
 w00t
+warmup
+warmups
 whitelist
 whitelisted
+whitelisting
 widescreen
 wildcard
 wildcards
