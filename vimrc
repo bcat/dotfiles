@@ -11,6 +11,9 @@ set noswapfile
 " Allow modified buffers to live in the background.
 set hidden
 
+" Make the ~ (switch case) command accept movement like a real operator.
+set tildeop
+
 " Set display options.
 set lazyredraw
 set number
