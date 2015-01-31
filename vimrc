@@ -101,10 +101,6 @@ let g:EclimPythonValidate=0
 let g:EclimTempFilesEnable=0
 
 " Enable settings specific to various file formats.
-filetype on
-filetype plugin on
-filetype indent on
-
 let g:tex_indent_and=0
 let g:tex_flavor="latex"
 let g:tex_stylish=1
@@ -141,11 +137,6 @@ endif
 if has("mouse")
   set mouse=a
   set mousefocus
-endif
-
-" Enable syntax highlighting.
-if has("syntax") && (&t_Co > 2 || has("gui_running"))
-  syntax on
 endif
 
 " Set a custom dictionary for spell checking, enabling bad word highlighting by
