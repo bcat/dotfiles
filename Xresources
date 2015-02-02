@@ -16,8 +16,8 @@ URxvt.foreground:        #bdf7a9
 ! (cursor:         green / brown)
 URxvt.cursorColor:       #76bc20
 URxvt.cursorColor2:      #1f1912
-! (black:     dark_brown / light_brown)
-URxvt.color0:            #0a0806
+! (black:          black / light_brown)
+URxvt.color0:            #000000
 URxvt.color8:            #816749
 ! (red:              red / pink)
 URxvt.color1:            #d80450
