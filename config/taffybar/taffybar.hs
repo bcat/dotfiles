@@ -9,7 +9,7 @@ main = do
     let pager = taffyPagerNew defaultPagerConfig
             { activeWindow     = colorize "#94d900" ""
                                . escape
-                               . shorten 255
+                               . shorten 100
             , activeWorkspace  = wrap "<b>" "</b>"
                                . colorize "#8ccdf0" ""
                                . escape
