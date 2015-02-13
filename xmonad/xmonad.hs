@@ -8,7 +8,6 @@ import XMonad.Actions.GridSelect
 import XMonad.Config.Desktop
 import XMonad.Config.Gnome
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ICCCMFocus
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
@@ -105,9 +104,8 @@ main = do
                         <+> hintsEventHook
                         <+> handleEventHook gnomeConfig
         , modMask         = mod4Mask
-        , logHook         = takeTopFocus
-                         >> logHook gnomeConfig
         , startupHook     = spawnOnce "taffybar"
                          >> spawnOnce "compton"
+                         >> setWMName "LG3D" -- Tell Java we're non-reparenting
                          >> startupHook gnomeConfig }
         `additionalKeysP` [ ("M-g", goToSelected defaultGSConfig) ]
