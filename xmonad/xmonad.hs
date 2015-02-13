@@ -34,10 +34,6 @@ import qualified XMonad.StackSet as W
 gimpToolbox = Role "gimp-toolbox"
 gimpDock    = Role "gimp-dock"
 
-gajimRoster = Role "roster"
-skypeRoster = Title "Skype™ 4.0 for Linux"
-         `Or` Title "bcat24 - Skype™"
-
 doSink   = ask >>= doF . W.sink
 isSplash = isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
 
@@ -56,13 +52,6 @@ gimpLayout = renamed [ Replace "gimp" ]
            $ withIM (15 / 100) gimpToolbox
            $ reflectHoriz
            $ withIM (15 / 85) gimpDock
-           $ reflectHoriz
-           $ Grid
-
-chatLayout = renamed [ Replace "chat" ]
-           $ withIM (15 / 100) gajimRoster
-           $ reflectHoriz
-           $ withIM (15 / 85) skypeRoster
            $ reflectHoriz
            $ Grid
 
@@ -99,7 +88,6 @@ main = do
                           $ desktopLayoutModifiers
                           $ smartBorders
                           $ onWorkspace "4" gimpLayout
-                          $ onWorkspace "6" chatLayout
                           $ tallLayout
                         ||| fullLayout
                         ||| dishLayout
