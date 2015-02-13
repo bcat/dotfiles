@@ -10,7 +10,6 @@ import XMonad.Config.Gnome
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.SetWMName
 import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.Dishes
 import XMonad.Layout.Fullscreen
@@ -95,6 +94,5 @@ main = do
         , modMask         = mod4Mask
         , startupHook     = spawnOnce "taffybar"
                          >> spawnOnce "compton"
-                         >> startupHook gnomeConfig
-                         >> setWMName "LG3D" {- Tell Java we don't reparent -} }
+                         >> startupHook gnomeConfig }
         `additionalKeysP` [ ("M-g", goToSelected defaultGSConfig) ]
