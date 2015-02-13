@@ -106,6 +106,6 @@ main = do
         , modMask         = mod4Mask
         , startupHook     = spawnOnce "taffybar"
                          >> spawnOnce "compton"
-                         >> setWMName "LG3D" -- Tell Java we're non-reparenting
-                         >> startupHook gnomeConfig }
+                         >> startupHook gnomeConfig
+                         >> setWMName "LG3D" {- Tell Java we don't reparent -} }
         `additionalKeysP` [ ("M-g", goToSelected defaultGSConfig) ]
