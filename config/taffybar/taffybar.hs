@@ -1,4 +1,5 @@
 import System.Taffybar
+import System.Taffybar.MPRIS2
 import System.Taffybar.Pager
 import System.Taffybar.SimpleClock
 import System.Taffybar.Systray
@@ -44,9 +45,10 @@ main = do
                                . escape
                                . wrap "*" "*"
                                . workspaceName }
+        music = mpris2New
         tray  = systrayNew
         time  = textClockNew Nothing "<span color='#d5fac8'>%l:%M %p</span> " 1
 
     defaultTaffybar defaultTaffybarConfig
         { startWidgets = [ pager ]
-        , endWidgets   = [ time, tray ] }
+        , endWidgets   = [ time, tray, music ] }
