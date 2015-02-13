@@ -11,17 +11,14 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
-import XMonad.Layout.Dishes
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Grid
 import XMonad.Layout.IM
 import XMonad.Layout.LayoutHints
-import XMonad.Layout.Magnifier
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed
-import XMonad.Layout.Spiral
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
@@ -35,12 +32,7 @@ isSplash = isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
 -- Layout settings
 tallLayout     = renamed [ Replace "tall" ] $ Tall 1 (1 / 100) (6 / 10)
 fullLayout     = renamed [ Replace "full" ] $ Full
-dishLayout     = renamed [ Replace "dish" ]
-               $ magnifiercz' 1.333
-               $ Dishes 2 (1 / 5)
-spiralLayout   = renamed [ Replace "sprl" ]
-               $ magnifiercz' 1.333
-               $ spiral (5 / 6)
+threeColLayout = renamed [ Replace "3col" ] $ ThreeColMid 1 (1 / 100) (1 / 2)
 gridLayout     = renamed [ Replace "grid" ] $ GridRatio 1
 
 gimpLayout = renamed [ Replace "gimp" ]
@@ -79,8 +71,7 @@ main = do
                           $ onWorkspace "4" gimpLayout
                           $ tallLayout
                         ||| fullLayout
-                        ||| dishLayout
-                        ||| spiralLayout
+                        ||| threeColLayout
                         ||| gridLayout
         , manageHook      = composeAll [ fullscreenManageHook
                                        , manageMedia
