@@ -195,6 +195,7 @@ GCD
 GDR
 GData
 GFS
+GLX
 GPS
 GSE
 GSLB
@@ -610,6 +611,7 @@ Win32
 Wipeout
 WordPress
 WordPress's
+X11
 XHR
 XHTML
 XMonad
@@ -868,6 +870,7 @@ lithic
 lithics
 localhost
 localizable
+loggable
 marginless
 marshalls
 may've
@@ -1033,6 +1036,7 @@ sacrificium
 sandboxed
 sandboxing
 screenreader
+screensaver
 screenshot
 screenshots
 seamonster
@@ -1078,6 +1082,8 @@ subdomain
 subdomains
 subfolder
 subfolders
+subinterface
+subinterfaces
 submenu
 submenus
 submodel
@@ -1119,6 +1125,7 @@ tetherable
 texting
 thmette
 throbber
+thumbnailer
 thunks
 timestamp
 timestamping
@@ -1183,6 +1190,7 @@ util
 v2
 vararg
 varargs
+vblank
 versioned
 viewership
 viewport
@@ -1209,5 +1217,3 @@ xkcd
 yay
 zooarchaeology
 ಠ‿ಠ
-subinterface
-subinterfaces
