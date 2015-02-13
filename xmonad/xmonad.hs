@@ -27,13 +27,10 @@ import XMonad.Layout.ThreeColumns
 import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
 
-import qualified XMonad.StackSet as W
-
 -- Helper functions
 gimpToolbox = Role "gimp-toolbox"
 gimpDock    = Role "gimp-dock"
 
-doSink   = ask >>= doF . W.sink
 isSplash = isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
 
 -- Layout settings
@@ -55,18 +52,12 @@ gimpLayout = renamed [ Replace "gimp" ]
            $ Grid
 
 -- Manage hooks
-manageChat    = composeOne $ map (-?> doShift "6")
-    [ className =? "Gajim"
-    , className =? "Gajim.py"
-    , className =? "Skype" ]
 manageMedia   = composeOne $ map (-?> doShift "5")
     [ className =? "Pithos"
     , className =? "Quodlibet"
     , className =? "Totem" ]
 manageGimp    = composeOne $ map (-?> doShift "4")
     [ className =? "Gimp-2.6" ]
-manageSinks   = composeOne $ map (-?> doSink)
-    [ className =? "Skype" {- A bit too general, but OK for now -} ]
 manageFloats  = composeOne $ map (-?> doCenterFloat)
     [ isDialog
     , className =? "Gcalctool"
@@ -93,10 +84,8 @@ main = do
                         ||| spiralLayout
                         ||| gridLayout
         , manageHook      = composeAll [ fullscreenManageHook
-                                       , manageChat
                                        , manageMedia
                                        , manageGimp
-                                       , manageSinks
                                        , manageFloats
                                        , manageIgnores ]
                         <+> manageHook gnomeConfig
