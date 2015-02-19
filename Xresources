@@ -48,7 +48,7 @@ URxvt.scrollBar:         false
 URxvt.scrollTtyOutput:   false
 URxvt.scrollWithBuffer:  true
 URxvt.scrollTtyKeypress: true
-URxvt.saveLines:         16384
+URxvt.saveLines:         65536
 URxvt.cursorBlink:       true
 URxvt.pointerBlank:      true
 URxvt.pointerBlankDelay: 987654321
