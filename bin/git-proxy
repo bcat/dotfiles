@@ -1,2 +1,0 @@
-#!/bin/sh
-exec ssh achelois.bcat.name "exec nc $@"
