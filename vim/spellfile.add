@@ -159,6 +159,7 @@ EINVAL
 EOF
 EOL
 EUC
+EUCs
 EVT
 EasyMock
 Eclim
@@ -949,6 +950,10 @@ offline
 omnibox
 omnibox's
 omniboxes
+onboard
+onboarded
+onboarding
+onboards
 optionally
 overanalysis
 overprovisioned
@@ -1202,6 +1207,7 @@ v2
 vararg
 varargs
 vblank
+verifiably
 versioned
 viewership
 viewport
