@@ -1,6 +1,14 @@
-# Include the system's readline configuration.
+# Include the system's Readline configuration.
 $include /etc/inputrc
 
 # Make the up and down arrow keys match on partially typed commands.
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+
+# Handle Ctrl+Left and Ctrl+Right in urxvt.
+"\eOd": backward-word
+"\eOc": forward-word
+
+# Handle Ctrl+Left and Ctrl+Right in PuTTY.
+"\eOD": backward-word
+"\eOC": forward-word
