@@ -270,6 +270,8 @@ Iulus
 JARs
 JDBC
 JDK
+JESR
+JESR's
 JIT
 JNI
 JProfiler
@@ -841,6 +843,7 @@ hashCode
 high's
 hijab
 hostname
+href
 hyperlink
 hyperlinks
 hyperref
@@ -854,6 +857,7 @@ iframe
 iframes
 infima
 infimum
+init
 injectivity
 inline
 inlined
@@ -991,6 +995,7 @@ postprocesses
 postprocessing
 precompiler
 prefetch
+prefetched
 prefetching
 prehension
 preimage
