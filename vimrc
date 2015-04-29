@@ -31,11 +31,12 @@ set scrolloff=4
 " available completions as characters are typed.
 set completeopt=menu,longest
 
-" Make indentation and wrapping behave in a civilized manner.
+" Make indentation and wrapping behave in a civilized manner. These are our
+" preferred settings; we tweak them for specific languages below.
 set expandtab
 
 set tabstop=2
-set shiftwidth=2
+set shiftwidth=0
 
 set textwidth=80
 
@@ -110,15 +111,14 @@ if has("autocmd")
   autocmd FileType qf setlocal nobuflisted
 
   " Tweak the indentation and wrapping settings a bit for certain file formats.
-  autocmd FileType css        setlocal tabstop=2 shiftwidth=2 textwidth=80
-  autocmd FileType haskell    setlocal tabstop=4 shiftwidth=4
-  autocmd FileType html       setlocal tabstop=2 shiftwidth=2 textwidth=80
-  autocmd FileType java       setlocal tabstop=2 shiftwidth=2 textwidth=100
-  autocmd FileType markdown   setlocal tabstop=4 shiftwidth=4 textwidth=0
-  autocmd FileType php        setlocal tabstop=4 shiftwidth=4 textwidth=100
-  autocmd FileType python     setlocal tabstop=4 shiftwidth=4
-  autocmd FileType sql        setlocal tabstop=4 shiftwidth=4 textwidth=100
-  autocmd FileType tex        setlocal                        textwidth=0
+  autocmd FileType haskell    setlocal             tabstop=4
+  autocmd FileType html       setlocal                       textwidth=100
+  autocmd FileType go         setlocal noexpandtab tabstop=8 textwidth=0
+  autocmd FileType java       setlocal                       textwidth=100
+  autocmd FileType markdown   setlocal             tabstop=4 textwidth=0
+  autocmd FileType php        setlocal             tabstop=4
+  autocmd FileType python     setlocal             tabstop=4
+  autocmd FileType tex        setlocal                       textwidth=0
 
   " Highlight Google Apps Script source files as JavaScript.
   autocmd BufNewFile,BufRead *.gs set filetype=javascript
