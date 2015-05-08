@@ -7,6 +7,7 @@ ACM's
 ACPI
 ACT's
 AFAICT
+AGSA
 APA
 API
 API's
@@ -98,6 +99,7 @@ Cayley's
 Central's
 Chau
 Cisjordan
+ColumnIO
 Comcast
 Comcast's
 Cosley
@@ -359,7 +361,9 @@ MDB
 MLA
 MNI
 MP3s
+MPM
 MPRIS
+MRs
 MSCR
 MTH
 MVC
@@ -665,6 +669,8 @@ antiheros
 app
 app's
 apps
+arg
+args
 async
 attribute's
 auditable
@@ -713,6 +719,7 @@ builtin
 bytecode
 changelist
 changelists
+charset
 checkbox
 cherrypick
 cinematographically
@@ -753,6 +760,10 @@ datacenter
 datacenters
 datastore
 datastores
+dedupe
+deduped
+dedupes
+deduping
 definedness
 deintensify
 demercuration
@@ -836,6 +847,7 @@ geocode
 geocoding
 geolocated
 geolocation
+grep
 hacky
 hardcode
 hardcoded
@@ -937,6 +949,7 @@ n. pag.
 n.d.
 namespace
 namespaces
+nitpicky
 nitty
 noir
 nonalphanumeric
