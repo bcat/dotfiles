@@ -13,42 +13,24 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Grid
-import XMonad.Layout.IM
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.NoBorders
-import XMonad.Layout.PerWorkspace
-import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
 
--- Helper functions
-gimpToolbox = Role "gimp-toolbox"
-gimpDock    = Role "gimp-dock"
-
 isSplash = isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
 
--- Layout settings
 tallLayout     = renamed [ Replace "tall" ] $ Tall 1 (1 / 100) (6 / 10)
 fullLayout     = renamed [ Replace "full" ] $ Full
 threeColLayout = renamed [ Replace "3col" ] $ ThreeColMid 1 (1 / 100) (1 / 2)
 gridLayout     = renamed [ Replace "grid" ] $ GridRatio 1
 
-gimpLayout = renamed [ Replace "gimp" ]
-           $ withIM (15 / 100) gimpToolbox
-           $ reflectHoriz
-           $ withIM (15 / 85) gimpDock
-           $ reflectHoriz
-           $ Grid
-
--- Manage hooks
 manageMedia   = composeOne $ map (-?> doShift "5")
     [ className =? "Pithos"
     , className =? "Quodlibet"
     , className =? "Totem" ]
-manageGimp    = composeOne $ map (-?> doShift "4")
-    [ className =? "Gimp-2.6" ]
 manageFloats  = composeOne $ map (-?> doCenterFloat)
     [ isDialog
     , className =? "Gcalctool"
@@ -59,7 +41,6 @@ manageFloats  = composeOne $ map (-?> doCenterFloat)
 manageIgnores = composeOne $ map (-?> doIgnore)
     [ isSplash ]
 
--- Main configuration
 main = do
     xmonad $ withUrgencyHook NoUrgencyHook $ pagerHints $ gnomeConfig
         { terminal        = "urxvt"
@@ -68,14 +49,12 @@ main = do
                           $ layoutHintsWithPlacement (0.5, 0.5)
                           $ desktopLayoutModifiers
                           $ smartBorders
-                          $ onWorkspace "4" gimpLayout
                           $ tallLayout
                         ||| fullLayout
                         ||| threeColLayout
                         ||| gridLayout
         , manageHook      = composeAll [ fullscreenManageHook
                                        , manageMedia
-                                       , manageGimp
                                        , manageFloats
                                        , manageIgnores ]
                         <+> manageHook gnomeConfig
