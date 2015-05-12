@@ -19,7 +19,7 @@ if [[ $TERM =~ ^(cygwin|linux) ]]; then
   _bash_prompt_term_cyan=$'\033[1;36m'
   _bash_prompt_term_white=$'\033[1;37m'
 
-  _bash_prompt_term_red=$'\033[1;31m'
+  _bash_prompt_term_bold_red=$'\033[1;31m'
   _bash_prompt_term_bold_white=$'\033[1;37m'
 elif [[ $TERM =~ ^(putty|rxvt|screen|xterm) ]]; then
   # All other terminal emulators we care about do support aixterm escapes.
