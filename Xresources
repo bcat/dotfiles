@@ -43,6 +43,7 @@ URxvt.color15:           #fee3b4
 
 ! Configure the font and some other things for urxvt.
 URxvt.font:              xft:GohuFont:pixelsize=11
+URxvt.intensityStyles:   false
 URxvt.urgentOnBell:      true
 URxvt.scrollBar:         false
 URxvt.scrollTtyOutput:   false
