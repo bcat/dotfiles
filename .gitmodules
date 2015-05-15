@@ -1,6 +1,9 @@
 [submodule "config/lscolors"]
 	path = config/lscolors
 	url = git://github.com/trapd00r/LS_COLORS.git
+[submodule "tmux/plugins/sensible"]
+	path = tmux/plugins/sensible
+	url = git://github.com/tmux-plugins/tmux-sensible.git
 [submodule "vim/bundle/abbott"]
 	path = vim/bundle/abbott
 	url = git@github.com:bcat/abbott.vim.git
