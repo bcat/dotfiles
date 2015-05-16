@@ -18,9 +18,9 @@ set tildeop
 set lazyredraw
 set number
 set numberwidth=5
-if exists("&colorcolumn")
+if exists('&colorcolumn')
   set colorcolumn=+2
-  if has("autocmd")
+  if has('autocmd')
     autocmd FileType qf setlocal colorcolumn=
   endif
 endif
@@ -41,14 +41,14 @@ set shiftwidth=0
 set textwidth=80
 
 " Make indentation smarter.
-if has("smartindent")
+if has('smartindent')
   set smartindent
 endif
 
 " Set up custom key bindings.
 " See also: <http://vimcasts.org/episodes/creating-colorschemes-for-vim/>
-let mapleader=","
-let maplocalleader=","
+let mapleader = ','
+let maplocalleader = ','
 
 nnoremap <silent> <Leader><Leader> :nohlsearch<CR>
 nnoremap <silent> <Leader>s :set spell!<CR>
@@ -57,8 +57,8 @@ noremap <silent> <Leader><Space> :EraseBadWhitespace<CR>
 nmap <silent> <Leader>cc <Plug>RefreshColorScheme
 nmap <silent> <Leader>ch <Plug>HexHighlightToggle
 nmap <silent> <Leader>cr <Plug>HexHighlightRefresh
-noremap <silent> <Leader>cs :echo map(synstack(line("."), col(".")),
-      \ 'synIDattr(v:val, "name")')<CR>
+noremap <silent> <Leader>cs
+    \ :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 
 nnoremap <silent> <Leader>aj :LustyJuggler<CR>
 nnoremap <silent> <Leader>af :LustyFilesystemExplorer<CR>
@@ -80,89 +80,89 @@ call pathogen#helptags()
 
 " Customize the UltiSnips search path to avoid default snippets. We can't just
 " call this directory "snippets" since that name is reserved for snipMate.
-let g:UltiSnipsSnippetDirectories=["ultisnips"]
+let g:UltiSnipsSnippetDirectories = ['ultisnips']
 
 " Configure the LaTeX Box plugin.
-let g:LatexBox_latexmk_options="-pvc"
+let g:LatexBox_latexmk_options = '-pvc'
 
 " Disable default mappings for the LustyExplorer and LustyJuggler plugins to
 " avoid conflicts with LaTeX Box.
-let g:LustyExplorerDefaultMappings=0
-let g:LustyJugglerDefaultMappings=0
+let g:LustyExplorerDefaultMappings = 0
+let g:LustyJugglerDefaultMappings = 0
 
 " Configure the Eclim plugin.
-let g:EclimBuffersDefaultAction="edit"
-let g:EclimDefaultFileOpenAction="edit"
-let g:EclimJavaCallHierarchyDefaultAction="edit"
-let g:EclimJavaHierarchyDefaultAction="edit"
-let g:EclimLocateFileDefaultAction="edit"
-let g:EclimLoggingDisabled=1
-let g:EclimProjectTreeExpandPathOnOpen=1
-let g:EclimPythonValidate=0
-let g:EclimTempFilesEnable=0
+let g:EclimBuffersDefaultAction = 'edit'
+let g:EclimDefaultFileOpenAction = 'edit'
+let g:EclimJavaCallHierarchyDefaultAction = 'edit'
+let g:EclimJavaHierarchyDefaultAction = 'edit'
+let g:EclimLocateFileDefaultAction = 'edit'
+let g:EclimLoggingDisabled = 1
+let g:EclimProjectTreeExpandPathOnOpen = 1
+let g:EclimPythonValidate = 0
+let g:EclimTempFilesEnable = 0
 
 " Enable settings specific to various file formats.
-let g:tex_indent_and=0
-let g:tex_flavor="latex"
-let g:tex_stylish=1
+let g:tex_indent_and = 0
+let g:tex_flavor = 'latex'
+let g:tex_stylish = 1
 
-if has("autocmd")
+if has('autocmd')
   " Don't show quickfix in buffer listings.
   autocmd FileType qf setlocal nobuflisted
 
   " Tweak the indentation and wrapping settings a bit for certain file formats.
-  autocmd FileType haskell    setlocal             tabstop=4
-  autocmd FileType html       setlocal                       textwidth=100
-  autocmd FileType go         setlocal noexpandtab tabstop=8 textwidth=0
-  autocmd FileType java       setlocal                       textwidth=100
-  autocmd FileType markdown   setlocal             tabstop=4 textwidth=0
-  autocmd FileType php        setlocal             tabstop=4
-  autocmd FileType python     setlocal             tabstop=4
-  autocmd FileType tex        setlocal                       textwidth=0
+  autocmd FileType haskell setlocal tabstop=4
+  autocmd FileType html setlocal textwidth=100
+  autocmd FileType go setlocal noexpandtab tabstop=8 textwidth=0
+  autocmd FileType java setlocal textwidth=100
+  autocmd FileType markdown setlocal tabstop=4 textwidth=0
+  autocmd FileType php setlocal tabstop=4
+  autocmd FileType python setlocal tabstop=4
+  autocmd FileType tex setlocal textwidth=0
 
   " Highlight Google Apps Script source files as JavaScript.
   autocmd BufNewFile,BufRead *.gs set filetype=javascript
 
-  " Highlight build system stuff as Python.
+  " Highlight Blaze/Bazel build system stuff as Python.
   autocmd BufNewFile,BufRead BUILD set filetype=python
   autocmd BufNewFile,BufRead build_defs set filetype=python
 endif
 
 " Enable fancy search settings.
-if has("extra_search")
+if has('extra_search')
   set hlsearch
 endif
 
 " Enable mouse support.
-if has("mouse")
+if has('mouse')
   set mouse=a
   set mousefocus
 endif
 
 " Set a custom dictionary for spell checking, enabling bad word highlighting by
 " default, but don't check spelling in quickfix windows, 'cause that's silly.
-if has("spell")
+if has('spell')
   set spellfile=~/.vim/spellfile.add
   set spell
 
-  if has("autocmd")
+  if has('autocmd')
     autocmd FileType qf setlocal nospell
   endif
 endif
 
 " GNU Screen and tmux support setting the window title, but don't declare that
 " in their terminfo entry.
-if &term =~ "^screen-\\?"
+if &term =~# '^screen'
   set t_ts=]2;
   set t_fs=
 endif
 
 " urxvt implements a nonstandard mouse protocol (1015).
-if &term =~ "^rxvt-unicode-\\?"
+if &term =~# '^rxvt-unicode'
   set ttymouse=urxvt
 endif
 
-if has("gui_running")
+if has('gui_running')
   " Make the default gVim Window larger.
   set lines=50
   set columns=132
@@ -178,7 +178,7 @@ if has("gui_running")
   " Set a pretty font. :) To make things a bit more cross-platform, we
   " actually specify several fonts: a primary and a few fallbacks.
   " See also: <http://vim.wikia.com/wiki/Setting_the_font_in_the_GUI>.
-  if has("gui_gtk2")
+  if has('gui_gtk2')
     set guifont=GohuFont\ 11px
     set guifont+=Envy\ Code\ R\ 10
     set guifont+=Consolas\ 10
@@ -194,6 +194,6 @@ if has("gui_running")
 endif
 
 " Set a nice color scheme.
-if has("gui_running") || &t_Co >= 88
+if has('gui_running') || &t_Co >= 88
   colorscheme abbott
 endif
