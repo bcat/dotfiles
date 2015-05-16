@@ -46,6 +46,7 @@ Bachofen
 Bachofen's
 Bahadir
 Bassam
+Bazel
 Bazin
 Bibstro
 Bigtable
@@ -476,6 +477,7 @@ QPS
 QuickTime
 RE2
 README
+RGB
 RHS
 RLY
 RNG
@@ -848,6 +850,7 @@ geocode
 geocoding
 geolocated
 geolocation
+grayscale
 grep
 hacky
 hardcode
@@ -1195,6 +1198,7 @@ unbirth
 unboxed
 uncached
 undeletion
+undercurl
 underserved
 undoable
 undrain
