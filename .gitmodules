@@ -16,9 +16,6 @@
 [submodule "vim/bundle/commentary"]
 	path = vim/bundle/commentary
 	url = git://github.com/tpope/vim-commentary.git
-[submodule "vim/bundle/csapprox"]
-	path = vim/bundle/csapprox
-	url = git://github.com/godlygeek/csapprox.git
 [submodule "vim/bundle/eunuch"]
 	path = vim/bundle/eunuch
 	url = git://github.com/tpope/vim-eunuch.git
