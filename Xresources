@@ -28,15 +28,15 @@ URxvt.color10:           #7fcb22
 ! (yellow: orange / yellow)
 URxvt.color3:            #fbb32f
 URxvt.color11:           #fbec5d
-! (blue: blue / pastel_blue)
-URxvt.color4:            #3f91f1
-URxvt.color12:           #8ccdf0
+! (blue: lime_green / pastel_green)
+URxvt.color4:            #a0ea00
+URxvt.color12:           #d8ff84
 ! (magenta: pink / lavender)
 URxvt.color5:            #ec6c99
 URxvt.color13:           #e6a2f3
-! (cyan: lime_green / pastel_green)
-URxvt.color6:            #a0ea00
-URxvt.color14:           #d8ff84
+! (cyan: blue / pastel_blue)
+URxvt.color6:            #3f91f1
+URxvt.color14:           #8ccdf0
 ! (white: tan / mint_green)
 URxvt.color7:            #fee3b4
 URxvt.color15:           #bdf7a9

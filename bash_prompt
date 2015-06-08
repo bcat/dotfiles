@@ -22,9 +22,9 @@ if [[ $_bash_prompt_num_colors -ge 16 ]]; then
   _bash_prompt_term_bright_red=$(tput setaf 9)
   _bash_prompt_term_bright_green=$(tput setaf 10)
   _bash_prompt_term_orange=$(tput setaf 3)
-  _bash_prompt_term_blue=$(tput setaf 4)
-  _bash_prompt_term_bright_blue=$(tput setaf 12)
   _bash_prompt_term_bright_magenta=$(tput setaf 13)
+  _bash_prompt_term_cyan=$(tput setaf 6)
+  _bash_prompt_term_bright_cyan=$(tput setaf 14)
   _bash_prompt_term_white=$(tput setaf 7)
 elif [[ $_bash_prompt_num_colors -ge 8 ]]; then
   # For terminals that only support 8 colors, use the bold attribute, which many
@@ -32,9 +32,9 @@ elif [[ $_bash_prompt_num_colors -ge 8 ]]; then
   _bash_prompt_term_bright_red=$_bash_prompt_term_bold$(tput setaf 1)
   _bash_prompt_term_bright_green=$_bash_prompt_term_bold$(tput setaf 2)
   _bash_prompt_term_orange=$_bash_prompt_term_reset$(tput setaf 3)
-  _bash_prompt_term_blue=$_bash_prompt_term_reset$(tput setaf 4)
-  _bash_prompt_term_bright_blue=$_bash_prompt_term_bold$(tput setaf 4)
   _bash_prompt_term_bright_magenta=$_bash_prompt_term_bold$(tput setaf 5)
+  _bash_prompt_term_cyan=$_bash_prompt_term_reset$(tput setaf 6)
+  _bash_prompt_term_bright_cyan=$_bash_prompt_term_bold$(tput setaf 6)
   _bash_prompt_term_white=$_bash_prompt_term_reset$(tput setaf 7)
 else
   # For terminals with less than the standard 8 colors, render in monochrome,
@@ -42,8 +42,8 @@ else
   _bash_prompt_term_bright_red=
   _bash_prompt_term_bright_green=
   _bash_prompt_term_orange=
-  _bash_prompt_term_blue=
-  _bash_prompt_term_bright_blue=
+  _bash_prompt_term_cyan=
+  _bash_prompt_term_bright_cyan=
   _bash_prompt_term_bright_magenta=
   _bash_prompt_term_white=
 fi
@@ -121,7 +121,7 @@ precmd () {
 }
 
 _bash_prompt_ps1_build_machine () {
-  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_blue"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_cyan"
   _bash_prompt_ps1_append "$USER"
   _bash_prompt_ps1_escape "$_bash_prompt_term_white"
   _bash_prompt_ps1_append @
@@ -247,7 +247,7 @@ _bash_prompt_ps1_build_git() {
 }
 
 _bash_prompt_ps1_build_directory () {
-  _bash_prompt_ps1_escape "$_bash_prompt_term_blue"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_cyan"
   _bash_prompt_ps1_append ' '
   _bash_prompt_ps1_append \
       "$(_bash_prompt_truncate "${PWD/#$HOME/'~'}" \
