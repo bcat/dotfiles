@@ -16,6 +16,13 @@ else
   _bash_prompt_term_bold=
 fi
 
+# Set up terminal colors for various bits of the prompt. These look best with a
+# color palette matching my Vim theme <https://github.com/bcat/abbott.vim>,
+# which actually has two additional shades of green where blue normally goes
+# (colors 4 & 12); however, these color choices should look fine with any
+# reasonable palette. Note that we intentionally don't use colors 4 & 12 because
+# these look very low-contrast in common non-Abbott color palettes (i.e., the
+# Linux console color palette).
 if [[ $_bash_prompt_num_colors -ge 16 ]]; then
   # For terminals that support high-intensity colors (i.e., terminals supporting
   # at least 16 total colors), use those directly.
