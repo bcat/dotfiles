@@ -1,40 +1,51 @@
 # Disable variable expansion in prompt strings.
 shopt -u promptvars
 
-# If the terminal supports ANSI color escape sequences, cache them for future
-# use. It would be better to use tput here, but it's sadly absent on Cygwin,
-# and probably other platforms, too. Anyway, we only use a few basic escape
-# sequences, so this shouldn't hurt. Hopefully.
-if [[ $TERM =~ ^(cygwin|linux) ]]; then
-  # The Linux virtual console and the Cygwin command prompt do not support
-  # aixterm escape sequences for bright colors; however, they do treat ANSI
-  # bold as bright, so we use that instead.
-  _bash_prompt_term_reset=$'\033[m'
+# Determine if we have tput to generate terminal escape codes. Most Unix systems
+# have a tput binary, but Cygwin doesn't have one by default, so we have to
+# fall-back to no terminal colors/attributes if we can't find tput.
+if type tput >/dev/null 2>&1; then
+  _bash_prompt_num_colors=$(tput colors)
 
-  _bash_prompt_term_red=$'\033[1;31m'
-  _bash_prompt_term_green=$'\033[1;32m'
-  _bash_prompt_term_orange=$_bash_prompt_term_reset$'\033[33m'
-  _bash_prompt_term_blue=$'\033[1;34m'
-  _bash_prompt_term_magenta=$'\033[1;35m'
-  _bash_prompt_term_cyan=$'\033[1;36m'
-  _bash_prompt_term_white=$'\033[1;37m'
+  _bash_prompt_term_reset=$(tput sgr0)
+  _bash_prompt_term_bold=$(tput bold)
+else
+  _bash_prompt_num_colors=-1
 
-  _bash_prompt_term_bold_red=$'\033[1;31m'
-  _bash_prompt_term_bold_white=$'\033[1;37m'
-elif [[ $TERM =~ ^(putty|rxvt|screen|xterm) ]]; then
-  # All other terminal emulators we care about do support aixterm escapes.
-  _bash_prompt_term_reset=$'\033[m'
+  _bash_prompt_term_reset=
+  _bash_prompt_term_bold=
+fi
 
-  _bash_prompt_term_red=$'\033[91m'
-  _bash_prompt_term_green=$'\033[92m'
-  _bash_prompt_term_orange=$'\033[33m'
-  _bash_prompt_term_blue=$'\033[94m'
-  _bash_prompt_term_magenta=$'\033[95m'
-  _bash_prompt_term_cyan=$'\033[96m'
-  _bash_prompt_term_white=$'\033[97m'
-
-  _bash_prompt_term_bold_red=$'\033[1;91m'
-  _bash_prompt_term_bold_white=$'\033[1;97m'
+if [[ $_bash_prompt_num_colors -ge 16 ]]; then
+  # For terminals that support high-intensity colors (i.e., terminals supporting
+  # at least 16 total colors), use those directly.
+  _bash_prompt_term_bright_red=$(tput setaf 9)
+  _bash_prompt_term_bright_green=$(tput setaf 10)
+  _bash_prompt_term_orange=$(tput setaf 3)
+  _bash_prompt_term_blue=$(tput setaf 4)
+  _bash_prompt_term_bright_blue=$(tput setaf 12)
+  _bash_prompt_term_bright_magenta=$(tput setaf 13)
+  _bash_prompt_term_white=$(tput setaf 7)
+elif [[ $_bash_prompt_num_colors -ge 8 ]]; then
+  # For terminals that only support 8 colors, use the bold attribute, which many
+  # terminals (including the Linux and Cygwin consoles) will render as bright.
+  _bash_prompt_term_bright_red=$_bash_prompt_term_bold$(tput setaf 1)
+  _bash_prompt_term_bright_green=$_bash_prompt_term_bold$(tput setaf 2)
+  _bash_prompt_term_orange=$_bash_prompt_term_reset$(tput setaf 3)
+  _bash_prompt_term_blue=$_bash_prompt_term_reset$(tput setaf 4)
+  _bash_prompt_term_bright_blue=$_bash_prompt_term_bold$(tput setaf 4)
+  _bash_prompt_term_bright_magenta=$_bash_prompt_term_bold$(tput setaf 5)
+  _bash_prompt_term_white=$_bash_prompt_term_reset$(tput setaf 7)
+else
+  # For terminals with less than the standard 8 colors, render in monochrome,
+  # but still use the bold attribute if we found it above.
+  _bash_prompt_term_bright_red=
+  _bash_prompt_term_bright_green=
+  _bash_prompt_term_orange=
+  _bash_prompt_term_blue=
+  _bash_prompt_term_bright_blue=
+  _bash_prompt_term_bright_magenta=
+  _bash_prompt_term_white=
 fi
 
 # Set a flag if the system supports ACPI and has a battery.
@@ -110,11 +121,11 @@ precmd () {
 }
 
 _bash_prompt_ps1_build_machine () {
-  _bash_prompt_ps1_escape "$_bash_prompt_term_cyan"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_blue"
   _bash_prompt_ps1_append "$USER"
   _bash_prompt_ps1_escape "$_bash_prompt_term_white"
   _bash_prompt_ps1_append @
-  _bash_prompt_ps1_escape "$_bash_prompt_term_magenta"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_magenta"
   _bash_prompt_ps1_append "$(hostname -s)"
 }
 
@@ -132,11 +143,11 @@ _bash_prompt_ps1_build_jobs () {
   local count=$(jobs | wc -l)
 
   if (( count == 0 )); then
-    _bash_prompt_ps1_escape "$_bash_prompt_term_green"
+    _bash_prompt_ps1_escape "$_bash_prompt_term_bright_green"
   elif (( count == 1 )); then
     _bash_prompt_ps1_escape "$_bash_prompt_term_orange"
   else
-    _bash_prompt_ps1_escape "$_bash_prompt_term_red"
+    _bash_prompt_ps1_escape "$_bash_prompt_term_bright_red"
   fi
 
   _bash_prompt_ps1_append "$count"
@@ -156,11 +167,11 @@ _bash_prompt_ps1_build_load () {
       local load_int=$((10#${BASH_REMATCH[2]}${BASH_REMATCH[3]}))
 
   if (( load_int < _bash_prompt_cpu_count * 50 )); then
-    _bash_prompt_ps1_escape "$_bash_prompt_term_green"
+    _bash_prompt_ps1_escape "$_bash_prompt_term_bright_green"
   elif (( load_int < _bash_prompt_cpu_count * 100 )); then
     _bash_prompt_ps1_escape "$_bash_prompt_term_orange"
   else
-    _bash_prompt_ps1_escape "$_bash_prompt_term_red"
+    _bash_prompt_ps1_escape "$_bash_prompt_term_bright_red"
   fi
 
   _bash_prompt_ps1_append "$load"
@@ -180,11 +191,11 @@ _bash_prompt_ps1_build_battery () {
   local charge=$(( total / ${#charges[@]} ))
 
   if (( $charge > 90 )); then
-    _bash_prompt_ps1_escape "$_bash_prompt_term_green"
+    _bash_prompt_ps1_escape "$_bash_prompt_term_bright_green"
   elif (( $charge > 45 )); then
     _bash_prompt_ps1_escape "$_bash_prompt_term_orange"
   else
-    _bash_prompt_ps1_escape "$_bash_prompt_term_red"
+    _bash_prompt_ps1_escape "$_bash_prompt_term_bright_red"
   fi
 
   _bash_prompt_ps1_append "$charge%"
@@ -222,12 +233,12 @@ _bash_prompt_ps1_build_git() {
 
   if [[ $branch_info =~ \[(ahead|behind)\ [[:digit:]]+\] ]]; then
     if [[ ${BASH_REMATCH[1]} == behind ]]; then
-      _bash_prompt_ps1_escape "$_bash_prompt_term_red"
+      _bash_prompt_ps1_escape "$_bash_prompt_term_bright_red"
     else
       _bash_prompt_ps1_escape "$_bash_prompt_term_orange"
     fi
   else
-    _bash_prompt_ps1_escape "$_bash_prompt_term_green"
+    _bash_prompt_ps1_escape "$_bash_prompt_term_bright_green"
   fi
 
   _bash_prompt_ps1_append "$branch_name$status_char"
@@ -245,10 +256,11 @@ _bash_prompt_ps1_build_directory () {
 
 _bash_prompt_ps1_build_symbol () {
   if (( UID == 0 )); then
-    _bash_prompt_ps1_escape "$_bash_prompt_term_bold_red"
+    _bash_prompt_ps1_escape \
+        "$_bash_prompt_term_bright_red$_bash_prompt_term_bold"
     _bash_prompt_ps1_append '# '
   else
-    _bash_prompt_ps1_escape "$_bash_prompt_term_bold_white"
+    _bash_prompt_ps1_escape "$_bash_prompt_term_white$_bash_prompt_term_bold"
     _bash_prompt_ps1_append '$ '
   fi
 }
