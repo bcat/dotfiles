@@ -63,7 +63,7 @@ handle_dir () {
 
   if [ -d "$dest" ]; then
     [ x"$verbose" = x1 ] \
-        && printf '%s\n' "Directory $dest already exists; skipping."
+        && printf '%s\n' "Directory $dest already exists; skipping"
     return
   fi
 
@@ -84,7 +84,7 @@ handle_file () {
   else
     if [ "$(readlink -f "$dest")" = "$src" ]; then
       [ x"$verbose" = x1 ] \
-          && printf '%s\n' "Symbolic link $dest already exists; skipping."
+          && printf '%s\n' "Symbolic link $dest already exists; skipping"
       return
     fi
   fi
@@ -92,11 +92,11 @@ handle_file () {
   [ -e "$dest" ] && dont_replace File "$dest" && return
 
   if [ x"$ext" = xlocal ]; then
-    printf '%s\n' "Copying file $src to $dest."
+    printf '%s\n' "Copying file $src to $dest"
     cp "$src" "$dest"
     chmod g-rwx,o-rwx "$dest"
   else
-    printf '%s\n' "Symbolically linking $dest to $src."
+    printf '%s\n' "Symbolically linking $dest to $src"
     ln -s "$src" "$dest"
   fi
 }
@@ -136,7 +136,7 @@ done
 if [ x"$check_symlinks" = x1 ]; then
   broken_symlink_script=$(cat <<'EOU'
 for symlink; do
-  printf '%s\n' "Broken symbolic link (deleted dotfile?) $symlink."
+  printf '%s\n' "Broken symbolic link (deleted dotfile?) $symlink"
 done
 EOU
 )
