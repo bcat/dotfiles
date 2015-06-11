@@ -56,16 +56,42 @@ if has('autocmd')
   " Don't list quickfix buffer, and don't wrap it or show a right margin.
   autocmd FileType qf setlocal nobuflisted textwidth=0
 
-  " Tweak indentation and wrapping for certain file formats.
+  " Set C/C++ indentation to match Google C++ style:
+  " http://google.github.io/styleguide/cppguide.html.
   autocmd FileType cpp setlocal cinoptions+=l1 cinoptions+=g1 cinoptions+=h1
       \ cinoptions+=N-s cinoptions+=(0 cinoptions+=j1
+
+  " Set Haskell indentation to match XMonad coding style:
+  " http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Doc-Developing.html.
   autocmd FileType haskell setlocal tabstop=4 shiftwidth=4
+
+  " Wrap HTML files at 100 characters to match common conventions.
   autocmd FileType html setlocal textwidth=100
+
+  " Set Go indentation and disable wrapping to match Go style:
+  " http://golang.org/doc/effective_go.html.
   autocmd FileType go setlocal noexpandtab tabstop=8 shiftwidth=8 textwidth=0
+
+  " Wrap Java files at 100 chars to match Google Java style:
+  " http://google.github.io/styleguide/javaguide.html.
   autocmd FileType java setlocal textwidth=100
-  autocmd FileType markdown setlocal tabstop=4 shiftwidth=4 textwidth=0
+
+  " Set Markdown indentation to match syntactic requirements:
+  " http://daringfireball.net/projects/markdown/syntax.
+  autocmd FileType markdown setlocal tabstop=4 shiftwidth=4
+
+  " Set PHP indentation to match Zend Framework coding standard:
+  " http://framework.zend.com/manual/1.12/en/coding-standard.html.
   autocmd FileType php setlocal tabstop=4 shiftwidth=4
+
+  " Use C-style indentation for protocol buffer definitions.
+  autocmd FileType proto setlocal cindent
+
+  " Set Python indentation to match Google Python style:
+  " http://google.github.io/styleguide/pyguide.html.
   autocmd FileType python setlocal tabstop=4 shiftwidth=4
+
+  " Disable wrapping for TeX to allow one line per sentence for clean diffs.
   autocmd FileType tex setlocal textwidth=0
 
   " Highlight Google Apps Script source files as JavaScript.
@@ -209,7 +235,6 @@ if has('gui_running')
 
   " Set a pretty font. :) To make things a bit more cross-platform, we
   " actually specify several fonts: a primary and a few fallbacks.
-  " See also: <http://vim.wikia.com/wiki/Setting_the_font_in_the_GUI>.
   if has('gui_gtk2')
     set guifont=GohuFont\ 11px
     set guifont+=Envy\ Code\ R\ 10
