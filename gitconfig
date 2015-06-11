@@ -1,10 +1,10 @@
-[user]
-  name = Jonathan Rascher
-  email = jon@bcat.name
+[color]
+  ui = true
 
 [core]
   autocrlf = false
   excludesfile = ~/.gitignore
 
-[color]
-  ui = true
+[user]
+  name = Jonathan Rascher
+  email = jon@bcat.name
