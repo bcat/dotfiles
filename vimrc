@@ -57,6 +57,8 @@ if has('autocmd')
   autocmd FileType qf setlocal nobuflisted textwidth=0
 
   " Tweak indentation and wrapping for certain file formats.
+  autocmd FileType cpp setlocal cinoptions+=l1 cinoptions+=g1 cinoptions+=h1
+      \ cinoptions+=N-s cinoptions+=(0 cinoptions+=j1
   autocmd FileType haskell setlocal tabstop=4 shiftwidth=4
   autocmd FileType html setlocal textwidth=100
   autocmd FileType go setlocal noexpandtab tabstop=8 shiftwidth=8 textwidth=0
