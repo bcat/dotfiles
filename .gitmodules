@@ -22,6 +22,9 @@
 [submodule "vim/bundle/go"]
 	path = vim/bundle/go
 	url = git://github.com/fatih/vim-go.git
+[submodule "vim/bundle/haskell"]
+	path = vim/bundle/haskell
+	url = git://github.com/raichoo/haskell-vim.git
 [submodule "vim/bundle/hexhighlight"]
 	path = vim/bundle/hexhighlight
 	url = git://github.com/yurifury/hexHighlight.git
@@ -46,9 +49,6 @@
 [submodule "vim/bundle/repeat"]
 	path = vim/bundle/repeat
 	url = git://github.com/tpope/vim-repeat.git
-[submodule "vim/bundle/syntaxhaskell"]
-	path = vim/bundle/syntaxhaskell
-	url = git://github.com/vim-scripts/syntaxhaskell.vim.git
 [submodule "vim/bundle/surround"]
 	path = vim/bundle/surround
 	url = git://github.com/tpope/vim-surround.git

@@ -124,6 +124,10 @@ let g:EclimProjectTreeExpandPathOnOpen = 1
 let g:EclimPythonValidate = 0
 let g:EclimTempFilesEnable = 0
 
+" Configure the haskell-vim plugin.
+let g:haskell_indent_case = 5
+let g:haskell_indent_in = 0
+
 " Configure the LaTeX Box plugin.
 let g:LatexBox_latexmk_options = '-pvc'
 
