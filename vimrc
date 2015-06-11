@@ -21,12 +21,6 @@ set lazyredraw
 set number
 set numberwidth=5
 
-" For buffers where textwidth is nonzero, show a right-margin two characters
-" *after* the wrapping point. (Text colliding with the margin needs wrapping.)
-if exists('&colorcolumn')
-  set colorcolumn=+2
-endif
-
 " Prefer to break lines at punctuation when soft wrapping.
 set linebreak
 
@@ -38,90 +32,55 @@ set sidescrolloff=8
 " available completions as characters are typed.
 set completeopt=menu,longest
 
-" Make indentation and wrapping behave in a civilized manner. These are our
-" preferred settings; we tweak them for specific languages below.
+" Uses spaces for indentation by default. (Overridden for some languages below.)
 set expandtab
 
+" Use two-space tabs by default. (Overridden for some languages below.)
+"
+" It'd be nice to just set shiftwidth=0 so plugins calling shiftwidth() would
+" automatically take the value from tabstop; however, this isn't even respected
+" by all the standard indent plugins as of Vim 7.4.622. :(
 set tabstop=2
-set shiftwidth=0
+set shiftwidth=2
 
+" Wrap files at 80 characters by default. (Overridden for some languages below.)
 set textwidth=80
 
-" Make indentation smarter.
-if has('smartindent')
-  set smartindent
+" For buffers where textwidth is nonzero, show a right-margin two characters
+" *after* the wrapping point. Not available before Vim 7.3.
+if exists('&colorcolumn')
+  set colorcolumn=+2
 endif
 
-" Begin custom keybindings with the comma (,) key.
-let mapleader = ','
-let maplocalleader = ','
+if has('autocmd')
+  " Don't list quickfix buffer, and don't wrap it or show a right margin.
+  autocmd FileType qf setlocal nobuflisted textwidth=0
 
-" Configure custom keybindings:
-"
-" ,,        Clear search highlight
-" ,s        Toggle spell checker
-"
-" ,<Space>  Remove trailing whitespace
-" ,cc       Reload current color scheme
-" ,ch       Highlight hexadecimal colors
-" ,cr       Reload hexadecimal color highlights
-" ,cs       Show highlight groups for character under the cursor
-"
-" (See also http://vimcasts.org/episodes/creating-colorschemes-for-vim/.)
-"
-" ,aj       LustyJuggler: Open quick buffer chooser
-"
-" ,af       LustyExplorer: Open file chooser in working directory
-" ,ar       LustyExplorer: Open file chooser relative to file in current buffer
-" ,ab       LustyExplorer: Open buffer chooser
-" ,ag       LustyExplorer: Open buffer contents search tool
-"
-" ,ea       Eclim: Open or close buffer with tree view of current project
-" ,ee       Eclim: Search project for source element under the cursor
-" ,ef       Eclim: Open fuzzy search tool for Java classes, source files, etc.
-" ,eh       Eclim: Open Java call hierarchy for method under cursor
-" ,eo       Eclim: Remove unused Java imports and organize remaining imports
-" ,ep       Eclim: Show compilation errors in quickfix buffer
-nnoremap <silent> <Leader><Leader> :nohlsearch<CR>
-nnoremap <silent> <Leader>s :set spell!<CR>
+  " Tweak indentation and wrapping for certain file formats.
+  autocmd FileType haskell setlocal tabstop=4 shiftwidth=4
+  autocmd FileType html setlocal textwidth=100
+  autocmd FileType go setlocal noexpandtab tabstop=8 shiftwidth=8 textwidth=0
+  autocmd FileType java setlocal textwidth=100
+  autocmd FileType markdown setlocal tabstop=4 shiftwidth=4 textwidth=0
+  autocmd FileType php setlocal tabstop=4 shiftwidth=4
+  autocmd FileType python setlocal tabstop=4 shiftwidth=4
+  autocmd FileType tex setlocal textwidth=0
 
-noremap <silent> <Leader><Space> :EraseBadWhitespace<CR>
+  " Highlight Google Apps Script source files as JavaScript.
+  autocmd BufNewFile,BufRead *.gs setlocal filetype=javascript
 
-nmap <silent> <Leader>cc <Plug>RefreshColorScheme
-nmap <silent> <Leader>ch <Plug>HexHighlightToggle
-nmap <silent> <Leader>cr <Plug>HexHighlightRefresh
-noremap <silent> <Leader>cs
-    \ :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
+  " Highlight Blaze/Bazel build system stuff as Python.
+  autocmd BufNewFile,BufRead BUILD setlocal filetype=python
+  autocmd BufNewFile,BufRead build_defs setlocal filetype=python
+endif
 
-nnoremap <silent> <Leader>aj :LustyJuggler<CR>
-nnoremap <silent> <Leader>af :LustyFilesystemExplorer<CR>
-nnoremap <silent> <Leader>ar :LustyFilesystemExplorerFromHere<CR>
-nnoremap <silent> <Leader>ab :LustyBufferExplorer<CR>
-nnoremap <silent> <Leader>ag :LustyBufferGrep<CR>
+" Configure the standard TeX plugin.
+let g:tex_indent_and = 0
+let g:tex_flavor = 'latex'
+let g:tex_stylish = 1
 
-nnoremap <silent> <Leader>ea :ProjectTreeToggle<CR>
-nnoremap <silent> <Leader>ee :JavaSearchContext<CR>
-nnoremap <silent> <Leader>ef :LocateFile<CR>
-nnoremap <silent> <Leader>eh :JavaCallHierarchy<CR>
-nnoremap <silent> <Leader>eo :JavaImportOrganize<CR>
-nnoremap <silent> <Leader>ep :ProjectProblems!<CR>
-
-" Load plugins 'n' stuff with Pathogen.
-runtime bundle/pathogen/autoload/pathogen.vim
-call pathogen#infect()
-call pathogen#helptags()
-
-" Customize the UltiSnips search path to avoid default snippets. We can't just
-" call this directory "snippets" since that name is reserved for snipMate.
-let g:UltiSnipsSnippetDirectories = ['ultisnips']
-
-" Configure the LaTeX Box plugin.
-let g:LatexBox_latexmk_options = '-pvc'
-
-" Disable default mappings for the LustyExplorer and LustyJuggler plugins to
-" avoid conflicts with LaTeX Box.
-let g:LustyExplorerDefaultMappings = 0
-let g:LustyJugglerDefaultMappings = 0
+" Configure the standard Vim plugin.
+let g:vim_indent_cont = 4
 
 " Configure the Eclim plugin.
 let g:EclimBuffersDefaultAction = 'edit'
@@ -134,43 +93,12 @@ let g:EclimProjectTreeExpandPathOnOpen = 1
 let g:EclimPythonValidate = 0
 let g:EclimTempFilesEnable = 0
 
-" Enable settings specific to various file formats.
-let g:tex_indent_and = 0
-let g:tex_flavor = 'latex'
-let g:tex_stylish = 1
-
-if has('autocmd')
-  " Don't show quickfix in buffer listings. Also don't enforce file width or
-  " show a right margin.
-  autocmd FileType qf setlocal nobuflisted textwidth=0
-
-  " Tweak the indentation and wrapping settings a bit for certain file formats.
-  autocmd FileType haskell setlocal tabstop=4
-  autocmd FileType html setlocal textwidth=100
-  autocmd FileType go setlocal noexpandtab tabstop=8 textwidth=0
-  autocmd FileType java setlocal textwidth=100
-  autocmd FileType markdown setlocal tabstop=4 textwidth=0
-  autocmd FileType php setlocal tabstop=4
-  autocmd FileType python setlocal tabstop=4
-  autocmd FileType tex setlocal textwidth=0
-
-  " Highlight Google Apps Script source files as JavaScript.
-  autocmd BufNewFile,BufRead *.gs set filetype=javascript
-
-  " Highlight Blaze/Bazel build system stuff as Python.
-  autocmd BufNewFile,BufRead BUILD set filetype=python
-  autocmd BufNewFile,BufRead build_defs set filetype=python
-endif
+" Configure the LaTeX Box plugin.
+let g:LatexBox_latexmk_options = '-pvc'
 
 " Enable fancy search settings.
 if has('extra_search')
   set hlsearch
-endif
-
-" Enable mouse support.
-if has('mouse')
-  set mouse=a
-  set mousefocus
 endif
 
 " Set a custom dictionary for spell checking, enabling bad word highlighting by
@@ -184,6 +112,17 @@ if has('spell')
   endif
 endif
 
+if has('mouse')
+  " Enable mouse support for GUI Vim and terminal Vim (if supported).
+  set mouse=a
+  set mousefocus
+
+  " urxvt implements a nonstandard mouse protocol (1015).
+  if &term =~# '^rxvt-unicode'
+    set ttymouse=urxvt
+  endif
+endif
+
 " GNU Screen and tmux support setting the window title, but don't declare that
 " in their terminfo entry.
 if &term =~# '^screen'
@@ -191,10 +130,68 @@ if &term =~# '^screen'
   set t_fs=
 endif
 
-" urxvt implements a nonstandard mouse protocol (1015).
-if &term =~# '^rxvt-unicode'
-  set ttymouse=urxvt
-endif
+" Begin custom keybindings with the comma (,) key.
+let mapleader = ','
+let maplocalleader = ','
+
+" Disable default mappings for the LustyExplorer and LustyJuggler plugins to
+" avoid conflicts with LaTeX Box.
+let g:LustyExplorerDefaultMappings = 0
+let g:LustyJugglerDefaultMappings = 0
+
+" Configure keybindings for basic editor functionality:
+"
+" ,,        Clear search highlight
+" ,s        Toggle spell checker
+" ,<Space>  Remove trailing whitespace
+nnoremap <silent> <Leader><Leader> :nohlsearch<CR>
+nnoremap <silent> <Leader>s :set spell!<CR>
+noremap <silent> <Leader><Space> :EraseBadWhitespace<CR>
+
+" Configure keybindings for working with color schemes:
+"
+" ,cc       Reload current color scheme
+" ,ch       Highlight hexadecimal colors
+" ,cr       Reload hexadecimal color highlights
+" ,cs       Show highlight groups for character under the cursor
+"
+" (See also http://vimcasts.org/episodes/creating-colorschemes-for-vim/.)
+nmap <silent> <Leader>cc <Plug>RefreshColorScheme
+nmap <silent> <Leader>ch <Plug>HexHighlightToggle
+nmap <silent> <Leader>cr <Plug>HexHighlightRefresh
+noremap <silent> <Leader>cs
+    \ :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
+
+" Configure keybindings for LustyJuggler plugin:
+"
+" ,aj       LustyJuggler: Open quick buffer chooser
+nnoremap <silent> <Leader>aj :LustyJuggler<CR>
+
+" Configure keybindings for LustyExplorer plugin:
+"
+" ,ab       Open buffer chooser
+" ,af       Open file chooser in working directory
+" ,ag       Open buffer contents search tool
+" ,ar       Open file chooser relative to file in current buffer
+nnoremap <silent> <Leader>ab :LustyBufferExplorer<CR>
+nnoremap <silent> <Leader>af :LustyFilesystemExplorer<CR>
+nnoremap <silent> <Leader>ag :LustyBufferGrep<CR>
+nnoremap <silent> <Leader>ar :LustyFilesystemExplorerFromHere<CR>
+
+" Configure keybindings for Eclim plugin:
+"
+" ,ea       Open or close buffer with tree view of current project
+" ,ee       Search project for source element under the cursor
+" ,ef       Open fuzzy search tool for Java classes, source files, etc.
+" ,eh       Open Java call hierarchy for method under cursor
+" ,eo       Remove unused Java imports and organize remaining imports
+" ,ep       Show compilation errors in quickfix buffer
+nnoremap <silent> <Leader>ea :ProjectTreeToggle<CR>
+nnoremap <silent> <Leader>ee :JavaSearchContext<CR>
+nnoremap <silent> <Leader>ef :LocateFile<CR>
+nnoremap <silent> <Leader>eh :JavaCallHierarchy<CR>
+nnoremap <silent> <Leader>eo :JavaImportOrganize<CR>
+nnoremap <silent> <Leader>ep :ProjectProblems!<CR>
 
 if has('gui_running')
   " Make the default gVim Window larger.
@@ -217,7 +214,7 @@ if has('gui_running')
     set guifont+=Consolas\ 10
     set guifont+=DejaVu\ Sans\ Mono\ 10
     set guifont+=Courier\ New\ 10
-  else
+  elseif has('gui_win32')
     set guifont=GohuFont:h8:cDEFAULT
     set guifont+=Envy_Code_R:h10:cDEFAULT
     set guifont+=Consolas:h10:cDEFAULT
@@ -226,5 +223,12 @@ if has('gui_running')
   endif
 endif
 
+" Load plugins 'n' stuff with Pathogen. We do this at the end of the vimrc file
+" since plugin code isn't actually executed by Vim until after vimrc completes.
+runtime bundle/pathogen/autoload/pathogen.vim
+call pathogen#infect()
+call pathogen#helptags()
+
 " Set a nice color scheme that behaves well on 8-, 88-, and 256-color terminals.
+" Must be done after we call Pathogen since the color scheme lives in a bundle.
 colorscheme abbott
