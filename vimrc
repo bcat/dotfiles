@@ -102,6 +102,9 @@ if has('autocmd')
   autocmd BufNewFile,BufRead build_defs setlocal filetype=python
 endif
 
+" Configure the standard Python plugin.
+let g:pyindent_open_paren = 'exists("*shiftwidth") ? shiftwidth() : &shiftwidth'
+
 " Configure the standard TeX plugin.
 let g:tex_indent_and = 0
 let g:tex_flavor = 'latex'
