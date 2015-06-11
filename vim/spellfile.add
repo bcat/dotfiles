@@ -8,6 +8,7 @@ ACPI
 ACT's
 AFAICT
 AGSA
+AGSA's
 APA
 API
 API's
@@ -631,6 +632,7 @@ WordPress
 WordPress's
 X11
 XHR
+XHRs
 XHTML
 XMonad
 XPC
@@ -728,6 +730,7 @@ cherrypick
 cinematographically
 cleveref
 clickable
+clicktracking
 codebase
 codenames
 codepath
@@ -852,6 +855,7 @@ geolocated
 geolocation
 grayscale
 grep
+gzip
 hacky
 hardcode
 hardcoded
@@ -863,6 +867,7 @@ href
 hyperlink
 hyperlinks
 hyperref
+i18n
 iOS
 iPhone
 iPod
@@ -900,6 +905,7 @@ lexer's
 lexers
 lexing
 lifecycle
+lightbox
 linkify
 lithic
 lithics
@@ -1056,6 +1062,8 @@ reenabling
 refactor
 refactored
 refactors
+referer
+referers
 regex
 regexen
 regexs
@@ -1260,6 +1268,7 @@ warmups
 whitelist
 whitelisted
 whitelisting
+whitelists
 widescreen
 wildcard
 wildcards
