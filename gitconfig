@@ -5,6 +5,9 @@
   autocrlf = false
   excludesfile = ~/.gitignore
 
+[push]
+  default = simple
+
 [user]
   name = Jonathan Rascher
   email = jon@bcat.name
