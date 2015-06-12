@@ -13,12 +13,18 @@
 [submodule "vim/bundle/bad-whitespace"]
 	path = vim/bundle/bad-whitespace
 	url = git://github.com/bitc/vim-bad-whitespace.git
+[submodule "vim/bundle/codefmt"]
+	path = vim/bundle/codefmt
+	url = git://github.com/google/vim-codefmt.git
 [submodule "vim/bundle/commentary"]
 	path = vim/bundle/commentary
 	url = git://github.com/tpope/vim-commentary.git
 [submodule "vim/bundle/eunuch"]
 	path = vim/bundle/eunuch
 	url = git://github.com/tpope/vim-eunuch.git
+[submodule "vim/bundle/glaive"]
+	path = vim/bundle/glaive
+	url = git://github.com/google/vim-glaive.git
 [submodule "vim/bundle/go"]
 	path = vim/bundle/go
 	url = git://github.com/fatih/vim-go.git
@@ -31,6 +37,9 @@
 [submodule "vim/bundle/lusty"]
 	path = vim/bundle/lusty
 	url = git://github.com/sjbach/lusty.git
+[submodule "vim/bundle/maktaba"]
+	path = vim/bundle/maktaba
+	url = git://github.com/google/vim-maktaba.git
 [submodule "vim/bundle/pathogen"]
 	path = vim/bundle/pathogen
 	url = git://github.com/tpope/vim-pathogen.git

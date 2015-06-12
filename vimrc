@@ -112,24 +112,6 @@ let g:tex_stylish = 1
 " Configure the standard Vim plugin.
 let g:vim_indent_cont = 4
 
-" Configure the Eclim plugin.
-let g:EclimBuffersDefaultAction = 'edit'
-let g:EclimDefaultFileOpenAction = 'edit'
-let g:EclimJavaCallHierarchyDefaultAction = 'edit'
-let g:EclimJavaHierarchyDefaultAction = 'edit'
-let g:EclimLocateFileDefaultAction = 'edit'
-let g:EclimLoggingDisabled = 1
-let g:EclimProjectTreeExpandPathOnOpen = 1
-let g:EclimPythonValidate = 0
-let g:EclimTempFilesEnable = 0
-
-" Configure the haskell-vim plugin.
-let g:haskell_indent_case = 5
-let g:haskell_indent_in = 0
-
-" Configure the LaTeX Box plugin.
-let g:LatexBox_latexmk_options = '-pvc'
-
 " Enable fancy search settings.
 if has('extra_search')
   set hlsearch
@@ -257,6 +239,30 @@ endif
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
+
+" Enable configuration of Google plugins using Glaive (for no good reason).
+call glaive#Install()
+
+" Configure the codefmt plugin.
+Glaive codefmt clang_format_style='Google'
+
+" Configure the Eclim plugin.
+let g:EclimBuffersDefaultAction = 'edit'
+let g:EclimDefaultFileOpenAction = 'edit'
+let g:EclimJavaCallHierarchyDefaultAction = 'edit'
+let g:EclimJavaHierarchyDefaultAction = 'edit'
+let g:EclimLocateFileDefaultAction = 'edit'
+let g:EclimLoggingDisabled = 1
+let g:EclimProjectTreeExpandPathOnOpen = 1
+let g:EclimPythonValidate = 0
+let g:EclimTempFilesEnable = 0
+
+" Configure the haskell-vim plugin.
+let g:haskell_indent_case = 5
+let g:haskell_indent_in = 0
+
+" Configure the LaTeX Box plugin.
+let g:LatexBox_latexmk_options = '-pvc'
 
 " Set a nice color scheme that behaves well on 8-, 88-, and 256-color terminals.
 " Must be done after we call Pathogen since the color scheme lives in a bundle.
