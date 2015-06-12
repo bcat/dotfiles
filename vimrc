@@ -58,8 +58,7 @@ if has('autocmd')
 
   " Set C/C++ indentation to match Google C++ style:
   " http://google.github.io/styleguide/cppguide.html.
-  autocmd FileType cpp setlocal cinoptions+=l1 cinoptions+=g1 cinoptions+=h1
-      \ cinoptions+=N-s cinoptions+=(0 cinoptions+=j1
+  autocmd FileType cpp setlocal cinoptions+=l1,g1,h1,N-s,(0,j1
 
   " Set Haskell indentation to match XMonad coding style:
   " http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Doc-Developing.html.
