@@ -101,17 +101,6 @@ if has('autocmd')
   autocmd BufNewFile,BufRead build_defs setlocal filetype=python
 endif
 
-" Configure the standard Python plugin.
-let g:pyindent_open_paren = 'exists("*shiftwidth") ? shiftwidth() : &shiftwidth'
-
-" Configure the standard TeX plugin.
-let g:tex_indent_and = 0
-let g:tex_flavor = 'latex'
-let g:tex_stylish = 1
-
-" Configure the standard Vim plugin.
-let g:vim_indent_cont = 4
-
 " Enable fancy search settings.
 if has('extra_search')
   set hlsearch
@@ -149,11 +138,6 @@ endif
 " Begin custom keybindings with the comma (,) key.
 let mapleader = ','
 let maplocalleader = ','
-
-" Disable default mappings for the LustyExplorer and LustyJuggler plugins to
-" avoid conflicts with LaTeX Box.
-let g:LustyExplorerDefaultMappings = 0
-let g:LustyJugglerDefaultMappings = 0
 
 " Configure keybindings for basic editor functionality:
 "
@@ -243,8 +227,19 @@ call pathogen#helptags()
 " Enable configuration of Google plugins using Glaive (for no good reason).
 call glaive#Install()
 
-" Configure the codefmt plugin.
-Glaive codefmt clang_format_style='Google'
+" Configure the standard Python plugin.
+let g:pyindent_open_paren = 'exists("*shiftwidth") ? shiftwidth() : &shiftwidth'
+
+" Configure the standard TeX plugin.
+let g:tex_indent_and = 0
+let g:tex_flavor = 'latex'
+let g:tex_stylish = 1
+
+" Configure the standard Vim plugin.
+let g:vim_indent_cont = 4
+
+" Configure the codefmt plugin. Enable its default mappings.
+Glaive codefmt clang_format_style='Google' plugin[mappings]
 
 " Configure the Eclim plugin.
 let g:EclimBuffersDefaultAction = 'edit'
@@ -263,6 +258,11 @@ let g:haskell_indent_in = 0
 
 " Configure the LaTeX Box plugin.
 let g:LatexBox_latexmk_options = '-pvc'
+
+" Configure the LustyExplorer and LustyJuggler plugins. Disable their default
+" mappings since they conflict with LaTeX Box.
+let g:LustyExplorerDefaultMappings = 0
+let g:LustyJugglerDefaultMappings = 0
 
 " Set a nice color scheme that behaves well on 8-, 88-, and 256-color terminals.
 " Must be done after we call Pathogen since the color scheme lives in a bundle.
