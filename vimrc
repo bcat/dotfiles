@@ -185,14 +185,10 @@ noremap <silent> <Leader><Space> :EraseBadWhitespace<CR>
 " Configure keybindings for working with color schemes:
 "
 " ,cc       Reload current color scheme
-" ,ch       Highlight hexadecimal colors
-" ,cr       Reload hexadecimal color highlights
 " ,cs       Show highlight groups for character under the cursor
 "
 " (See also http://vimcasts.org/episodes/creating-colorschemes-for-vim/.)
-nmap <silent> <Leader>cc <Plug>RefreshColorScheme
-nmap <silent> <Leader>ch <Plug>HexHighlightToggle
-nmap <silent> <Leader>cr <Plug>HexHighlightRefresh
+nmap <silent> <Leader>cc :execute "colorscheme" g:colors_name<CR>
 noremap <silent> <Leader>cs
     \ :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 

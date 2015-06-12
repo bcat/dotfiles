@@ -25,9 +25,6 @@
 [submodule "vim/bundle/haskell"]
 	path = vim/bundle/haskell
 	url = git://github.com/raichoo/haskell-vim.git
-[submodule "vim/bundle/hexhighlight"]
-	path = vim/bundle/hexhighlight
-	url = git://github.com/yurifury/hexHighlight.git
 [submodule "vim/bundle/latex-box"]
 	path = vim/bundle/latex-box
 	url = git://github.com/LaTeX-Box-Team/LaTeX-Box.git
