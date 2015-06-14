@@ -55,30 +55,9 @@ else
   _bash_prompt_term_white=
 fi
 
-# Set a flag if the system supports ACPI and has a battery.
-if type acpi >/dev/null 2>&1 && [[ $(acpi 2>/dev/null) =~ Battery ]]; then
-  _bash_prompt_have_battery=1
-fi
-
-# Set a flag if the system has an uptime command. (Cygwin does not have one in
-# its default configuration.)
-if type uptime >/dev/null 2>&1; then
-  _bash_prompt_have_uptime=1
-fi
-
 # Set a flag if the system has git installed.
 if type git >/dev/null 2>&1; then
   _bash_prompt_have_git=1
-fi
-
-# Count the number of processors in the system and save it for use in CPU load
-# calculation.
-if [[ -f /proc/cpuinfo ]]; then
-  # Processor detection currently relies on /proc/cpuinfo, so it only works
-  # properly on Linux. Kudos to anyone who suggests a more portable way.
-  _bash_prompt_cpu_count=$(grep -c '^processor[[:space:]]*:' /proc/cpuinfo)
-else
-  _bash_prompt_cpu_count=1
 fi
 
 preexec () {
@@ -139,8 +118,6 @@ _bash_prompt_ps1_build_machine () {
 _bash_prompt_ps1_build_status () {
   _bash_prompt_ps1_escape "$_bash_prompt_term_white"
   _bash_prompt_ps1_build_jobs
-  _bash_prompt_ps1_build_load
-  _bash_prompt_ps1_build_battery
   _bash_prompt_ps1_build_git
 }
 
@@ -158,54 +135,6 @@ _bash_prompt_ps1_build_jobs () {
   fi
 
   _bash_prompt_ps1_append "$count"
-
-  _bash_prompt_ps1_escape "$_bash_prompt_term_white"
-}
-
-_bash_prompt_ps1_build_load () {
-  [[ -n $_bash_prompt_have_uptime ]] || return
-  _bash_prompt_ps1_append ' L:'
-
-  # Note that we *must* explicitly specify that load_int is in decimal;
-  # otherwise, a leading zero will cause the load average to be interpreted as
-  # octal instead, giving either an error or an incorrect result.
-  [[ $(uptime) =~ (([[:digit:]]+)\.([[:digit:]]+)) ]] &&
-      load=${BASH_REMATCH[1]} &&
-      local load_int=$((10#${BASH_REMATCH[2]}${BASH_REMATCH[3]}))
-
-  if (( load_int < _bash_prompt_cpu_count * 50 )); then
-    _bash_prompt_ps1_escape "$_bash_prompt_term_bright_green"
-  elif (( load_int < _bash_prompt_cpu_count * 100 )); then
-    _bash_prompt_ps1_escape "$_bash_prompt_term_orange"
-  else
-    _bash_prompt_ps1_escape "$_bash_prompt_term_bright_red"
-  fi
-
-  _bash_prompt_ps1_append "$load"
-
-  _bash_prompt_ps1_escape "$_bash_prompt_term_white"
-}
-
-_bash_prompt_ps1_build_battery () {
-  [[ -n $_bash_prompt_have_battery ]] || return;
-  _bash_prompt_ps1_append ' B:'
-
-  local charges=($(acpi | sed 's/.*\ \([[:digit:]]\{1,\}\)%.*/\1/')) total
-
-  for charge in "${charges[@]}"; do
-    (( total += charge ))
-  done
-  local charge=$(( total / ${#charges[@]} ))
-
-  if (( $charge > 90 )); then
-    _bash_prompt_ps1_escape "$_bash_prompt_term_bright_green"
-  elif (( $charge > 45 )); then
-    _bash_prompt_ps1_escape "$_bash_prompt_term_orange"
-  else
-    _bash_prompt_ps1_escape "$_bash_prompt_term_bright_red"
-  fi
-
-  _bash_prompt_ps1_append "$charge%"
 
   _bash_prompt_ps1_escape "$_bash_prompt_term_white"
 }
