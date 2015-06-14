@@ -77,7 +77,7 @@ function grep { command grep --color=auto "$@"; }
 
 # Customize the prompt. (The prompt code is quite long, so it lives in a
 # separate file.)
-[ -f ~/.bash_prompt ] && . ~/.bash_prompt
+[ -f ~/.bash_prompt.sh ] && . ~/.bash_prompt.sh
 
 # Set up some fancy auto-completion.
 [ -f /etc/bash_completion ] && . /etc/bash_completion
