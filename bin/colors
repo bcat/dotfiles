@@ -1,13 +1,47 @@
-#!/usr/bin/perl -lCADS
-# Print four lines showing blocks of colors: 0-7 | 0-7bold | 8-15 | 8-15bold
-#
-# Based on benizi's https://gist.github.com/benizi/4173926#file-simpler script.
-use warnings;
+#!/bin/bash
 
-my $block = shift || (chr(0x2588) x 3);
-for (["", 0], ["1;", 0], ["", 8], ["1;", 8]) {
-  my ($bold, $offset) = @$_;
-  my @range = map $offset + $_, 0..7;
-  printf "%s %-6s ", $bold ? "bold" : "norm", "$range[0]-$range[-1]";
-  print map("\e[${bold}38;5;${_}m$block", @range), "\e[0m"
-}
+rev=$(tput rev)
+bold=$(tput bold)
+reset=$(tput sgr0)
+
+# Print normal-intensity legend.
+printf '    '
+for i in {00..07}; do
+  printf '%s' "  $i "
+done
+printf ' ┐\n'
+
+# Print normal-intensity colors.
+printf Norm
+for i in {0..7}; do
+  printf '%s' " $(tput setaf "$i")$rev    $reset"
+done
+printf ' │ Normal\n'
+
+# Print normal-intensity bold colors.
+printf '%s' "${bold}Bold$reset"
+for i in {0..7}; do
+  printf '%s' " $(tput setaf "$i")$bold$rev    $reset"
+done
+printf ' │ intensity\n                                             ┘\n'
+
+# Print bright-intensity colors.
+printf '                                             ┐\nNorm'
+for i in {8..15}; do
+  printf '%s' " $(tput setaf "$i")$rev    $reset"
+done
+printf ' │ Bright\n'
+
+# Print bright-intensity bold colors
+printf '%s' "${bold}Bold$reset"
+for i in {8..15}; do
+  printf '%s' " $(tput setaf "$i")$bold$rev    $reset"
+done
+printf ' │ intensity\n'
+
+# Print bright-intensity legend.
+printf '    '
+for i in {08..15}; do
+  printf '%s' "  $i "
+done
+printf ' ┘\n'
