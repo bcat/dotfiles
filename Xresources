@@ -10,11 +10,11 @@ Xft.autohint:            true
 ! Set some pretty colors for urxvt. Based on my personal Vim theme:
 ! <https://github.com/bcat/abbott.vim>.
 URxvt.depth:             32
-! (default: brown / mint_green)
+! (default: brown / pastel_green)
 URxvt.background:        #1f1912
-URxvt.foreground:        #bdf7a9
+URxvt.foreground:        #c0f396
 ! (cursor: green / brown)
-URxvt.cursorColor:       #7fcb22
+URxvt.cursorColor:       #a0ea00
 URxvt.cursorColor2:      #1f1912
 ! (black: brown / light_brown)
 URxvt.color0:            #1f1912
@@ -24,22 +24,22 @@ URxvt.color1:            #d80450
 URxvt.color9:            #f63f05
 ! (green: forest_green / green)
 URxvt.color2:            #24a507
-URxvt.color10:           #7fcb22
+URxvt.color10:           #a0ea00
 ! (yellow: orange / yellow)
 URxvt.color3:            #fbb32f
 URxvt.color11:           #fbec5d
-! (blue: lime_green / pastel_green)
-URxvt.color4:            #a0ea00
-URxvt.color12:           #d8ff84
+! (blue: blue / pastel_blue)
+URxvt.color4:            #3f91f1
+URxvt.color12:           #8ccdf0
 ! (magenta: pink / lavender)
 URxvt.color5:            #ec6c99
 URxvt.color13:           #e6a2f3
-! (cyan: blue / pastel_blue)
-URxvt.color6:            #3f91f1
-URxvt.color14:           #8ccdf0
-! (white: tan / mint_green)
-URxvt.color7:            #fee3b4
-URxvt.color15:           #bdf7a9
+! (cyan: teal / mint_green)
+URxvt.color6:            #59eea5
+URxvt.color14:           #d8ff84
+! (white: pastel_green / tan)
+URxvt.color7:            #c0f396
+URxvt.color15:           #fef3b4
 
 ! Configure the font and some other things for urxvt.
 URxvt.font:              xft:GohuFont:pixelsize=11
