@@ -17,42 +17,40 @@ else
 fi
 
 # Set up terminal colors for various bits of the prompt. These look best with a
-# color palette matching my Vim theme <https://github.com/bcat/abbott.vim>,
-# which actually has two additional shades of green where blue normally goes
-# (colors 4 & 12); however, these color choices should look fine with any
-# reasonable palette. Note that we intentionally don't use colors 4 & 12 because
-# these look very low-contrast in common non-Abbott color palettes (i.e., the
-# Linux console color palette).
-if [[ $_bash_prompt_num_colors -ge 16 ]]; then
+# color palette matching my Vim theme <https://github.com/bcat/abbott.vim>;
+# however, these color choices should look fine with any reasonable palette.
+# Note that we intentionally don't use color 12 (bold color 4) because it looks
+# very low-contrast in the Linux console color palette.
+if (( $_bash_prompt_num_colors >= 16 )); then
   # For terminals that support high-intensity colors (i.e., terminals supporting
   # at least 16 total colors), use those directly.
   _bash_prompt_term_bright_red=$(tput setaf 9)
   _bash_prompt_term_bright_green=$(tput setaf 10)
   _bash_prompt_term_orange=$(tput setaf 3)
+  _bash_prompt_term_blue=$(tput setaf 4)
   _bash_prompt_term_bright_magenta=$(tput setaf 13)
-  _bash_prompt_term_cyan=$(tput setaf 6)
   _bash_prompt_term_bright_cyan=$(tput setaf 14)
-  _bash_prompt_term_white=$(tput setaf 7)
-elif [[ $_bash_prompt_num_colors -ge 8 ]]; then
+  _bash_prompt_term_bright_white=$(tput setaf 15)
+elif (( $_bash_prompt_num_colors >= 8 )); then
   # For terminals that only support 8 colors, use the bold attribute, which many
   # terminals (including the Linux and Cygwin consoles) will render as bright.
   _bash_prompt_term_bright_red=$_bash_prompt_term_bold$(tput setaf 1)
   _bash_prompt_term_bright_green=$_bash_prompt_term_bold$(tput setaf 2)
   _bash_prompt_term_orange=$_bash_prompt_term_reset$(tput setaf 3)
+  _bash_prompt_term_blue=$_bash_prompt_term_reset$(tput setaf 4)
   _bash_prompt_term_bright_magenta=$_bash_prompt_term_bold$(tput setaf 5)
-  _bash_prompt_term_cyan=$_bash_prompt_term_reset$(tput setaf 6)
   _bash_prompt_term_bright_cyan=$_bash_prompt_term_bold$(tput setaf 6)
-  _bash_prompt_term_white=$_bash_prompt_term_reset$(tput setaf 7)
+  _bash_prompt_term_bright_white=$_bash_prompt_term_bold$(tput setaf 7)
 else
   # For terminals with less than the standard 8 colors, render in monochrome,
   # but still use the bold attribute if we found it above.
   _bash_prompt_term_bright_red=
   _bash_prompt_term_bright_green=
   _bash_prompt_term_orange=
-  _bash_prompt_term_cyan=
+  _bash_prompt_term_blue=
   _bash_prompt_term_bright_cyan=
   _bash_prompt_term_bright_magenta=
-  _bash_prompt_term_white=
+  _bash_prompt_term_bright_white=
 fi
 
 # Set a flag if the system has git installed.
@@ -107,16 +105,16 @@ precmd () {
 }
 
 _bash_prompt_ps1_build_machine () {
-  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_cyan"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_blue"
   _bash_prompt_ps1_append "$USER"
-  _bash_prompt_ps1_escape "$_bash_prompt_term_white"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_white"
   _bash_prompt_ps1_append @
   _bash_prompt_ps1_escape "$_bash_prompt_term_bright_magenta"
   _bash_prompt_ps1_append "$(hostname -s)"
 }
 
 _bash_prompt_ps1_build_status () {
-  _bash_prompt_ps1_escape "$_bash_prompt_term_white"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_white"
   _bash_prompt_ps1_build_jobs
   _bash_prompt_ps1_build_git
 }
@@ -136,7 +134,7 @@ _bash_prompt_ps1_build_jobs () {
 
   _bash_prompt_ps1_append "$count"
 
-  _bash_prompt_ps1_escape "$_bash_prompt_term_white"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_white"
 }
 
 _bash_prompt_ps1_build_git() {
@@ -179,15 +177,15 @@ _bash_prompt_ps1_build_git() {
 
   _bash_prompt_ps1_append "$branch_name$status_char"
 
-  _bash_prompt_ps1_escape "$_bash_prompt_term_white"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_white"
 }
 
 _bash_prompt_ps1_build_directory () {
-  _bash_prompt_ps1_escape "$_bash_prompt_term_cyan"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_cyan"
   _bash_prompt_ps1_append ' '
   _bash_prompt_ps1_append \
       "$(_bash_prompt_truncate "${PWD/#$HOME/'~'}" \
-      $(( COLUMNS - _bash_prompt_col)) left)"
+      $((COLUMNS - _bash_prompt_col)) left)"
 }
 
 _bash_prompt_ps1_build_symbol () {
@@ -196,7 +194,8 @@ _bash_prompt_ps1_build_symbol () {
         "$_bash_prompt_term_bright_red$_bash_prompt_term_bold"
     _bash_prompt_ps1_append '# '
   else
-    _bash_prompt_ps1_escape "$_bash_prompt_term_white$_bash_prompt_term_bold"
+    _bash_prompt_ps1_escape \
+        "$_bash_prompt_term_bright_white$_bash_prompt_term_bold"
     _bash_prompt_ps1_append '$ '
   fi
 }
@@ -232,7 +231,7 @@ _bash_prompt_ps1_escape () {
 # xterm-like terminals. If COMMAND is not provided, the name of the currently-
 # executing shell will be substituted.
 _bash_prompt_title () {
-  if [[ $TERM =~ ^(cygwin|rxvt|screen|xterm)-? ]]; then
+  if [[ $TERM =~ ^(cygwin|rxvt|screen|xterm)(-|$) ]]; then
     printf '\033]2;%s\a' "${1:-$0} (${PWD/#$HOME/'~'})"
   fi
 }

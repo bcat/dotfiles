@@ -1,8 +1,20 @@
 #!/bin/bash
 
-rev=$(tput rev)
-bold=$(tput bold)
 reset=$(tput sgr0)
+bold=$(tput bold)
+
+# Determine how to print out filled squares. For most terminals, the simplest
+# method is to print spaces in reverse video; however, for the Linux console,
+# setting the reverse-video attribute and the bold attribute doesn't make the
+# background color bright, so we have to use a Unicode box drawing character.
+# (We can't just use that character for all terminals since xterm doesn't seem
+# to do font substitution, so there's a good chance the U+2588 character won't
+# show up at all in xterm.)
+if [[ $TERM =~ ^linux(-|$) ]]; then
+  filled_squares=████
+else
+  filled_squares="$(tput rev)    "
+fi
 
 # Print normal-intensity legend.
 printf '    '
@@ -14,28 +26,28 @@ printf ' ┐\n'
 # Print normal-intensity colors.
 printf Norm
 for i in {0..7}; do
-  printf '%s' " $(tput setaf "$i")$rev    $reset"
+  printf '%s' " $(tput setaf "$i")$filled_squares$reset"
 done
 printf ' │ Normal\n'
 
 # Print normal-intensity bold colors.
 printf '%s' "${bold}Bold$reset"
 for i in {0..7}; do
-  printf '%s' " $(tput setaf "$i")$bold$rev    $reset"
+  printf '%s' " $(tput setaf "$i")$bold$filled_squares$reset"
 done
 printf ' │ intensity\n                                             ┘\n'
 
 # Print bright-intensity colors.
 printf '                                             ┐\nNorm'
 for i in {8..15}; do
-  printf '%s' " $(tput setaf "$i")$rev    $reset"
+  printf '%s' " $(tput setaf "$i")$filled_squares$reset"
 done
 printf ' │ Bright\n'
 
 # Print bright-intensity bold colors
 printf '%s' "${bold}Bold$reset"
 for i in {8..15}; do
-  printf '%s' " $(tput setaf "$i")$bold$rev    $reset"
+  printf '%s' " $(tput setaf "$i")$bold$filled_squares$reset"
 done
 printf ' │ intensity\n'
 

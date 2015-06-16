@@ -34,9 +34,9 @@ URxvt.color12:           #8ccdf0
 ! (magenta: pink / lavender)
 URxvt.color5:            #ec6c99
 URxvt.color13:           #e6a2f3
-! (cyan: teal / mint_green)
-URxvt.color6:            #59eea5
-URxvt.color14:           #d8ff84
+! (cyan: mint_green / teal)
+URxvt.color6:            #d8ff84
+URxvt.color14:           #59eea5
 ! (white: pastel_green / tan)
 URxvt.color7:            #c0f396
 URxvt.color15:           #fef3b4
