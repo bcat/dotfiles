@@ -1,7 +1,7 @@
 style "taffybar" {
   bg[NORMAL]   = "#1f1912"
-  fg[NORMAL]   = "#d5fac8"
-  text[NORMAL] = "#d5fac8"
+  fg[NORMAL]   = "#c0f396"
+  text[NORMAL] = "#c0f396"
   font_name    = "Envy Code R 10"
 }
 

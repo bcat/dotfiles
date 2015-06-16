@@ -7,7 +7,7 @@ import System.Taffybar.TaffyPager
 
 main = do
     let pager = taffyPagerNew defaultPagerConfig
-            { activeWindow     = colorize "#94d900" ""
+            { activeWindow     = colorize "#a0ea00" ""
                                . escape
                                . shorten 100
             , activeWorkspace  = wrap "<b>" "</b>"
@@ -31,7 +31,7 @@ main = do
                                . wrap "*" "*" }
         music = mpris2New
         tray  = systrayNew
-        time  = textClockNew Nothing "<span color='#d5fac8'>%l:%M %p</span> " 1
+        time  = textClockNew Nothing "<span color='#c0f396'>%l:%M %p</span> " 1
 
     defaultTaffybar defaultTaffybarConfig
         { startWidgets = [ pager ]
