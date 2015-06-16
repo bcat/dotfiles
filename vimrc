@@ -14,6 +14,9 @@ set hidden
 " Make the ~ (switch case) command accept movement like a real operator.
 set tildeop
 
+" Keep the join and gq (format) commands from putting two spaces after periods.
+set nojoinspaces
+
 " Don't redraw the screen during macro execution (big speedup for slow terms).
 set lazyredraw
 
