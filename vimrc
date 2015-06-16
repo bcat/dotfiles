@@ -75,6 +75,10 @@ if has('autocmd')
   " http://google.github.io/styleguide/javaguide.html.
   autocmd FileType java setlocal textwidth=100
 
+  " Set JavaScript indentation to match Google JavaScript style:
+  " http://google.github.io/styleguide/javascriptguide.xml.
+  autocmd FileType javascript setlocal cinoptions+=(0
+
   " Set Markdown indentation to match syntactic requirements:
   " http://daringfireball.net/projects/markdown/syntax.
   autocmd FileType markdown setlocal tabstop=4 shiftwidth=4
@@ -84,7 +88,7 @@ if has('autocmd')
   autocmd FileType php setlocal tabstop=4 shiftwidth=4
 
   " Use C-style indentation for protocol buffer definitions.
-  autocmd FileType proto setlocal cindent
+  autocmd FileType proto setlocal cindent cinoptions+=(0
 
   " Set Python indentation to match Google Python style:
   " http://google.github.io/styleguide/pyguide.html.
