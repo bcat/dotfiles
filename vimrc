@@ -165,22 +165,6 @@ nmap <silent> <Leader>cc :execute "colorscheme" g:colors_name<CR>
 noremap <silent> <Leader>cs
     \ :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 
-" Configure keybindings for LustyJuggler plugin:
-"
-" ,aj       LustyJuggler: Open quick buffer chooser
-nnoremap <silent> <Leader>aj :LustyJuggler<CR>
-
-" Configure keybindings for LustyExplorer plugin:
-"
-" ,ab       Open buffer chooser
-" ,af       Open file chooser in working directory
-" ,ag       Open buffer contents search tool
-" ,ar       Open file chooser relative to file in current buffer
-nnoremap <silent> <Leader>ab :LustyBufferExplorer<CR>
-nnoremap <silent> <Leader>af :LustyFilesystemExplorer<CR>
-nnoremap <silent> <Leader>ag :LustyBufferGrep<CR>
-nnoremap <silent> <Leader>ar :LustyFilesystemExplorerFromHere<CR>
-
 " Configure keybindings for Eclim plugin:
 "
 " ,ea       Open or close buffer with tree view of current project
@@ -265,11 +249,6 @@ let g:haskell_indent_in = 0
 
 " Configure the LaTeX Box plugin.
 let g:LatexBox_latexmk_options = '-pvc'
-
-" Configure the LustyExplorer and LustyJuggler plugins. Disable their default
-" mappings since they conflict with LaTeX Box.
-let g:LustyExplorerDefaultMappings = 0
-let g:LustyJugglerDefaultMappings = 0
 
 " Set a nice color scheme that behaves well on 8-, 88-, and 256-color terminals.
 " Must be done after we call Pathogen since the color scheme lives in a bundle.
