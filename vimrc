@@ -232,6 +232,11 @@ let g:vim_indent_cont = 4
 " Configure the codefmt plugin. Enable its default mappings.
 Glaive codefmt clang_format_style='Google' plugin[mappings]
 
+" Configure the CtrlP plugin.
+if executable('ag')
+  let g:ctrlp_user_command = 'ag -g "" -l --hidden --nocolor %s'
+endif
+
 " Configure the Eclim plugin.
 let g:EclimBuffersDefaultAction = 'edit'
 let g:EclimDefaultFileOpenAction = 'edit'
