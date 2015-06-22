@@ -1,12 +1,3 @@
-! Set up font rendering settings.
-Xft.antialias:           true
-Xft.dpi:                 96
-Xft.hinting:             true
-Xft.hintstyle:           hintslight
-Xft.rgba:                rgb
-Xft.lcdfilter:           lcddefault
-Xft.autohint:            true
-
 ! Set some pretty colors for urxvt. Based on my personal Vim theme:
 ! <https://github.com/bcat/abbott.vim>.
 URxvt.depth:             32
