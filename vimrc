@@ -177,6 +177,11 @@ noremap <silent> <Leader>cs
     \ :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 
 " Configure keybindings for CtrlP plugin:
+"
+" ,ab       Perform fuzzy buffer search by name
+" ,af       Perform fuzzy file search for files starting in VCS root
+" ,ag       Perform fuzzy buffer search by contents
+" ,ar       Perform fuzzy file search for files starting in buffer's directory
 nnoremap <silent> <Leader>ab :CtrlPBuffer<CR>
 nnoremap <silent> <Leader>af :CtrlPRoot<CR>
 nnoremap <silent> <Leader>ag :CtrlPLine<CR>
