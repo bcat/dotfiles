@@ -31,6 +31,12 @@ set linebreak
 set scrolloff=4
 set sidescrolloff=8
 
+" If the Silver Search (Ag) is available, use it as a replacement for grep.
+if executable('ag')
+  set grepprg=ag\ --nocolor\ --nogroup\ --column\ $*\ /dev/null
+  set grepformat=%f:%l:%c:%m
+endif
+
 " Don't show the stupid preview window for completions, and narrow down
 " available completions as characters are typed.
 set completeopt=menu,longest
