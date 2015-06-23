@@ -1,24 +1,24 @@
 [submodule "config/lscolors"]
 	path = config/lscolors
-	url = git://github.com/trapd00r/LS_COLORS.git
+	url = https://github.com/trapd00r/LS_COLORS.git
 [submodule "tmux/plugins/sensible"]
 	path = tmux/plugins/sensible
-	url = git://github.com/tmux-plugins/tmux-sensible.git
+	url = https://github.com/tmux-plugins/tmux-sensible.git
 [submodule "vim/bundle/abbott"]
 	path = vim/bundle/abbott
 	url = git@github.com:bcat/abbott.vim.git
 [submodule "vim/bundle/abolish"]
 	path = vim/bundle/abolish
-	url = git://github.com/tpope/vim-abolish.git
+	url = https://github.com/tpope/vim-abolish.git
 [submodule "vim/bundle/bad-whitespace"]
 	path = vim/bundle/bad-whitespace
-	url = git://github.com/bitc/vim-bad-whitespace.git
+	url = https://github.com/bitc/vim-bad-whitespace.git
 [submodule "vim/bundle/codefmt"]
 	path = vim/bundle/codefmt
-	url = git://github.com/google/vim-codefmt.git
+	url = https://github.com/google/vim-codefmt.git
 [submodule "vim/bundle/commentary"]
 	path = vim/bundle/commentary
-	url = git://github.com/tpope/vim-commentary.git
+	url = https://github.com/tpope/vim-commentary.git
 [submodule "vim/bundle/ctrlp"]
 	path = vim/bundle/ctrlp
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
@@ -27,40 +27,40 @@
 	url = https://github.com/FelikZ/ctrlp-py-matcher.git
 [submodule "vim/bundle/eunuch"]
 	path = vim/bundle/eunuch
-	url = git://github.com/tpope/vim-eunuch.git
+	url = https://github.com/tpope/vim-eunuch.git
 [submodule "vim/bundle/glaive"]
 	path = vim/bundle/glaive
-	url = git://github.com/google/vim-glaive.git
+	url = https://github.com/google/vim-glaive.git
 [submodule "vim/bundle/go"]
 	path = vim/bundle/go
-	url = git://github.com/fatih/vim-go.git
+	url = https://github.com/fatih/vim-go.git
 [submodule "vim/bundle/haskell"]
 	path = vim/bundle/haskell
-	url = git://github.com/raichoo/haskell-vim.git
+	url = https://github.com/raichoo/haskell-vim.git
 [submodule "vim/bundle/latex-box"]
 	path = vim/bundle/latex-box
-	url = git://github.com/LaTeX-Box-Team/LaTeX-Box.git
+	url = https://github.com/LaTeX-Box-Team/LaTeX-Box.git
 [submodule "vim/bundle/maktaba"]
 	path = vim/bundle/maktaba
-	url = git://github.com/google/vim-maktaba.git
+	url = https://github.com/google/vim-maktaba.git
 [submodule "vim/bundle/pathogen"]
 	path = vim/bundle/pathogen
-	url = git://github.com/tpope/vim-pathogen.git
+	url = https://github.com/tpope/vim-pathogen.git
 [submodule "vim/bundle/php-stuff"]
 	path = vim/bundle/php-stuff
-	url = git://github.com/paulyg/Vim-PHP-Stuff.git
+	url = https://github.com/paulyg/Vim-PHP-Stuff.git
 [submodule "vim/bundle/sensible"]
 	path = vim/bundle/sensible
-	url = git://github.com/tpope/vim-sensible.git
+	url = https://github.com/tpope/vim-sensible.git
 [submodule "vim/bundle/protobuf"]
 	path = vim/bundle/protobuf
-	url = git://github.com/willnorris/vim-protobuf.git
+	url = https://github.com/willnorris/vim-protobuf.git
 [submodule "vim/bundle/repeat"]
 	path = vim/bundle/repeat
-	url = git://github.com/tpope/vim-repeat.git
+	url = https://github.com/tpope/vim-repeat.git
 [submodule "vim/bundle/surround"]
 	path = vim/bundle/surround
-	url = git://github.com/tpope/vim-surround.git
+	url = https://github.com/tpope/vim-surround.git
 [submodule "vim/bundle/unimpaired"]
 	path = vim/bundle/unimpaired
-	url = git://github.com/tpope/vim-unimpaired.git
+	url = https://github.com/tpope/vim-unimpaired.git
