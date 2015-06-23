@@ -176,6 +176,12 @@ nmap <silent> <Leader>cc :execute "colorscheme" g:colors_name<CR>
 noremap <silent> <Leader>cs
     \ :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 
+" Configure keybindings for CtrlP plugin:
+nnoremap <silent> <Leader>ab :CtrlPBuffer<CR>
+nnoremap <silent> <Leader>af :CtrlPRoot<CR>
+nnoremap <silent> <Leader>ag :CtrlPLine<CR>
+nnoremap <silent> <Leader>ar :CtrlP<CR>
+
 " Configure keybindings for Eclim plugin:
 "
 " ,ea       Open or close buffer with tree view of current project
@@ -243,7 +249,13 @@ let g:vim_indent_cont = 4
 " Configure the codefmt plugin. Enable its default mappings.
 Glaive codefmt clang_format_style='Google' plugin[mappings]
 
-" Configure the CtrlP plugin.
+" Configure the CtrlP plugin. Disable its default mapping.
+let g:ctrlp_map = ''
+let g:ctrlp_working_path_mode = 'a'
+let g:ctrlp_root_markers = 'METADATA'
+let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_open_multiple_files = 'h'
+
 if executable('ag')
   let g:ctrlp_user_command = 'ag -g "" -l --hidden --nocolor %s'
 endif
