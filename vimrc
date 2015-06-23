@@ -251,7 +251,7 @@ Glaive codefmt clang_format_style='Google' plugin[mappings]
 
 " Configure the CtrlP plugin. Disable its default mapping.
 let g:ctrlp_map = ''
-let g:ctrlp_working_path_mode = 'a'
+let g:ctrlp_working_path_mode = 'c'
 let g:ctrlp_root_markers = 'METADATA'
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_open_multiple_files = 'h'
