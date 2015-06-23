@@ -140,9 +140,17 @@ if has('mouse')
   set mouse=a
   set mousefocus
 
-  " urxvt implements a nonstandard mouse protocol (1015).
+  " urxvt implements a nonstandard mouse protocol (1015) that supports faster
+  " dragging and terminals wider than 223 columns, but Vim doesn't know this.
   if &term =~# '^rxvt-unicode'
     set ttymouse=urxvt
+  endif
+
+  " tmux implements an upgraded xterm mouse protocol (1006) that supports faster
+  " dragging and terminals wider than 223 columns, but it doesn't implement that
+  " xterm escape sequence that would allow Vim to autodetect this.
+  if &term =~# '^screen' && !empty($TMUX)
+    set ttymouse=sgr
   endif
 endif
 
