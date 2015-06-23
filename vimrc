@@ -114,6 +114,11 @@ if has('autocmd')
   autocmd BufNewFile,BufRead build_defs setlocal filetype=python
 endif
 
+" Turn off folding, which is obnoxious and which I never use.
+if has('folding')
+  set nofoldenable
+endif
+
 " Enable fancy search settings.
 if has('extra_search')
   set hlsearch
