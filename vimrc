@@ -237,6 +237,10 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag -g "" -l --hidden --nocolor %s'
 endif
 
+if exists('*pymatcher#PyMatch')
+  let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
+endif
+
 " Configure the Eclim plugin.
 let g:EclimBuffersDefaultAction = 'edit'
 let g:EclimDefaultFileOpenAction = 'edit'

@@ -22,6 +22,9 @@
 [submodule "vim/bundle/ctrlp"]
 	path = vim/bundle/ctrlp
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule "vim/bundle/ctrlp-py-matcher"]
+	path = vim/bundle/ctrlp-py-matcher
+	url = https://github.com/FelikZ/ctrlp-py-matcher.git
 [submodule "vim/bundle/eunuch"]
 	path = vim/bundle/eunuch
 	url = git://github.com/tpope/vim-eunuch.git
