@@ -22,8 +22,8 @@ import XMonad.Util.SpawnOnce
 
 isSplash = isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH"
 
-tallLayout     = renamed [ Replace "tall" ] $ Tall 1 (1 / 100) (6 / 10)
-wideLayout     = renamed [ Replace "wide" ] $ Mirror $ Tall 1 (1 / 100) (6 / 10)
+tallLayout     = renamed [ Replace "tall" ] $ Tall 1 (1 / 100) (3 / 5)
+wideLayout     = renamed [ Replace "wide" ] $ Mirror $ Tall 1 (1 / 100) (7 / 10)
 fullLayout     = renamed [ Replace "full" ] $ Full
 threeColLayout = renamed [ Replace "3col" ] $ ThreeColMid 1 (1 / 100) (1 / 2)
 gridLayout     = renamed [ Replace "grid" ] $ GridRatio 1
