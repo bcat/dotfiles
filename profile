@@ -4,8 +4,8 @@
 
 # Make sure various directories are referenced in the search path.
 _profile_prepend_to_path () {
-  [ -d "$1" ] && case "$PATH" in
-    $1|$1:*|*:$1|*:$1:*) ;;
+  [ -d "$1" ] && case :$PATH: in
+    *:$1:*) ;;
     *) export PATH=$1:$PATH ;;
   esac
 }
