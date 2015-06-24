@@ -4,22 +4,18 @@
 
 # Make sure various directories are referenced in the search path.
 _profile_prepend_to_path () {
-  if [ -d "$1" ] &&
-     ! printf '%s\n' "$PATH" | grep -E "(^|:)$1($|:)" /dev/null
-  then
-    export PATH=$1:$PATH
-  fi
+  [ -d "$1" ] && case "$PATH" in
+    $1|$1:*|*:$1|*:$1:*) ;;
+    *) export PATH=$1:$PATH ;;
+  esac
 }
 
 _profile_prepend_to_path /sbin
-_profile_prepend_to_path /usr/sbin
-_profile_prepend_to_path /usr/local/sbin
-
 _profile_prepend_to_path /usr/games
-_profile_prepend_to_path /opt/haskell-platform/bin
+_profile_prepend_to_path /usr/local/sbin
+_profile_prepend_to_path /usr/sbin
 
 _profile_prepend_to_path ~/bin
-_profile_prepend_to_path ~/bin/gsutil
 _profile_prepend_to_path ~/.cabal/bin
 
 # Set the preferred editor.

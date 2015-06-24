@@ -1,5 +1,5 @@
 # If this isn't an interactive shell, bail out now.
-case "$-" in
+case $- in
   *i*) ;;
   *) return ;;
 esac
