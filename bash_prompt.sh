@@ -232,7 +232,8 @@ _bash_prompt_ps1_escape () {
 # executing shell will be substituted.
 _bash_prompt_title () {
   if [[ $TERM =~ ^(cygwin|rxvt|screen|xterm)(-|$) ]]; then
-    printf '\033]2;%s\a' "${1:-$0} (${PWD/#$HOME/'~'})"
+    # OSC 2 ; term_window_title BEL
+    printf '\e]2;%s\a' "${1:-$0} (${PWD/#$HOME/'~'})"
   fi
 }
 
