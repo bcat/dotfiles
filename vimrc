@@ -168,9 +168,11 @@ let maplocalleader = ','
 " Configure keybindings for basic editor functionality:
 "
 " ,,        Clear search highlight
+" ,r        Edit file relative to current directory
 " ,s        Toggle spell checker
 " ,<Space>  Remove trailing whitespace
 nnoremap <silent> <Leader><Leader> :nohlsearch<CR>
+nnoremap <silent> <Leader>r :e <C-R>=expand('%:p:~:h')<CR>/<C-D>
 nnoremap <silent> <Leader>s :set spell!<CR>
 noremap <silent> <Leader><Space> :EraseBadWhitespace<CR>
 
