@@ -31,6 +31,9 @@ set linebreak
 set scrolloff=4
 set sidescrolloff=8
 
+" Maintain equal-sized windows when new windows are open or old ones closed.
+set equalalways
+
 " Don't show the stupid preview window for completions, and narrow down
 " available completions as characters are typed.
 set completeopt=menu,longest
