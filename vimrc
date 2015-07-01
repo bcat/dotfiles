@@ -271,6 +271,13 @@ let g:haskell_indent_in = 0
 " Configure the LaTeX Box plugin.
 let g:LatexBox_latexmk_options = '-pvc'
 
+" Configure the vim-go plugin.
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_build_constraints = 1
+
 " Set a nice color scheme that behaves well on 8-, 88-, and 256-color terminals.
 " Must be done after we call Pathogen since the color scheme lives in a bundle.
 colorscheme abbott
