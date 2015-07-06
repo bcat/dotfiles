@@ -171,23 +171,25 @@ let maplocalleader = ','
 " Configure keybindings for basic editor functionality:
 "
 " ,,        Clear search highlight
-" ,r        Edit file relative to current directory
 " ,s        Toggle spell checker
 " ,<Space>  Remove trailing whitespace
 nnoremap <silent> <Leader><Leader> :nohlsearch<CR>
-nnoremap <silent> <Leader>r :e <C-R>=expand('%:p:~:h')<CR>/<C-D>
 nnoremap <silent> <Leader>s :set spell!<CR>
-noremap <silent> <Leader><Space> :EraseBadWhitespace<CR>
+nnoremap <silent> <Leader><Space> :EraseBadWhitespace<CR>
 
-" Configure keybindings for working with color schemes:
+" Configure keybindings for working with configuration files:
 "
 " ,cc       Reload current color scheme
-" ,cs       Show highlight groups for character under the cursor
+" ,ce       Edit ~/.vimrc in a new vertical split
+" ,cv       Reload ~/.vimrc
+nnoremap <silent> <Leader>cc :execute "colorscheme" g:colors_name<CR>
+nnoremap <silent> <Leader>ce :split $MYVIMRC<CR>
+nnoremap <silent> <Leader>cv :source $MYVIMRC<CR>
+
+" Configure keybindings for partial commands (intentionally not silent):
 "
-" (See also http://vimcasts.org/episodes/creating-colorschemes-for-vim/.)
-nmap <silent> <Leader>cc :execute "colorscheme" g:colors_name<CR>
-noremap <silent> <Leader>cs
-    \ :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
+" ,r        Edit file relative to current directory
+nnoremap <Leader>r :e <C-R>=expand('%:p:~:h')<CR>/
 
 " Configure keybindings for CtrlP plugin:
 "
