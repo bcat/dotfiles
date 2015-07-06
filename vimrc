@@ -182,7 +182,7 @@ nnoremap <silent> <Leader><Space> :EraseBadWhitespace<CR>
 " ,cc       Reload current color scheme
 " ,ce       Edit ~/.vimrc in a new vertical split
 " ,cv       Reload ~/.vimrc
-nnoremap <silent> <Leader>cc :execute "colorscheme" g:colors_name<CR>
+nnoremap <silent> <Leader>cc :execute 'colorscheme' g:colors_name<CR>
 nnoremap <silent> <Leader>ce :split $MYVIMRC<CR>
 nnoremap <silent> <Leader>cv :source $MYVIMRC<CR>
 
