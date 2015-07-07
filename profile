@@ -49,9 +49,6 @@ type lesspipe >/dev/null 2>&1 && eval "$(lesspipe)"
 
 export LESS='-M -R'
 
-# Don't output noisy, useless diffs when submitting Perforce changelists.
-export P4DIFF=$(which true)
-
 # If there is a local .profile file, source that now.
 [ -f ~/.profile.local ] && . ~/.profile.local
 
