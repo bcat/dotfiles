@@ -2,9 +2,6 @@
 " the Vim Tips Wiki, and the vimrc file Ben Breedlove sent me to look at.
 " (Thanks, Ben!)
 
-" Enable Vim improvements at the expense of losing full vi compatibility.
-set nocompatible
-
 " Disable swap files. Vim almost never crashes, and they clutter up directories.
 set noswapfile
 
