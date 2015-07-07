@@ -202,6 +202,9 @@ xnoremap <silent> gk k
 xnoremap <silent> j gj
 xnoremap <silent> k gk
 
+" Define a normal-mode mapping to make Y before sensibly (yank to end of line).
+nnoremap <silent> Y y$
+
 " Define normal- and visual-mode mappings to operate on windows:
 "
 " <C-_>           Split the current window horizontally
@@ -250,7 +253,7 @@ let maplocalleader = ' '
 
 " Configure keybindings for partial commands (intentionally not silent):
 "
-" ,r              Edit file relative to current directory
+" <Space>r        Edit file relative to current directory
 nnoremap <Leader>r :e <C-R>=expand('%:p:~:h')<CR>/
 
 " Configure keybindings for basic editor functionality:
@@ -269,19 +272,20 @@ nnoremap <silent> <Leader>w :EraseBadWhitespace<CR>
 " <Space>cs       Edit spelling dictionary in a new horizontal split
 " <Space>cv       Edit vimrc file in a new horizontal split
 "
-" <Space>rc       Reload current color scheme
-" <Space>rg       Reload gvimrc file
-" <Space>rv       Reload vimrc file
+" <Space>dc       Reload current color scheme
+" <Space>dg       Reload gvimrc file
+" <Space>ds       Reload spelling dictionary
+" <Space>dv       Reload vimrc file
 nnoremap <silent> <Leader>cc
     \ :execute 'Vsplit colors/' . g:colors_name . '.vim'<CR>
 nnoremap <silent> <Leader>cg :split $MYGVIMRC<CR>
 nnoremap <silent> <Leader>cs :execute 'split ' . &spellfile<CR>
 nnoremap <silent> <Leader>cv :split $MYVIMRC<CR>
 
-nnoremap <silent> <Leader>rc :execute 'colorscheme' g:colors_name<CR>
-nnoremap <silent> <Leader>rg :source $MYGVIMRC<CR>
-nnoremap <silent> <Leader>rs :execute 'mkspell!' &spellfile<CR>
-nnoremap <silent> <Leader>rv :source $MYVIMRC<CR>
+nnoremap <silent> <Leader>dc :execute 'colorscheme' g:colors_name<CR>
+nnoremap <silent> <Leader>dg :source $MYGVIMRC<CR>
+nnoremap <silent> <Leader>ds :execute 'mkspell!' &spellfile<CR>
+nnoremap <silent> <Leader>dv :source $MYVIMRC<CR>
 
 " Configure keybindings for CtrlP plugin:
 "
