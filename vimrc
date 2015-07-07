@@ -164,39 +164,134 @@ if &term =~# '^screen'
   set t_fs=
 endif
 
-" Begin custom keybindings with the comma (,) key.
-let mapleader = ','
-let maplocalleader = ','
+" Disable unmodified in normal, visual, select, and operator-pending modes to
+" avoid the temptation to use them. :) Leave insert mode arrow keys alone.
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+noremap <Up> <Nop>
 
-" Configure keybindings for basic editor functionality:
-"
-" ,,        Clear search highlight
-" ,s        Toggle spell checker
-" ,<Space>  Remove trailing whitespace
-nnoremap <silent> <Leader><Leader> :nohlsearch<CR>
-nnoremap <silent> <Leader>s :set spell!<CR>
-nnoremap <silent> <Leader><Space> :EraseBadWhitespace<CR>
+" Define normal- and visual-mode mappings to enter command mode when the Enter
+" key is pressed.
+nnoremap <CR> :
+xnoremap <CR> :
 
-" Configure keybindings for working with configuration files:
+" Define normal- and visual-mode mappings for Ctrl-modified arrow keys to shift
+" the current line or selection, updating indentation accordingly.
 "
-" ,cc       Reload current color scheme
-" ,ce       Edit ~/.vimrc in a new vertical split
-" ,cv       Reload ~/.vimrc
-nnoremap <silent> <Leader>cc :execute 'colorscheme' g:colors_name<CR>
-nnoremap <silent> <Leader>ce :split $MYVIMRC<CR>
-nnoremap <silent> <Leader>cv :source $MYVIMRC<CR>
+" <C-Down>    Move the current line/selection down
+" <C-Left>    Dedent the current line/selection
+" <C-Right>   Indent the current line/selection
+" <C-Up>      Move the current line/selection up
+nnoremap <silent> <C-Down> ]e==
+nnoremap <silent> <C-Left> <<
+nnoremap <silent> <C-Right> >>
+nnoremap <silent> <C-Up> [e==
+
+xnoremap <silent> <C-Down> ]egv=gv
+xnoremap <silent> <C-Left> <gv
+xnoremap <silent> <C-Right> >gv
+xnoremap <silent> <C-Up> [egv=gv
+
+" Define normal- and visual-mode mappings to swap linewise vertical movement
+" keys with keys that use display lines (respecting wrapping).
+nnoremap <silent> gj j
+nnoremap <silent> gk k
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+
+xnoremap <silent> gj j
+xnoremap <silent> gk k
+xnoremap <silent> j gj
+xnoremap <silent> k gk
+
+" Define normal- and visual-mode mappings to operate on windows:
+"
+" <C-_>           Split the current window horizontally
+" <C-\>           Split the current window vertically
+" <C-H>           Focus window to the left of the current window
+" <C-J>           Focus window below the current window
+" <C-K>           Focus window above the current window
+" <C-L>           Focus window to the right of the current window
+" Q               Close current window
+"
+" (<C-Q> cannot be mapped since terminals use it for the XON control character.)
+nnoremap <silent> <C-_> :split<CR>
+nnoremap <silent> <C-\> :vsplit<CR>
+nnoremap <silent> <C-H> <C-W>h
+nnoremap <silent> <C-J> <C-W>j
+nnoremap <silent> <C-K> <C-W>k
+nnoremap <silent> <C-L> <C-W>l
+nnoremap <silent> Q <C-W>q
+
+xnoremap <silent> <C-"> :split<CR>
+xnoremap <silent> <C-%> :vsplit<CR>
+xnoremap <silent> <C-H> <C-W>h
+xnoremap <silent> <C-J> <C-W>j
+xnoremap <silent> <C-K> <C-W>k
+xnoremap <silent> <C-L> <C-W>l
+xnoremap <silent> Q <C-W>q
+
+" Define normal- and visual-mode mappings for some other keys whose default
+" bindings I don't find useful:
+"
+" H               Go to the first non-blank character of the current line
+" L               Go to the last character of the current line
+" M               Go to the first character of the current line
+nnoremap <silent> H ^
+nnoremap <silent> L $
+nnoremap <silent> M 0
+
+xnoremap <silent> H ^
+xnoremap <silent> L $
+xnoremap <silent> M 0
+
+" Begin custom keybindings with the space key.
+noremap <Space> <Nop>
+let mapleader = ' '
+let maplocalleader = ' '
 
 " Configure keybindings for partial commands (intentionally not silent):
 "
-" ,r        Edit file relative to current directory
+" ,r              Edit file relative to current directory
 nnoremap <Leader>r :e <C-R>=expand('%:p:~:h')<CR>/
+
+" Configure keybindings for basic editor functionality:
+"
+" <Space><Space>  Clear search highlighting and redraw the screen
+" <Space>s        Toggle spell checking in the current buffer
+" <Space>w        Remove trailing whitespace from the current buffer
+nnoremap <silent> <Leader><Leader> :nohlsearch<CR><C-L>
+nnoremap <silent> <Leader>s :setlocal spell!<CR>
+nnoremap <silent> <Leader>w :EraseBadWhitespace<CR>
+
+" Configure keybindings for working with configuration files:
+"
+" <Space>cc       Edit current color scheme in a new horizontal split
+" <Space>cg       Edit gvimrc file in a new horizontal split
+" <Space>cs       Edit spelling dictionary in a new horizontal split
+" <Space>cv       Edit vimrc file in a new horizontal split
+"
+" <Space>rc       Reload current color scheme
+" <Space>rg       Reload gvimrc file
+" <Space>rv       Reload vimrc file
+nnoremap <silent> <Leader>cc
+    \ :execute 'Vsplit colors/' . g:colors_name . '.vim'<CR>
+nnoremap <silent> <Leader>cg :split $MYGVIMRC<CR>
+nnoremap <silent> <Leader>cs :execute 'split ' . &spellfile<CR>
+nnoremap <silent> <Leader>cv :split $MYVIMRC<CR>
+
+nnoremap <silent> <Leader>rc :execute 'colorscheme' g:colors_name<CR>
+nnoremap <silent> <Leader>rg :source $MYGVIMRC<CR>
+nnoremap <silent> <Leader>rs :execute 'mkspell!' &spellfile<CR>
+nnoremap <silent> <Leader>rv :source $MYVIMRC<CR>
 
 " Configure keybindings for CtrlP plugin:
 "
-" ,ab       Perform fuzzy buffer search by name
-" ,af       Perform fuzzy file search for files starting in VCS root
-" ,ag       Perform fuzzy buffer search by contents
-" ,ar       Perform fuzzy file search for files starting in buffer's directory
+" <Space>ab       Perform fuzzy buffer search by name
+" <Space>af       Perform fuzzy file search for files starting in VCS root
+" <Space>ag       Perform fuzzy buffer search by contents
+" <Space>ar       Perform fuzzy file search for files starting next to buffer
 nnoremap <silent> <Leader>ab :CtrlPBuffer<CR>
 nnoremap <silent> <Leader>af :CtrlPRoot<CR>
 nnoremap <silent> <Leader>ag :CtrlPLine<CR>
@@ -204,12 +299,12 @@ nnoremap <silent> <Leader>ar :CtrlP<CR>
 
 " Configure keybindings for Eclim plugin:
 "
-" ,ea       Open or close buffer with tree view of current project
-" ,ee       Search project for source element under the cursor
-" ,ef       Open fuzzy search tool for Java classes, source files, etc.
-" ,eh       Open Java call hierarchy for method under cursor
-" ,eo       Remove unused Java imports and organize remaining imports
-" ,ep       Show compilation errors in quickfix buffer
+" <Space>ea       Open or close buffer with tree view of current project
+" <Space>ee       Search project for source element under the cursor
+" <Space>ef       Open fuzzy search tool for Java classes, source files, etc.
+" <Space>eh       Open Java call hierarchy for method under cursor
+" <Space>eo       Remove unused Java imports and organize remaining imports
+" <Space>ep       Show compilation errors in quickfix buffer
 nnoremap <silent> <Leader>ea :ProjectTreeToggle<CR>
 nnoremap <silent> <Leader>ee :JavaSearchContext<CR>
 nnoremap <silent> <Leader>ef :LocateFile<CR>
