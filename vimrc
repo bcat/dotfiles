@@ -224,8 +224,8 @@ nnoremap <silent> <C-K> <C-W>k
 nnoremap <silent> <C-L> <C-W>l
 nnoremap <silent> Q <C-W>q
 
-xnoremap <silent> <C-"> :split<CR>
-xnoremap <silent> <C-%> :vsplit<CR>
+xnoremap <silent> <C-_> :split<CR>
+xnoremap <silent> <C-\> :vsplit<CR>
 xnoremap <silent> <C-H> <C-W>h
 xnoremap <silent> <C-J> <C-W>j
 xnoremap <silent> <C-K> <C-W>k
