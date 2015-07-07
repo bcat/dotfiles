@@ -205,27 +205,21 @@ xnoremap <silent> k gk
 " Define a normal-mode mapping to make Y before sensibly (yank to end of line).
 nnoremap <silent> Y y$
 
-" Define normal- and visual-mode mappings to operate on windows:
+" Define normal- and visual-mode mappings to move between and close windows:
 "
-" <C-_>           Split the current window horizontally
-" <C-\>           Split the current window vertically
 " <C-H>           Focus window to the left of the current window
 " <C-J>           Focus window below the current window
 " <C-K>           Focus window above the current window
 " <C-L>           Focus window to the right of the current window
-" Q               Close current window
+" Q               Close the current window
 "
 " (<C-Q> cannot be mapped since terminals use it for the XON control character.)
-nnoremap <silent> <C-_> :split<CR>
-nnoremap <silent> <C-\> :vsplit<CR>
 nnoremap <silent> <C-H> <C-W>h
 nnoremap <silent> <C-J> <C-W>j
 nnoremap <silent> <C-K> <C-W>k
 nnoremap <silent> <C-L> <C-W>l
 nnoremap <silent> Q <C-W>q
 
-xnoremap <silent> <C-_> :split<CR>
-xnoremap <silent> <C-\> :vsplit<CR>
 xnoremap <silent> <C-H> <C-W>h
 xnoremap <silent> <C-J> <C-W>j
 xnoremap <silent> <C-K> <C-W>k
@@ -258,10 +252,16 @@ nnoremap <Leader>r :e <C-R>=expand('%:p:~:h')<CR>/
 
 " Configure keybindings for basic editor functionality:
 "
-" <Space><Space>  Clear search highlighting and redraw the screen
+" <Space><Space>  Switch current buffer with alternate file
+" <Space>-        Split the current window horizontally
+" <Space>/        Clear search highlighting and redraw the screen
+" <Space>\        Split the current window vertically
 " <Space>s        Toggle spell checking in the current buffer
 " <Space>w        Remove trailing whitespace from the current buffer
-nnoremap <silent> <Leader><Leader> :nohlsearch<CR><C-L>
+nnoremap <silent> <Leader><Leader> <C-^>
+nnoremap <silent> <Leader>- :split<CR>
+nnoremap <silent> <Leader>/ :nohlsearch<CR><C-L>
+nnoremap <silent> <Leader>\ :vsplit<CR>
 nnoremap <silent> <Leader>s :setlocal spell!<CR>
 nnoremap <silent> <Leader>w :EraseBadWhitespace<CR>
 
