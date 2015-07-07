@@ -56,6 +56,9 @@ if exists('&colorcolumn')
 endif
 
 if has('autocmd')
+  " Equalize window sizes when Vim is resized
+  autocmd VimResized * wincmd =
+
   " Don't list quickfix buffer, and don't wrap it or show a right margin.
   autocmd FileType qf setlocal nobuflisted textwidth=0
 
