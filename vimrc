@@ -193,17 +193,13 @@ xnoremap <silent> <C-Left> <gv
 xnoremap <silent> <C-Right> >gv
 xnoremap <silent> <C-Up> [egv=gv
 
-" Define normal- and visual-mode mappings to swap linewise vertical movement
-" keys with keys that use display lines (respecting wrapping).
+" Define normal-mode mappings to swap linewise vertical movement keys with keys
+" that use display lines (respecting wrapping). Don't swap these bindings for
+" visual mode since doing so makes visual-line and visual-block selection weird.
 nnoremap <silent> gj j
 nnoremap <silent> gk k
 nnoremap <silent> j gj
 nnoremap <silent> k gk
-
-xnoremap <silent> gj j
-xnoremap <silent> gk k
-xnoremap <silent> j gj
-xnoremap <silent> k gk
 
 " Define a normal-mode mapping to make Y before sensibly (yank to end of line).
 nnoremap <silent> Y y$
