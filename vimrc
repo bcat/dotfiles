@@ -56,59 +56,63 @@ if exists('&colorcolumn')
 endif
 
 if has('autocmd')
-  " Equalize window sizes when Vim is resized
-  autocmd VimResized * wincmd =
+  augroup vimrc
+    autocmd!
 
-  " Don't list quickfix buffer, and don't wrap it or show a right margin.
-  autocmd FileType qf setlocal nobuflisted textwidth=0
+    " Equalize window sizes when Vim is resized
+    autocmd VimResized * wincmd =
 
-  " Set C/C++ indentation to match Google C++ style:
-  " http://google.github.io/styleguide/cppguide.html.
-  autocmd FileType cpp setlocal cinoptions+=l1,g1,h1,N-s,(0,j1
+    " Don't list quickfix buffer, and don't wrap it or show a right margin.
+    autocmd FileType qf setlocal nobuflisted textwidth=0
 
-  " Set Haskell indentation to match XMonad coding style:
-  " http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Doc-Developing.html.
-  autocmd FileType haskell setlocal tabstop=4 shiftwidth=4
+    " Set C/C++ indentation to match Google C++ style:
+    " http://google.github.io/styleguide/cppguide.html.
+    autocmd FileType cpp setlocal cinoptions+=l1,g1,h1,N-s,(0,j1
 
-  " Wrap HTML files at 100 characters to match common conventions.
-  autocmd FileType html setlocal textwidth=100
+    " Set Haskell indentation to match XMonad coding style:
+    " http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Doc-Developing.html.
+    autocmd FileType haskell setlocal tabstop=4 shiftwidth=4
 
-  " Set Go indentation and disable wrapping to match Go style:
-  " http://golang.org/doc/effective_go.html.
-  autocmd FileType go setlocal noexpandtab tabstop=8 shiftwidth=8 textwidth=0
+    " Wrap HTML files at 100 characters to match common conventions.
+    autocmd FileType html setlocal textwidth=100
 
-  " Wrap Java files at 100 chars to match Google Java style:
-  " http://google.github.io/styleguide/javaguide.html.
-  autocmd FileType java setlocal textwidth=100
+    " Set Go indentation and disable wrapping to match Go style:
+    " http://golang.org/doc/effective_go.html.
+    autocmd FileType go setlocal noexpandtab tabstop=8 shiftwidth=8 textwidth=0
 
-  " Set JavaScript indentation to match Google JavaScript style:
-  " http://google.github.io/styleguide/javascriptguide.xml.
-  autocmd FileType javascript setlocal cinoptions+=(0
+    " Wrap Java files at 100 chars to match Google Java style:
+    " http://google.github.io/styleguide/javaguide.html.
+    autocmd FileType java setlocal textwidth=100
 
-  " Set Markdown indentation to match syntactic requirements:
-  " http://daringfireball.net/projects/markdown/syntax.
-  autocmd FileType markdown setlocal tabstop=4 shiftwidth=4
+    " Set JavaScript indentation to match Google JavaScript style:
+    " http://google.github.io/styleguide/javascriptguide.xml.
+    autocmd FileType javascript setlocal cinoptions+=(0
 
-  " Set PHP indentation to match Zend Framework coding standard:
-  " http://framework.zend.com/manual/1.12/en/coding-standard.html.
-  autocmd FileType php setlocal tabstop=4 shiftwidth=4
+    " Set Markdown indentation to match syntactic requirements:
+    " http://daringfireball.net/projects/markdown/syntax.
+    autocmd FileType markdown setlocal tabstop=4 shiftwidth=4
 
-  " Use C-style indentation for protocol buffer definitions.
-  autocmd FileType proto setlocal cindent cinoptions+=(0
+    " Set PHP indentation to match Zend Framework coding standard:
+    " http://framework.zend.com/manual/1.12/en/coding-standard.html.
+    autocmd FileType php setlocal tabstop=4 shiftwidth=4
 
-  " Set Python indentation to match Google Python style:
-  " http://google.github.io/styleguide/pyguide.html.
-  autocmd FileType python setlocal tabstop=4 shiftwidth=4
+    " Use C-style indentation for protocol buffer definitions.
+    autocmd FileType proto setlocal cindent cinoptions+=(0
 
-  " Disable wrapping for TeX to allow one line per sentence for clean diffs.
-  autocmd FileType tex setlocal textwidth=0
+    " Set Python indentation to match Google Python style:
+    " http://google.github.io/styleguide/pyguide.html.
+    autocmd FileType python setlocal tabstop=4 shiftwidth=4
 
-  " Highlight Google Apps Script source files as JavaScript.
-  autocmd BufNewFile,BufRead *.gs setlocal filetype=javascript
+    " Disable wrapping for TeX to allow one line per sentence for clean diffs.
+    autocmd FileType tex setlocal textwidth=0
 
-  " Highlight Bazel build system stuff as Python.
-  autocmd BufNewFile,BufRead BUILD setlocal filetype=python
-  autocmd BufNewFile,BufRead build_defs setlocal filetype=python
+    " Highlight Google Apps Script source files as JavaScript.
+    autocmd BufNewFile,BufRead *.gs setlocal filetype=javascript
+
+    " Highlight Bazel build system stuff as Python.
+    autocmd BufNewFile,BufRead BUILD setlocal filetype=python
+    autocmd BufNewFile,BufRead build_defs setlocal filetype=python
+  augroup END
 endif
 
 " If the Silver Search (Ag) is available, use it as a replacement for grep.
@@ -134,7 +138,10 @@ if has('spell')
   set spell
 
   if has('autocmd')
-    autocmd FileType qf setlocal nospell
+    augroup vimrc_spell
+      autocmd!
+      autocmd FileType qf setlocal nospell
+    augroup END
   endif
 endif
 
