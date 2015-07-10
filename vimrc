@@ -106,7 +106,7 @@ if has('autocmd')
   " Highlight Google Apps Script source files as JavaScript.
   autocmd BufNewFile,BufRead *.gs setlocal filetype=javascript
 
-  " Highlight Blaze/Bazel build system stuff as Python.
+  " Highlight Bazel build system stuff as Python.
   autocmd BufNewFile,BufRead BUILD setlocal filetype=python
   autocmd BufNewFile,BufRead build_defs setlocal filetype=python
 endif
