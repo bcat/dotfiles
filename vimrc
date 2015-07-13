@@ -169,8 +169,8 @@ endif
 " GNU Screen and tmux support setting the window title, but don't declare that
 " in their terminfo entry.
 if &term =~# '^screen'
-  set t_ts=]2;
-  set t_fs=
+  execute 'set' "t_ts=\e]2;"
+  execute 'set' "t_fs=\7"
 endif
 
 " Disable unmodified in normal, visual, select, and operator-pending modes to
