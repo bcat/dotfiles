@@ -28,6 +28,10 @@ set linebreak
 set scrolloff=4
 set sidescrolloff=8
 
+" Open new windows below and to the right of existing ones.
+set splitbelow
+set splitright
+
 " Maintain equal-sized windows when new windows are open or old ones closed.
 set equalalways
 
