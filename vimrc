@@ -163,7 +163,7 @@ if has('mouse')
   endif
 
   " tmux implements an upgraded xterm mouse protocol (1006) that supports faster
-  " dragging and terminals wider than 223 columns, but it doesn't implement that
+  " dragging and terminals wider than 223 columns, but it doesn't implement the
   " xterm escape sequence that would allow Vim to autodetect this.
   if &term =~# '^screen' && !empty($TMUX)
     set ttymouse=sgr
@@ -177,7 +177,7 @@ if &term =~# '^screen'
   execute 'set' "t_fs=\7"
 endif
 
-" Disable unmodified in normal, visual, select, and operator-pending modes to
+" Disable arrow keys in normal, visual, select, and operator-pending modes to
 " avoid the temptation to use them. :) Leave insert mode arrow keys alone.
 noremap <Down> <Nop>
 noremap <Left> <Nop>
