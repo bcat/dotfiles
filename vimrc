@@ -260,7 +260,8 @@ let maplocalleader = ' '
 " Configure keybindings for partial commands (intentionally not silent):
 "
 " <Space>r        Edit file relative to current directory
-nnoremap <Leader>r :e <C-R>=expand('%:p:~:h')<CR>/
+nnoremap <Leader>r
+    \ :e <C-R>=substitute(expand('%:~:.:h') . '/', '^\./$', '', '')<CR>
 
 " Configure keybindings for basic editor functionality:
 "
