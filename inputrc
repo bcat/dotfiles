@@ -1,19 +1,49 @@
-# Include the system's Readline configuration.
-$include /etc/inputrc
+# We intentionally don't include the system's Readline configuration since
+# different operating systems have different default keybindings, and it's more
+# consistent to just define them all ourselves.
 
-# Make the up and down arrow keys match on partially typed commands.
-"\e[A": history-search-backward
-"\e[B": history-search-forward
-
-# Handle Ctrl+Left and Ctrl+Right in urxvt.
-"\eOd": backward-word
-"\eOc": forward-word
-
-# Handle Ctrl+Left and Ctrl+Right in PuTTY.
-"\eOD": backward-word
-"\eOC": forward-word
+# Make Readline 8-bit clean by preserving characters with the high bit set in
+# text input and output.
+set input-meta on
+set output-meta on
 
 # Don't instruct the terminal to set the 8th bit when a key is pressed with alt
 # help down; this is weird, and nobody should be doing it anymore:
 # http://invisible-island.net/ncurses/ncurses.faq.html#bash_meta_mode.
 set enable-meta-key off
+
+# Handle Home/End (rxvt).
+"\e[7~": beginning-of-line
+"\e[8~": end-of-line
+
+# Handle Home/End (PuTTY/xterm).
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+
+# Handle Insert/Delete (rxvt/PuTTY/xterm).
+"\e[2~": quoted-insert
+"\e[3~": delete-char
+
+# Handle Up/Down, matching on partially typed commands (rxvt/PuTTY/xterm).
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Handle Ctrl+Left/Ctrl+Right (PuTTY).
+"\eOD": backward-word
+"\eOC": forward-word
+
+# Handle Ctrl+Left/Ctrl+Right (rxvt).
+"\eOd": backward-word
+"\eOc": forward-word
+
+# Handle Ctrl+Left/Ctrl+Right (xterm).
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
+
+# Handle Alt+Left/Alt+Right since OS X eats Ctrl+Left/Ctrl+Right (rxvt).
+"\e\e[D": backward-word
+"\e\e[C": forward-word
+
+# Handle Alt+Left/Alt+Right since OS X eats Ctrl+Left/Ctrl+Right (PuTTY/xterm).
+"\e[1;9D": backward-word
+"\e[1;9C": forward-word
