@@ -66,14 +66,15 @@ set -o functrace
 shopt -s extdebug
 
 # Give certain commands some color.
-#
-# We use BASH-style function syntax here instead of POSIX syntax because some
-# overclever sysadmins/distros decide to alias `ls' in /etc/bash.bashrc, which
-# breaks the cleaner-looking `ls () { ... }' method of function definition.
-eval $(dircolors ~/.config/lscolors/LS_COLORS)
+alias grep='grep --color=auto'
 
-function ls { command ls --color=auto "$@"; }
-function grep { command grep --color=auto "$@"; }
+type dircolors >/dev/null 2>&1 && eval $(dircolors ~/.config/lscolors/LS_COLORS)
+
+if ls --color / >/dev/null 2>&1; then
+  alias ls='ls --color=auto'  # GNU ls
+else
+  alias ls='CLICOLOR=1 ls'  # BSD ls
+fi
 
 # Customize the prompt. (The prompt code is quite long, so it lives in a
 # separate file.)
