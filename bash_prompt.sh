@@ -184,7 +184,7 @@ _bash_prompt_ps1_build_directory () {
   _bash_prompt_ps1_escape "$_bash_prompt_term_bright_cyan"
   _bash_prompt_ps1_append ' '
   _bash_prompt_ps1_append \
-      "$(_bash_prompt_truncate "${PWD/#$HOME/'~'}" \
+      "$(_bash_prompt_truncate "$(_bash_prompt_format_path "$PWD")" \
       $((COLUMNS - _bash_prompt_col)) left)"
 }
 
@@ -233,7 +233,18 @@ _bash_prompt_ps1_escape () {
 _bash_prompt_title () {
   if [[ $TERM =~ ^(cygwin|rxvt|screen|xterm)(-|$) ]]; then
     # OSC 2 ; term_window_title BEL
-    printf '\e]2;%s\a' "${1:-$0} (${PWD/#$HOME/'~'})"
+    printf '\e]2;%s\a' "${1:-$0} ($(_bash_prompt_format_path "$PWD"))"
+  fi
+}
+
+# _bash_prompt_format_path PATH
+#
+# Output PATH with the current user's home directory replaced with "~".
+_bash_prompt_format_path () {
+  if [[ $1 =~ ^"$HOME"(/|$) ]]; then
+    printf "~${1#$HOME}"
+  else
+    printf "$1"
   fi
 }
 
