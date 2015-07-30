@@ -9,18 +9,19 @@ set guioptions-=r
 set guioptions-=t
 set guioptions-=T
 
-" Set a pretty font. :) To make things a bit more cross-platform, we actually
-" specify several fonts: a primary and a few fallbacks.
+" Select a pretty font. :) To make things a bit more cross-platform, we actually
+" specify several fonts: a primary and a few fallbacks. Font sizes are chosen to
+" give 12px fonts on 96 DPI Linux/Windows displays and 72 DPI OS X displays.
 if has('gui_gtk2')
-  set guifont=GohuFont\ 11px
-  set guifont+=Envy\ Code\ R\ 10
-  set guifont+=Consolas\ 10
-  set guifont+=DejaVu\ Sans\ Mono\ 10
-  set guifont+=Courier\ New\ 10
+  set guifont=Source\ Code\ Pro\ 9
+  set guifont+=DejaVu\ Sans\ Mono\ 9
+  set guifont+=Monospace\ 9
 elseif has('gui_win32')
-  set guifont=GohuFont:h8:cDEFAULT
-  set guifont+=Envy_Code_R:h10:cDEFAULT
-  set guifont+=Consolas:h10:cDEFAULT
-  set guifont+=DejaVu_Sans_Mono:h10:cDEFAULT
-  set guifont+=Courier_New:h10:cDEFAULT
+  set guifont=Source_Code_Pro:h9:cDEFAULT
+  set guifont+=Consolas:h9:cDEFAULT
+  set guifont+=Courier_New:h9:cDEFAULT
+elseif has('gui_macvim')
+  set guifont=Source\ Code\ Pro:h12
+  set guifont+=Menlo:h12
+  set guifont+=Monaco:h12
 endif
