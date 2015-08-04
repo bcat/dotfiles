@@ -59,6 +59,9 @@ if type git >/dev/null 2>&1; then
 fi
 
 preexec () {
+  # Reset the terminal color since the precmd function left it bold and bright.
+  printf %s "$_bash_prompt_term_reset"
+
   local cmd_line job cmd
 
   # Split the command line into multiple words.
@@ -94,13 +97,15 @@ precmd () {
   PS3='#? '
   PS4='+ '
 
-  # Build the prompt.
+  # Build the prompt. We don't reset the terminal color at the end of the
+  # prompt, so text typed by the user will be in bold, bright white, making it
+  # easier to distinguish.
+  _bash_prompt_ps1_escape "$_bash_prompt_term_reset"
   _bash_prompt_ps1_build_machine
   _bash_prompt_ps1_build_status
   _bash_prompt_ps1_build_directory
   _bash_prompt_ps1_append $'\n'
   _bash_prompt_ps1_build_symbol
-  _bash_prompt_ps1_escape "$_bash_prompt_term_reset"
   _bash_prompt_ps1_escape "$(_bash_prompt_title)"
 }
 
