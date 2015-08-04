@@ -1,11 +1,10 @@
 #!/bin/sh
-
-# Copyright © 2009-14 Jonathan Rascher.
-
+# Copyright © 2009-15 Jonathan Rascher.
+#
 # Permission to use, copy, modify, and/or distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
 # copyright notice and this permission notice appear in all copies.
-
+#
 # THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
 # REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
 # AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
@@ -13,7 +12,7 @@
 # LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 # OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 # PERFORMANCE OF THIS SOFTWARE.
-
+#
 # This is an attempt at porting Alan Pinstein's and Ryan Bates's dotfile
 # installation utility [1] from a Ruby Rakefile to a POSIX shell script. Usage
 # is pretty simple. Symbolic links to any normal files in this directory that
@@ -27,7 +26,7 @@
 # new symbolic links or copied files will be created with a dot prefixed to
 # their names, e.g., a file named `foobar` will be installed with the name
 # `~/.foobar`.
-
+#
 # Additionally, dotfiles in arbitrary subdirectories are now supported. The
 # rules regarding local and nonlocal files also apply to files in
 # subdirectories. The dot prefixing behavior described above is usually applied
@@ -35,7 +34,7 @@
 # file's path is named `bin` or `texmf`, then no prefix is applied.  Therefore,
 # a file named `cows/ducks` will be installed with the name `~/.cows/ducks`,
 # whereas a file named `bin/prog` will be installed as `~/bin/prog`.
-
+#
 # Links:
 # 1. Pinstein's original Rakefile is here <http://bit.ly/7WITQW>.
 
@@ -77,12 +76,12 @@ handle_file () {
   dest=$1
   src=$2
 
-  ext=$(printf %s "$src" | sed 's/.*\.\(.*\)/\1/;t;d')
+  ext=$(printf %s "$src" | sed -e 's/.*\.\(.*\)/\1/' -e t -e d)
 
   if [ x"$ext" = xlocal ]; then
     dest=$(printf %s "$dest" | cut -b -$(( ${#dest} - ${#ext} - 1 )))
   else
-    if [ "$(readlink -f "$dest")" = "$src" ]; then
+    if [ "$(readlink "$dest")" = "$src" ]; then
       [ x"$verbose" = x1 ] \
           && printf '%s\n' "Symbolic link $dest already exists; skipping"
       return
@@ -118,7 +117,7 @@ done
 shift $(expr $OPTIND - 1)
 
 for src; do
-  src=$(printf %s "$src" | sed 's:^./::')
+  src=$(printf %s "$src" | sed 's:^\./::')
 
   if printf %s "$src" | grep -E '^(bin|texmf)($|/)' >/dev/null; then
     dest=~/$src
@@ -129,7 +128,7 @@ for src; do
   if [ -d "$src" ]; then
     handle_dir "$dest"
   elif [ -f "$src" ]; then
-    handle_file "$dest" "$(readlink -f "$src")"
+    handle_file "$dest" "$PWD/$src"
   fi
 done
 
@@ -147,5 +146,5 @@ fi
 EOT
 `
 
-find \! \( -name . -o -name README -o -name install \) \
-     -a \( -name '.git*' -prune -o -exec sh -c "$script" "$0" "$@" {} + \)
+find . \! \( -path . -o -path ./README -o -path ./install \) -a \
+     \! \( -name '.git*' -prune -o -exec sh -c "$script" "$0" "$@" {} + \)
