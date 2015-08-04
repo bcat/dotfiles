@@ -127,7 +127,8 @@ _bash_prompt_ps1_build_status () {
 _bash_prompt_ps1_build_jobs () {
   _bash_prompt_ps1_append ' J:'
 
-  local count=$(jobs | wc -l)
+  # Use arithmetic expansion to filter out leading whitespace from BSD wc.
+  local count=$(($(jobs | wc -l)))
 
   if (( count == 0 )); then
     _bash_prompt_ps1_escape "$_bash_prompt_term_bright_green"
