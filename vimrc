@@ -170,11 +170,15 @@ if has('mouse')
   endif
 endif
 
+" Always allow Vim to set the window title even if the terminal can't report the
+" old title to restore on exit since our shell prompt resets the title itself.
+set title
+
 " GNU Screen and tmux support setting the window title, but don't declare that
 " in their terminfo entry.
 if &term =~# '^screen'
-  execute 'set' "t_ts=\e]2;"
-  execute 'set' "t_fs=\7"
+  let &t_ts = "\e]2;"
+  let &t_fs = "\7"
 endif
 
 " Disable arrow keys in normal, visual, select, and operator-pending modes to
