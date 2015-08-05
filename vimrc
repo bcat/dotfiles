@@ -243,26 +243,47 @@ nnoremap <silent> k gk
 " Define a normal-mode mapping to make Y before sensibly (yank to end of line).
 nnoremap <silent> Y y$
 
-" Define normal- and visual-mode mappings to move between and close windows:
+" Define normal- and visual-mode mappings to move between windows, move windows
+" around, and close windows:
 "
-" <C-H>           Focus window to the left of the current window
-" <C-J>           Focus window below the current window
-" <C-K>           Focus window above the current window
-" <C-L>           Focus window to the right of the current window
-" Q               Close the current window
-"
-" (<C-Q> cannot be mapped since terminals use it for the XON control character.)
-nnoremap <silent> <C-H> <C-W>h
-nnoremap <silent> <C-J> <C-W>j
-nnoremap <silent> <C-K> <C-W>k
-nnoremap <silent> <C-L> <C-W>l
-nnoremap <silent> Q <C-W>q
+" <M-h>           Focus window to the left of the current window
+" <M-j>           Focus window below the current window
+" <M-k>           Focus window above the current window
+" <M-l>           Focus window to the right of the current window
+" <M-H>           Move window to the left of the current window
+" <M-J>           Move window below the current window
+" <M-K>           Move window above the current window
+" <M-L>           Move window to the right of the current window
+" <M-q>           Close the current window
+execute "set" "<M-h>=\eh"
+execute "set" "<M-j>=\ej"
+execute "set" "<M-k>=\ek"
+execute "set" "<M-l>=\el"
+execute "set" "<M-H>=\eH"
+execute "set" "<M-J>=\eJ"
+execute "set" "<M-K>=\eK"
+execute "set" "<M-L>=\eL"
+execute "set" "<M-q>=\eq"
 
-xnoremap <silent> <C-H> <C-W>h
-xnoremap <silent> <C-J> <C-W>j
-xnoremap <silent> <C-K> <C-W>k
-xnoremap <silent> <C-L> <C-W>l
-xnoremap <silent> Q <C-W>q
+nnoremap <silent> <M-h> <C-W>h
+nnoremap <silent> <M-j> <C-W>j
+nnoremap <silent> <M-k> <C-W>k
+nnoremap <silent> <M-l> <C-W>l
+nnoremap <silent> <M-H> <C-W>H
+nnoremap <silent> <M-J> <C-W>J
+nnoremap <silent> <M-K> <C-W>K
+nnoremap <silent> <M-L> <C-W>L
+nnoremap <silent> <M-q> <C-W>q
+
+xnoremap <silent> <M-h> <C-W>h
+xnoremap <silent> <M-j> <C-W>j
+xnoremap <silent> <M-k> <C-W>k
+xnoremap <silent> <M-l> <C-W>l
+xnoremap <silent> <M-H> <C-W>H
+xnoremap <silent> <M-J> <C-W>J
+xnoremap <silent> <M-K> <C-W>K
+xnoremap <silent> <M-L> <C-W>L
+xnoremap <silent> <M-q> <C-W>q
 
 " Define normal- and visual-mode mappings for some other keys whose default
 " bindings I don't find useful:
