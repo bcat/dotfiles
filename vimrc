@@ -183,7 +183,8 @@ endif
 
 " Set the cursor to a blinking underline when entering insert mode and restore
 " it to a blinking block when leaving insert mode, if the terminal supports it.
-if &term =~# '\v^%(rxvt-unicode|xterm)%(-|$)'
+if &term =~# '\v^%(rxvt-unicode|xterm)%(-|$)' ||
+    \ &term =~# '\v^screen%(-|$)' && !empty($TMUX)
   let &t_SI = "\e[3 q"
   let &t_EI = "\e[1 q"
 endif
