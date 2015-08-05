@@ -177,24 +177,39 @@ set title
 " GNU Screen and tmux support setting the window title, but don't declare that
 " in their terminfo entry.
 if &term =~# '\v^screen%(-|$)'
+  " Set window title start: OSC 2 ;
   let &t_ts = "\e]2;"
+
+  " Set window title end:   BEL
   let &t_fs = "\7"
 endif
 
 " Set the cursor to a blinking underline when entering insert mode and restore
 " it to a blinking block when leaving insert mode, if the terminal supports it.
-"
-" Additionally, enable bracketed paste mode if the terminal supports it, and
-" listen for begin/end paste delimiters to enter/exit paste mode.
+" Additionally, enable bracketed paste mode if the terminal supports it.
 if &term =~# '\v^%(rxvt-unicode|xterm)%(-|$)' ||
     \ &term =~# '\v^screen%(-|$)' && !empty($TMUX)
+  " Start insert mode:
+  "
+  " Set cursor style to blinking underline: CSI 3 SP q
+  " Set bracketed paste mode:               CSI ? 2 0 0 4 h
   let &t_SI = "\e[3 q\e[?2004h"
+
+  " End insert mode:
+  "
+  " Reset bracketed paste mode:             CSI ? 2 0 0 4 l
+  " Set cursor style to blinking block:     CSI 1 SP q
   let &t_EI = "\e[?2004l\e[1 q"
 
+  " Map unused function keys for bracketed paste:
+  "
+  " Pasted text start:                      ESC [ 2 0 0 ~
+  " Pasted text end:                        ESC [ 2 0 1 ~
   execute "set" "<F20>=\e[200~"
   execute "set" "<F21>=\e[201~"
 
-  imap <silent> <F20> <C-O>:set paste<CR>
+  " Listen for bracketed paste control sequences to update Vim's paste setting.
+  inoremap <silent> <F20> <C-O>:set paste<CR>
   set pastetoggle=<F21>
 endif
 
