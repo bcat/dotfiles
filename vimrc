@@ -158,14 +158,14 @@ if has('mouse')
 
   " urxvt implements a nonstandard mouse protocol (1015) that supports faster
   " dragging and terminals wider than 223 columns, but Vim doesn't know this.
-  if &term =~# '^rxvt-unicode'
+  if &term =~# '\v^rxvt-unicode%(-|$)'
     set ttymouse=urxvt
   endif
 
   " tmux implements an upgraded xterm mouse protocol (1006) that supports faster
   " dragging and terminals wider than 223 columns, but it doesn't implement the
   " xterm escape sequence that would allow Vim to autodetect this.
-  if &term =~# '^screen' && !empty($TMUX)
+  if &term =~# '\v^screen%(-|$)' && !empty($TMUX)
     set ttymouse=sgr
   endif
 endif
@@ -176,14 +176,14 @@ set title
 
 " GNU Screen and tmux support setting the window title, but don't declare that
 " in their terminfo entry.
-if &term =~# '^screen'
+if &term =~# '\v^screen%(-|$)'
   let &t_ts = "\e]2;"
   let &t_fs = "\7"
 endif
 
 " Set the cursor to a blinking underline when entering insert mode and restore
 " it to a blinking block when leaving insert mode, if the terminal supports it.
-if &term =~# '^\(rxvt-unicode\|xterm\)'
+if &term =~# '\v^%(rxvt-unicode|xterm)%(-|$)'
   let &t_SI = "\e[3 q"
   let &t_EI = "\e[1 q"
 endif
