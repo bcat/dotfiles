@@ -183,10 +183,19 @@ endif
 
 " Set the cursor to a blinking underline when entering insert mode and restore
 " it to a blinking block when leaving insert mode, if the terminal supports it.
+"
+" Additionally, enable bracketed paste mode if the terminal supports it, and
+" listen for begin/end paste delimiters to enter/exit paste mode.
 if &term =~# '\v^%(rxvt-unicode|xterm)%(-|$)' ||
     \ &term =~# '\v^screen%(-|$)' && !empty($TMUX)
-  let &t_SI = "\e[3 q"
-  let &t_EI = "\e[1 q"
+  let &t_SI = "\e[3 q\e[?2004h"
+  let &t_EI = "\e[?2004l\e[1 q"
+
+  execute "set" "<F20>=\e[200~"
+  execute "set" "<F21>=\e[201~"
+
+  imap <silent> <F20> <C-O>:set paste<CR>
+  set pastetoggle=<F21>
 endif
 
 " Disable arrow keys in normal, visual, select, and operator-pending modes to
