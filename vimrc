@@ -181,6 +181,13 @@ if &term =~# '^screen'
   let &t_fs = "\7"
 endif
 
+" Set the cursor to a blinking underline when entering insert mode and restore
+" it to a blinking block when leaving insert mode, if the terminal supports it.
+if &term =~# '^\(rxvt-unicode\|xterm\)'
+  let &t_SI = "\e[3 q"
+  let &t_EI = "\e[1 q"
+endif
+
 " Disable arrow keys in normal, visual, select, and operator-pending modes to
 " avoid the temptation to use them. :) Leave insert mode arrow keys alone.
 noremap <Down> <Nop>
