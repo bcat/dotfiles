@@ -198,6 +198,11 @@ if &term =~# '\v^%(rxvt-unicode|xterm)%(-|$)' ||
   set pastetoggle=<F21>
 endif
 
+" Disable the help key in normal, visual, select, operator-pending, and insert
+" modes. It's useless, and annoying when it gets hit on accident.
+noremap <F1> <Nop>
+inoremap <F1> <Nop>
+
 " Disable arrow keys in normal, visual, select, and operator-pending modes to
 " avoid the temptation to use them. :) Leave insert mode arrow keys alone.
 noremap <Down> <Nop>
