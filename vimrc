@@ -141,7 +141,6 @@ endif
 
 " Set a custom dictionary for spell checking, enabling bad word highlighting by
 " default, but don't check spelling in quickfix windows, 'cause that's silly.
-" Not available before Vim 7.4.
 if has('spell')
   set spellfile=~/.vim/spellfile.add
   set spell
