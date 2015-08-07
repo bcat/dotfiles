@@ -36,8 +36,10 @@ set splitright
 set equalalways
 
 " Don't show the stupid preview window for completions, and narrow down
-" available completions as characters are typed.
+" available completions as characters are typed. Also use Readline-style
+" completion for the command line.
 set completeopt=menu,longest
+set wildmode=longest,list
 
 " Uses spaces for indentation by default. (Overridden for some languages below.)
 set expandtab
@@ -139,6 +141,7 @@ endif
 
 " Set a custom dictionary for spell checking, enabling bad word highlighting by
 " default, but don't check spelling in quickfix windows, 'cause that's silly.
+" Not available before Vim 7.4.
 if has('spell')
   set spellfile=~/.vim/spellfile.add
   set spell
