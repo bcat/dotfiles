@@ -231,7 +231,10 @@ noremap <Up> <Nop>
 " Define normal- and visual-mode mappings to enter command mode when the Enter
 " key is pressed.
 nnoremap <CR> :
+nnoremap <kEnter> :
+
 xnoremap <CR> :
+xnoremap <kEnter> :
 
 " Define normal- and visual-mode mappings for Ctrl-modified arrow keys to shift
 " the current line or selection, updating indentation accordingly.
