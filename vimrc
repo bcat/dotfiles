@@ -138,7 +138,7 @@ endif
 
 " Enable fancy search settings. Don't set hlsearch if it's already set since
 " this reverses the effects on :hlnosearch and forces highlighting the last
-" search when the vimrc file is sourced.
+" search whenever the vimrc file is sourced.
 if has('extra_search') && !&hlsearch
   set hlsearch
 endif
@@ -211,8 +211,8 @@ if &term =~# '\v^%(rxvt-unicode|xterm)%(-|$)' ||
   "
   " Pasted text start:                      ESC [ 2 0 0 ~
   " Pasted text end:                        ESC [ 2 0 1 ~
-  execute "set" "<F20>=\e[200~"
-  execute "set" "<F21>=\e[201~"
+  execute "set <F20>=\e[200~"
+  execute "set <F21>=\e[201~"
 
   " Listen for bracketed paste control sequences to update Vim's paste setting.
   inoremap <silent> <F20> <C-O>:set paste<CR>
@@ -279,15 +279,15 @@ nnoremap <silent> Y y$
 " <M-K>           Move window above the current window
 " <M-L>           Move window to the right of the current window
 " <M-q>           Close the current window
-execute "set" "<M-h>=\eh"
-execute "set" "<M-j>=\ej"
-execute "set" "<M-k>=\ek"
-execute "set" "<M-l>=\el"
-execute "set" "<M-H>=\eH"
-execute "set" "<M-J>=\eJ"
-execute "set" "<M-K>=\eK"
-execute "set" "<M-L>=\eL"
-execute "set" "<M-q>=\eq"
+execute "set <M-h>=\eh"
+execute "set <M-j>=\ej"
+execute "set <M-k>=\ek"
+execute "set <M-l>=\el"
+execute "set <M-H>=\eH"
+execute "set <M-J>=\eJ"
+execute "set <M-K>=\eK"
+execute "set <M-L>=\eL"
+execute "set <M-q>=\eq"
 
 nnoremap <silent> <M-h> <C-W>h
 nnoremap <silent> <M-j> <C-W>j
@@ -368,7 +368,7 @@ nnoremap <silent> <Leader>z
 nnoremap <silent> <Leader>cc
     \ :execute 'Vsplit colors/' . g:colors_name . '.vim'<CR>
 nnoremap <silent> <Leader>cg :split $MYGVIMRC<CR>
-nnoremap <silent> <Leader>cs :execute 'split ' . &spellfile<CR>
+nnoremap <silent> <Leader>cs :execute 'split' &spellfile<CR>
 nnoremap <silent> <Leader>cv :split $MYVIMRC<CR>
 
 nnoremap <silent> <Leader>dc :execute 'colorscheme' g:colors_name<CR>
