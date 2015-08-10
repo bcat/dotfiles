@@ -281,8 +281,9 @@ nnoremap <silent> k gk
 nnoremap <silent> Y y$
 
 " Define normal- and visual-mode mappings to move between windows, move windows
-" around, and close windows:
+" around, resize windows, and close windows:
 "
+" <M-=>           Equalize sizes of open windows
 " <M-h>           Focus window to the left of the current window
 " <M-j>           Focus window below the current window
 " <M-k>           Focus window above the current window
@@ -292,6 +293,7 @@ nnoremap <silent> Y y$
 " <M-J>           Move window below the current window
 " <M-K>           Move window above the current window
 " <M-L>           Move window to the right of the current window
+execute "set <M-=>=\e="
 execute "set <M-h>=\eh"
 execute "set <M-j>=\ej"
 execute "set <M-k>=\ek"
@@ -302,6 +304,7 @@ execute "set <M-J>=\eJ"
 execute "set <M-K>=\eK"
 execute "set <M-L>=\eL"
 
+nnoremap <silent> <M-=> <C-W>=
 nnoremap <silent> <M-h> <C-W>h
 nnoremap <silent> <M-j> <C-W>j
 nnoremap <silent> <M-k> <C-W>k
@@ -312,9 +315,11 @@ nnoremap <silent> <M-J> <C-W>J
 nnoremap <silent> <M-K> <C-W>K
 nnoremap <silent> <M-L> <C-W>L
 
+xnoremap <silent> <M-=> <C-W>=
 xnoremap <silent> <M-h> <C-W>h
 xnoremap <silent> <M-j> <C-W>j
 xnoremap <silent> <M-k> <C-W>k
+xnoremap <silent> <M-q> <C-W>q
 xnoremap <silent> <M-l> <C-W>l
 xnoremap <silent> <M-q> <C-W>q
 xnoremap <silent> <M-H> <C-W>H
