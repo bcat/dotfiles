@@ -75,6 +75,19 @@ if has('autocmd')
     " Don't list quickfix buffer, and don't wrap it or show a right margin.
     autocmd FileType qf setlocal nobuflisted textwidth=0
 
+    " Disable Enter key remapping in the quickfix buffer and the command window.
+    autocmd FileType qf nnoremap <buffer> <CR> <CR>
+    autocmd FileType qf nnoremap <buffer> <kEnter> <kEnter>
+
+    autocmd FileType qf xnoremap <buffer> <CR> <CR>
+    autocmd FileType qf xnoremap <buffer> <kEnter> <kEnter>
+
+    autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
+    autocmd CmdwinEnter * nnoremap <buffer> <kEnter> <kEnter>
+
+    autocmd CmdwinEnter * xnoremap <buffer> <CR> <CR>
+    autocmd CmdwinEnter * xnoremap <buffer> <kEnter> <kEnter>
+
     " Set C/C++ indentation to match Google C++ style:
     " http://google.github.io/styleguide/cppguide.html.
     autocmd FileType cpp setlocal cinoptions+=l1,g1,h1,N-s,(0,j1
@@ -274,54 +287,40 @@ nnoremap <silent> Y y$
 " <M-j>           Focus window below the current window
 " <M-k>           Focus window above the current window
 " <M-l>           Focus window to the right of the current window
+" <M-q>           Close the current window
 " <M-H>           Move window to the left of the current window
 " <M-J>           Move window below the current window
 " <M-K>           Move window above the current window
 " <M-L>           Move window to the right of the current window
-" <M-q>           Close the current window
 execute "set <M-h>=\eh"
 execute "set <M-j>=\ej"
 execute "set <M-k>=\ek"
 execute "set <M-l>=\el"
+execute "set <M-q>=\eq"
 execute "set <M-H>=\eH"
 execute "set <M-J>=\eJ"
 execute "set <M-K>=\eK"
 execute "set <M-L>=\eL"
-execute "set <M-q>=\eq"
 
 nnoremap <silent> <M-h> <C-W>h
 nnoremap <silent> <M-j> <C-W>j
 nnoremap <silent> <M-k> <C-W>k
 nnoremap <silent> <M-l> <C-W>l
+nnoremap <silent> <M-q> <C-W>q
 nnoremap <silent> <M-H> <C-W>H
 nnoremap <silent> <M-J> <C-W>J
 nnoremap <silent> <M-K> <C-W>K
 nnoremap <silent> <M-L> <C-W>L
-nnoremap <silent> <M-q> <C-W>q
 
 xnoremap <silent> <M-h> <C-W>h
 xnoremap <silent> <M-j> <C-W>j
 xnoremap <silent> <M-k> <C-W>k
 xnoremap <silent> <M-l> <C-W>l
+xnoremap <silent> <M-q> <C-W>q
 xnoremap <silent> <M-H> <C-W>H
 xnoremap <silent> <M-J> <C-W>J
 xnoremap <silent> <M-K> <C-W>K
 xnoremap <silent> <M-L> <C-W>L
-xnoremap <silent> <M-q> <C-W>q
-
-" Define normal- and visual-mode mappings for some other keys whose default
-" bindings I don't find useful:
-"
-" H               Go to the first non-blank character of the current line
-" L               Go to the last character of the current line
-" M               Go to the first character of the current line
-nnoremap <silent> H ^
-nnoremap <silent> L $
-nnoremap <silent> M 0
-
-xnoremap <silent> H ^
-xnoremap <silent> L $
-xnoremap <silent> M 0
 
 " Begin custom keybindings with the space key.
 noremap <Space> <Nop>
@@ -360,21 +359,19 @@ nnoremap <silent> <Leader>z
 " <Space>cg       Edit gvimrc file in a new horizontal split
 " <Space>cs       Edit spelling dictionary in a new horizontal split
 " <Space>cv       Edit vimrc file in a new horizontal split
-"
-" <Space>dc       Reload current color scheme
-" <Space>dg       Reload gvimrc file
-" <Space>ds       Reload spelling dictionary
-" <Space>dv       Reload vimrc file
+" <Space>cC       Reload current color scheme
+" <Space>cG       Reload gvimrc file
+" <Space>cS       Reload spelling dictionary
+" <Space>cV       Reload vimrc file
 nnoremap <silent> <Leader>cc
     \ :execute 'Vsplit colors/' . g:colors_name . '.vim'<CR>
 nnoremap <silent> <Leader>cg :split $MYGVIMRC<CR>
 nnoremap <silent> <Leader>cs :execute 'split' &spellfile<CR>
 nnoremap <silent> <Leader>cv :split $MYVIMRC<CR>
-
-nnoremap <silent> <Leader>dc :execute 'colorscheme' g:colors_name<CR>
-nnoremap <silent> <Leader>dg :source $MYGVIMRC<CR>
-nnoremap <silent> <Leader>ds :execute 'mkspell!' &spellfile<CR>
-nnoremap <silent> <Leader>dv :source $MYVIMRC<CR>
+nnoremap <silent> <Leader>cC :execute 'colorscheme' g:colors_name<CR>
+nnoremap <silent> <Leader>cG :source $MYGVIMRC<CR>
+nnoremap <silent> <Leader>cS :execute 'mkspell!' &spellfile<CR>
+nnoremap <silent> <Leader>cV :source $MYVIMRC<CR>
 
 " Configure keybindings for CtrlP plugin:
 "
