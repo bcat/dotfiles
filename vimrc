@@ -190,27 +190,27 @@ if &term =~# '\v^screen%(-|$)'
   let &t_fs = "\7"
 endif
 
-" Set the cursor to a blinking underline when entering insert mode and restore
-" it to a blinking block when leaving insert mode, if the terminal supports it.
-" Additionally, enable bracketed paste mode if the terminal supports it.
+" If the terminal supports it, set the cursor to a blinking vertical bar when
+" entering insert mode and restore it to a blinking block when leaving insert
+" mode. Additionally, if the terminal supports it, enable bracketed paste mode.
 if &term =~# '\v^%(rxvt-unicode|xterm)%(-|$)' ||
     \ &term =~# '\v^screen%(-|$)' && !empty($TMUX)
   " Start insert mode:
   "
-  " Set cursor style to blinking underline: CSI 3 SP q
-  " Set bracketed paste mode:               CSI ? 2 0 0 4 h
-  let &t_SI = "\e[3 q\e[?2004h"
+  " Set cursor style to blinking vertical bar: CSI 5 SP q
+  " Set bracketed paste mode:                  CSI ? 2 0 0 4 h
+  let &t_SI = "\e[5 q\e[?2004h"
 
   " End insert mode:
   "
-  " Reset bracketed paste mode:             CSI ? 2 0 0 4 l
-  " Set cursor style to blinking block:     CSI 1 SP q
+  " Reset bracketed paste mode:                CSI ? 2 0 0 4 l
+  " Set cursor style to blinking block:        CSI 1 SP q
   let &t_EI = "\e[?2004l\e[1 q"
 
   " Map unused function keys for bracketed paste:
   "
-  " Pasted text start:                      ESC [ 2 0 0 ~
-  " Pasted text end:                        ESC [ 2 0 1 ~
+  " Pasted text start:                         ESC [ 2 0 0 ~
+  " Pasted text end:                           ESC [ 2 0 1 ~
   execute "set <F20>=\e[200~"
   execute "set <F21>=\e[201~"
 
