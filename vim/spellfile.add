@@ -113,6 +113,7 @@ Crabb
 Creuzer
 Crowther
 Ctrl
+CtrlP
 Cumae
 Cuyahoga
 Cygwin
@@ -122,6 +123,7 @@ DBA
 DBMS's
 DBMSs
 DBs
+DCL
 DDL
 DFS
 DMCA
@@ -131,6 +133,7 @@ DMV
 DNE
 DNS
 DOM's
+DOMContentLoaded
 DOSing
 DPI
 Dardanus
@@ -149,6 +152,7 @@ Doinel
 Donnersmarck
 Donnersmarck's
 Dremel
+Dremel's
 Dreyman
 Dreyman's
 Drive's
@@ -165,6 +169,9 @@ EINTR
 EINVAL
 EOF
 EOL
+ES3
+ES5
+ESC
 EUC
 EUCs
 EVT
@@ -263,15 +270,18 @@ IE6
 IE7
 IH
 IMDB
+IML
 IPC
 IPv4
 IPv6
+IRC
 ISPs
 IVT
 Ick
 Ikai
 Indo-European
 Indo-Europeans
+Irssi
 Iulus
 JARs
 JDBC
@@ -354,6 +364,7 @@ Littlewood's
 Lohman
 Longman
 Lopate
+Lua
 LuaTeX
 Luiz
 LustyExplorer
@@ -430,6 +441,7 @@ OAuth1
 OAuth2
 OCD
 ODBC
+OL
 OLT
 OOM
 OOMs
@@ -457,6 +469,7 @@ POJO
 POJOs
 POSIX
 POV
+PRT
 PTAL
 PUA
 Palaephatus
@@ -515,6 +528,8 @@ Robigus
 Rolle's
 Rutulians
 SCAP
+SDPY
+SERP
 SFT
 SG
 SGTM
@@ -525,6 +540,7 @@ SIGTERM
 SMS
 SOA
 SPC
+SRT
 SSN
 SSTable
 SVDP
@@ -590,6 +606,8 @@ Tumes
 Turnus
 TypeRacer
 U2
+UA
+UAs
 UFD
 UI
 UML
@@ -605,6 +623,7 @@ UltiSnips
 Umayri
 Umm
 V8
+VCS
 VFS
 VM
 VMs
@@ -614,9 +633,11 @@ Viacom
 Viacom's
 Vico
 Vollkorn
+W3C
 WGBH
 WIP
 WLOG
+WSRT
 WTF
 WampServer
 WebDriver
@@ -639,6 +660,8 @@ XHRs
 XHTML
 XJS
 XMonad
+XOFF
+XON
 XPC
 XSL
 XSLT
@@ -649,6 +672,8 @@ XeTeX
 Xenophanes
 Xerces
 YAML
+YYYY
+YYYYMMDD
 Yakuza
 YouTube
 ZDNet
@@ -659,6 +684,7 @@ Zend
 Zend's
 ZipIt
 ZipIt's
+abbott.vim
 accessor
 add-on's
 admin
@@ -711,6 +737,10 @@ autonumber
 autonumbered
 autonumbering
 autonumbers
+autoran
+autorun
+autorunning
+autoruns
 backend
 backend's
 backends
@@ -854,6 +884,7 @@ euthanize
 euthanized
 euthanizes
 exljbris
+externs
 facework
 failover
 fallback
@@ -881,6 +912,7 @@ geolocated
 geolocation
 grayscale
 grep
+gvimrc
 gzip
 hacky
 hardcode
@@ -909,6 +941,7 @@ init
 injectivity
 inline
 inlined
+inlining
 inode
 inodes
 interactional
@@ -977,6 +1010,7 @@ monochronic
 monochronicity
 monomorphic
 monospaced
+multiline
 multimap
 multimaps
 multiplayer
@@ -1020,6 +1054,7 @@ onboarded
 onboarding
 onboards
 oncall
+onload
 optionally
 overanalysis
 overprovisioned
@@ -1033,11 +1068,13 @@ per se
 personas
 pietas
 playlist
+plog.vim
 plugin
 plugins
 pointwise
 polychronic
 polychronicity
+polyfill
 popup
 postMessage
 postprocess
@@ -1150,6 +1187,7 @@ smartphones
 snipMate
 solvability
 spammy
+spellfile
 spreadsheet's
 starfield
 starfields
@@ -1181,6 +1219,8 @@ subpackage
 subpackages
 subpath
 subpaths
+subpixel
+subpixels
 subqueries
 subquery
 subring
@@ -1218,12 +1258,15 @@ throbber
 thumbnailer
 thunks
 timestamp
+timestamp's
 timestamping
 tl;dr
 tmux
 to've
 toString
 tokenizable
+tokenization
+tokenizer
 toolbar
 tortious
 totient
@@ -1252,6 +1295,7 @@ uninstalling
 uninstalls
 unkerned
 unlaunched
+unmap
 unmark
 unmarking
 unmarks
@@ -1261,6 +1305,7 @@ unobfuscated
 unpersisted
 unprefixed
 unproxied
+unregistration
 unsanitized
 unscoped
 unstyled
@@ -1274,6 +1319,7 @@ untether
 untethering
 untethers
 untimed
+unversioned
 uploader
 uploaders
 urxvt
@@ -1305,6 +1351,8 @@ wildcard
 wildcards
 woot
 workflow
+workflow's
+workflows
 worldview
 x86
 xkcd
