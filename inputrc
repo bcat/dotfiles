@@ -7,6 +7,9 @@
 set input-meta on
 set output-meta on
 
+# Prevent Readline from stripping the high bit and prefixing escape.
+set convert-meta off
+
 # Don't instruct the terminal to set the 8th bit when a key is pressed with alt
 # help down; this is weird, and nobody should be doing it anymore:
 # http://invisible-island.net/ncurses/ncurses.faq.html#bash_meta_mode.
