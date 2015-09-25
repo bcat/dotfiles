@@ -356,6 +356,7 @@ nnoremap <silent> <Leader>w :EraseBadWhitespace<CR>
 nnoremap <silent> <Leader>z
     \ :execute 'set winheight=' . (&winheight == 1 ? 999 : 1)<CR>
     \ :execute 'set winwidth=' . (&winwidth == 20 ? 999 : 20)<CR>
+    \ :set mousefocus!<CR>
     \ <C-W>=
 
 " Configure keybindings for working with configuration files:
