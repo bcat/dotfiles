@@ -232,6 +232,11 @@ if &term =~# '\v^%(rxvt-unicode|xterm)%(-|$)' ||
   set pastetoggle=<F21>
 endif
 
+" Reduce key sequence timeout from 100 ms (set by vim-sensible) to 50 ms. This
+" is still long enough for modern connections, and it helps prevent characters
+" typed after pressing escape from accidentally registering as meta-modified.
+set ttimeoutlen=50
+
 " Disable the help key in normal, visual, select, operator-pending, and insert
 " modes. It's useless, and annoying when it gets hit on accident.
 noremap <F1> <Nop>
