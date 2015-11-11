@@ -11,10 +11,10 @@ esac
 # If we have fortune, print a fortune cookie.
 if type fortune >/dev/null 2>&1; then
   if type cowsay >/dev/null 2>&1; then
-    fortune | cowsay -n
+    fortune ~/fortunes/hitchhiker | cowsay -n
   else
     printf '\n'
-    fortune
+    fortune ~/fortunes/hitchhiker
     printf '\n'
   fi
 fi

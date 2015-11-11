@@ -31,9 +31,10 @@
 # rules regarding local and nonlocal files also apply to files in
 # subdirectories. The dot prefixing behavior described above is usually applied
 # to files in subdirectories as well; however, if the highest subdirectory in a
-# file's path is named `bin` or `texmf`, then no prefix is applied.  Therefore,
-# a file named `cows/ducks` will be installed with the name `~/.cows/ducks`,
-# whereas a file named `bin/prog` will be installed as `~/bin/prog`.
+# file's path is named `bin`, `fortunes`, or `texmf`, then no prefix is applied.
+# Therefore, a file named `cows/ducks` will be installed with the name
+# `~/.cows/ducks`, whereas a file named `bin/prog` will be installed as
+# `~/bin/prog`.
 #
 # Links:
 # 1. Pinstein's original Rakefile is here <http://bit.ly/7WITQW>.
@@ -119,7 +120,7 @@ shift $(expr $OPTIND - 1)
 for src; do
   src=$(printf %s "$src" | sed 's:^\./::')
 
-  if printf %s "$src" | grep -E '^(bin|texmf)($|/)' >/dev/null; then
+  if printf %s "$src" | grep -E '^(bin|fortunes|texmf)($|/)' >/dev/null; then
     dest=~/$src
   else
     dest=~/.$src
