@@ -24,9 +24,9 @@ fi
 if (( $_bash_prompt_num_colors >= 16 )); then
   # For terminals that support high-intensity colors (i.e., terminals supporting
   # at least 16 total colors), use those directly.
-  _bash_prompt_term_bright_red=$(tput setaf 9)
-  _bash_prompt_term_bright_green=$(tput setaf 10)
+  _bash_prompt_term_bright_red=$(tput setaf 9 setaf 10)
   _bash_prompt_term_orange=$(tput setaf 3)
+  _bash_prompt_term_yellow=$(tput setaf 11)
   _bash_prompt_term_blue=$(tput setaf 4)
   _bash_prompt_term_bright_magenta=$(tput setaf 13)
   _bash_prompt_term_bright_cyan=$(tput setaf 14)
@@ -37,6 +37,7 @@ elif (( $_bash_prompt_num_colors >= 8 )); then
   _bash_prompt_term_bright_red=$_bash_prompt_term_bold$(tput setaf 1)
   _bash_prompt_term_bright_green=$_bash_prompt_term_bold$(tput setaf 2)
   _bash_prompt_term_orange=$_bash_prompt_term_reset$(tput setaf 3)
+  _bash_prompt_term_yellow=$_bash_prompt_term_bold$(tput setaf 3)
   _bash_prompt_term_blue=$_bash_prompt_term_reset$(tput setaf 4)
   _bash_prompt_term_bright_magenta=$_bash_prompt_term_bold$(tput setaf 5)
   _bash_prompt_term_bright_cyan=$_bash_prompt_term_bold$(tput setaf 6)
@@ -105,12 +106,18 @@ precmd () {
 }
 
 _bash_prompt_ps1_build_machine () {
+  local tty=$(tty)
+
   _bash_prompt_ps1_escape "$_bash_prompt_term_blue"
   _bash_prompt_ps1_append "$USER"
   _bash_prompt_ps1_escape "$_bash_prompt_term_bright_white"
   _bash_prompt_ps1_append @
   _bash_prompt_ps1_escape "$_bash_prompt_term_bright_magenta"
   _bash_prompt_ps1_append "$(hostname -s)"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_white"
+  _bash_prompt_ps1_append :
+  _bash_prompt_ps1_escape "$_bash_prompt_term_yellow"
+  _bash_prompt_ps1_append "${tty#/dev/}"
 }
 
 _bash_prompt_ps1_build_status () {
