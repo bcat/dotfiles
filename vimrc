@@ -150,7 +150,7 @@ if has('folding')
 endif
 
 " Enable fancy search settings. Don't set hlsearch if it's already set since
-" this reverses the effects on :hlnosearch and forces highlighting the last
+" this reverses the effects on :nohlsearch and forces highlighting the last
 " search whenever the vimrc file is sourced.
 if has('extra_search') && !&hlsearch
   set hlsearch
