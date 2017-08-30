@@ -77,6 +77,8 @@ CDD
 CGI
 CLS
 CLs
+CML
+CML's
 CORS
 CSApprox
 CSC
@@ -207,16 +209,20 @@ Frome
 Fulgentius
 GC
 GCD
+GCL
 GDR
 GData
 GFS
 GIF
 GLX
 GPS
+GRS
 GSE
 GSLB
 GSLB's
 GSLBs
+GSR
+GSR's
 GTK
 GViz
 GViz's
@@ -424,6 +430,7 @@ NCUR
 NISP
 NIU
 NPE
+NRVO
 NTS
 NUL
 Nabataean
@@ -446,6 +453,8 @@ OAuth1
 OAuth2
 OCD
 ODBC
+OKR
+OKRs
 OL
 OLT
 OOM
@@ -495,11 +504,17 @@ Pottersfield
 PowerPoint
 Propp
 PuTTY
+Q1
+Q2
+Q3
+Q4
 QPS
 QuickTime
+RAII
 RE2
 README
 RGB
+RGI
 RHS
 RLY
 RNG
@@ -509,6 +524,7 @@ RREF
 RSS
 RTC
 RTL
+RVO
 Rackham
 Rakefile
 Rakefiles
@@ -544,6 +560,7 @@ SIDs
 SIGHUP
 SIGPIPE
 SIGTERM
+SLQ
 SMS
 SOA
 SPC
@@ -588,8 +605,10 @@ Sychaeus
 SysRq
 SysV
 TFAE
+TLM
 TMI
 TODO
+TODOs
 TSA
 TSA's
 Taeopae
@@ -615,7 +634,9 @@ TypeRacer
 U2
 UA
 UAs
+UCB
 UFD
+UFR
 UI
 UML
 URIs
@@ -631,6 +652,11 @@ Umayri
 Umm
 V8
 VCS
+VE
+VE's
+VED
+VEDs
+VEs
 VFS
 VM
 VMs
@@ -784,13 +810,19 @@ changelist
 changelists
 charset
 checkbox
+checkboxes
 cherrypick
 chromeless
 cinematographically
 cleveref
 clickable
+clicktrack
+clicktracked
 clicktracking
+clicktracking
+clicktracks
 codebase
+codebases
 codenames
 codepath
 codepaths
@@ -801,8 +833,10 @@ collab
 collectivistic
 complemental
 componentwise
+composable
 config
 configs
+const
 constant's
 contractualize
 contractualizes
@@ -811,6 +845,8 @@ coprime
 copypasta
 coset
 cosets
+counterfactuality
+counterfactually
 counterintuitively
 cred
 creds
@@ -921,6 +957,7 @@ geolocated
 geolocation
 grayscale
 grep
+grr
 gvimrc
 gzip
 hacky
@@ -957,6 +994,7 @@ inode
 inodes
 interactional
 intercultural
+interop
 intrapersonal
 isometry
 iterable
@@ -971,6 +1009,7 @@ keybinding
 keybindings
 killswitch
 level's
+lex
 lexer
 lexer's
 lexers
@@ -983,6 +1022,7 @@ lithic
 lithics
 localhost
 localizable
+lockfree
 loggable
 marginless
 marshalls
@@ -1001,6 +1041,8 @@ metacommunicate
 metacommunicates
 metadata
 metrizable
+microservice
+microservices
 microtypographic
 microtypography
 middleware
@@ -1045,6 +1087,7 @@ nonintersecting
 nonisomorphic
 nonissue
 nonmeasurable
+nonnegative
 nonnegativity
 nonnull
 nonprime
@@ -1118,6 +1161,7 @@ profferers
 programmatically
 prompt's
 proto
+proto's
 protobuf
 protobufs
 protohistory
@@ -1140,6 +1184,7 @@ reenables
 reenabling
 refactor
 refactored
+refactorings
 refactors
 referer
 referers
@@ -1164,7 +1209,9 @@ rethrown
 rethrows
 retryability
 retryable
+rollforward
 rollout
+rollouts
 run's
 rxvt
 rxvt-unicode
@@ -1173,6 +1220,7 @@ sacrificium
 sandboxed
 sandboxing
 screenreader
+screenreaders
 screensaver
 screenshot
 screenshots
@@ -1203,6 +1251,8 @@ spammy
 spellfile
 spellfiles
 spreadsheet's
+src
+srcs
 starfield
 starfields
 stderr
@@ -1215,6 +1265,7 @@ struct
 stylesheet
 subadditive
 subclassed
+subclassing
 subcollection
 subcontext
 subcontexts
@@ -1227,6 +1278,7 @@ subinterface
 subinterfaces
 submenu
 submenus
+submessage
 submodel
 submodels
 subpackage
@@ -1242,6 +1294,8 @@ subrings
 subrope
 subsubfolder
 subsubfolders
+subtree
+subtrees
 sucky
 suggestable
 superclasses
@@ -1300,6 +1354,10 @@ undoable
 undrain
 unescaped
 unfazed
+unflatten
+unflattened
+unflattening
+unflattens
 unfused
 unhighlight
 unhighlights
@@ -1309,6 +1367,7 @@ uninstalling
 uninstalls
 unkerned
 unlaunched
+unlaunching
 unmap
 unmark
 unmarking
@@ -1322,6 +1381,7 @@ unproxied
 unregistration
 unsanitized
 unscoped
+unsets
 unstyled
 unsubmitted
 unsubscribe
@@ -1361,6 +1421,7 @@ whitelist
 whitelisted
 whitelisting
 whitelists
+whitespace
 widescreen
 wildcard
 wildcards
