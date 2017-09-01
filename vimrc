@@ -232,6 +232,12 @@ if &term =~# '\v^%(rxvt-unicode|xterm)%(-|$)' ||
   set pastetoggle=<F21>
 endif
 
+" Reduce key sequence timeout to 50 ms. This is still long enough for modern
+" connections, and it helps prevent characters typed after pressing escape from
+" accidentally registering as meta-modified. Must be done after vim-sensible
+" runs since it blindly sets the timeout to 100 ms.
+set ttimeoutlen=50
+
 " Disable the help key in normal, visual, select, operator-pending, and insert
 " modes. It's useless, and annoying when it gets hit on accident.
 noremap <F1> <Nop>
@@ -475,12 +481,3 @@ let g:go_highlight_build_constraints = 1
 " Set a nice color scheme that behaves well on 8-, 88-, and 256-color terminals.
 " Must be done after we call Pathogen since the color scheme lives in a bundle.
 colorscheme abbott
-
-" Force vim-sensible to run now so we can override its defaults.
-runtime plugin/sensible.vim
-
-" Reduce key sequence timeout to 50 ms. This is still long enough for modern
-" connections, and it helps prevent characters typed after pressing escape from
-" accidentally registering as meta-modified. Must be done after vim-sensible
-" runs since it blindly sets the timeout to 100 ms.
-set ttimeoutlen=50
