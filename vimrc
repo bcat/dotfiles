@@ -403,11 +403,8 @@ nnoremap <silent> <Leader>eh :JavaCallHierarchy<CR>
 nnoremap <silent> <Leader>eo :JavaImportOrganize<CR>
 nnoremap <silent> <Leader>ep :ProjectProblems!<CR>
 
-" Load plugins 'n' stuff with Pathogen. We do this at the end of the vimrc file
-" since plugin code isn't actually executed by Vim until after vimrc completes.
-runtime bundle/pathogen/autoload/pathogen.vim
-call pathogen#infect()
-call pathogen#helptags()
+" Load plugins early so we can configure Google plugins via Glaive.
+packloadall
 
 " Enable configuration of Google plugins using Glaive (for no good reason).
 call glaive#Install()

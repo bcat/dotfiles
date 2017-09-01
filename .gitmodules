@@ -1,72 +1,69 @@
 [submodule "config/lscolors"]
 	path = config/lscolors
 	url = https://github.com/trapd00r/LS_COLORS.git
-[submodule "vim/bundle/abbott"]
-	path = vim/bundle/abbott
+[submodule "vim/pack/bcat/start/abbott"]
+	path = vim/pack/bcat/start/abbott
 	url = git@github.com:bcat/abbott.vim.git
-[submodule "vim/bundle/abolish"]
-	path = vim/bundle/abolish
+[submodule "vim/pack/bcat/start/abolish"]
+	path = vim/pack/bcat/start/abolish
 	url = https://github.com/tpope/vim-abolish.git
-[submodule "vim/bundle/bad-whitespace"]
-	path = vim/bundle/bad-whitespace
+[submodule "vim/pack/bcat/start/bad-whitespace"]
+	path = vim/pack/bcat/start/bad-whitespace
 	url = https://github.com/bitc/vim-bad-whitespace.git
-[submodule "vim/bundle/codefmt"]
-	path = vim/bundle/codefmt
+[submodule "vim/pack/bcat/start/codefmt"]
+	path = vim/pack/bcat/start/codefmt
 	url = https://github.com/google/vim-codefmt.git
-[submodule "vim/bundle/commentary"]
-	path = vim/bundle/commentary
+[submodule "vim/pack/bcat/start/commentary"]
+	path = vim/pack/bcat/start/commentary
 	url = https://github.com/tpope/vim-commentary.git
-[submodule "vim/bundle/ctrlp"]
-	path = vim/bundle/ctrlp
+[submodule "vim/pack/bcat/start/ctrlp"]
+	path = vim/pack/bcat/start/ctrlp
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
-[submodule "vim/bundle/ctrlp-py-matcher"]
-	path = vim/bundle/ctrlp-py-matcher
+[submodule "vim/pack/bcat/start/ctrlp-py-matcher"]
+	path = vim/pack/bcat/start/ctrlp-py-matcher
 	url = https://github.com/FelikZ/ctrlp-py-matcher.git
-[submodule "vim/bundle/eunuch"]
-	path = vim/bundle/eunuch
+[submodule "vim/pack/bcat/start/eunuch"]
+	path = vim/pack/bcat/start/eunuch
 	url = https://github.com/tpope/vim-eunuch.git
-[submodule "vim/bundle/glaive"]
-	path = vim/bundle/glaive
+[submodule "vim/pack/bcat/start/glaive"]
+	path = vim/pack/bcat/start/glaive
 	url = https://github.com/google/vim-glaive.git
-[submodule "vim/bundle/go"]
-	path = vim/bundle/go
+[submodule "vim/pack/bcat/start/go"]
+	path = vim/pack/bcat/start/go
 	url = https://github.com/fatih/vim-go.git
-[submodule "vim/bundle/haskell"]
-	path = vim/bundle/haskell
+[submodule "vim/pack/bcat/start/haskell"]
+	path = vim/pack/bcat/start/haskell
 	url = https://github.com/neovimhaskell/haskell-vim.git
-[submodule "vim/bundle/latex-box"]
-	path = vim/bundle/latex-box
+[submodule "vim/pack/bcat/start/latex-box"]
+	path = vim/pack/bcat/start/latex-box
 	url = https://github.com/LaTeX-Box-Team/LaTeX-Box.git
-[submodule "vim/bundle/maktaba"]
-	path = vim/bundle/maktaba
+[submodule "vim/pack/bcat/start/maktaba"]
+	path = vim/pack/bcat/start/maktaba
 	url = https://github.com/google/vim-maktaba.git
-[submodule "vim/bundle/pathogen"]
-	path = vim/bundle/pathogen
-	url = https://github.com/tpope/vim-pathogen.git
-[submodule "vim/bundle/php-stuff"]
-	path = vim/bundle/php-stuff
+[submodule "vim/pack/bcat/start/php-stuff"]
+	path = vim/pack/bcat/start/php-stuff
 	url = https://github.com/paulyg/Vim-PHP-Stuff.git
-[submodule "vim/bundle/sensible"]
-	path = vim/bundle/sensible
+[submodule "vim/pack/bcat/start/sensible"]
+	path = vim/pack/bcat/start/sensible
 	url = https://github.com/tpope/vim-sensible.git
-[submodule "vim/bundle/protobuf"]
-	path = vim/bundle/protobuf
+[submodule "vim/pack/bcat/start/protobuf"]
+	path = vim/pack/bcat/start/protobuf
 	url = https://github.com/willnorris/vim-protobuf.git
-[submodule "vim/bundle/repeat"]
-	path = vim/bundle/repeat
+[submodule "vim/pack/bcat/start/repeat"]
+	path = vim/pack/bcat/start/repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/bundle/rsi"]
-	path = vim/bundle/rsi
+[submodule "vim/pack/bcat/start/rsi"]
+	path = vim/pack/bcat/start/rsi
 	url = https://github.com/tpope/vim-rsi.git
-[submodule "vim/bundle/scriptease"]
-	path = vim/bundle/scriptease
+[submodule "vim/pack/bcat/start/scriptease"]
+	path = vim/pack/bcat/start/scriptease
 	url = https://github.com/tpope/vim-scriptease.git
-[submodule "vim/bundle/surround"]
-	path = vim/bundle/surround
+[submodule "vim/pack/bcat/start/surround"]
+	path = vim/pack/bcat/start/surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "vim/bundle/tmux"]
-	path = vim/bundle/tmux
+[submodule "vim/pack/bcat/start/tmux"]
+	path = vim/pack/bcat/start/tmux
 	url = https://github.com/tmux-plugins/vim-tmux.git
-[submodule "vim/bundle/unimpaired"]
-	path = vim/bundle/unimpaired
+[submodule "vim/pack/bcat/start/unimpaired"]
+	path = vim/pack/bcat/start/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
