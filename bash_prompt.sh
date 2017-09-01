@@ -239,9 +239,9 @@ _bash_prompt_ps1_escape () {
 # xterm-like terminals. If COMMAND is not provided, the name of the currently-
 # executing shell will be substituted.
 _bash_prompt_title () {
-  if [[ $TERM =~ ^(cygwin|rxvt|screen|xterm)(-|$) ]]; then
-    # OSC 2 ; term_window_title BEL
-    printf '\e]2;%s\a' "${1:-$0} ($(_bash_prompt_format_path "$PWD"))"
+  if [[ $TERM =~ ^(cygwin|rxvt|tmux|xterm)(-|$) ]]; then
+    # OSC 0 ; term_window_title BEL
+    printf '\e]0;%s\a' "${1:-$0} ($(_bash_prompt_format_path "$PWD"))"
   fi
 }
 

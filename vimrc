@@ -184,30 +184,22 @@ if has('mouse')
   " tmux implements an upgraded xterm mouse protocol (1006) that supports faster
   " dragging and terminals wider than 223 columns, but it doesn't implement the
   " xterm escape sequence that would allow Vim to autodetect this.
-  if &term =~# '\v^screen%(-|$)' && !empty($TMUX)
+  if &term =~# '\v^tmux%(-|$)'
     set ttymouse=sgr
   endif
 endif
 
 " Always allow Vim to set the window title even if the terminal can't report the
 " old title to restore on exit since our shell prompt resets the title itself.
+" Also prevent the silly "Thanks for flying Vim" message from flashing briefly
+" on exit before the shell sets its own title.
 set title
-
-" GNU Screen and tmux support setting the window title, but don't declare that
-" in their terminfo entry.
-if &term =~# '\v^screen%(-|$)'
-  " Set window title start: OSC 2 ;
-  let &t_ts = "\e]2;"
-
-  " Set window title end:   BEL
-  let &t_fs = "\7"
-endif
+set titleold=
 
 " If the terminal supports it, set the cursor to a blinking vertical bar when
 " entering insert mode and restore it to a blinking block when leaving insert
 " mode. Additionally, if the terminal supports it, enable bracketed paste mode.
-if &term =~# '\v^%(rxvt-unicode|xterm)%(-|$)' ||
-    \ &term =~# '\v^screen%(-|$)' && !empty($TMUX)
+if &term =~# '\v^%(rxvt-unicode|tmux|xterm)%(-|$)'
   " Start insert mode:
   "
   " Set cursor style to blinking vertical bar: CSI 5 SP q
