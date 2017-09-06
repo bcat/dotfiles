@@ -50,7 +50,7 @@ type lesspipe >/dev/null 2>&1 && eval "$(lesspipe)"
 export LESS='-M -R'
 
 # If there is a local .profile file, source that now.
-[ -f ~/.profile.local ] && . ~/.profile.local
+[ -r ~/.profile.local ] && . ~/.profile.local
 
 # If we're running bash, source ~/.bashrc now.
-[ -n "$BASH" ] && [ -f ~/.bashrc ] && . ~/.bashrc
+[ -n "$BASH" ] && [ -r ~/.bashrc ] && . ~/.bashrc

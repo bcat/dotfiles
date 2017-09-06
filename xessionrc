@@ -1,0 +1,4 @@
+# Source system and user logic shell scripts because some display managers don't
+# (e.g., LightDM on Ubuntu sources these, but LightDM on Debian doesn't).
+[ -r /etc/profile ] && . /etc/profile
+[ -r ~/.profile ] && . ~/.profile

@@ -128,7 +128,7 @@ for src; do
 
   if [ -d "$src" ]; then
     handle_dir "$dest"
-  elif [ -f "$src" ]; then
+  elif [ -r "$src" ]; then
     handle_file "$dest" "$PWD/$src"
   fi
 done
