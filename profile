@@ -1,7 +1,3 @@
-# Set the correct UTF-8/English (US) locale and language if not already done.
-[ -z "$LANG" ] && locale -a | grep -i -q ^en_US.UTF8$ && export LANG=en_US.UTF8
-[ -z "$LANGUAGE" ] && export LANGUAGE=en_US:en
-
 # Make sure various directories are referenced in the search path.
 _profile_prepend_to_path () {
   [ -d "$1" ] && case :$PATH: in
