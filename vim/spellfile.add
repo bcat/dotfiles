@@ -167,6 +167,7 @@ ECMA
 EER
 EFF
 EFF's
+EI
 EINTR
 EINVAL
 EOF
@@ -416,6 +417,8 @@ Moivre
 Moivre's
 Monotype
 Morrissey
+Mothership
+Mothership's
 Muganda
 Muganda's
 Mullenweg
@@ -479,6 +482,7 @@ PID
 PIDs
 PII
 PKGBUILD
+PNG
 POJO
 POJOs
 POSIX
@@ -553,6 +557,7 @@ SDPY
 SERP
 SERP's
 SERPs
+SFP
 SFT
 SG
 SGTM
@@ -564,6 +569,8 @@ SLQ
 SMS
 SOA
 SPC
+SRE
+SREs
 SRT
 SSN
 SSTable
@@ -611,6 +618,7 @@ TODO
 TODOs
 TSA
 TSA's
+TTLs
 Taeopae
 Taffybar
 Tannen
@@ -742,6 +750,7 @@ attribute's
 auditable
 auteurs
 auth
+autoassigned
 autocomplete
 autocompleted
 autocompletes
@@ -823,6 +832,9 @@ clicktracking
 clicktracks
 codebase
 codebases
+codegen
+codelab
+codelabs
 codenames
 codepath
 codepaths
@@ -904,6 +916,8 @@ docstring
 doctype
 dogfood
 dogfooding
+donut
+donuts
 doorjamb
 doorjambs
 dotfile
@@ -1090,6 +1104,7 @@ nonmeasurable
 nonnegative
 nonnegativity
 nonnull
+nonpositive
 nonprime
 nonresidue
 nullability
@@ -1191,9 +1206,13 @@ referers
 regex
 regexen
 regexs
+reindex
+reindexed
+reindexes
 reparent
 reparented
 reparenting
+reparentings
 reparents
 repo
 repro
@@ -1250,6 +1269,7 @@ solvability
 spammy
 spellfile
 spellfiles
+spliceable
 spreadsheet's
 src
 srcs
@@ -1274,11 +1294,14 @@ subdomain
 subdomains
 subfolder
 subfolders
+subforest
+subforests
 subinterface
 subinterfaces
 submenu
 submenus
 submessage
+submessages
 submodel
 submodels
 subpackage
@@ -1382,6 +1405,7 @@ unregistration
 unsanitized
 unscoped
 unsets
+unspliced
 unstyled
 unsubmitted
 unsubscribe
