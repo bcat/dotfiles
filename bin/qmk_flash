@@ -3,9 +3,9 @@
 set -e
 
 err_usage () {
-  echo 'Usage: qmk_flash BOOTLOADER HEX_FILE' >&2
+  echo Usage: qmk_flash BOOTLOADER HEX_FILE >&2
   echo >&2
-  echo 'Supported bootloaders are caterina, dfu.' >&2
+  echo Supported bootloaders are caterina, dfu. >&2
   exit 2
 }
 
@@ -14,7 +14,7 @@ wait_caterina () {
   local old
   local new=$(ls /dev/tty*)
 
-  while [[ -z $device ]]; do
+  while [[ -z "$device" ]]; do
     old=$new
     new=$(ls /dev/tty*)
 
@@ -55,11 +55,11 @@ case "$bootloader" in
   *) err_usage ;;
 esac
 
-echo 'Waiting for MCU reset...' >&2
+echo Waiting for MCU reset... >&2
 device=$(wait_$bootloader)
 if [[ -n "$device" ]]; then
-  echo "Found device: $device" >&2
+  echo Flashing device "$device"... >&2
 else
-  echo 'Found device' >&2
+  echo Flashing device... >&2
 fi
 flash_$bootloader "$hex_file" "$device"
