@@ -1,0 +1,65 @@
+#!/bin/bash
+
+set -e
+
+err_usage () {
+  echo 'Usage: qmk_flash BOOTLOADER HEX_FILE' >&2
+  echo >&2
+  echo 'Supported bootloaders are caterina, dfu.' >&2
+  exit 2
+}
+
+wait_caterina () {
+  local device
+  local old
+  local new=$(ls /dev/tty*)
+
+  while [[ -z $device ]]; do
+    old=$new
+    new=$(ls /dev/tty*)
+
+    device=$(comm -13 <(printf %s "$old") <(printf %s "$new"))
+  done
+
+  printf %s "$device"
+}
+
+flash_caterina () {
+  local hex=$1
+  local device=$2
+
+  avrdude -p atmega32u4 -c avr109 -P "$device" -U "$hex"
+}
+
+wait_dfu () {
+  until dfu-programmer atmega32u4 get bootloader-version >/dev/null 2>&1; do
+    :
+  done
+}
+
+flash_dfu () {
+  local hex=$1
+
+  dfu-programmer atmega32u4 erase
+  dfu-programmer atmega32u4 flash "$hex"
+  dfu-programmer atmega32u4 reset
+}
+
+(( $# == 2 )) || err_usage
+
+bootloader=$1
+hex_file=$2
+
+case "$bootloader" in
+  caterina|dfu) ;;
+  *) err_usage ;;
+esac
+
+echo 'Waiting for MCU reset...' >&2
+device=$(wait_$bootloader)
+if [[ -n "$device" ]]; then
+  echo "Found device: $device" >&2
+else
+  echo 'Found device' >&2
+fi
+flash_$bootloader "$hex_file" "$device"
