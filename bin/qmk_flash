@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -o errexit -o nounset
 
 err_usage () {
   echo Usage: qmk_flash BOOTLOADER HEX_FILE >&2
@@ -10,9 +10,8 @@ err_usage () {
 }
 
 wait_caterina () {
-  local device
-  local old
-  local new=$(ls /dev/tty*)
+  local device=
+  local old new=$(ls /dev/tty*)
 
   while [[ -z "$device" ]]; do
     old=$new
