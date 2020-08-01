@@ -23,14 +23,6 @@ elif which vi >/dev/null 2>&1; then
   export EDITOR=$(which vi)
   export FCEDIT=$(which vi)
   export VISUAL=$(which vi)
-elif which nano >/dev/null 2>&1; then
-  export EDITOR=$(which nano)
-  export FCEDIT=$(which nano)
-  export VISUAL=$(which nano)
-elif which pico >/dev/null 2>&1; then
-  export EDITOR=$(which pico)
-  export FCEDIT=$(which pico)
-  export VISUAL=$(which pico)
 fi
 
 # Set the preferred pager.
