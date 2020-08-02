@@ -390,21 +390,6 @@ nnoremap <silent> <Leader>af :CtrlPRoot<CR>
 nnoremap <silent> <Leader>ag :CtrlPLine<CR>
 nnoremap <silent> <Leader>ar :CtrlP<CR>
 
-" Configure keybindings for Eclim plugin:
-"
-" <Space>ea       Open or close buffer with tree view of current project
-" <Space>ee       Search project for source element under the cursor
-" <Space>ef       Open fuzzy search tool for Java classes, source files, etc.
-" <Space>eh       Open Java call hierarchy for method under cursor
-" <Space>eo       Remove unused Java imports and organize remaining imports
-" <Space>ep       Show compilation errors in quickfix buffer
-nnoremap <silent> <Leader>ea :ProjectTreeToggle<CR>
-nnoremap <silent> <Leader>ee :JavaSearchContext<CR>
-nnoremap <silent> <Leader>ef :LocateFile<CR>
-nnoremap <silent> <Leader>eh :JavaCallHierarchy<CR>
-nnoremap <silent> <Leader>eo :JavaImportOrganize<CR>
-nnoremap <silent> <Leader>ep :ProjectProblems!<CR>
-
 " Load plugins early so we can configure Google plugins via Glaive.
 packloadall
 
@@ -443,17 +428,6 @@ endif
 if exists('*pymatcher#PyMatch')
   let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
 endif
-
-" Configure the Eclim plugin.
-let g:EclimBuffersDefaultAction = 'edit'
-let g:EclimDefaultFileOpenAction = 'edit'
-let g:EclimJavaCallHierarchyDefaultAction = 'edit'
-let g:EclimJavaHierarchyDefaultAction = 'edit'
-let g:EclimLocateFileDefaultAction = 'edit'
-let g:EclimLoggingDisabled = 1
-let g:EclimProjectTreeExpandPathOnOpen = 1
-let g:EclimPythonValidate = 0
-let g:EclimTempFilesEnable = 0
 
 " Configure the haskell-vim plugin.
 let g:haskell_indent_case = 5
