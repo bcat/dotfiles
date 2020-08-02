@@ -23,7 +23,8 @@ fi
 if (( $_bash_prompt_num_colors >= 16 )); then
   # For terminals that support high-intensity colors (i.e., terminals supporting
   # at least 16 total colors), use those directly.
-  _bash_prompt_term_bright_red=$(tput setaf 9 setaf 10)
+  _bash_prompt_term_bright_red=$(tput setaf 9)
+  _bash_prompt_term_bright_green=$(tput setaf 10)
   _bash_prompt_term_orange=$(tput setaf 3)
   _bash_prompt_term_yellow=$(tput setaf 11)
   _bash_prompt_term_blue=$(tput setaf 4)
