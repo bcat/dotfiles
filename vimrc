@@ -262,10 +262,10 @@ noremap <Up> <Nop>
 " Define normal- and visual-mode mappings for Ctrl-modified arrow keys to shift
 " the current line or selection, updating indentation accordingly.
 "
-" <C-Down>    Move the current line/selection down
-" <C-Left>    Dedent the current line/selection
-" <C-Right>   Indent the current line/selection
-" <C-Up>      Move the current line/selection up
+" <C-Down>   Move the current line/selection down
+" <C-Left>   Dedent the current line/selection
+" <C-Right>  Indent the current line/selection
+" <C-Up>     Move the current line/selection up
 nnoremap <silent> <C-Down> ]e==
 nnoremap <silent> <C-Left> <<
 nnoremap <silent> <C-Right> >>
@@ -290,16 +290,16 @@ nnoremap <silent> Y y$
 " Define normal- and visual-mode mappings to move between windows, move windows
 " around, resize windows, and close windows:
 "
-" <M-=>           Equalize sizes of open windows
-" <M-h>           Focus window to the left of the current window
-" <M-j>           Focus window below the current window
-" <M-k>           Focus window above the current window
-" <M-l>           Focus window to the right of the current window
-" <M-q>           Close the current window
-" <M-H>           Move window to the left of the current window
-" <M-J>           Move window below the current window
-" <M-K>           Move window above the current window
-" <M-L>           Move window to the right of the current window
+" <M-=>  Equalize sizes of open windows
+" <M-h>  Focus window to the left of the current window
+" <M-j>  Focus window below the current window
+" <M-k>  Focus window above the current window
+" <M-l>  Focus window to the right of the current window
+" <M-q>  Close the current window
+" <M-H>  Move window to the left of the current window
+" <M-J>  Move window below the current window
+" <M-K>  Move window above the current window
+" <M-L>  Move window to the right of the current window
 nnoremap <silent> <M-=> <C-W>=
 nnoremap <silent> <M-h> <C-W>h
 nnoremap <silent> <M-j> <C-W>j
@@ -330,7 +330,7 @@ let maplocalleader = ' '
 
 " Configure keybindings for partial commands (intentionally not silent):
 "
-" <Space>r        Edit file relative to current directory
+" <Space>r  Edit file relative to current directory
 nnoremap <Leader>r
     \ :e <C-R>=substitute(expand('%:~:.:h') . '/', '^\./$', '', '')<CR>
 
@@ -349,14 +349,14 @@ nnoremap <silent> <Leader>w :EraseBadWhitespace<CR>
 
 " Configure keybindings for working with configuration files:
 "
-" <Space>cc       Edit current color scheme in a new horizontal split
-" <Space>cg       Edit gvimrc file in a new horizontal split
-" <Space>cs       Edit spelling dictionary in a new horizontal split
-" <Space>cv       Edit vimrc file in a new horizontal split
-" <Space>cC       Reload current color scheme
-" <Space>cG       Reload gvimrc file
-" <Space>cS       Reload spelling dictionary
-" <Space>cV       Reload vimrc file
+" <Space>cc  Edit current color scheme in a new horizontal split
+" <Space>cg  Edit gvimrc file in a new horizontal split
+" <Space>cs  Edit spelling dictionary in a new horizontal split
+" <Space>cv  Edit vimrc file in a new horizontal split
+" <Space>cC  Reload current color scheme
+" <Space>cG  Reload gvimrc file
+" <Space>cS  Reload spelling dictionary
+" <Space>cV  Reload vimrc file
 nnoremap <silent> <Leader>cc
     \ :execute 'Vsplit colors/' . g:colors_name . '.vim'<CR>
 nnoremap <silent> <Leader>cg :split $MYGVIMRC<CR>
@@ -369,10 +369,10 @@ nnoremap <silent> <Leader>cV :source $MYVIMRC<CR>
 
 " Configure keybindings for CtrlP plugin:
 "
-" <Space>ab       Perform fuzzy buffer search by name
-" <Space>af       Perform fuzzy file search for files starting in VCS root
-" <Space>ag       Perform fuzzy buffer search by contents
-" <Space>ar       Perform fuzzy file search for files starting next to buffer
+" <Space>ab  Perform fuzzy buffer search by name
+" <Space>af  Perform fuzzy file search for files starting in VCS root
+" <Space>ag  Perform fuzzy buffer search by contents
+" <Space>ar  Perform fuzzy file search for files starting next to buffer
 nnoremap <silent> <Leader>ab :CtrlPBuffer<CR>
 nnoremap <silent> <Leader>af :CtrlPRoot<CR>
 nnoremap <silent> <Leader>ag :CtrlPLine<CR>
@@ -380,7 +380,7 @@ nnoremap <silent> <Leader>ar :CtrlP<CR>
 
 " Configure keybindings for vim-zoom plugin:
 "
-" <Space>z        Zoom in on current window, or zoom out if already zoomed in
+" <Space>z  Zoom in on current window, or zoom out if already zoomed in
 nmap <silent> <Leader>z <Plug>(zoom-toggle)
 
 " Load plugins early so we can configure Google plugins via Glaive.
