@@ -204,21 +204,24 @@ if &term =~# '\v^%(rxvt-unicode|tmux|xterm)%(-|$)'
   let &t_EI = "\e[0 q"
 endif
 
-" Enable bracketed paste mode for tmux. These are not standard termcap codes,
-" but Vim's builtin termcap sets them for xterm and urxvt. But as of Vim 8.1,
-" the builtin xterm termcap doesn't apply to tmux, so they must be set manually.
+" Set Vim's nonstandard output and key codes for tmux. Vim's builtin termcap
+" sets them for xterm and urxvt, but as of Vim 8.1, this doesn't apply to tmux.
 if &term =~# '\vtmux%(-|$)'
-  " Enable bracketed paste mode when entering insert or replace mode.
-  "
   " DECSET (DEC private mode set): bracketed paste mode
   "   CSI ? 2 0 0 4 h
   let &t_BE = "\e[?2004h"
 
-  " Disable bracketed paste mode when leaving insert or replace mode.
-  "
   " DECRST (DEC private mode reset): bracketed paste mode
   "   CSI ? 2 0 0 4 l
   let &t_BD = "\e[?2004l"
+
+  " XTMODKEYS (set/reset key modifier options): Set modifyOtherKeys to 2
+  "   CSI > 4 ; 2 m
+  let &t_TI = "\e[>4;2m"
+
+  " XTMODKEYS (set/reset key modifier options): Reset modifyOtherKeys to default
+  "   CSI > 4 ; m
+  let &t_TE = "\e[>4;m"
 
   " Start of bracketed paste
   "   ESC [ 2 0 0 ~
@@ -231,8 +234,22 @@ endif
 
 " Reduce key sequence timeout to 50 ms. This is still long enough for modern
 " connections, and it helps prevent characters typed after pressing escape from
-" accidentally registering as meta-modified.
+" accidentally registering as Meta modified.
 set ttimeoutlen=50
+
+" Set Meta-modified keys we wish to use in mappings to use the Esc prefix since
+" that's what most terminals use. (Once Vim 8.2 rolls out with modifyOtherKeys
+" support and more terminals handle XTMODKEYS, we can remove this.)
+execute "set <M-=>=\e="
+execute "set <M-h>=\eh"
+execute "set <M-j>=\ej"
+execute "set <M-k>=\ek"
+execute "set <M-l>=\el"
+execute "set <M-q>=\eq"
+execute "set <M-H>=\eH"
+execute "set <M-J>=\eJ"
+execute "set <M-K>=\eK"
+execute "set <M-L>=\eL"
 
 " Disable the help key in normal, visual, select, operator-pending, and insert
 " modes. It's useless, and annoying when it gets hit on accident.
@@ -287,17 +304,6 @@ nnoremap <silent> Y y$
 " <M-J>           Move window below the current window
 " <M-K>           Move window above the current window
 " <M-L>           Move window to the right of the current window
-execute "set <M-=>=\e="
-execute "set <M-h>=\eh"
-execute "set <M-j>=\ej"
-execute "set <M-k>=\ek"
-execute "set <M-l>=\el"
-execute "set <M-q>=\eq"
-execute "set <M-H>=\eH"
-execute "set <M-J>=\eJ"
-execute "set <M-K>=\eK"
-execute "set <M-L>=\eL"
-
 nnoremap <silent> <M-=> <C-W>=
 nnoremap <silent> <M-h> <C-W>h
 nnoremap <silent> <M-j> <C-W>j
