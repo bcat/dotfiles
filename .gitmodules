@@ -67,3 +67,6 @@
 [submodule "vim/pack/bcat/start/unimpaired"]
 	path = vim/pack/bcat/start/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "vim/pack/bcat/start/zoom"]
+	path = vim/pack/bcat/start/zoom
+	url = https://github.com/dhruvasagar/vim-zoom.git

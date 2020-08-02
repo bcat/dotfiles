@@ -34,10 +34,6 @@ set splitright
 " Maintain equal-sized windows when new windows are open or old ones closed.
 set equalalways
 
-" Allow windows to shrink completely to improve the "zoom" keybinding below.
-set winminheight=0
-set winminwidth=0
-
 " Don't show the stupid preview window for completions, and narrow down
 " available completions as characters are typed. Also use Readline-style
 " completion for the command line.
@@ -244,6 +240,7 @@ execute "set <M-h>=\eh"
 execute "set <M-j>=\ej"
 execute "set <M-k>=\ek"
 execute "set <M-l>=\el"
+execute "set <M-m>=\em"
 execute "set <M-q>=\eq"
 execute "set <M-H>=\eH"
 execute "set <M-J>=\eJ"
@@ -344,17 +341,11 @@ nnoremap <Leader>r
 " <Space>\        Split the current window vertically
 " <Space>s        Toggle spell checking in the current buffer
 " <Space>w        Remove trailing whitespace from the current buffer
-" <Space>z        Toggle "zoom" mode that focuses on the current window
 nnoremap <silent> <Leader><Leader> <C-^>
 nnoremap <silent> <Leader>- :split<CR>
 nnoremap <silent> <Leader>\ :vsplit<CR>
 nnoremap <silent> <Leader>s :setlocal spell!<CR>
 nnoremap <silent> <Leader>w :EraseBadWhitespace<CR>
-nnoremap <silent> <Leader>z
-    \ :execute 'set winheight=' . (&winheight == 1 ? 999 : 1)<CR>
-    \ :execute 'set winwidth=' . (&winwidth == 20 ? 999 : 20)<CR>
-    \ :set mousefocus!<CR>
-    \ <C-W>=
 
 " Configure keybindings for working with configuration files:
 "
@@ -386,6 +377,11 @@ nnoremap <silent> <Leader>ab :CtrlPBuffer<CR>
 nnoremap <silent> <Leader>af :CtrlPRoot<CR>
 nnoremap <silent> <Leader>ag :CtrlPLine<CR>
 nnoremap <silent> <Leader>ar :CtrlP<CR>
+
+" Configure keybindings for vim-zoom plugin:
+"
+" <Space>z        Zoom in on current window, or zoom out if already zoomed in
+nmap <silent> <Leader>z <Plug>(zoom-toggle)
 
 " Load plugins early so we can configure Google plugins via Glaive.
 packloadall
