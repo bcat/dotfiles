@@ -51,8 +51,8 @@ set expandtab
 " Use two-space tabs by default. (Overridden for some languages below.)
 "
 " It'd be nice to just set shiftwidth=0 so plugins calling shiftwidth() would
-" automatically take the value from tabstop; however, this isn't even respected
-" by all the standard indent plugins as of Vim 7.4.622. :(
+" automatically take the value from tabstop; however, that wouldn't work
+" properly before Vim 7.3.694.
 set tabstop=2
 set shiftwidth=2
 
