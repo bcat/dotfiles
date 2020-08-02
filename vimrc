@@ -342,14 +342,12 @@ nnoremap <Leader>r
 "
 " <Space><Space>  Switch current buffer with alternate file
 " <Space>-        Split the current window horizontally
-" <Space>/        Clear search highlighting and redraw the screen
 " <Space>\        Split the current window vertically
 " <Space>s        Toggle spell checking in the current buffer
 " <Space>w        Remove trailing whitespace from the current buffer
 " <Space>z        Toggle "zoom" mode that focuses on the current window
 nnoremap <silent> <Leader><Leader> <C-^>
 nnoremap <silent> <Leader>- :split<CR>
-nnoremap <silent> <Leader>/ :nohlsearch<CR><C-L>
 nnoremap <silent> <Leader>\ :vsplit<CR>
 nnoremap <silent> <Leader>s :setlocal spell!<CR>
 nnoremap <silent> <Leader>w :EraseBadWhitespace<CR>
