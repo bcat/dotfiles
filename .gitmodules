@@ -43,9 +43,6 @@
 [submodule "vim/pack/bcat/start/php-stuff"]
 	path = vim/pack/bcat/start/php-stuff
 	url = https://github.com/paulyg/Vim-PHP-Stuff.git
-[submodule "vim/pack/bcat/start/sensible"]
-	path = vim/pack/bcat/start/sensible
-	url = https://github.com/tpope/vim-sensible.git
 [submodule "vim/pack/bcat/start/protobuf"]
 	path = vim/pack/bcat/start/protobuf
 	url = https://github.com/willnorris/vim-protobuf.git
@@ -58,6 +55,9 @@
 [submodule "vim/pack/bcat/start/scriptease"]
 	path = vim/pack/bcat/start/scriptease
 	url = https://github.com/tpope/vim-scriptease.git
+[submodule "vim/pack/bcat/start/sensible"]
+	path = vim/pack/bcat/start/sensible
+	url = https://github.com/tpope/vim-sensible.git
 [submodule "vim/pack/bcat/start/surround"]
 	path = vim/pack/bcat/start/surround
 	url = https://github.com/tpope/vim-surround.git
