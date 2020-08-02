@@ -176,52 +176,73 @@ if has('mouse')
   set mousefocus
 
   " urxvt implements a nonstandard mouse protocol (1015) that supports faster
-  " dragging and terminals wider than 223 columns, but Vim doesn't know this.
+  " dragging and terminals wider than 223 columns, but as of Vim 8.1, this isn't
+  " automatically detected.
   if &term =~# '\v^rxvt-unicode%(-|$)'
     set ttymouse=urxvt
   endif
 
   " tmux implements an upgraded xterm mouse protocol (1006) that supports faster
-  " dragging and terminals wider than 223 columns, but it doesn't implement the
-  " xterm escape sequence that would allow Vim to autodetect this.
+  " dragging and terminals wider than 223 columns, but as of Vim 8.1, the tmux
+  " version isn't requested (via t_RV), so this isn't automatically detected.
   if &term =~# '\v^tmux%(-|$)'
     set ttymouse=sgr
   endif
 endif
 
-" Always allow Vim to set the window title even if the terminal can't report the
-" old title to restore on exit since our shell prompt resets the title itself.
-" Also prevent the silly "Thanks for flying Vim" message from flashing briefly
-" on exit before the shell sets its own title.
+" Always allow Vim to set the window title even if the old can't be restored on
+" exit since our shell prompt resets the title itself. Also prevent the silly
+" "Thanks for flying Vim" message from flashing on exit.
 set title
 set titleold=
 
-" If the terminal supports it, set the cursor to a blinking vertical bar when
-" entering insert mode and restore it to a blinking block when leaving insert
-" mode. Additionally, if the terminal supports it, enable bracketed paste mode.
+" If the terminal supports it, set the cursor to a blinking bar in insert mode
+" and a blinking underline in replace mode. (This matches the default behavior
+" of the gVim cursor.)
 if &term =~# '\v^%(rxvt-unicode|tmux|xterm)%(-|$)'
-  " Start insert mode:
+  " Set cursor to blinking bar when entering insert mode.
   "
-  " Set cursor style to blinking vertical bar: CSI 5 SP q
-  " Set bracketed paste mode:                  CSI ? 2 0 0 4 h
-  let &t_SI = "\e[5 q\e[?2004h"
+  " DECSCUSR (set cursor style): blinking bar
+  "   CSI 5 SP q
+  let &t_SI = "\e[5 q"
 
-  " End insert mode:
+  " Set cursor to blinking underline when entering replace mode.
   "
-  " Reset bracketed paste mode:                CSI ? 2 0 0 4 l
-  " Set cursor style to blinking block:        CSI 1 SP q
-  let &t_EI = "\e[?2004l\e[1 q"
+  " DECSCUSR (set cursor style): blinking underline
+  "   CSI 3 SP q
+  let &t_SR = "\e[3 q"
 
-  " Map unused function keys for bracketed paste:
+  " Reset cursor to blinking block when leaving insert or replace mode.
   "
-  " Pasted text start:                         ESC [ 2 0 0 ~
-  " Pasted text end:                           ESC [ 2 0 1 ~
-  execute "set <F20>=\e[200~"
-  execute "set <F21>=\e[201~"
+  " DECSCUSR (set cursor style): blinking block (in xterm) or reset to default
+  " cursor style (in VTE: https://bugzilla.gnome.org/show_bug.cgi?id=720821)
+  "   CSI 0 SP q
+  let &t_EI = "\e[0 q"
+endif
 
-  " Listen for bracketed paste control sequences to update Vim's paste setting.
-  inoremap <silent> <F20> <C-O>:set paste<CR>
-  set pastetoggle=<F21>
+" Enable bracketed paste mode for tmux. These are not standard termcap codes,
+" but Vim's builtin termcap sets them for xterm and urxvt. But as of Vim 8.1,
+" the builtin xterm termcap doesn't apply to tmux, so they must be set manually.
+if &term =~# '\vtmux%(-|$)'
+  " Enable bracketed paste mode when entering insert or replace mode.
+  "
+  " DECSET (DEC private mode set): bracketed paste mode
+  "   CSI ? 2 0 0 4 h
+  let &t_BE = "\e[?2004h"
+
+  " Disable bracketed paste mode when leaving insert or replace mode.
+  "
+  " DECRST (DEC private mode reset): bracketed paste mode
+  "   CSI ? 2 0 0 4 l
+  let &t_BD = "\e[?2004l"
+
+  " Start of bracketed paste
+  "   ESC [ 2 0 0 ~
+  let &t_PS = "\e[200~"
+
+  " End of bracketed paste
+  "   ESC [ 2 0 1 ~
+  let &t_PE = "\e[201~"
 endif
 
 " Reduce key sequence timeout to 50 ms. This is still long enough for modern
