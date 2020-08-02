@@ -77,10 +77,10 @@ fi
 
 # Customize the prompt. (The prompt code is quite long, so it lives in a
 # separate file.)
-[ -r ~/.bash_prompt.sh ] && . ~/.bash_prompt.sh
+[ -f ~/.bash_prompt.sh ] && . ~/.bash_prompt.sh
 
 # Set up some fancy auto-completion.
-[ -r /etc/bash_completion ] && . /etc/bash_completion
+[ -f /etc/bash_completion ] && . /etc/bash_completion
 
 # If there is a local .bashrc file, source that now.
-[ -r ~/.bashrc.local ] && . ~/.bashrc.local
+[ -f ~/.bashrc.local ] && . ~/.bashrc.local
