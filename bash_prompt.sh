@@ -1,9 +1,8 @@
 # Disable variable expansion in prompt strings.
 shopt -u promptvars
 
-# Determine if we have tput to generate terminal escape codes. Most Unix systems
-# have a tput binary, but Cygwin doesn't have one by default, so we have to
-# fall-back to no terminal colors/attributes if we can't find tput.
+# Determine if we have tput to generate terminal escape codes, falling back to
+# no terminal colors/attributes if we can't find tput.
 if type tput >/dev/null 2>&1; then
   _bash_prompt_num_colors=$(tput colors)
 
@@ -33,7 +32,7 @@ if (( $_bash_prompt_num_colors >= 16 )); then
   _bash_prompt_term_bright_white=$(tput setaf 15)
 elif (( $_bash_prompt_num_colors >= 8 )); then
   # For terminals that only support 8 colors, use the bold attribute, which many
-  # terminals (including the Linux and Cygwin consoles) will render as bright.
+  # terminals (including the Linux console) will render as bright.
   _bash_prompt_term_bright_red=$_bash_prompt_term_bold$(tput setaf 1)
   _bash_prompt_term_bright_green=$_bash_prompt_term_bold$(tput setaf 2)
   _bash_prompt_term_orange=$_bash_prompt_term_reset$(tput setaf 3)
@@ -239,9 +238,12 @@ _bash_prompt_ps1_escape () {
 # xterm-like terminals. If COMMAND is not provided, the name of the currently-
 # executing shell will be substituted.
 _bash_prompt_title () {
-  if [[ $TERM =~ ^(cygwin|rxvt|tmux|xterm)(-|$) ]]; then
-    # OSC 0 ; term_window_title BEL
-    printf '\e]0;%s\a' "${1:-$0} ($(_bash_prompt_format_path "$PWD"))"
+  if [[ $TERM =~ ^(rxvt|tmux|xterm)(-|$) ]]; then
+    # Change window title
+    #   OSC 2 ; term_window_title BEL
+    #
+    # We don't use tput since xterm's termcap often lacks ts/fs capabilities.
+    printf '\e]2;%s\a' "${1:-$0} ($(_bash_prompt_format_path "$PWD"))"
   fi
 }
 
