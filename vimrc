@@ -1,6 +1,6 @@
-" This configuration is based on the example vimrc included with Arch Linux,
-" the Vim Tips Wiki, and the vimrc file Ben Breedlove sent me to look at.
-" (Thanks, Ben!)
+" This configuration is based on the example vimrc included with Arch Linux, the
+" Vim Tips Wiki, and the vimrc Ben Breedlove (https://github.com/benbreedlove)
+" sent me to look at. (Thanks, Ben!)
 
 " Disable swap files. Vim almost never crashes, and they clutter up directories.
 set noswapfile
@@ -75,19 +75,6 @@ if has('autocmd')
     " Don't list quickfix buffer, and don't wrap it or show a right margin.
     autocmd FileType qf setlocal nobuflisted textwidth=0
 
-    " Disable Enter key remapping in the quickfix buffer and the command window.
-    autocmd FileType qf nnoremap <buffer> <CR> <CR>
-    autocmd FileType qf nnoremap <buffer> <kEnter> <kEnter>
-
-    autocmd FileType qf xnoremap <buffer> <CR> <CR>
-    autocmd FileType qf xnoremap <buffer> <kEnter> <kEnter>
-
-    autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
-    autocmd CmdwinEnter * nnoremap <buffer> <kEnter> <kEnter>
-
-    autocmd CmdwinEnter * xnoremap <buffer> <CR> <CR>
-    autocmd CmdwinEnter * xnoremap <buffer> <kEnter> <kEnter>
-
     " Set C/C++ indentation to match Google C++ style:
     " http://google.github.io/styleguide/cppguide.html.
     autocmd FileType cpp setlocal cinoptions+=l1,g1,h1,N-s,(0,j1
@@ -128,9 +115,6 @@ if has('autocmd')
 
     " Disable wrapping for TeX to allow one line per sentence for clean diffs.
     autocmd FileType tex setlocal textwidth=0
-
-    " Highlight Google Apps Script source files as JavaScript.
-    autocmd BufNewFile,BufRead *.gs setlocal filetype=javascript
 
     " Highlight Bazel build system stuff as Python.
     autocmd BufNewFile,BufRead BUILD setlocal filetype=python
@@ -247,8 +231,7 @@ endif
 
 " Reduce key sequence timeout to 50 ms. This is still long enough for modern
 " connections, and it helps prevent characters typed after pressing escape from
-" accidentally registering as meta-modified. Must be done after vim-sensible
-" runs since it blindly sets the timeout to 100 ms.
+" accidentally registering as meta-modified.
 set ttimeoutlen=50
 
 " Disable the help key in normal, visual, select, operator-pending, and insert
@@ -262,14 +245,6 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 noremap <Up> <Nop>
-
-" Define normal- and visual-mode mappings to enter command mode when the Enter
-" key is pressed.
-nnoremap <CR> :
-nnoremap <kEnter> :
-
-xnoremap <CR> :
-xnoremap <kEnter> :
 
 " Define normal- and visual-mode mappings for Ctrl-modified arrow keys to shift
 " the current line or selection, updating indentation accordingly.
