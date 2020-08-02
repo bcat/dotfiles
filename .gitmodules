@@ -61,9 +61,6 @@
 [submodule "vim/pack/bcat/start/surround"]
 	path = vim/pack/bcat/start/surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "vim/pack/bcat/start/tmux"]
-	path = vim/pack/bcat/start/tmux
-	url = https://github.com/tmux-plugins/vim-tmux.git
 [submodule "vim/pack/bcat/start/unimpaired"]
 	path = vim/pack/bcat/start/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
