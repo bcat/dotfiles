@@ -12,9 +12,9 @@ set guioptions-=T
 " Select a pretty font. :) To make things a bit more cross-platform, we actually
 " specify several fonts: a primary and a few fallbacks. Font sizes are chosen to
 " give 12px fonts on 96 DPI Linux/Windows displays and 72 DPI OS X displays.
-if has('gui_gtk2')
+if has('gui_gtk')
   set guifont=Source\ Code\ Pro\ 9
-  set guifont+=DejaVu\ Sans\ Mono\ 9
+  set guifont+=Inconsolata\ 9
   set guifont+=Monospace\ 9
 elseif has('gui_win32')
   set guifont=Source_Code_Pro:h9:cDEFAULT
