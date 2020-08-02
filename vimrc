@@ -24,9 +24,8 @@ set numberwidth=5
 " Prefer to break lines at punctuation when soft wrapping.
 set linebreak
 
-" Keep a minimum of four lines and eight columns visible around the cursor.
-set scrolloff=4
-set sidescrolloff=8
+" Scroll smoothly at the left and right edges of the screen.
+set sidescroll=1
 
 " Open new windows below and to the right of existing ones.
 set splitbelow
