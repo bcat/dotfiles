@@ -149,6 +149,35 @@ if has('spell')
   endif
 endif
 
+" Sync clipboard yanks with the SSH client via OSC 52. Needs more work.
+if !has('gui_running') && (!has('clipboard') || $DISPLAY == '')
+    \ && has('autocmd') && &term =~# '\v^%(tmux|xterm)%(-|$)'
+  let s:clipboard_register = 0
+
+  function s:SetClipboardRegister(visual)
+    let s:clipboard_register = 1
+    if a:visual
+      normal! gv
+    endif
+  endfunction
+
+  nnoremap <silent> "+ :<C-U>call <SID>SetClipboardRegister(0)<CR>
+  xnoremap <silent> "+ :<C-U>call <SID>SetClipboardRegister(1)<CR>
+
+  function s:HandleClipboardYank(register, contents)
+    if a:register ==# '+' || a:register == '' && s:clipboard_register
+      let s:clipboard_register = 0
+      call SendViaOSC52(join(a:contents, "\n"))
+    endif
+  endfunction
+
+  augroup vimrc_clipboard
+    autocmd!
+    autocmd TextYankPost *
+        \ call s:HandleClipboardYank(v:event.regname, v:event.regcontents)
+  augroup END
+endif
+
 if has('mouse')
   " Enable mouse support for GUI Vim and terminal Vim (if supported).
   set mouse=a

@@ -67,3 +67,6 @@
 [submodule "vim/pack/bcat/start/zoom"]
 	path = vim/pack/bcat/start/zoom
 	url = https://github.com/dhruvasagar/vim-zoom.git
+[submodule "vim/pack/bcat/start/osc52"]
+	path = vim/pack/bcat/start/osc52
+  url = git@github.com:bcat/osc52.vim.git
