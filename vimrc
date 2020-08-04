@@ -183,18 +183,22 @@ if has('mouse')
   set mouse=a
   set mousefocus
 
+  " tmux implements the SGR mouse protocol (1006) that supports faster dragging
+  " and terminals wider than 223 columns, but as of Vim 8.1, the tmux version
+  " isn't requested (via t_RV), so this isn't automatically detected.
+  "
+  " hterm also supports the SGR mouse protocol, but as of August 2020, it
+  " claims to be xterm version 256 (from 2012) too old to support SGR. Since
+  " we've no way to detect hterm, just assume every xterm supports this. Lame.
+  if &term =~# '\v^%(tmux|xterm)%(-|$)'
+    set ttymouse=sgr
+  endif
+
   " urxvt implements a nonstandard mouse protocol (1015) that supports faster
   " dragging and terminals wider than 223 columns, but as of Vim 8.1, this isn't
   " automatically detected.
   if &term =~# '\v^rxvt-unicode%(-|$)'
     set ttymouse=urxvt
-  endif
-
-  " tmux implements an upgraded xterm mouse protocol (1006) that supports faster
-  " dragging and terminals wider than 223 columns, but as of Vim 8.1, the tmux
-  " version isn't requested (via t_RV), so this isn't automatically detected.
-  if &term =~# '\v^tmux%(-|$)'
-    set ttymouse=sgr
   endif
 endif
 
