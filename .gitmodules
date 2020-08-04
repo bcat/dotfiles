@@ -40,6 +40,9 @@
 [submodule "vim/pack/bcat/start/maktaba"]
 	path = vim/pack/bcat/start/maktaba
 	url = https://github.com/google/vim-maktaba.git
+[submodule "vim/pack/bcat/start/osc52"]
+	path = vim/pack/bcat/start/osc52
+	url = git@github.com:bcat/osc52.vim.git
 [submodule "vim/pack/bcat/start/php-stuff"]
 	path = vim/pack/bcat/start/php-stuff
 	url = https://github.com/paulyg/Vim-PHP-Stuff.git
@@ -67,6 +70,3 @@
 [submodule "vim/pack/bcat/start/zoom"]
 	path = vim/pack/bcat/start/zoom
 	url = https://github.com/dhruvasagar/vim-zoom.git
-[submodule "vim/pack/bcat/start/osc52"]
-	path = vim/pack/bcat/start/osc52
-  url = git@github.com:bcat/osc52.vim.git
