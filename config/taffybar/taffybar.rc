@@ -1,8 +1,0 @@
-style "taffybar" {
-  bg[NORMAL]   = "#1f1912"
-  fg[NORMAL]   = "#c0f396"
-  text[NORMAL] = "#c0f396"
-  font_name    = "Source Code Pro 9"
-}
-
-widget "Taffybar*" style "taffybar"
