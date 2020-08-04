@@ -8,6 +8,20 @@ if type tput >/dev/null 2>&1; then
 
   _bash_prompt_term_reset=$(tput sgr0)
   _bash_prompt_term_bold=$(tput bold)
+
+  _bash_prompt_title_start=$(tput tsl)
+  _bash_prompt_title_end=$(tput fsl)
+
+  # xterm-like terminals don't always have tsl/fsl capabilities in their
+  # terminfo entries, but many of them set the nonstandard XT extension,
+  # indicating the title can be set with the following escape sequence:
+  #
+  # OSC 2 ; $window_title BEL
+  if [[ (-z $_bash_prompt_title_start || -z $_bash_prompt_title_end) ]] && \
+      tput XT 2>/dev/null; then
+    _bash_prompt_title_start=$'\e]2;'
+    _bash_prompt_title_end=$'\a'
+  fi
 else
   _bash_prompt_num_colors=-1
 
@@ -235,16 +249,14 @@ _bash_prompt_ps1_escape () {
 
 # _bash_prompt_title [COMMAND]
 #
-# Output an escape sequence to set the terminal's title bar. Only works on
-# xterm-like terminals. If COMMAND is not provided, the name of the currently-
-# executing shell will be substituted.
+# Output an escape sequence to set the terminal's title bar, if supported. If
+# COMMAND is not provided, the name of the currently executing shell will be
+# substituted.
 _bash_prompt_title () {
-  if [[ $TERM =~ ^(rxvt|tmux|xterm)(-|$) ]]; then
-    # Change window title
-    #   OSC 2 ; term_window_title BEL
-    #
-    # We don't use tput since xterm's termcap often lacks ts/fs capabilities.
-    printf '\e]2;%s\a' "${1:-$0} ($(_bash_prompt_format_path "$PWD"))"
+  if [[ -n $_bash_prompt_title_start && -n $_bash_prompt_title_end ]]; then
+    printf %s%s%s "$_bash_prompt_title_start" \
+        "${1:-$0} ($(_bash_prompt_format_path "$PWD"))" \
+        "$_bash_prompt_title_end"
   fi
 }
 
