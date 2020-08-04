@@ -149,39 +149,24 @@ if has('spell')
   endif
 endif
 
-" Sync clipboard yanks with the SSH client via OSC 52. Needs more testing.
-if $TERM =~# '\v%(tmux|xterm)%(-|$)' && exists('##TextYankPost')
-  let s:clipboard_register = 0
-
-  function s:HandleYank(register, contents)
-    if a:register ==# '+' || a:register ==# '"' && s:clipboard_register
-      call SendViaOSC52(join(a:contents, "\n"))
+" Yank to the clipboard via xterm's OSC 52 (manipulate selection data) sequence
+" in supporting terminals. This requires Vim to be compiled with clipboard
+" support or else the "+ register is not defined.
+if has('clipboard') && exists('##TextYankPost')
+    \ && $TERM =~# '\v%(tmux|xterm)%(-|$)'
+  function s:TextYankPost()
+    " When yanking to "+, v:register is always '+', but v:event.regname is only
+    " set to '+' if Vim successfully yanked to the X11 clipboard. This lets us
+    " use OSC 52 only if Vim's native clipboard support can't handle the yank.
+    if v:register ==# '+' && v:event.regname ==# ''
+      call SendViaOSC52(join(v:event.regcontents, "\n"))
     endif
   endfunction
 
-  if !has('clipboard') || has('clipboard') && $DISPLAY == ''
-    augroup vimrc_clipboard_yank
-      autocmd!
-      autocmd TextYankPost * call s:HandleYank(v:register, v:event.regcontents)
-    augroup END
-  endif
-
-  if !has('clipboard') && exists('##SafeState')
-    function s:SetClipboardRegister(visual)
-      let s:clipboard_register = 1
-      if a:visual
-        normal! gv
-      endif
-    endfunction
-
-    nnoremap <silent> "+ :<C-U> call <SID>SetClipboardRegister(0)<CR>""
-    xnoremap <silent> "+ :<C-U> call <SID>SetClipboardRegister(1)<CR>""
-
-    augroup vimrc_clipboard_register
-      autocmd!
-      autocmd SafeState * let s:clipboard_register = 0
-    augroup END
-  endif
+  augroup vimrc_clipboard
+    autocmd!
+    autocmd TextYankPost * call s:TextYankPost()
+  augroup END
 endif
 
 if has('mouse')
