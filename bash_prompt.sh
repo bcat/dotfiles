@@ -213,11 +213,11 @@ _bash_prompt_ps1_build_directory () {
 _bash_prompt_ps1_build_symbol () {
   if (( UID == 0 )); then
     _bash_prompt_ps1_escape \
-        "$_bash_prompt_term_bright_red$_bash_prompt_term_bold"
+        "$_bash_prompt_term_bright_red"
     _bash_prompt_ps1_append '# '
   else
     _bash_prompt_ps1_escape \
-        "$_bash_prompt_term_bright_white$_bash_prompt_term_bold"
+        "$_bash_prompt_term_bright_white"
     _bash_prompt_ps1_append '$ '
   fi
 }
