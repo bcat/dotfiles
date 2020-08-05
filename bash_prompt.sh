@@ -5,9 +5,7 @@ shopt -u promptvars
 # no terminal colors/attributes if we can't find tput.
 if type tput >/dev/null 2>&1; then
   _bash_prompt_num_colors=$(tput colors)
-
   _bash_prompt_term_reset=$(tput sgr0)
-  _bash_prompt_term_bold=$(tput bold)
 
   _bash_prompt_title_start=$(tput tsl)
   _bash_prompt_title_end=$(tput fsl)
@@ -24,9 +22,7 @@ if type tput >/dev/null 2>&1; then
   fi
 else
   _bash_prompt_num_colors=-1
-
   _bash_prompt_term_reset=
-  _bash_prompt_term_bold=
 fi
 
 # Set up terminal colors for various bits of the prompt. These look best with a
@@ -34,41 +30,40 @@ fi
 # however, these color choices should look fine with any reasonable palette.
 # Note that we intentionally don't use color 12 (bold color 4) because it looks
 # very low-contrast in the Linux console color palette.
-if (( $_bash_prompt_num_colors >= 16 )); then
+if (( _bash_prompt_num_colors >= 16 )); then
   # For terminals that support high-intensity colors (i.e., terminals supporting
   # at least 16 total colors), use those directly.
-  _bash_prompt_term_bright_red=$(tput setaf 9)
-  _bash_prompt_term_bright_green=$(tput setaf 10)
-  _bash_prompt_term_orange=$(tput setaf 3)
+  _bash_prompt_term_red=$(tput setaf 9)
+  _bash_prompt_term_green=$(tput setaf 10)
   _bash_prompt_term_yellow=$(tput setaf 11)
-  _bash_prompt_term_blue=$(tput setaf 4)
-  _bash_prompt_term_bright_magenta=$(tput setaf 13)
-  _bash_prompt_term_bright_cyan=$(tput setaf 14)
-  _bash_prompt_term_bright_white=$(tput setaf 15)
-elif (( $_bash_prompt_num_colors >= 8 )); then
+  _bash_prompt_term_magenta=$(tput setaf 13)
+  _bash_prompt_term_cyan=$(tput setaf 14)
+  _bash_prompt_term_white=$(tput setaf 15)
+elif (( _bash_prompt_num_colors >= 8 )); then
   # For terminals that only support 8 colors, use the bold attribute, which many
   # terminals (including the Linux console) will render as bright.
-  _bash_prompt_term_bright_red=$_bash_prompt_term_bold$(tput setaf 1)
-  _bash_prompt_term_bright_green=$_bash_prompt_term_bold$(tput setaf 2)
-  _bash_prompt_term_orange=$_bash_prompt_term_reset$(tput setaf 3)
+  _bash_prompt_term_bold=$(tput bold)
+
+  _bash_prompt_term_red=$_bash_prompt_term_bold$(tput setaf 1)
+  _bash_prompt_term_green=$_bash_prompt_term_bold$(tput setaf 2)
   _bash_prompt_term_yellow=$_bash_prompt_term_bold$(tput setaf 3)
-  _bash_prompt_term_blue=$_bash_prompt_term_reset$(tput setaf 4)
-  _bash_prompt_term_bright_magenta=$_bash_prompt_term_bold$(tput setaf 5)
-  _bash_prompt_term_bright_cyan=$_bash_prompt_term_bold$(tput setaf 6)
-  _bash_prompt_term_bright_white=$_bash_prompt_term_bold$(tput setaf 7)
+  _bash_prompt_term_magenta=$_bash_prompt_term_bold$(tput setaf 5)
+  _bash_prompt_term_cyan=$_bash_prompt_term_bold$(tput setaf 6)
+  _bash_prompt_term_white=$_bash_prompt_term_bold$(tput setaf 7)
 else
-  # For terminals with less than the standard 8 colors, render in monochrome,
-  # but still use the bold attribute if we found it above.
-  _bash_prompt_term_bright_red=
-  _bash_prompt_term_bright_green=
-  _bash_prompt_term_orange=
-  _bash_prompt_term_blue=
-  _bash_prompt_term_bright_cyan=
-  _bash_prompt_term_bright_magenta=
-  _bash_prompt_term_bright_white=
+  # For terminals with less than the standard 8 colors, render in monochrome.
+  _bash_prompt_term_red=
+  _bash_prompt_term_green=
+  _bash_prompt_term_green=
+  _bash_prompt_term_yellow=
+  _bash_prompt_term_cyan=
+  _bash_prompt_term_magenta=
+  _bash_prompt_term_white=
 fi
 
-# Set a flag if the system has git installed.
+# Cache some information that shouldn't vary from prompt to prompt.
+_bash_prompt_host=$(hostname -s)
+
 if type git >/dev/null 2>&1; then
   _bash_prompt_have_git=1
 fi
@@ -102,68 +97,62 @@ preexec () {
 }
 
 precmd () {
-  # Reset prompt variables.
-  _bash_prompt_col=0
-  PS1=
-  PS2='> '
-  PS3='#? '
-  PS4='+ '
+  # Replace the current user's home directory in $PWD with ~.
+  _bash_prompt_path=$PWD
+  if [[ $_bash_prompt_path =~ ^"$HOME"(/|$) ]]; then
+    _bash_prompt_path=~${_bash_prompt_path#$HOME}
+  fi
 
-  # Build the prompt.
+  # Build the first line of the prompt.
+  PS1=
+  _bash_prompt_next_col=0
+
   _bash_prompt_ps1_build_machine
-  _bash_prompt_ps1_build_status
+  _bash_prompt_ps1_build_jobs
+  _bash_prompt_ps1_build_git
   _bash_prompt_ps1_build_directory
-  _bash_prompt_ps1_append $'\n'
+
+  # Build the second line of the prompt.
+  PS1=$PS1$'\n'
+  _bash_prompt_next_col=0
+
   _bash_prompt_ps1_build_symbol
-  _bash_prompt_ps1_escape "$_bash_prompt_term_reset"
+
+  # Set the terminal title and reset text attributes for user input.
   _bash_prompt_ps1_escape "$(_bash_prompt_title)"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_reset"
 }
 
 _bash_prompt_ps1_build_machine () {
-  local tty=$(tty)
-
-  _bash_prompt_ps1_escape "$_bash_prompt_term_blue"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_green"
   _bash_prompt_ps1_append "$USER"
-  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_white"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_white"
   _bash_prompt_ps1_append @
-  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_magenta"
-  _bash_prompt_ps1_append "$(hostname -s)"
-  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_white"
-  _bash_prompt_ps1_append :
-  _bash_prompt_ps1_escape "$_bash_prompt_term_yellow"
-  _bash_prompt_ps1_append "${tty#/dev/}"
-}
-
-_bash_prompt_ps1_build_status () {
-  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_white"
-  _bash_prompt_ps1_build_jobs
-  _bash_prompt_ps1_build_git
+  _bash_prompt_ps1_escape "$_bash_prompt_term_magenta"
+  _bash_prompt_ps1_append "$_bash_prompt_host"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_white"
 }
 
 _bash_prompt_ps1_build_jobs () {
-  _bash_prompt_ps1_append ' J:'
-
   # Use arithmetic expansion to filter out leading whitespace from BSD wc.
-  local count=$(($(jobs | wc -l)))
+  local num_jobs=$(($(jobs | wc -l)))
 
-  if (( count == 0 )); then
-    _bash_prompt_ps1_escape "$_bash_prompt_term_bright_green"
-  elif (( count == 1 )); then
-    _bash_prompt_ps1_escape "$_bash_prompt_term_orange"
+  _bash_prompt_ps1_append ' J:'
+  if (( num_jobs == 0 )); then
+    _bash_prompt_ps1_escape "$_bash_prompt_term_green"
+  elif (( num_jobs == 1 )); then
+    _bash_prompt_ps1_escape "$_bash_prompt_term_yellow"
   else
-    _bash_prompt_ps1_escape "$_bash_prompt_term_bright_red"
+    _bash_prompt_ps1_escape "$_bash_prompt_term_red"
   fi
-
-  _bash_prompt_ps1_append "$count"
-
-  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_white"
+  _bash_prompt_ps1_append "$num_jobs"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_white"
 }
 
 _bash_prompt_ps1_build_git() {
   [[ -n $_bash_prompt_have_git ]] || return;
   local status
   status=$(git status --porcelain -b 2>/dev/null) || return
-  _bash_prompt_ps1_append ' G:'
 
   local OLDIFS=$IFS IFS=$'\n'
   local lines=($status) IFS=OLDIFS
@@ -176,111 +165,78 @@ _bash_prompt_ps1_build_git() {
 
   # Parse the branch name out, ignoring remote information.
   local branch_name=${branch_info%%...*}
-  local status_char
 
+  local status_char
   for line in "${lines[@]}"; do
     if [[ ${line:0:2} == '??' ]]; then
-      status_char=? # Untracked file present.
+      status_char=?  # Untracked file present.
     else
-      status_char=! # Tracked file modified.
+      status_char=!  # Tracked file modified.
       break
     fi
   done
 
+  _bash_prompt_ps1_append ' G:'
   if [[ $branch_info =~ \[(ahead|behind)\ [[:digit:]]+\] ]]; then
     if [[ ${BASH_REMATCH[1]} == behind ]]; then
-      _bash_prompt_ps1_escape "$_bash_prompt_term_bright_red"
+      _bash_prompt_ps1_escape "$_bash_prompt_term_red"
     else
-      _bash_prompt_ps1_escape "$_bash_prompt_term_orange"
+      _bash_prompt_ps1_escape "$_bash_prompt_term_yellow"
     fi
   else
-    _bash_prompt_ps1_escape "$_bash_prompt_term_bright_green"
+    _bash_prompt_ps1_escape "$_bash_prompt_term_green"
   fi
-
   _bash_prompt_ps1_append "$branch_name$status_char"
-
-  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_white"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_white"
 }
 
 _bash_prompt_ps1_build_directory () {
-  _bash_prompt_ps1_escape "$_bash_prompt_term_bright_cyan"
+  _bash_prompt_ps1_escape "$_bash_prompt_term_cyan"
   _bash_prompt_ps1_append ' '
-  _bash_prompt_ps1_append \
-      "$(_bash_prompt_truncate "$(_bash_prompt_format_path "$PWD")" \
-      $((COLUMNS - _bash_prompt_col)) left)"
+  _bash_prompt_ps1_append "$_bash_prompt_path" truncate
 }
 
 _bash_prompt_ps1_build_symbol () {
   if (( UID == 0 )); then
-    _bash_prompt_ps1_escape \
-        "$_bash_prompt_term_bright_red"
+    _bash_prompt_ps1_escape "$_bash_prompt_term_red"
     _bash_prompt_ps1_append '# '
   else
-    _bash_prompt_ps1_escape \
-        "$_bash_prompt_term_bright_white"
+    _bash_prompt_ps1_escape "$_bash_prompt_term_white"
     _bash_prompt_ps1_append '$ '
   fi
 }
 
-# _bash_prompt_ps1_append STRING
+# _bash_prompt_ps1_append STRING [MODE]
 #
-# Append STRING to PS1. Backslashes will be doubled to ensure proper display.
-# _bash_prompt_col will be updated as appropriate.
+# Appends STRING to PS1. Backslashes will be doubled to ensure proper display.
+# The string is assumed to not contain newlines. Updates the column counter.
+# If MODE is "truncate", the string will be truncated to fit the current line.
 _bash_prompt_ps1_append () {
-  local i; for (( i = 0; i < ${#1}; ++i )); do
-    if [[ ${1:i:1} == $'\n' ]]; then
-      _bash_prompt_col=0
-    else
-      (( ++_bash_prompt_col ))
-    fi
-  done
+  local str=$1 cols_remaining=$((COLUMNS - _bash_prompt_next_col))
+  if [[ $2 == truncate ]] && (( ${#str} > cols_remaining )); then
+    (( cols_remaining >= 3 )) || return
+    str="...${str:3-$cols_remaining}"
+  fi
 
-  PS1=$PS1${1//\\/\\\\}
+  PS1=$PS1${str//\\/\\\\}
+  (( _bash_prompt_next_col = (_bash_prompt_next_col + ${#str}) % COLUMNS ))
 }
 
 # _bash_prompt_ps1_escape STRING
 #
-# Append STRING to PS1. Backslashes will be doubled to ensure proper display.
+# Appends STRING to PS1. Backslashes will be doubled to ensure proper display.
 # \[ and \] markers will be added to mark the string as an escape sequence.
-# _bash_prompt_col will not be updated.
+# Does not update the column counter.
 _bash_prompt_ps1_escape () {
   PS1=$PS1\\[${1//\\/\\\\}\\]
 }
 
 # _bash_prompt_title [COMMAND]
 #
-# Output an escape sequence to set the terminal's title bar, if supported. If
-# COMMAND is not provided, the name of the currently executing shell will be
-# substituted.
+# Outputs an escape sequence to set the terminal's title bar. If COMMAND is not
+# provided, the name of the currently executing shell will be substituted.
 _bash_prompt_title () {
-  if [[ -n $_bash_prompt_title_start && -n $_bash_prompt_title_end ]]; then
-    printf %s%s%s "$_bash_prompt_title_start" \
-        "${1:-$0} ($(_bash_prompt_format_path "$PWD"))" \
-        "$_bash_prompt_title_end"
-  fi
-}
-
-# _bash_prompt_format_path PATH
-#
-# Output PATH with the current user's home directory replaced with "~".
-_bash_prompt_format_path () {
-  if [[ $1 =~ ^"$HOME"(/|$) ]]; then
-    printf "~${1#$HOME}"
-  else
-    printf "$1"
-  fi
-}
-
-# _bash_prompt_truncate STRING LENGTH [MODE]
-#
-# Output STRING truncated to LENGTH characters. MODE, which may be "right"
-# (the default) or "left", controls which side of the string to truncate on.
-_bash_prompt_truncate () {
-  if (( ${#1} < $2 )); then
-    printf %s "$1"
-  elif [[ $3 == left ]]; then
-    printf %s "...${1:3-$2}"
-  else
-    printf %s "${1:0:$2-3}..."
-  fi
+  [[ -n $_bash_prompt_title_start && -n $_bash_prompt_title_end ]] || return
+  printf %s%s%s "$_bash_prompt_title_start" "${1:-$0} ($_bash_prompt_path)" \
+      "$_bash_prompt_title_end"
 }
