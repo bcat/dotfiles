@@ -47,8 +47,6 @@ elif (( _bash_prompt_num_colors >= 8 )); then
 fi
 
 # Cache some information that shouldn't vary from prompt to prompt.
-_bash_prompt_host=$(hostname -s)
-
 if type git >/dev/null 2>&1; then
   _bash_prompt_have_git=1
 fi
@@ -114,7 +112,7 @@ _bash_prompt_ps1_build_machine () {
   _bash_prompt_ps1_escape "$_bash_prompt_color_white"
   _bash_prompt_ps1_append @
   _bash_prompt_ps1_escape "$_bash_prompt_color_magenta"
-  _bash_prompt_ps1_append "$_bash_prompt_host"
+  _bash_prompt_ps1_append "${HOSTNAME%%.*}"
   _bash_prompt_ps1_escape "$_bash_prompt_color_white"
 }
 
