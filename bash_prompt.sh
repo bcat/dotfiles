@@ -4,7 +4,6 @@ shopt -u promptvars
 # If possible, use tput to generate terminal escape codes for colors/attributes.
 if type tput >/dev/null 2>&1; then
   _bash_prompt_num_colors=$(tput colors)
-  _bash_prompt_color_reset=$(tput sgr0)
 
   _bash_prompt_title_start=$(tput tsl)
   _bash_prompt_title_end=$(tput fsl)
@@ -27,6 +26,7 @@ fi
 if (( _bash_prompt_num_colors >= 16 )); then
   # For terminals that support high-intensity colors (i.e., terminals supporting
   # at least 16 total colors), use those directly.
+  _bash_prompt_color_reset=$(tput sgr0)
   _bash_prompt_color_red=$(tput setaf 9)
   _bash_prompt_color_green=$(tput setaf 10)
   _bash_prompt_color_yellow=$(tput setaf 11)
@@ -37,14 +37,19 @@ elif (( _bash_prompt_num_colors >= 8 )); then
   # For terminals that only support 8 colors, use the bold attribute, which many
   # terminals (including the Linux console) will render as bright.
   _bash_prompt_bold=$(tput bold)
+
+  _bash_prompt_color_reset=$(tput sgr0)
   _bash_prompt_color_red=$_bash_prompt_bold$(tput setaf 1)
   _bash_prompt_color_green=$_bash_prompt_bold$(tput setaf 2)
   _bash_prompt_color_yellow=$_bash_prompt_bold$(tput setaf 3)
   _bash_prompt_color_magenta=$_bash_prompt_bold$(tput setaf 5)
   _bash_prompt_color_cyan=$_bash_prompt_bold$(tput setaf 6)
   _bash_prompt_color_white=$_bash_prompt_bold$(tput setaf 7)
+
   unset _bash_prompt_bold
 fi
+
+unset _bash_prompt_num_colors
 
 # Cache some information that shouldn't vary from prompt to prompt.
 if type git >/dev/null 2>&1; then
