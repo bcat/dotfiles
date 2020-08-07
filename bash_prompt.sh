@@ -97,6 +97,7 @@ precmd () {
 
   _bash_prompt_ps1_build_machine
   _bash_prompt_ps1_build_jobs
+  _bash_prompt_ps1_build_msys
   _bash_prompt_ps1_build_git
   _bash_prompt_ps1_build_directory
 
@@ -134,6 +135,19 @@ _bash_prompt_ps1_build_jobs () {
     _bash_prompt_ps1_escape "$_bash_prompt_color_red"
   fi
   _bash_prompt_ps1_append "$num_jobs"
+  _bash_prompt_ps1_escape "$_bash_prompt_color_white"
+}
+
+_bash_prompt_ps1_build_msys() {
+  [[ -n $MSYSTEM ]] || return
+
+  _bash_prompt_ps1_append ' M:'
+  case $MSYSTEM in
+    MINGW32) _bash_prompt_ps1_escape "$_bash_prompt_color_red" ;;
+    MSYS) _bash_prompt_ps1_escape "$_bash_prompt_color_yellow" ;;
+    *) _bash_prompt_ps1_escape "$_bash_prompt_color_green" ;;
+  esac
+  _bash_prompt_ps1_append "$MSYSTEM"
   _bash_prompt_ps1_escape "$_bash_prompt_color_white"
 }
 
