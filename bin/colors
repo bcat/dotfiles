@@ -2,60 +2,190 @@
 
 set -o errexit -o nounset
 
-reset=$(tput sgr0)
-bold=$(tput bold)
-
-# Determine how to print out filled squares. For most terminals, the simplest
-# method is to print spaces in reverse video; however, for the Linux console,
-# setting the reverse-video attribute and the bold attribute doesn't make the
-# background color bright, so we have to use a Unicode box drawing character.
-# (We can't just use that character for all terminals since xterm doesn't seem
-# to do font substitution, so there's a good chance the U+2588 character won't
-# show up at all in xterm.)
-if [[ $TERM =~ ^linux(-|$) ]]; then
-  filled_squares=████
-else
-  filled_squares="$(tput rev)    "
+if ! type tput >/dev/null 2>&1; then
+  printf 'The tput command is required to set colors\n' >&2
+  exit 1
 fi
 
-# Print normal-intensity legend.
-printf '    '
-for i in {00..07}; do
-  printf '%s' "  $i "
-done
-printf ' ┐\n'
+term_width=$(tput cols)
+term_colors=$(tput colors)
 
-# Print normal-intensity colors.
-printf Norm
-for i in {0..7}; do
-  printf '%s' " $(tput setaf "$i")$filled_squares$reset"
-done
-printf ' │ Normal\n'
+term_attr_reset=$(tput sgr0)
+term_attr_bold=$(tput bold)
+term_attr_reverse=$(tput rev)
 
-# Print normal-intensity bold colors.
-printf '%s' "${bold}Bold$reset"
-for i in {0..7}; do
-  printf '%s' " $(tput setaf "$i")$bold$filled_squares$reset"
-done
-printf ' │ intensity\n                                             ┘\n'
+is_true_color () {
+  (( term_colors == 16777216 )) || [[ "${COLORTERM:-}" == truecolor ]]
+}
 
-# Print bright-intensity colors.
-printf '                                             ┐\nNorm'
-for i in {8..15}; do
-  printf '%s' " $(tput setaf "$i")$filled_squares$reset"
-done
-printf ' │ Bright\n'
+# Sets the foreground color using an ANSI escape sequence. Normally, this just
+# shells out to tput, but for true-color terminals, ncurses changes the behavior
+# of the setaf terminfo entry in a way that _breaks_ indexed colors beyond the
+# first eight. Since all true-color terminals we're aware support the same
+# indexed-color escape sequence, we hardcode it for true-color terminals.
+set_indexed_color () {
+  local color=$1
 
-# Print bright-intensity bold colors
-printf '%s' "${bold}Bold$reset"
-for i in {8..15}; do
-  printf '%s' " $(tput setaf "$i")$bold$filled_squares$reset"
-done
-printf ' │ intensity\n'
+  if ! is_true_color; then
+    tput setaf "$color"
+  else
+    printf '\e[38;5;%sm' "$color"
+  fi
+}
 
-# Print bright-intensity legend.
-printf '    '
-for i in {08..15}; do
-  printf '%s' "  $i "
-done
-printf ' ┘\n'
+# Sets the foreground color to a specific RGB color. We don't use tput here
+# since most true-color terminals lack a true-color terminfo entry.
+set_rgb_color () {
+  local r=$1 g=$2 b=$3
+
+  printf '\e[38;2;%s;%s;%sm' "$r" "$g" "$b"
+}
+
+# Print out print out filled blocks. For most terminals, the simplest method is
+# to print spaces in reverse video; however, for the Linux console, setting the
+# reverse-video attribute and the bold attribute doesn't make the background
+# color bright, so we have to use a Unicode box drawing character. (We can't
+# just use that character for all terminals since xterm doesn't seem to do font
+# substitution, so there's a good chance the U+2588 character won't show up.)
+print_filled () {
+  local count=${1:-1}
+
+  if [[ $TERM =~ ^linux(-|$) ]]; then
+    for (( i = 0; i < count; ++i )); do
+      printf █
+    done
+  else
+    printf %s%*s "$term_attr_reverse" "$count" ''
+  fi
+}
+
+print_indexed_ansi_row () {
+  local legend=$1 attr=$2
+  shift 2
+
+  printf %s "$legend"
+  for color; do
+    printf ' %s' "$attr"
+    set_indexed_color "$color"
+    print_filled 4
+    printf %s "$term_attr_reset"
+  done
+  printf '\n'
+}
+
+print_indexed_ansi () {
+  # Print the header.
+  printf '\n       '
+  for color; do
+    printf '  %02d ' "$color"
+  done
+  printf '\n'
+
+  # Print the colors.
+  print_indexed_ansi_row Regular '' "$@"
+  print_indexed_ansi_row 'Bold   ' "$term_attr_bold" "$@"
+}
+
+print_indexed_cube () {
+  local start=$1 length=$2
+
+  # Print the header.
+  for (( slice = 0; slice < length; ++slice )); do
+    printf ' %-3d%*s' "$((start + slice * length * length))" \
+      "$((length + 3))" ''
+  done
+  printf '\n'
+
+  # Print the colors.
+  for (( row = 0; row < length; ++row )); do
+    for (( slice = 0; slice < length; ++slice )); do
+      printf ' '
+      for (( col = 0; col < length; ++col )); do
+        set_indexed_color \
+            "$((start + slice * length * length + row * length + col))"
+        print_filled 2
+        printf %s "$term_attr_reset"
+      done
+    done
+    printf '\n'
+  done
+
+  # Print the footer.
+  for (( slice = 0; slice < length; ++slice )); do
+    printf ' %*s%3d' "$((length + 3))" '' \
+        "$((start + (slice + 1) * length * length - 1))"
+  done
+  printf '\n'
+}
+
+print_indexed_ramp () {
+  # Print the header.
+  printf '\n'
+  for color; do
+    printf '  %03d ' "$color"
+  done
+  printf '\n'
+
+  # Print the colors.
+  for row in {0..1}; do
+    for color; do
+      printf ' '
+      set_indexed_color "$color"
+      print_filled 5
+      printf %s "$term_attr_reset"
+    done
+    printf '\n'
+  done
+}
+
+print_rgb_gradient () {
+  local r_start=$1 r_end=$2 g_start=$3 g_end=$4 b_start=$5 b_end=$6 width=$7
+
+  for row in {0..1}; do
+    printf '\n'
+    for (( col = 0; col < width; ++col )); do
+      local r=$((r_start + (r_end - r_start) * col / width))
+      local g=$((g_start + (g_end - g_start) * col / width))
+      local b=$((b_start + (b_end - b_start) * col / width))
+      set_rgb_color "$r" "$g" "$b"
+      print_filled
+    done
+  done
+  printf '%s\n' "$term_attr_reset"
+}
+
+printf 'TERM:            %s\n' "${TERM:-}"
+printf 'COLORTERM:       %s\n' "${COLORTERM:-}"
+printf 'terminfo colors: %s\n' "$term_colors"
+
+if (( term_colors >= 8 )); then
+  printf '\n\tANSI colors (indexed):\n'
+  print_indexed_ansi {0..7}
+fi
+
+if (( term_colors >= 16 )); then
+  print_indexed_ansi {8..15}
+fi
+
+if (( term_colors == 88 )); then
+  printf '\n\tExtended colors (indexed):\n'
+  print_indexed_cube 16 4
+  print_indexed_ramp {80..87}
+fi
+
+if (( term_colors >= 256 )); then
+  printf '\n\tExtended colors (indexed):\n'
+  print_indexed_cube 16 6
+  print_indexed_ramp {232..243}
+  print_indexed_ramp {244..255}
+fi
+
+if is_true_color; then
+  printf '\n\tTrue color (RGB):\n'
+  print_rgb_gradient 0 255 0 255 0 255 "$term_width"
+  print_rgb_gradient 0 255 0 0 0 0 "$term_width"
+  print_rgb_gradient 0 0 0 255 0 0 "$term_width"
+  print_rgb_gradient 0 0 0 0 0 255 "$term_width"
+fi
+
+printf '\n'
