@@ -154,6 +154,38 @@ print_rgb_gradient () {
   printf '%s\n' "$term_attr_reset"
 }
 
+# Draws an HSV gradient for hue = {0..255}, saturation = 255, value = 255.
+print_rainbow_gradient () {
+  local width=$1
+
+  for row in {0..1}; do
+    printf '\n'
+    for (( col = 0; col < width; ++col )); do
+      local hue=$((255 * col / width))
+
+      # HSV-to-RGB conversion using only integer arithmetic. Source:
+      # https://web.archive.org/web/20160817062755/http://web.mit.edu/storborg/Public/hsvtorgb.c
+      local region=$((hue / 43))
+      local remainder=$(((hue - region * 43) * 6))
+
+      local q=$(((255 * (255 - ((255 * remainder) >> 8))) >> 8))
+      local t=$(((255 * (255 - ((255 * (255 - remainder)) >> 8))) >> 8))
+
+      case $region in
+        0) set_rgb_color 255 "$t" 0 ;;
+        1) set_rgb_color "$q" 255 0 ;;
+        2) set_rgb_color 0 255 "$t" ;;
+        3) set_rgb_color 0 "$q" 255 ;;
+        4) set_rgb_color "$t" 0 255 ;;
+        5) set_rgb_color 255 0 "$q" ;;
+      esac
+
+      print_filled
+    done
+  done
+  printf '%s\n' "$term_attr_reset"
+}
+
 printf 'TERM:            %s\n' "${TERM:-}"
 printf 'COLORTERM:       %s\n' "${COLORTERM:-}"
 printf 'terminfo colors: %s\n' "$term_colors"
@@ -186,6 +218,7 @@ if is_true_color; then
   print_rgb_gradient 0 255 0 0 0 0 "$term_width"
   print_rgb_gradient 0 0 0 255 0 0 "$term_width"
   print_rgb_gradient 0 0 0 0 0 255 "$term_width"
+  print_rainbow_gradient "$term_width"
 fi
 
 printf '\n'
