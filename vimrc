@@ -369,7 +369,7 @@ nnoremap <silent> <Leader><Leader> <C-^>
 nnoremap <silent> <Leader>- :split<CR>
 nnoremap <silent> <Leader>\ :vsplit<CR>
 nnoremap <silent> <Leader>s :setlocal spell!<CR>
-nnoremap <silent> <Leader>w :EraseBadWhitespace<CR>
+nnoremap <silent> <Leader>w :StripWhitespace<CR>
 
 " Configure keybindings for working with configuration files:
 "

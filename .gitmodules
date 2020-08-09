@@ -7,9 +7,9 @@
 [submodule "vim/pack/bcat/start/abolish"]
 	path = vim/pack/bcat/start/abolish
 	url = https://github.com/tpope/vim-abolish.git
-[submodule "vim/pack/bcat/start/bad-whitespace"]
-	path = vim/pack/bcat/start/bad-whitespace
-	url = https://github.com/bitc/vim-bad-whitespace.git
+[submodule "vim/pack/bcat/start/better-whitespace"]
+	path = vim/pack/bcat/start/better-whitespace
+	url = https://github.com/ntpeters/vim-better-whitespace.git
 [submodule "vim/pack/bcat/start/codefmt"]
 	path = vim/pack/bcat/start/codefmt
 	url = https://github.com/google/vim-codefmt.git
