@@ -154,7 +154,7 @@ endif
 " support or else the "+ register is not defined.
 if has('clipboard') && exists('##TextYankPost')
     \ && $TERM =~# '\v%(tmux|xterm)%(-|$)'
-  function s:TextYankPost()
+  function! s:TextYankPost()
     " When yanking to "+, v:register is always '+', but v:event.regname is only
     " set to '+' if Vim successfully yanked to the X11 clipboard. This lets us
     " use OSC 52 only if Vim's native clipboard support can't handle the yank.
