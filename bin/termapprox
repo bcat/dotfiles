@@ -1,0 +1,104 @@
+#!/usr/bin/env python3
+
+import argparse
+import blessings
+from colormath import color_conversions, color_diff, color_objects
+import operator
+import re
+
+ANSI_COLORS = [None] * 16
+
+COLOR_CUBE_SIDES = [0 if i == 0 else i * 40 + 55 for i in range(6)]
+COLOR_CUBE = [
+    color_conversions.convert_color(
+        color_objects.sRGBColor(
+            COLOR_CUBE_SIDES[i // 36 % 6],
+            COLOR_CUBE_SIDES[i // 6 % 6],
+            COLOR_CUBE_SIDES[i % 6],
+            is_upscaled=True), color_objects.LabColor) for i in range(216)
+]
+
+GRAYSCALE_RAMP = [
+    color_conversions.convert_color(
+        color_objects.sRGBColor(
+            i * 10 + 8, i * 10 + 8, i * 10 + 8, is_upscaled=True),
+        color_objects.LabColor) for i in range(24)
+]
+
+COLORS = ANSI_COLORS + COLOR_CUBE + GRAYSCALE_RAMP
+
+
+def distance(lab1, lab2):
+    return color_diff.delta_e_cie2000(lab1, lab2)
+
+
+def nonnegative_int(string):
+    value = int(string)
+    if value < 0:
+        raise argparse.ArgumentTypeError('must be nonnegative: ' + string)
+    return value
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Approximate RGB colors in "
+                                     "the 256-color xterm palette.")
+    parser.add_argument(
+        "rgb",
+        type=color_objects.sRGBColor.new_from_rgb_hex,
+        help='RGB hex color to convert, (e.g., "#aabbcc")')
+    parser.add_argument(
+        "-n",
+        "--num-colors",
+        default=1,
+        type=nonnegative_int,
+        metavar="N",
+        help="number of indexed colors to output")
+    parser.add_argument(
+        "-s",
+        "--show-color",
+        action="store_true",
+        help="show a sample of each indexed color")
+    parser.add_argument(
+        "-t",
+        "--true-color",
+        action="store_true",
+        help="compare to original RGB color (requires a true-color terminal)")
+    args = parser.parse_args()
+
+    target = color_conversions.convert_color(args.rgb, color_objects.LabColor)
+
+    indices, _ = zip(*sorted(((index, distance(color, target))
+                              for index, color in enumerate(COLORS) if color),
+                             key=operator.itemgetter(1)))
+    closest_indices = indices[:args.num_colors]
+
+    if args.show_color:
+        print("Target: " + args.rgb.get_rgb_hex())
+
+        term = blessings.Terminal()
+
+        if args.true_color:
+            rgb = "\x1b[48;2;%d;%d;%dm" % args.rgb.get_upscaled_value_tuple()
+            colors = [("  RGB ", " %s     %s" % (rgb, term.normal),
+                       " %s     %s" % (rgb, term.normal))]
+        else:
+            colors = []
+
+        colors += [("  %-3d " % index, " %s" % term.on_color(index)("     "),
+                    " %s" % term.on_color(index)("     "))
+                   for index in closest_indices]
+        colors_per_row = term.width // 6
+
+        for i in range(0, len(colors), colors_per_row):
+            row_colors = colors[i:colors_per_row]
+            for j in range(len(row_colors[0])):
+                for row_color in row_colors:
+                    print(row_color[j], end="")
+                print()
+    else:
+        for index in closest_indices:
+            print(index)
+
+
+if __name__ == "__main__":
+    main()
