@@ -199,6 +199,21 @@ endif
 set title
 set titleold=
 
+" Vim uses the nonstandard Cs termcap entry to mean "undercurl mode", but xterm
+" and tmux terminfo entries already use it for "set cursor color". This means
+" that undercurled text no longer shows up as undercurled or underlined.
+if &term =~# '\v^%(tmux|xterm)%(-|$)'
+  " SGR (character attributes): underline
+  "   CSI 4 m
+  " SGR (character attributes): curly underline (kitty extension)
+  "   CSI 4 : 3 m
+  let &t_Cs = "\e[4m\e[4:3m"
+
+  " SGR (character attributes): normal
+  "   CSI m
+  let &t_Ce = "\e[m"
+endif
+
 " If the terminal supports it, set the cursor to a blinking bar in insert mode
 " and a blinking underline in replace mode. (This matches the default behavior
 " of the gVim cursor.)
@@ -407,12 +422,6 @@ nnoremap <silent> <Leader>ar :CtrlP<CR>
 " <Space>z  Zoom in on current window, or zoom out if already zoomed in
 nmap <silent> <Leader>z <Plug>(zoom-toggle)
 
-" Load plugins early so we can configure Google plugins via Glaive.
-packloadall
-
-" Enable configuration of Google plugins using Glaive (for no good reason).
-call glaive#Install()
-
 " Configure the standard Python plugin.
 let g:pyindent_open_paren = 'exists("*shiftwidth") ? shiftwidth() : &shiftwidth'
 
@@ -426,9 +435,6 @@ let g:tex_stylish = 1
 
 " Configure the standard Vim plugin.
 let g:vim_indent_cont = 4
-
-" Configure the codefmt plugin. Enable its default mappings.
-Glaive codefmt clang_format_style='Google' plugin[mappings]
 
 " Configure the CtrlP plugin. Disable its default mapping.
 let g:ctrlp_map = ''
@@ -460,6 +466,15 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_build_constraints = 1
 
-" Set a nice color scheme that behaves well on 8-, 88-, and 256-color terminals.
-" Must be done after we call Pathogen since the color scheme lives in a bundle.
+" Set our personal color scheme, enabling some preferences for fancy terminals.
+let g:abbott_set_term_ansi_colors = 1
+let g:abbott_term_use_italics = 1
+let g:abbott_term_use_undercurl = 1
+let g:abbott_term_set_undercurl_color = 1
 colorscheme abbott
+
+" Force plugins to load so we can configure Google plugins via Glaive. Eww.
+packloadall
+
+" Configure the codefmt plugin. Enable its default mappings.
+Glaive codefmt clang_format_style='Google' plugin[mappings]
