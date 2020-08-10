@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# colors.sh <https://github.com/bcat/dotfiles>
+# termcolors <https://github.com/bcat/dotfiles>
 # Display supported terminal colors and their indices.
 #
 # Copyright 2015, 2020 Jonathan Rascher
