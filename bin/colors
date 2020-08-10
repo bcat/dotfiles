@@ -1,21 +1,31 @@
 #!/bin/bash
 
+# colors.sh <https://github.com/bcat/dotfiles>
+# Display supported terminal colors and their indices.
+#
+# Copyright 2015, 2020 Jonathan Rascher
+#
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+# REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+# AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+# INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+# OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+# PERFORMANCE OF THIS SOFTWARE.
+
 set -o errexit -o nounset
 
-if ! type tput >/dev/null 2>&1; then
-  printf 'The tput command is required to set colors\n' >&2
-  exit 1
-fi
-
-term_width=$(tput cols)
-term_colors=$(tput colors)
-
-term_attr_reset=$(tput sgr0)
-term_attr_bold=$(tput bold)
-term_attr_reverse=$(tput rev)
-
-is_true_color () {
-  (( term_colors == 16777216 )) || [[ "${COLORTERM:-}" == truecolor ]]
+usage () {
+  printf 'Usage: %s [OPTIONS]\n' "$0"
+  printf 'Display supported terminal colors and their indices.\n'
+  printf '\n'
+  printf 'Options:\n'
+  printf \
+      ' -t\tEnable true colors even if terminal support cannot be detected.\n'
 }
 
 # Sets the foreground color using an ANSI escape sequence. Normally, this just
@@ -26,10 +36,10 @@ is_true_color () {
 set_indexed_color () {
   local color=$1
 
-  if ! is_true_color; then
-    tput setaf "$color"
-  else
+  if [[ -n ${term_true_color:-} ]]; then
     printf '\e[38;5;%sm' "$color"
+  else
+    tput setaf "$color"
   fi
 }
 
@@ -41,7 +51,7 @@ set_rgb_color () {
   printf '\e[38;2;%s;%s;%sm' "$r" "$g" "$b"
 }
 
-# Print out print out filled blocks. For most terminals, the simplest method is
+# Prints one or more filled blocks. For most terminals, the simplest method is
 # to print spaces in reverse video; however, for the Linux console, setting the
 # reverse-video attribute and the bold attribute doesn't make the background
 # color bright, so we have to use a Unicode box drawing character. (We can't
@@ -73,36 +83,52 @@ print_indexed_ansi_row () {
   printf '\n'
 }
 
-print_indexed_ansi () {
-  # Print the header.
-  printf '\n       '
+print_indexed_ansi_unwrapped () {
+  # Header:
+  printf '\n    '
   for color; do
     printf '  %02d ' "$color"
   done
   printf '\n'
 
-  # Print the colors.
-  print_indexed_ansi_row Regular '' "$@"
-  print_indexed_ansi_row 'Bold   ' "$term_attr_bold" "$@"
+  # Colors:
+  print_indexed_ansi_row Norm '' "$@"
+  print_indexed_ansi_row Bold "$term_attr_bold" "$@"
 }
 
-print_indexed_cube () {
-  local start=$1 length=$2
+# Prints ANSI colors in regular and bold type (for 8- or 16-color terminals).
+print_indexed_ansi () {
+  local colors_per_line=$# max_colors_per_line=$((term_width / 5 - 4))
 
-  # Print the header.
-  for (( slice = 0; slice < length; ++slice )); do
-    printf ' %-3d%*s' "$((start + slice * length * length))" \
-      "$((length + 3))" ''
+  while (( colors_per_line > max_colors_per_line )); do
+    (( colors_per_line /= 2 ))
+  done
+
+  for (( i = 1; i <= $#; i += colors_per_line )); do
+    local length=$(($# - i >= colors_per_line ? colors_per_line : $# - i + 1))
+    print_indexed_ansi_unwrapped "${@:i:length}"
+  done
+}
+
+print_indexed_cube_unwrapped () {
+  local start_color=$1 side_length=$2 start_slice=$3 num_slices=$4
+
+  # Header:
+  printf '\n'
+  for (( slice = start_slice; slice < start_slice + num_slices; ++slice )); do
+    printf ' %-3d%*s' "$((start_color + slice * side_length * side_length))" \
+        "$((2 * side_length - 3))" ''
   done
   printf '\n'
 
-  # Print the colors.
-  for (( row = 0; row < length; ++row )); do
-    for (( slice = 0; slice < length; ++slice )); do
+  # Colors:
+  for (( row = 0; row < side_length; ++row )); do
+    for (( slice = start_slice; slice < start_slice + num_slices; ++slice )); do
       printf ' '
-      for (( col = 0; col < length; ++col )); do
+      for (( col = 0; col < side_length; ++col )); do
         set_indexed_color \
-            "$((start + slice * length * length + row * length + col))"
+            "$((start_color + slice * side_length * side_length + \
+                row * side_length + col))"
         print_filled 2
         printf %s "$term_attr_reset"
       done
@@ -110,43 +136,78 @@ print_indexed_cube () {
     printf '\n'
   done
 
-  # Print the footer.
-  for (( slice = 0; slice < length; ++slice )); do
-    printf ' %*s%3d' "$((length + 3))" '' \
-        "$((start + (slice + 1) * length * length - 1))"
+  # Footer:
+  for (( slice = start_slice; slice < start_slice + num_slices; ++slice )); do
+    printf ' %*s%3d' "$((2 * side_length - 3))" '' \
+        "$((start_color + (slice + 1) * side_length * side_length - 1))"
   done
   printf '\n'
 }
 
-print_indexed_ramp () {
-  # Print the header.
+# Prints 2D slices of a cube of indexed colors (for 88- or 256-color terminals).
+# Columns of each slice correspond to the blue axis, rows of each slice
+# correspond to the green axis, and the slices themselves correspond to the red
+# axis.
+print_indexed_cube () {
+  local start_color=$1 side_length=$2
+  local slices_per_line=$side_length \
+      max_slices_per_line=$((term_width / (2 * side_length + 1)))
+
+  while (( slices_per_line > max_slices_per_line )); do
+    (( slices_per_line /= 2 ))
+  done
+
+  for (( i = 0; i < side_length; i += slices_per_line )); do
+    local length=$((side_length - i >= slices_per_line ? \
+        slices_per_line : side_length - i))
+    print_indexed_cube_unwrapped "$start_color" "$side_length" "$i" "$length"
+  done
+}
+
+print_indexed_ramp_unwrapped () {
+  # Header:
   printf '\n'
   for color; do
-    printf '  %03d ' "$color"
+    printf ' %03d' "$color"
   done
   printf '\n'
 
-  # Print the colors.
+  # Colors:
   for row in {0..1}; do
     for color; do
       printf ' '
       set_indexed_color "$color"
-      print_filled 5
+      print_filled 3
       printf %s "$term_attr_reset"
     done
     printf '\n'
   done
 }
 
+# Prints a list of indexed colors (for the 88- or 256-color grayscale ramp).
+print_indexed_ramp () {
+  local colors_per_line=$# max_colors_per_line=$((term_width / 4))
+
+  while (( colors_per_line > max_colors_per_line )); do
+    (( colors_per_line /= 2 ))
+  done
+
+  for (( i = 1; i <= $#; i += colors_per_line )); do
+    local length=$(($# - i >= colors_per_line ? colors_per_line : $# - i + 1))
+    print_indexed_ramp_unwrapped "${@:i:length}"
+  done
+}
+
+# Prints a gradient between two RGB colors.
 print_rgb_gradient () {
-  local r_start=$1 r_end=$2 g_start=$3 g_end=$4 b_start=$5 b_end=$6 width=$7
+  local r_start=$1 r_end=$2 g_start=$3 g_end=$4 b_start=$5 b_end=$6
 
   for row in {0..1}; do
     printf '\n'
-    for (( col = 0; col < width; ++col )); do
-      local r=$((r_start + (r_end - r_start) * col / width))
-      local g=$((g_start + (g_end - g_start) * col / width))
-      local b=$((b_start + (b_end - b_start) * col / width))
+    for (( col = 0; col < term_width; ++col )); do
+      local r=$((r_start + (r_end - r_start) * col / term_width))
+      local g=$((g_start + (g_end - g_start) * col / term_width))
+      local b=$((b_start + (b_end - b_start) * col / term_width))
       set_rgb_color "$r" "$g" "$b"
       print_filled
     done
@@ -154,14 +215,12 @@ print_rgb_gradient () {
   printf '%s\n' "$term_attr_reset"
 }
 
-# Draws an HSV gradient for hue = {0..255}, saturation = 255, value = 255.
+# Prints an HSV gradient for hue = {0..255}, saturation = 255, value = 255.
 print_rainbow_gradient () {
-  local width=$1
-
   for row in {0..1}; do
     printf '\n'
-    for (( col = 0; col < width; ++col )); do
-      local hue=$((255 * col / width))
+    for (( col = 0; col < term_width; ++col )); do
+      local hue=$((255 * col / term_width))
 
       # HSV-to-RGB conversion using only integer arithmetic. Source:
       # https://web.archive.org/web/20160817062755/http://web.mit.edu/storborg/Public/hsvtorgb.c
@@ -186,39 +245,80 @@ print_rainbow_gradient () {
   printf '%s\n' "$term_attr_reset"
 }
 
-printf 'TERM:            %s\n' "${TERM:-}"
-printf 'COLORTERM:       %s\n' "${COLORTERM:-}"
-printf 'terminfo colors: %s\n' "$term_colors"
+while getopts :ht opt; do
+  case $opt in
+    t) opt_true_color=1 ;;
+    h) usage; exit ;;
+    \?) usage >&2; exit 1 ;;
+  esac
+done
 
-if (( term_colors >= 8 )); then
+if ! type tput >/dev/null 2>&1; then
+  printf 'Missing tput command.\n' >&2
+  exit 1
+fi
+
+if ! term_colors=$(tput colors) || (( term_colors < 8 )); then
+  printf 'Not a color terminal.\n' >&2
+  exit 1
+fi
+
+if ! term_attr_reset=$(tput sgr0) || ! term_attr_bold=$(tput bold) || \
+    ! term_attr_reverse=$(tput rev); then
+  printf 'Missing required terminfo attribute(s).\n' >&2
+fi
+
+# Detecting true-color support is tricky. Some terminfo entries (such as
+# xterm-direct) declare support for 16 million colors, but this isn't common.
+# Other terminals set the COLORTERM environment variable, but again, this isn't
+# common. For now, it seems easiest to explicitly pass the -t flag and force
+# true colors if you know the terminal supports them. Sorry.
+if [[ -n ${opt_true_color:-} ]] || \
+    [[ ${COLORTERM:-} =~ ^(truecolor|24bit)$ ]] || \
+    (( term_colors == 16777216 )); then
+  term_true_color=1
+fi
+
+term_width=$(tput cols 2>/dev/null || printf 80)
+
+printf 'TERM:       %s\n' "${TERM:-(unset)}"
+printf 'COLORTERM:  %s\n' "${COLORTERM:-(unset)}"
+printf 'Max colors: %s\n' "$term_colors"
+if [[ -n ${opt_true_color:-} ]]; then
+  printf 'True color: yes (forced)\n'
+elif [[ -n ${term_true_color:-} ]]; then
+  printf 'True color: yes\n'
+else
+  printf 'True color: no\n'
+fi
+
+if (( term_colors >= 8 )) || [[ -n ${term_true_color:-} ]]; then
   printf '\n\tANSI colors (indexed):\n'
   print_indexed_ansi {0..7}
 fi
 
-if (( term_colors >= 16 )); then
+if (( term_colors >= 16 )) || [[ -n ${term_true_color:-} ]]; then
   print_indexed_ansi {8..15}
 fi
 
-if (( term_colors == 88 )); then
+# The 88-color and 256-color xterm palettes are mutually exclusive. Also, all
+# true-color terminals we know of support the 256-color xterm palette,
+# regardless of the number of colors specified in terminfo.
+if (( term_colors == 88 )) && [[ -z ${term_true_color:-} ]]; then
   printf '\n\tExtended colors (indexed):\n'
   print_indexed_cube 16 4
   print_indexed_ramp {80..87}
-fi
-
-if (( term_colors >= 256 )); then
+elif (( term_colors >= 256 )) || [[ -n ${term_true_color:-} ]]; then
   printf '\n\tExtended colors (indexed):\n'
   print_indexed_cube 16 6
-  print_indexed_ramp {232..243}
-  print_indexed_ramp {244..255}
+  print_indexed_ramp {232..255}
 fi
 
-if is_true_color; then
+if [[ -n ${term_true_color:-} ]]; then
   printf '\n\tTrue color (RGB):\n'
-  print_rgb_gradient 0 255 0 255 0 255 "$term_width"
-  print_rgb_gradient 0 255 0 0 0 0 "$term_width"
-  print_rgb_gradient 0 0 0 255 0 0 "$term_width"
-  print_rgb_gradient 0 0 0 0 0 255 "$term_width"
-  print_rainbow_gradient "$term_width"
+  print_rgb_gradient 0 255 0 255 0 255
+  print_rgb_gradient 0 255 0 0 0 0
+  print_rgb_gradient 0 0 0 255 0 0
+  print_rgb_gradient 0 0 0 0 0 255
+  print_rainbow_gradient
 fi
-
-printf '\n'
