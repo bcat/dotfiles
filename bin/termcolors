@@ -20,12 +20,12 @@
 set -o errexit -o nounset
 
 usage () {
-  printf 'Usage: %s [OPTIONS]\n' "$0"
+  printf 'Usage: termcolors [OPTIONS]\n' "$0"
   printf 'Display supported terminal colors and their indices.\n'
   printf '\n'
   printf 'Options:\n'
   printf \
-      ' -t\tEnable true colors even if terminal support cannot be detected.\n'
+      '  -t\tEnable true colors even if terminal support cannot be detected.\n'
 }
 
 # Sets the foreground color using an ANSI escape sequence. Normally, this just
@@ -248,8 +248,8 @@ print_rainbow_gradient () {
 while getopts :ht opt; do
   case $opt in
     t) opt_true_color=1 ;;
-    h) usage; exit ;;
-    \?) usage >&2; exit 1 ;;
+    h) usage; exit 0 ;;
+    \?) usage >&2; exit 2 ;;
   esac
 done
 
