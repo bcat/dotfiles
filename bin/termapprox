@@ -66,11 +66,9 @@ def main():
     args = parser.parse_args()
 
     target = color_conversions.convert_color(args.rgb, color_objects.LabColor)
-
-    indices, _ = zip(*sorted(((index, distance(color, target))
-                              for index, color in enumerate(COLORS) if color),
-                             key=operator.itemgetter(1)))
-    closest_indices = indices[:args.num_colors]
+    approximations = sorted(
+        ((index, distance(c, target)) for index, c in enumerate(COLORS) if c),
+        key=operator.itemgetter(1))[:args.num_colors]
 
     if args.show_color:
         print("Target: " + args.rgb.get_rgb_hex())
@@ -79,24 +77,25 @@ def main():
 
         if args.true_color:
             rgb = "\x1b[48;2;%d;%d;%dm" % args.rgb.get_upscaled_value_tuple()
-            colors = [("  RGB ", " %s     %s" % (rgb, term.normal),
-                       " %s     %s" % (rgb, term.normal))]
+            colors = [("  RGB ", f" {rgb}     {term.normal}",
+                       f" {rgb}     {term.normal}", "      ")]
         else:
             colors = []
 
-        colors += [("  %-3d " % index, " %s" % term.on_color(index)("     "),
-                    " %s" % term.on_color(index)("     "))
-                   for index in closest_indices]
+        colors += [(f"  {index:3} ", " " + term.on_color(index)("     "),
+                    " " + term.on_color(index)("     "),
+                    " " + (f"{distance:0<5.4}").lstrip("0"))
+                   for index, distance in approximations]
         colors_per_row = term.width // 6
 
         for i in range(0, len(colors), colors_per_row):
-            row_colors = colors[i:colors_per_row]
+            row_colors = colors[i:i + colors_per_row]
             for j in range(len(row_colors[0])):
                 for row_color in row_colors:
                     print(row_color[j], end="")
                 print()
     else:
-        for index in closest_indices:
+        for index, _ in approximations:
             print(index)
 
 
