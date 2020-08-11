@@ -51,8 +51,8 @@ fi
 
 unset _bash_prompt_num_colors
 
-# Cache some information that shouldn't vary from prompt to prompt.
-if type git >/dev/null 2>&1; then
+# Disable Git support for MSYS since `git status` is super slow there. :(
+if type git >/dev/null 2>&1 && [[ -z $MSYSTEM ]]; then
   _bash_prompt_have_git=1
 fi
 
