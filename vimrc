@@ -249,14 +249,6 @@ if &term =~# '\vtmux%(-|$)'
   "   CSI ? 2 0 0 4 l
   let &t_BD = "\e[?2004l"
 
-  " XTMODKEYS (set/reset key modifier options): Set modifyOtherKeys to 2
-  "   CSI > 4 ; 2 m
-  let &t_TI = "\e[>4;2m"
-
-  " XTMODKEYS (set/reset key modifier options): Reset modifyOtherKeys to default
-  "   CSI > 4 ; m
-  let &t_TE = "\e[>4;m"
-
   " Start of bracketed paste
   "   ESC [ 2 0 0 ~
   let &t_PS = "\e[200~"
