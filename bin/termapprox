@@ -23,8 +23,13 @@ from colormath import color_conversions, color_diff, color_objects
 import operator
 import re
 
+# Since the first 16 "ANSI" colors have RGB values that vary from terminal to
+# terminal, we never use them to approximate colors.
 ANSI_COLORS = [None] * 16
 
+# See https://github.com/ThomasDickey/xterm-snapshots/blob/master/256colres.pl
+# for the official xterm definition of the 6x6x6 color cube and the 24-color
+# grayscale ramp.
 COLOR_CUBE_SIDES = [0 if i == 0 else i * 40 + 55 for i in range(6)]
 COLOR_CUBE = [
     color_conversions.convert_color(
