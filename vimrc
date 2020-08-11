@@ -223,6 +223,16 @@ if &term =~# '\v^%(tmux|xterm)%(-|$)'
   let &t_Ce = "\e[m"
 endif
 
+" Mintty only supports setting undercurl color with colon delimiters. Vim's
+" default semicolon delimiter causes text to blink (indexed) or dim (RGB). D'oh!
+if $TERM_PROGRAM ==# 'mintty'
+  " SGR (character attributes): set underline color, indexed (kitty extension)
+  let &t_AU="\e[58:5:%dm"
+
+  " SGR (character attributes): set underline color, RGB (kitty extension)
+  let &t_8u="\e[58:2::%lu:%lu:%lum"
+endif
+
 " If the terminal supports it, set the cursor to a blinking bar in insert mode
 " and a blinking underline in replace mode. (This matches the default behavior
 " of the gVim cursor.)
