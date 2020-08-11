@@ -25,3 +25,7 @@ elseif has('gui_macvim')
   set guifont+=Menlo:h12
   set guifont+=Monaco:h12
 endif
+
+" this doesn't actually effect gvim itself; it sets $term inside :terminal
+" windows. Otherwise, they default to "xterm", which doesn't support 256 colors.
+let $TERM="xterm-256color"
