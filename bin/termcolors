@@ -20,12 +20,15 @@
 set -o errexit -o nounset
 
 usage () {
-  printf 'Usage: termcolors [OPTIONS]\n' "$0"
-  printf 'Display supported terminal colors and their indices.\n'
-  printf '\n'
-  printf 'Options:\n'
-  printf \
-      '  -t\tEnable true colors even if terminal support cannot be detected.\n'
+  printf "\
+usage: termcolors [-t]
+
+Display supported terminal colors and their indices.
+
+optional arguments:
+  -t                    enable true colors even if terminal support cannot be
+                        detected
+"
 }
 
 # Sets the foreground color using an ANSI escape sequence. Normally, this just
