@@ -193,6 +193,15 @@ if has('mouse')
   endif
 endif
 
+" Detecting true-color support is tricky. Some terminfo entries (such as
+" xterm-direct) declare support for 16 million colors, but this isn't common.
+" Other terminals set the COLORTERM environment variable, but again, this isn't
+" common. See https://github.com/termstandard/colors for more details.
+if has('termguicolors') && (&t_Co == 16777216
+    \ || $COLORTERM =~# '\v^%(truecolor|24bit)$' || $TERM_PROGRAM ==# 'mintty')
+  set termguicolors
+endif
+
 " Always allow Vim to set the window title even if the old can't be restored on
 " exit since our shell prompt resets the title itself. Also prevent the silly
 " "Thanks for flying Vim" message from flashing on exit.
