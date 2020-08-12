@@ -172,6 +172,7 @@ EINTR
 EINVAL
 EOF
 EOL
+EPT
 ES3
 ES5
 ESC
@@ -189,6 +190,7 @@ Evander's
 F.R.S.
 FCC's
 FDT
+FER's
 FF3
 FIFOs
 FLAC
@@ -215,6 +217,7 @@ GDR
 GData
 GFS
 GIF
+GLEP
 GLX
 GPS
 GRS
@@ -384,6 +387,7 @@ Lynyrd
 Lévi-Strauss
 Lévi-Strauss's
 MCT
+MCU
 MDB
 MLA
 MNI
@@ -417,6 +421,7 @@ Moivre
 Moivre's
 Monotype
 Morrissey
+MotD
 Mothership
 Mothership's
 Muganda
@@ -523,6 +528,7 @@ RHS
 RLY
 RNG
 RPC
+RPC's
 RPCs
 RREF
 RSS
@@ -646,6 +652,7 @@ UCB
 UFD
 UFR
 UI
+ULS
 UML
 URIs
 URL's
@@ -696,6 +703,10 @@ Wipeout
 WordPress
 WordPress's
 X11
+XFE
+XFE
+XFE's
+XFEs
 XHR
 XHRs
 XHTML
@@ -1296,6 +1307,8 @@ subfolder
 subfolders
 subforest
 subforests
+subgraph
+subgraphs
 subinterface
 subinterfaces
 submenu
