@@ -343,6 +343,9 @@ nnoremap <silent> <Leader>ar :CtrlP<CR>
 " <Space>z  Zoom in on current window, or zoom out if already zoomed in
 nmap <silent> <Leader>z <Plug>(zoom-toggle)
 
+" Configure the standard Java plugin.
+let g:java_highlight_functions = 'style'
+
 " Configure the standard Python plugin.
 let g:pyindent_open_paren = 'exists("*shiftwidth") ? shiftwidth() : &shiftwidth'
 
