@@ -16,23 +16,24 @@ if type fortune >/dev/null 2>&1; then
 fi
 
 # Set shell options and variables.
-set -o emacs     # Use emacs-style editing commands.
-set -o noclobber # Don't allow redirections to overwrite existing files.
+set -o noclobber  # Don't allow redirections to overwrite existing files.
 
-shopt -s cdspell      # Perform typo-correction on `cd` destinations.
-shopt -s checkhash    # Confirm locations of hashed commands.
-shopt -s checkwinsize # Update LINES and COLUMNS variables after each command.
-shopt -s cmdhist      # Save multi-line commands in a single history entry.
-shopt -s histappend   # Append to history file instead of overwriting it.
-shopt -s histverify   # Verify history substitutions before executing them.
-shopt -s huponexit    # Send SIGHUP to background jobs on exit.
-shopt -s xpg_echo     # Make echo POSIX-compliant w.r.t. escape sequences.
+shopt -s checkhash  # Confirm locations of hashed commands.
+shopt -s checkwinsize  # Update LINES and COLUMNS variables after each command.
+shopt -s histappend  # Append to history file instead of overwriting it.
+shopt -s histverify  # Verify history substitutions before executing them.
 
-HISTCONTROL=ignoreboth:erasedups # Remove duplicate history entries and don't
-                                 # save commands beginning with spaces.
-HISTFILESIZE=1000                # Increase command history size on disk...
-HISTSIZE=1000                    # ... and in memory.
-unset HISTTIMEFORMAT             # Remove dumb history timestamps people set.
+# Remove duplicate history entries; don't save commands beginning with spaces.
+HISTCONTROL=ignoreboth:erasedups
+
+# Increase command history size on disk...
+HISTFILESIZE=1000
+
+# ... and in memory.
+HISTSIZE=1000
+
+# Remove dumb history timestamps people set.
+unset HISTTIMEFORMAT
 
 # Emulate ZSH's `precmd` and `preexec` functions. Credit for the technique
 # goes to Glyph Lefkowitz. See also: <http://glyf.livejournal.com/63106.html>.
@@ -71,9 +72,8 @@ else
   alias ls='CLICOLOR=1 ls'  # BSD ls
 fi
 
-# Customize the prompt. (The prompt code is quite long, so it lives in a
-# separate file.)
-[ -f ~/.bash_prompt.sh ] && . ~/.bash_prompt.sh
+# Customize the prompt.
+. ~/.bash_prompt.sh
 
 # Set up some fancy auto-completion.
 [ -f /etc/bash_completion ] && . /etc/bash_completion
