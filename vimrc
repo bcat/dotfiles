@@ -2,6 +2,9 @@
 " Vim Tips Wiki, and the vimrc Ben Breedlove (https://github.com/benbreedlove)
 " sent me to look at. (Thanks, Ben!)
 
+" Patch up termcap capabilities and other terminal-specific settings.
+source ~/.term.vim
+
 " Disable swap files. Vim almost never crashes, and they clutter up directories.
 set noswapfile
 
@@ -13,6 +16,9 @@ set tildeop
 
 " Keep the join and gq (format) commands from putting two spaces after periods.
 set nojoinspaces
+
+" All our connections are speedy, so let Vim know that.
+set ttyfast
 
 " Don't redraw the screen during macro execution (big speedup for slow terms).
 set lazyredraw
@@ -53,6 +59,12 @@ set shiftwidth=2
 
 " Wrap files at 80 characters by default. (Overridden for some languages below.)
 set textwidth=80
+
+" Always allow Vim to set the window title even if the old can't be restored on
+" exit since our shell prompt resets the title itself. Also prevent the silly
+" "Thanks for flying Vim" message from flashing on exit.
+set title
+set titleold=
 
 " For buffers where textwidth is nonzero, show a right-margin two characters
 " *after* the wrapping point. Not available before Vim 7.3.
@@ -173,108 +185,6 @@ if has('mouse')
   " Enable mouse support for GUI Vim and terminal Vim (if supported).
   set mouse=a
   set mousefocus
-
-  " tmux implements the SGR mouse protocol (1006) that supports faster dragging
-  " and terminals wider than 223 columns, but as of Vim 8.1, the tmux version
-  " isn't requested (via t_RV), so this isn't automatically detected.
-  "
-  " hterm also supports the SGR mouse protocol, but as of August 2020, it
-  " claims to be xterm version 256 (from 2012) too old to support SGR. Since
-  " we've no way to detect hterm, just assume every xterm supports this. Lame.
-  if &term =~# '\v^%(tmux|xterm)%(-|$)'
-    set ttymouse=sgr
-  endif
-
-  " urxvt implements a nonstandard mouse protocol (1015) that supports faster
-  " dragging and terminals wider than 223 columns, but as of Vim 8.1, this isn't
-  " automatically detected.
-  if &term =~# '\v^rxvt-unicode%(-|$)'
-    set ttymouse=urxvt
-  endif
-endif
-
-" Detecting true-color support is tricky. Some terminfo entries (such as
-" xterm-direct) declare support for 16 million colors, but this isn't common.
-" Other terminals set the COLORTERM environment variable, but again, this isn't
-" common. See https://github.com/termstandard/colors for more details.
-if has('termguicolors') && (&t_Co == 16777216
-    \ || $COLORTERM =~# '\v^%(truecolor|24bit)$' || $TERM_PROGRAM ==# 'mintty')
-  set termguicolors
-endif
-
-" Always allow Vim to set the window title even if the old can't be restored on
-" exit since our shell prompt resets the title itself. Also prevent the silly
-" "Thanks for flying Vim" message from flashing on exit.
-set title
-set titleold=
-
-" Vim uses the nonstandard Cs termcap entry to mean "undercurl mode", but xterm
-" and tmux terminfo entries already use it for "set cursor color". This means
-" that undercurled text no longer shows up as undercurled or underlined.
-if &term =~# '\v^%(tmux|xterm)%(-|$)'
-  " SGR (character attributes): underline
-  "   CSI 4 m
-  " SGR (character attributes): curly underline (kitty extension)
-  "   CSI 4 : 3 m
-  let &t_Cs = "\e[4m\e[4:3m"
-
-  " SGR (character attributes): normal
-  "   CSI m
-  let &t_Ce = "\e[m"
-endif
-
-" Mintty only supports setting undercurl color with colon delimiters. Vim's
-" default semicolon delimiter causes text to blink (indexed) or dim (RGB). D'oh!
-if $TERM_PROGRAM ==# 'mintty'
-  " SGR (character attributes): set underline color, indexed (kitty extension)
-  let &t_AU="\e[58:5:%dm"
-
-  " SGR (character attributes): set underline color, RGB (kitty extension)
-  let &t_8u="\e[58:2::%lu:%lu:%lum"
-endif
-
-" If the terminal supports it, set the cursor to a blinking bar in insert mode
-" and a blinking underline in replace mode. (This matches the default behavior
-" of the gVim cursor.)
-if &term =~# '\v^%(rxvt-unicode|tmux|xterm)%(-|$)'
-  " Set cursor to blinking bar when entering insert mode.
-  "
-  " DECSCUSR (set cursor style): blinking bar
-  "   CSI 5 SP q
-  let &t_SI = "\e[5 q"
-
-  " Set cursor to blinking underline when entering replace mode.
-  "
-  " DECSCUSR (set cursor style): blinking underline
-  "   CSI 3 SP q
-  let &t_SR = "\e[3 q"
-
-  " Reset cursor to blinking block when leaving insert or replace mode.
-  "
-  " DECSCUSR (set cursor style): blinking block (in xterm) or reset to default
-  " cursor style (in VTE: https://bugzilla.gnome.org/show_bug.cgi?id=720821)
-  "   CSI 0 SP q
-  let &t_EI = "\e[0 q"
-endif
-
-" Set Vim's nonstandard output and key codes for tmux. Vim's builtin termcap
-" sets them for xterm and urxvt, but as of Vim 8.1, this doesn't apply to tmux.
-if &term =~# '\vtmux%(-|$)'
-  " DECSET (DEC private mode set): bracketed paste mode
-  "   CSI ? 2 0 0 4 h
-  let &t_BE = "\e[?2004h"
-
-  " DECRST (DEC private mode reset): bracketed paste mode
-  "   CSI ? 2 0 0 4 l
-  let &t_BD = "\e[?2004l"
-
-  " Start of bracketed paste
-  "   ESC [ 2 0 0 ~
-  let &t_PS = "\e[200~"
-
-  " End of bracketed paste
-  "   ESC [ 2 0 1 ~
-  let &t_PE = "\e[201~"
 endif
 
 " Reduce key sequence timeout to 50 ms. This is still long enough for modern
