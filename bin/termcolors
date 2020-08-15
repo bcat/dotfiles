@@ -90,7 +90,7 @@ print_indexed_ansi_unwrapped () {
   # Header:
   printf '\n    '
   for color; do
-    printf '  %02d ' "$color"
+    printf '  %2d ' "$color"
   done
   printf '\n'
 
@@ -171,7 +171,7 @@ print_indexed_ramp_unwrapped () {
   # Header:
   printf '\n'
   for color; do
-    printf ' %03d' "$color"
+    printf ' %3d' "$color"
   done
   printf '\n'
 
