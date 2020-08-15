@@ -1,50 +1,103 @@
-! Set some pretty colors for urxvt. Based on my personal Vim theme:
-! <https://github.com/bcat/abbott.vim>.
-URxvt.depth:             32
-! (default: brown / pastel_green)
-URxvt.background:        #1f1912
-URxvt.foreground:        #c0f396
-! (cursor: green / brown)
-URxvt.cursorColor:       #a0ea00
-URxvt.cursorColor2:      #1f1912
-! (black: brown / light_brown)
-URxvt.color0:            #1f1912
-URxvt.color8:            #816749
-! (red: red / burnt_orange)
-URxvt.color1:            #d80450
-URxvt.color9:            #f63f05
-! (green: forest_green / green)
-URxvt.color2:            #24a507
-URxvt.color10:           #a0ea00
-! (yellow: orange / yellow)
-URxvt.color3:            #fbb32f
-URxvt.color11:           #fbec5d
-! (blue: blue / pastel_blue)
-URxvt.color4:            #3f91f1
-URxvt.color12:           #8ccdf0
-! (magenta: pink / lavender)
-URxvt.color5:            #ec6c99
-URxvt.color13:           #e6a2f3
-! (cyan: mint_green / teal)
-URxvt.color6:            #d8ff84
-URxvt.color14:           #59eea5
-! (white: pastel_green / tan)
-URxvt.color7:            #c0f396
-URxvt.color15:           #fef3b4
+! Configure ANSI colors for rxvt-unicode and XTerm. Synced with my Vim theme
+! (https://github.com/bcat/abbott.vim).
 
-! Configure the font and some other things for urxvt.
-URxvt.font:              xft:Source Code Pro:size=9
-URxvt.intensityStyles:   false
-URxvt.urgentOnBell:      true
-URxvt.scrollBar:         false
-URxvt.scrollTtyOutput:   false
-URxvt.scrollWithBuffer:  true
+! Default (abbott.vim brown/pastel_green)
+URxvt.background: #1f1912
+URxvt.foreground: #c0f396
+XTerm.vt100.background: #1f1912
+XTerm.vt100.foreground: #c0f396
+
+! Cursor (abbott.vim green/brown)
+!
+! XTerm does not have cursorColor2, but seems to behave the same as urxvt.
+URxvt.cursorColor: #a0ea00
+URxvt.cursorColor2: #1f1912
+XTerm.vt100.cursorColor: #a0ea00
+
+! Highlight (abbott.vim)
+!
+! Supposedly XTerm supports this too, but I cannot get the text color to work.
+URxvt.highlightColor: #a0ea00
+URxvt.highlightTextColor: #1f1912
+
+! ANSI black/bright black (abbott.vim brown/light_brown)
+URxvt.color0: #1f1912
+URxvt.color8: #816749
+XTerm.vt100.color0: #1f1912
+XTerm.vt100.color8: #816749
+
+! ANSI red/bright red (abbott.vim red/burnt_orange)
+URxvt.color1: #d80450
+URxvt.color9: #f63f05
+XTerm.vt100.color1: #d80450
+XTerm.vt100.color9: #f63f05
+
+! ANSI green/bright green (abbott.vim forest_green/green)
+URxvt.color2: #24a507
+URxvt.color10: #a0ea00
+XTerm.vt100.color2: #24a507
+XTerm.vt100.color10: #a0ea00
+
+! ANSI yellow: abbott.vim (orange/yellow)
+URxvt.color3: #fbb32f
+URxvt.color11: #fbec5d
+XTerm.vt100.color3: #fbb32f
+XTerm.vt100.color11: #fbec5d
+
+! ANSI blue: abbott.vim (blue/pastel_blue)
+URxvt.color4: #3f91f1
+URxvt.color12: #8ccdf0
+XTerm.vt100.color4: #3f91f1
+XTerm.vt100.color12: #8ccdf0
+
+! ANSI magenta: abbott.vim (pink/lavender)
+URxvt.color5: #ec6c99
+URxvt.color13: #e6a2f3
+XTerm.vt100.color5: #ec6c99
+XTerm.vt100.color13: #e6a2f3
+
+! ANSI cyan: abbott.vim (mint_green/teal)
+URxvt.color6: #d8ff84
+URxvt.color14: #59eea5
+XTerm.vt100.color6: #d8ff84
+XTerm.vt100.color14: #59eea5
+
+! ANSI white: abbott.vim (pastel_green/tan)
+URxvt.color7: #c0f396
+URxvt.color15: #fef3b4
+XTerm.vt100.color7: #c0f396
+XTerm.vt100.color15: #fef3b4
+
+! Configure remaining options for rxvt-unicode.
+
+URxvt.cursorBlink: true
+URxvt.font: xft:Source Code Pro:size=9
+URxvt.geometry: 132x50
+URxvt.intensityStyles: false
+URxvt.matcher.button: 1
+URxvt.perl-ext-common: default,matcher
+URxvt.saveLines: 65536
+URxvt.scrollBar: false
 URxvt.scrollTtyKeypress: true
-URxvt.saveLines:         65536
-URxvt.cursorBlink:       true
-URxvt.pointerBlank:      true
-URxvt.pointerBlankDelay: 987654321
-URxvt.secondaryWheel:    true
-URxvt.perl-ext-common:   default,matcher
-URxvt.urlLauncher:       xdg-open
-URxvt.matcher.button:    1
+URxvt.scrollTtyOutput: false
+URxvt.scrollWithBuffer: true
+! The secondaryWheel option requires a patch:
+! https://aur.archlinux.org/packages/rxvt-unicode-better-wheel-scrolling/.
+URxvt.secondaryWheel: true
+URxvt.urgentOnBell: true
+URxvt.url-launcher: xdg-open
+
+! Configure remaining options for XTerm.
+
+XTerm.termName: xterm-256color
+XTerm.vt100.alternateScroll: true
+XTerm.vt100.bellIsUrgent: true
+XTerm.vt100.boldColors: false
+XTerm.vt100.cursorBlink: true
+XTerm.vt100.geometry: 132x50
+XTerm.vt100.faceName: Source Code Pro
+XTerm.vt100.faceSize: 9
+XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.saveLines: 65536
+XTerm.vt100.scrollKey: true
+XTerm.vt100.scrollTtyOutput: false
