@@ -42,7 +42,7 @@
 	url = https://github.com/google/vim-maktaba.git
 [submodule "vim/pack/bcat/start/osc52"]
 	path = vim/pack/bcat/start/osc52
-	url = git@github.com:bcat/osc52.vim.git
+	url = https://github.com/ShikChen/osc52.vim.git
 [submodule "vim/pack/bcat/start/php-stuff"]
 	path = vim/pack/bcat/start/php-stuff
 	url = https://github.com/paulyg/Vim-PHP-Stuff.git
