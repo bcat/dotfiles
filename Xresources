@@ -1,68 +1,68 @@
 ! Configure ANSI colors for rxvt-unicode and XTerm. Synced with my Vim theme
 ! (https://github.com/bcat/abbott.vim).
 
-! Default (abbott.vim dark cocoa, pastel chartreuse):
+! Default (abbott.vim dark_cocoa, pastel_chartreuse):
 URxvt.background: #1f1912
 URxvt.foreground: #d8ff84
 XTerm.vt100.background: #1f1912
 XTerm.vt100.foreground: #d8ff84
 
-! Cursor (abbott.vim chartreuse, dark cocoa):
+! Cursor (abbott.vim chartreuse, dark_cocoa):
 !
 ! XTerm does not have cursorColor2, but seems to behave the same as urxvt.
 URxvt.cursorColor: #a0ea00
 URxvt.cursorColor2: #1f1912
 XTerm.vt100.cursorColor: #a0ea00
 
-! Highlight (abbott.vim chartreuse, dark cocoa):
+! Highlight (abbott.vim chartreuse, dark_cocoa):
 !
 ! Supposedly XTerm supports this too, but I cannot get the text color to work.
 URxvt.highlightColor: #a0ea00
 URxvt.highlightTextColor: #1f1912
 
-! ANSI black, bright black (abbott.vim dark cocoa, cocoa):
+! ANSI black, bright black (abbott.vim dark_cocoa, cocoa):
 URxvt.color0: #1f1912
 URxvt.color8: #816749
 XTerm.vt100.color0: #1f1912
 XTerm.vt100.color8: #816749
 
-! ANSI red, bright red (abbott.vim red, orange):
+! ANSI red, bright red (abbott.vim crimson, cinnabar):
 URxvt.color1: #d80450
 URxvt.color9: #f63f05
 XTerm.vt100.color1: #d80450
 XTerm.vt100.color9: #f63f05
 
-! ANSI green, bright green (abbott.vim forest green, chartreuse):
+! ANSI green, bright green (abbott.vim forest_green, chartreuse):
 URxvt.color2: #24a507
 URxvt.color10: #a0ea00
 XTerm.vt100.color2: #24a507
 XTerm.vt100.color10: #a0ea00
 
-! ANSI yellow, bright yellow (abbott.vim marigold, lemon meringue):
+! ANSI yellow, bright yellow (abbott.vim marigold, lemon_meringue):
 URxvt.color3: #fbb32f
 URxvt.color11: #fbec5d
 XTerm.vt100.color3: #fbb32f
 XTerm.vt100.color11: #fbec5d
 
-! ANSI blue, bright blue (abbott.vim cornflower blue, periwinkle blue):
+! ANSI blue, bright blue (abbott.vim cornflower_blue, periwinkle_blue):
 URxvt.color4: #3f91f1
 URxvt.color12: #8ccdf0
 XTerm.vt100.color4: #3f91f1
 XTerm.vt100.color12: #8ccdf0
 
-! ANSI magenta, bright magenta (abbott.vim rose, lavender):
+! ANSI magenta, bright magenta (abbott.vim french_pink, lavender):
 URxvt.color5: #ec6c99
 URxvt.color13: #e6a2f3
 XTerm.vt100.color5: #ec6c99
 XTerm.vt100.color13: #e6a2f3
 
-! ANSI cyan, bright cyan (abbott.vim zomp, seafoam green):
+! ANSI cyan, bright cyan (abbott.vim zomp, seafoam_green):
 URxvt.color6: #39a78d
 URxvt.color14: #00ff7f
 XTerm.vt100.color6: #39a78d
 XTerm.vt100.color14: #00ff7f
 
-! ANSI white, bright white (abbott.vim pastel chartreuse, vanilla cream):
+! ANSI white, bright white (abbott.vim pastel_chartreuse, vanilla_cream):
 URxvt.color7: #d8ff84
 URxvt.color15: #fef3b4
 XTerm.vt100.color7: #d8ff84

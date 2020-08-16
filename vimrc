@@ -392,8 +392,8 @@ let g:go_highlight_build_constraints = 1
 
 " Set our personal color scheme, enabling some preferences for fancy terminals.
 let g:abbott_set_term_ansi_colors = 1
+let g:abbott_term_set_underline_color = 1
 let g:abbott_term_use_undercurl = 1
-let g:abbott_term_set_undercurl_color = 1
 colorscheme abbott
 
 " Force plugins to load so we can configure Google plugins via Glaive. Eww.
