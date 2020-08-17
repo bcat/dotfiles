@@ -1,30 +1,30 @@
 ! Configure ANSI colors for rxvt-unicode and XTerm. Synced with my Vim theme
 ! (https://github.com/bcat/abbott.vim).
 
-! Default (abbott.vim dark_cocoa, pastel_chartreuse):
-URxvt.background: #1f1912
+! Default (abbott.vim bistre, pastel_chartreuse):
+URxvt.background: #251e16
 URxvt.foreground: #d8ff84
-XTerm.vt100.background: #1f1912
+XTerm.vt100.background: #251e16
 XTerm.vt100.foreground: #d8ff84
 
-! Cursor (abbott.vim chartreuse, dark_cocoa):
+! Cursor (abbott.vim chartreuse, bistre):
 !
 ! XTerm does not have cursorColor2, but seems to behave the same as urxvt.
 URxvt.cursorColor: #a0ea00
-URxvt.cursorColor2: #1f1912
+URxvt.cursorColor2: #251e16
 XTerm.vt100.cursorColor: #a0ea00
 
-! Highlight (abbott.vim chartreuse, dark_cocoa):
+! Highlight (abbott.vim chartreuse, bistre):
 !
 ! Supposedly XTerm supports this too, but I cannot get the text color to work.
 URxvt.highlightColor: #a0ea00
-URxvt.highlightTextColor: #1f1912
+URxvt.highlightTextColor: #251e16
 
-! ANSI black, bright black (abbott.vim dark_cocoa, cocoa):
-URxvt.color0: #1f1912
-URxvt.color8: #816749
-XTerm.vt100.color0: #1f1912
-XTerm.vt100.color8: #816749
+! ANSI black, bright black (abbott.vim bistre, cocoa):
+URxvt.color0: #251e16
+URxvt.color8: #745d42
+XTerm.vt100.color0: #251e16
+XTerm.vt100.color8: #745d42
 
 ! ANSI red, bright red (abbott.vim crimson, cinnabar):
 URxvt.color1: #d80450
