@@ -2,28 +2,28 @@
 ! (https://github.com/bcat/abbott.vim).
 
 ! Default (abbott.vim bistre, pastel_chartreuse):
-URxvt.background: #251e16
+URxvt.background: #231c14
 URxvt.foreground: #d8ff84
-XTerm.vt100.background: #251e16
+XTerm.vt100.background: #231c14
 XTerm.vt100.foreground: #d8ff84
 
 ! Cursor (abbott.vim chartreuse, bistre):
 !
 ! XTerm does not have cursorColor2, but seems to behave the same as urxvt.
 URxvt.cursorColor: #a0ea00
-URxvt.cursorColor2: #251e16
+URxvt.cursorColor2: #231c14
 XTerm.vt100.cursorColor: #a0ea00
 
 ! Highlight (abbott.vim chartreuse, bistre):
 !
 ! Supposedly XTerm supports this too, but I cannot get the text color to work.
 URxvt.highlightColor: #a0ea00
-URxvt.highlightTextColor: #251e16
+URxvt.highlightTextColor: #231c14
 
 ! ANSI black, bright black (abbott.vim bistre, cocoa):
-URxvt.color0: #251e16
+URxvt.color0: #231c14
 URxvt.color8: #745d42
-XTerm.vt100.color0: #251e16
+XTerm.vt100.color0: #231c14
 XTerm.vt100.color8: #745d42
 
 ! ANSI red, bright red (abbott.vim crimson, cinnabar):
