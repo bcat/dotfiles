@@ -78,5 +78,8 @@ fi
 # Set up some fancy auto-completion.
 [ -f /etc/bash_completion ] && . /etc/bash_completion
 
+# Set up environment for Zephyr (https://www.zephyrproject.org/).
+[ -f ~/.zephyrrc ] && . ~/.zephyrrc
+
 # If there is a local .bashrc file, source that now.
 [ -f ~/.bashrc.local ] && . ~/.bashrc.local

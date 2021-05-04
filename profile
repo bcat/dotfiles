@@ -13,6 +13,7 @@ _profile_prepend_to_path /usr/sbin
 
 _profile_prepend_to_path ~/bin
 _profile_prepend_to_path ~/.cabal/bin
+_profile_prepend_to_path ~/.local/bin
 
 # Set the preferred editor.
 if which vim >/dev/null 2>&1; then
