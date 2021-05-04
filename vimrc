@@ -72,6 +72,12 @@ if exists('&colorcolumn')
   set colorcolumn=+2
 endif
 
+" Highlight the current line number. Not available before Vim 8.1.2019.
+if exists('&cursorlineopt')
+  set cursorline
+  set cursorlineopt=number
+endif
+
 if has('autocmd')
   augroup vimrc
     autocmd!
