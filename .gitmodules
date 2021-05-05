@@ -34,6 +34,9 @@
 [submodule "vim/pack/bcat/start/haskell"]
 	path = vim/pack/bcat/start/haskell
 	url = https://github.com/neovimhaskell/haskell-vim.git
+[submodule "vim/pack/bcat/start/hilinktrace"]
+	path = vim/pack/bcat/start/hilinktrace
+	url = https://github.com/ilya-bobyr/vim-HiLinkTrace.git
 [submodule "vim/pack/bcat/start/latex-box"]
 	path = vim/pack/bcat/start/latex-box
 	url = https://github.com/LaTeX-Box-Team/LaTeX-Box.git
