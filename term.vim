@@ -9,9 +9,12 @@
 function! s:TermResponse()
   let s:is_hterm = v:termresponse ==# "\e[>0;256;0c"
   let s:is_mintty = v:termresponse =~# "\\v\e\\[\\>77;[0-9]+;0c"
+  let s:is_ms_terminal = v:termresponse ==# "\e[>0;10;1c"
+
   let s:is_tmux = &term =~# '\v^tmux%(-|$)'
   let s:is_urxvt = &term =~# '\v^rxvt-unicode%(-|$)'
   let s:is_xterm = &term =~# '\vxterm%(-|$)' && !s:is_hterm && !s:is_mintty
+      \ && !s:is_ms_terminal
 
   " Vim uses the nonstandard Cs termcap entry to mean "undercurl mode", but it's
   " already used as an extension in terminfo meaning "set cursor color". We
@@ -28,8 +31,8 @@ function! s:TermResponse()
     " SGR (character attributes): normal
     "   CSI m
     let &t_Ce = "\e[m"
-  elseif s:is_xterm
-    " Real XTerm doesn't support underline style at all.
+  elseif s:is_ms_terminal || s:is_xterm
+    " Real XTerm doesn't support styled underlines. Nor does Windows Terminal.
     let &t_Cs = ""
     let &t_Ce = ""
   endif
@@ -37,7 +40,8 @@ function! s:TermResponse()
   " If the terminal supports it, set the cursor to a blinking bar in insert mode
   " and a blinking underline in replace mode. (This matches the default behavior
   " of the gVim cursor.)
-  if s:is_hterm || s:is_mintty || s:is_urxvt || s:is_tmux || s:is_xterm
+  if s:is_hterm || s:is_mintty || s:is_ms_terminal || s:is_tmux || s:is_urxvt
+      \ || s:is_xterm
     " Set cursor to blinking bar when entering insert mode.
     "
     " DECSCUSR (set cursor style): blinking bar
@@ -63,9 +67,12 @@ function! s:TermResponse()
     " terminals wider than 223 columns, but as of Vim 8.2, this isn't
     " autodetected.
     "
-    " hterm also supports the SGR mouse protocol, but as of August 2020, it
+    " hterm also supports the SGR mouse protocol, but as of May 2021, it
     " claims to be XTerm Patch #256 (from 2012) too old to support SGR.
-    if s:is_hterm || s:is_tmux
+    "
+    " Windows Terminal also supports the SGR mouse protocol, but as of May 2021,
+    " it claims to be XTerm Patch #10 (from 1996) too old to support SGR.
+    if s:is_hterm || s:is_ms_terminal || s:is_tmux
       set ttymouse=sgr
     endif
 
@@ -82,7 +89,8 @@ function! s:TermResponse()
   " Other terminals set the COLORTERM environment variable, but again, this
   " isn't common. See https://github.com/termstandard/colors for more details.
   if has('termguicolors') && (&t_Co == 16777216
-      \ || $COLORTERM =~# '\v^%(truecolor|24bit)$' || s:is_hterm || s:is_mintty)
+      \ || $COLORTERM =~# '\v^%(truecolor|24bit)$' || s:is_hterm || s:is_mintty
+      \ || s:is_ms_terminal )
     set termguicolors
   endif
 endfunction
