@@ -275,12 +275,16 @@ fi
 # xterm-direct) declare support for 16 million colors, but this isn't common.
 # Other terminals set the COLORTERM environment variable, but again, this isn't
 # common. See https://github.com/termstandard/colors for more details.
-if [[ -n ${opt_true_color:-} ]] || \
-    (( term_colors == 16777216 )) || \
-    [[ ${COLORTERM:-} =~ ^(truecolor|24bit)$ ]] || \
-    [[ ${TERM_PROGAM:-} == mintty ]] || \
-    [[ -n ${WT_SESSION:=} ]]; then
-  term_true_color=1
+if [[ -n ${opt_true_color:-} ]]; then
+  term_true_color='(forced by -t)'
+elif (( term_colors == 16777216 )); then
+  term_true_color='(tput colors)'
+elif [[ ${COLORTERM:-} =~ ^(truecolor|24bit)$ ]]; then
+  term_true_color="(COLORTERM is $COLORTERM)"
+elif [[ ${TERM_PROGAM:-} == mintty ]]; then
+  term_true_color='(terminal is mintty)'
+elif [[ -n ${WT_SESSION:=} ]]; then
+  term_true_color='(terminal is Windows Terminal)'
 fi
 
 term_width=$(tput cols 2>/dev/null || printf 80)
@@ -288,10 +292,8 @@ term_width=$(tput cols 2>/dev/null || printf 80)
 printf 'TERM:       %s\n' "${TERM:-(unset)}"
 printf 'COLORTERM:  %s\n' "${COLORTERM:-(unset)}"
 printf 'Max colors: %s\n' "$term_colors"
-if [[ -n ${opt_true_color:-} ]]; then
-  printf 'True color: yes (forced)\n'
-elif [[ -n ${term_true_color:-} ]]; then
-  printf 'True color: yes\n'
+if [[ -n ${term_true_color:-} ]]; then
+  printf 'True color: yes %s\n' "$term_true_color"
 else
   printf 'True color: no\n'
 fi
