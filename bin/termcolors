@@ -278,7 +278,8 @@ fi
 if [[ -n ${opt_true_color:-} ]] || \
     (( term_colors == 16777216 )) || \
     [[ ${COLORTERM:-} =~ ^(truecolor|24bit)$ ]] || \
-    [[ ${TERM_PROGAM:-} == mintty ]]; then
+    [[ ${TERM_PROGAM:-} == mintty ]] || \
+    [[ -n ${WT_SESSION:=} ]]; then
   term_true_color=1
 fi
 
