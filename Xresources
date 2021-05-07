@@ -14,11 +14,9 @@ URxvt.cursorColor: #a0ea00
 URxvt.cursorColor2: #231c14
 XTerm.vt100.cursorColor: #a0ea00
 
-! Highlight (abbott.vim chartreuse, bistre):
-!
-! Supposedly XTerm supports this too, but I cannot get the text color to work.
-URxvt.highlightColor: #a0ea00
-URxvt.highlightTextColor: #231c14
+! Highlight (abbott.vim dark_olive):
+URxvt.highlightColor: #273900
+XTerm.vt100.highlightColor: #273900
 
 ! ANSI black, bright black (abbott.vim bistre, cocoa):
 URxvt.color0: #231c14
