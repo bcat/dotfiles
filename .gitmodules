@@ -25,6 +25,9 @@
 [submodule "vim/pack/bcat/start/eunuch"]
 	path = vim/pack/bcat/start/eunuch
 	url = https://github.com/tpope/vim-eunuch.git
+[submodule "vim/pack/bcat/start/git-modeline"]
+	path = vim/pack/bcat/start/git-modeline
+	url = https://github.com/cryptomilk/git-modeline.vim.git
 [submodule "vim/pack/bcat/start/glaive"]
 	path = vim/pack/bcat/start/glaive
 	url = https://github.com/google/vim-glaive.git
