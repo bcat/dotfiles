@@ -16,6 +16,7 @@ APIs
 APL
 AST
 AUR
+AVR
 Abdullah
 Abelian
 Abeln
@@ -108,12 +109,16 @@ CodeMirror
 ColumnIO
 Comcast
 Comcast's
+Corne
+Corne's
 Cosley
 Cotten
 Cotten's
 Cours d'analyse
 Crabb
 Creuzer
+Crkbd
+Crkbd's
 Crowther
 Ctrl
 CtrlP
@@ -182,6 +187,8 @@ EUCs
 EVT
 EasyMock
 Eclim
+Ehlonna
+Ehlonna's
 Elmasri
 Enzo
 Euhemerist
@@ -331,6 +338,7 @@ Jong-il
 Jong-il's
 Jotspot
 JsTD
+KLE
 KTHXBYE
 Kanigel
 Katok
@@ -438,6 +446,7 @@ NCC's
 NCUR
 NISP
 NIU
+NKRO
 NPE
 NRVO
 NTS
@@ -518,6 +527,8 @@ Q1
 Q2
 Q3
 Q4
+QMK
+QMK's
 QPS
 QuickTime
 RAII
@@ -819,6 +830,8 @@ biomechanical
 bistre
 bitmask
 bitrot
+bitset
+bitsets
 blog
 blogged
 blogger
@@ -831,6 +844,7 @@ borked
 bsoares
 builtin
 bytecode
+ceil
 changelist
 changelists
 charset
@@ -1038,7 +1052,12 @@ kern
 ketones
 keybinding
 keybindings
+keycode
+keycodes
+keymap
+keymaps
 killswitch
+kitteh
 level's
 lex
 lexer
@@ -1127,6 +1146,7 @@ nonresidue
 nullability
 nullary
 nullspace
+num
 numen
 numen's
 numina
@@ -1283,6 +1303,7 @@ smartphone
 smartphones
 snipMate
 solvability
+spacebar
 spammy
 spellfile
 spellfiles
@@ -1420,6 +1441,7 @@ unobfuscated
 unpersisted
 unprefixed
 unproxied
+unregister
 unregistration
 unsanitized
 unscoped
@@ -1441,6 +1463,7 @@ updatable
 uploader
 uploaders
 urxvt
+userspace
 util
 utils
 v2
