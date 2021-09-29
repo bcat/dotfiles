@@ -90,7 +90,8 @@ if has('autocmd')
 
     " Set C/C++ indentation to match Google C++ style:
     " http://google.github.io/styleguide/cppguide.html.
-    autocmd FileType cpp setlocal cinoptions+=l1,g1,h1,N-s,(0,j1
+    autocmd FileType c,cpp setlocal cinoptions+=l1,g1,h1,N-s,(0,j1
+    autocmd FileType c,cpp AutoFormatBuffer
 
     " Set Haskell indentation to match XMonad coding style:
     " http://xmonad.org/xmonad-docs/xmonad-contrib/XMonad-Doc-Developing.html.
@@ -406,4 +407,4 @@ colorscheme abbott
 packloadall
 
 " Configure the codefmt plugin. Enable its default mappings.
-Glaive codefmt clang_format_style='Google' plugin[mappings]
+Glaive codefmt plugin[mappings]
