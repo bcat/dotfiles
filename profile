@@ -11,7 +11,6 @@ _profile_prepend_to_path /usr/games
 _profile_prepend_to_path /usr/local/sbin
 _profile_prepend_to_path /usr/sbin
 
-_profile_prepend_to_path ~/bin
 _profile_prepend_to_path ~/.cabal/bin
 _profile_prepend_to_path ~/.local/bin
 
