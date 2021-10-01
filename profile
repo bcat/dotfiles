@@ -1,4 +1,6 @@
-# Make sure various directories are referenced in the search path.
+# _profile_prepend_to_path DIRECTORY
+#
+# Prepends DIRECTORY to the search path if it exists and isn't already present.
 _profile_prepend_to_path () {
   [ -d "$1" ] && case :$PATH: in
     *:$1:*) ;;
@@ -6,11 +8,17 @@ _profile_prepend_to_path () {
   esac
 }
 
+# Add system binaries to the search path since Debian no longer includes them by
+# default (https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918754).
 _profile_prepend_to_path /sbin
-_profile_prepend_to_path /usr/games
-_profile_prepend_to_path /usr/local/sbin
 _profile_prepend_to_path /usr/sbin
+_profile_prepend_to_path /usr/local/sbin
 
+# Add games to the search path since not all systems include them by default.
+_profile_prepend_to_path /usr/games
+_profile_prepend_to_path /usr/local/games
+
+# Add per-user binaries from Cabal, pip, and other sources to the search path.
 _profile_prepend_to_path ~/.cabal/bin
 _profile_prepend_to_path ~/.local/bin
 
