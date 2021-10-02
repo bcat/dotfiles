@@ -18,8 +18,7 @@ _profile_prepend_to_path /usr/local/sbin
 _profile_prepend_to_path /usr/games
 _profile_prepend_to_path /usr/local/games
 
-# Add per-user binaries from Cabal, pip, and other sources to the search path.
-_profile_prepend_to_path ~/.cabal/bin
+# Add per-user binaries from pip and other sources to the search path.
 _profile_prepend_to_path ~/.local/bin
 
 # Set the preferred editor.
