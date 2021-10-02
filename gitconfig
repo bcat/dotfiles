@@ -1,12 +1,9 @@
-[color]
-  ui = true
+[merge]
+  ff = only
 
-[core]
-  autocrlf = false
-
-[push]
-  default = simple
+[pull]
+  ff = only
 
 [user]
-  name = Jonathan Rascher
   email = jon@bcat.name
+  name = Jonathan Rascher
