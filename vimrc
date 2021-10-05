@@ -136,9 +136,10 @@ if has('autocmd')
   augroup END
 endif
 
-" If the Silver Search (Ag) is available, use it as a replacement for grep.
-if executable('ag')
-  set grepprg=ag\ --nocolor\ --nogroup\ --column\ $*\ /dev/null
+" Use ripgrep (a faster replacement for grep that behaves better in Git
+" repositories) if available.
+if executable('rg')
+  set grepprg=rg\ --vimgrep
   set grepformat=%f:%l:%c:%m
 endif
 
