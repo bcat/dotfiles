@@ -32,9 +32,6 @@ HISTFILESIZE=1000
 # ... and in memory.
 HISTSIZE=1000
 
-# Remove dumb history timestamps people set.
-unset HISTTIMEFORMAT
-
 # Emulate ZSH's `precmd` and `preexec` functions. Credit for the technique
 # goes to Glyph Lefkowitz. See also: <http://glyf.livejournal.com/63106.html>.
 _bashrc_prompt_command () {
