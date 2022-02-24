@@ -62,15 +62,11 @@ set -o functrace
 shopt -s extdebug
 
 # Give certain commands some color.
+alias diff='diff --color=auto'
 alias grep='grep --color=auto'
+alias ls='ls --color=auto'
 
 type dircolors >/dev/null 2>&1 && eval $(dircolors ~/.config/lscolors/LS_COLORS)
-
-if ls --color / >/dev/null 2>&1; then
-  alias ls='ls --color=auto'  # GNU ls
-else
-  alias ls='CLICOLOR=1 ls'  # BSD ls
-fi
 
 # Customize the prompt.
 . ~/.bash_prompt.sh

@@ -123,8 +123,7 @@ _bash_prompt_ps1_build_machine () {
 }
 
 _bash_prompt_ps1_build_jobs () {
-  # Use arithmetic expansion to filter out leading whitespace from BSD wc.
-  local num_jobs=$(($(jobs | wc -l)))
+  local num_jobs=$(jobs | wc -l)
 
   _bash_prompt_ps1_append ' J:'
   if (( num_jobs == 0 )); then
