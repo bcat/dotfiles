@@ -281,8 +281,6 @@ elif (( term_colors == 16777216 )); then
   term_true_color='(tput colors)'
 elif [[ ${COLORTERM:-} =~ ^(truecolor|24bit)$ ]]; then
   term_true_color="(COLORTERM is $COLORTERM)"
-elif [[ ${TERM_PROGAM:-} == mintty ]]; then
-  term_true_color='(terminal is mintty)'
 elif [[ -n ${WT_SESSION:=} ]]; then
   term_true_color='(terminal is Windows Terminal)'
 fi

@@ -8,12 +8,11 @@
 " we detect them via termresponse, which is only received asynchronously.
 function! s:TermResponse()
   let s:is_hterm = v:termresponse ==# "\e[>0;256;0c"
-  let s:is_mintty = v:termresponse =~# "\\v\e\\[\\>77;[0-9]+;0c"
   let s:is_ms_terminal = v:termresponse ==# "\e[>0;10;1c"
 
   let s:is_tmux = &term =~# '\v^tmux%(-|$)'
   let s:is_urxvt = &term =~# '\v^rxvt-unicode%(-|$)'
-  let s:is_xterm = &term =~# '\vxterm%(-|$)' && !s:is_hterm && !s:is_mintty
+  let s:is_xterm = &term =~# '\vxterm%(-|$)' && !s:is_hterm
       \ && !s:is_ms_terminal
 
   " Vim uses the nonstandard Cs termcap entry to mean "undercurl mode", but it's
@@ -23,7 +22,7 @@ function! s:TermResponse()
   " returns false.
   "
   " See https://github.com/vim/vim/issues/3471 for more details.
-  if s:is_hterm || s:is_mintty || s:is_tmux
+  if s:is_hterm || s:is_tmux
     " SGR (character attributes): curly underline (kitty extension)
     "   CSI 4 : 3 m
     let &t_Cs = "\e[4:3m"
@@ -40,8 +39,7 @@ function! s:TermResponse()
   " If the terminal supports it, set the cursor to a blinking bar in insert mode
   " and a blinking underline in replace mode. (This matches the default behavior
   " of the gVim cursor.)
-  if s:is_hterm || s:is_mintty || s:is_ms_terminal || s:is_tmux || s:is_urxvt
-      \ || s:is_xterm
+  if s:is_hterm || s:is_ms_terminal || s:is_tmux || s:is_urxvt || s:is_xterm
     " Set cursor to blinking bar when entering insert mode.
     "
     " DECSCUSR (set cursor style): blinking bar
@@ -89,7 +87,7 @@ function! s:TermResponse()
   " Other terminals set the COLORTERM environment variable, but again, this
   " isn't common. See https://github.com/termstandard/colors for more details.
   if has('termguicolors') && (&t_Co == 16777216
-      \ || $COLORTERM =~# '\v^%(truecolor|24bit)$' || s:is_hterm || s:is_mintty
+      \ || $COLORTERM =~# '\v^%(truecolor|24bit)$' || s:is_hterm
       \ || s:is_ms_terminal )
     set termguicolors
   endif
@@ -110,7 +108,7 @@ end
 " only look at $TERM here.
 "
 " See https://github.com/vim/vim/issues/6609 for more details.
-if $TERM =~# '\v%(mintty|tmux)'
+if $TERM =~# '\v^tmux%(-|$)'
   " SGR (character attributes): set underline color, indexed (kitty extension)
   "   CSI 58 : 5 : Ps m
   "
