@@ -5,6 +5,9 @@
 " Patch up termcap capabilities and other terminal-specific settings.
 source ~/.term.vim
 
+" Hide the intro screen
+set shortmess+=I
+
 " Disable swap files. Vim almost never crashes, and they clutter up directories.
 set noswapfile
 
