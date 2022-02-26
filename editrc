@@ -1,0 +1,10 @@
+# Enable Emacs keybindings to match Readline's default behavior.
+bind -e
+
+# Handle Up/Down, matching partially typed commands.
+bind ^[[A ed-search-prev-history
+bind ^[[B ed-search-next-history
+
+# Handle Ctrl+Left/Ctrl+Right.
+bind ^[[1;5D ed-prev-word
+bind ^[[1;5C em-next-word
