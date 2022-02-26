@@ -11,8 +11,7 @@ function! s:TermResponse()
   let s:is_ms_terminal = v:termresponse ==# "\e[>0;10;1c"
 
   let s:is_tmux = &term =~# '\v^tmux%(-|$)'
-  let s:is_urxvt = &term =~# '\v^rxvt-unicode%(-|$)'
-  let s:is_xterm = &term =~# '\vxterm%(-|$)' && !s:is_hterm
+  let s:is_xterm = &term =~# '\v^xterm%(-|$)' && !s:is_hterm
       \ && !s:is_ms_terminal
 
   " Vim uses the nonstandard Cs termcap entry to mean "undercurl mode", but it's
@@ -39,7 +38,7 @@ function! s:TermResponse()
   " If the terminal supports it, set the cursor to a blinking bar in insert mode
   " and a blinking underline in replace mode. (This matches the default behavior
   " of the gVim cursor.)
-  if s:is_hterm || s:is_ms_terminal || s:is_tmux || s:is_urxvt || s:is_xterm
+  if s:is_hterm || s:is_ms_terminal || s:is_tmux || s:is_xterm
     " Set cursor to blinking bar when entering insert mode.
     "
     " DECSCUSR (set cursor style): blinking bar
@@ -65,20 +64,13 @@ function! s:TermResponse()
     " terminals wider than 223 columns, but as of Vim 8.2, this isn't
     " autodetected.
     "
-    " hterm also supports the SGR mouse protocol, but as of May 2021, it
+    " hterm also supports the SGR mouse protocol, but as of February 2022, it
     " claims to be XTerm Patch #256 (from 2012) too old to support SGR.
     "
-    " Windows Terminal also supports the SGR mouse protocol, but as of May 2021,
-    " it claims to be XTerm Patch #10 (from 1996) too old to support SGR.
+    " Windows Terminal also supports the SGR mouse protocol, but as of February
+    " 2022, it claims to be XTerm Patch #10 (from 1996) too old to support SGR.
     if s:is_hterm || s:is_ms_terminal || s:is_tmux
       set ttymouse=sgr
-    endif
-
-    " urxvt implements its own mouse protocol (DECSET 1015) that also supports
-    " terminals wider than 223 columns, but as of Vim 8.2, this isn't
-    " autodetected.
-    if s:is_urxvt
-      set ttymouse=urxvt
     endif
   endif
 
@@ -86,7 +78,7 @@ function! s:TermResponse()
   " xterm-direct) declare support for 16 million colors, but this isn't common.
   " Other terminals set the COLORTERM environment variable, but again, this
   " isn't common. See https://github.com/termstandard/colors for more details.
-  if has('termguicolors') && (&t_Co == 16777216
+  if has('termguicolors') && (&t_Co == 16777215
       \ || $COLORTERM =~# '\v^%(truecolor|24bit)$' || s:is_hterm
       \ || s:is_ms_terminal )
     set termguicolors

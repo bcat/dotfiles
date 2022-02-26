@@ -173,7 +173,7 @@ endif
 " in supporting terminals. This requires Vim to be compiled with clipboard
 " support or else the "+ register is not defined.
 if has('clipboard') && exists('##TextYankPost')
-    \ && $TERM =~# '\v%(tmux|xterm)%(-|$)'
+    \ && $TERM =~# '\v^%(tmux|xterm)%(-|$)'
   function! s:TextYankPost()
     " When yanking to "+, v:register is always '+', but v:event.regname is only
     " set to '+' if Vim successfully yanked to the X11 clipboard. This lets us

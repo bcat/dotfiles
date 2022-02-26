@@ -1,89 +1,50 @@
-! Configure ANSI colors for rxvt-unicode and XTerm. Synced with my Vim theme
+! Configure ANSI colors for XTerm. Synced with my Vim theme
 ! (https://github.com/bcat/abbott.vim).
 
 ! Default (abbott.vim bistre, pastel_chartreuse):
-URxvt.background: #231c14
-URxvt.foreground: #d8ff84
 XTerm.vt100.background: #231c14
 XTerm.vt100.foreground: #d8ff84
 
 ! Cursor (abbott.vim chartreuse, bistre):
 !
-! XTerm does not have cursorColor2, but seems to behave the same as urxvt.
-URxvt.cursorColor: #a0ea00
-URxvt.cursorColor2: #231c14
+! XTerm doesn't allow the cursor text color to be specified explicitly, but it
+! implicitly uses the background color instead.
 XTerm.vt100.cursorColor: #a0ea00
 
 ! Highlight (abbott.vim dark_olive):
-URxvt.highlightColor: #273900
 XTerm.vt100.highlightColor: #273900
 
 ! ANSI black, bright black (abbott.vim bistre, cocoa):
-URxvt.color0: #231c14
-URxvt.color8: #745d42
 XTerm.vt100.color0: #231c14
 XTerm.vt100.color8: #745d42
 
 ! ANSI red, bright red (abbott.vim crimson, cinnabar):
-URxvt.color1: #d80450
-URxvt.color9: #f63f05
 XTerm.vt100.color1: #d80450
 XTerm.vt100.color9: #f63f05
 
 ! ANSI green, bright green (abbott.vim forest_green, chartreuse):
-URxvt.color2: #24a507
-URxvt.color10: #a0ea00
 XTerm.vt100.color2: #24a507
 XTerm.vt100.color10: #a0ea00
 
 ! ANSI yellow, bright yellow (abbott.vim marigold, lemon_meringue):
-URxvt.color3: #fbb32f
-URxvt.color11: #fbec5d
 XTerm.vt100.color3: #fbb32f
 XTerm.vt100.color11: #fbec5d
 
 ! ANSI blue, bright blue (abbott.vim cornflower_blue, periwinkle_blue):
-URxvt.color4: #3f91f1
-URxvt.color12: #8ccdf0
 XTerm.vt100.color4: #3f91f1
 XTerm.vt100.color12: #8ccdf0
 
 ! ANSI magenta, bright magenta (abbott.vim french_pink, lavender):
-URxvt.color5: #ec6c99
-URxvt.color13: #e6a2f3
 XTerm.vt100.color5: #ec6c99
 XTerm.vt100.color13: #e6a2f3
 
 ! ANSI cyan, bright cyan (abbott.vim zomp, seafoam_green):
-URxvt.color6: #39a78d
-URxvt.color14: #00ff7f
 XTerm.vt100.color6: #39a78d
 XTerm.vt100.color14: #00ff7f
 
 ! ANSI white, bright white (abbott.vim pastel_chartreuse, vanilla_cream):
-URxvt.color7: #d8ff84
-URxvt.color15: #fef3b4
 XTerm.vt100.color7: #d8ff84
 XTerm.vt100.color15: #fef3b4
-
-! Configure remaining options for rxvt-unicode.
-
-URxvt.cursorBlink: true
-URxvt.font: xft:Source Code Pro:size=9
-URxvt.geometry: 132x50
-URxvt.intensityStyles: false
-URxvt.matcher.button: 1
-URxvt.perl-ext-common: default,matcher
-URxvt.saveLines: 65536
-URxvt.scrollBar: false
-URxvt.scrollTtyKeypress: true
-URxvt.scrollTtyOutput: false
-URxvt.scrollWithBuffer: true
-! The secondaryWheel option requires a patch:
-! https://aur.archlinux.org/packages/rxvt-unicode-better-wheel-scrolling/.
-URxvt.secondaryWheel: true
-URxvt.urgentOnBell: true
-URxvt.url-launcher: xdg-open
 
 ! Configure remaining options for XTerm.
 
