@@ -9,21 +9,10 @@ set guioptions-=r
 set guioptions-=t
 set guioptions-=T
 
-" Select a pretty font. :) To make things a bit more cross-platform, we actually
-" specify several fonts: a primary and a few fallbacks. Font sizes are chosen to
-" give 12px fonts on 96 DPI Linux/Windows displays and 72 DPI OS X displays.
+" Select a pretty font. :) Font size equals 12px on a 96 DPI display.
 if has('gui_gtk')
   set guifont=Source\ Code\ Pro\ 9
-  set guifont+=Inconsolata\ 9
   set guifont+=Monospace\ 9
-elseif has('gui_win32')
-  set guifont=Source_Code_Pro:h9:cDEFAULT
-  set guifont+=Consolas:h9:cDEFAULT
-  set guifont+=Courier_New:h9:cDEFAULT
-elseif has('gui_macvim')
-  set guifont=Source\ Code\ Pro:h12
-  set guifont+=Menlo:h12
-  set guifont+=Monaco:h12
 endif
 
 " This doesn't actually affect gVim itself; it sets $TERM inside :terminal
