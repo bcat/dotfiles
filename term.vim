@@ -1,44 +1,35 @@
-" Vim uses the system terminfo for most configuration, augmented with some
-" extensions from its builtin XTerm termcap. Likewise, Vim parses v:termresponse
-" from the terminal to selectively enable features only supported in certain
-" versions of certain terminals. Sometimes this fails and overrides are needed.
-
-" Some terminals don't have their own terminfo entry (e.g., hterm) and use an
-" XTerm terminfo instead, but still support different control codes. For those,
-" we detect them via termresponse, which is only received asynchronously.
+" Vim first uses the system terminfo for most configuration, augmented with some
+" extensions from its builtin XTerm termcap when vim_is_xterm returns true.
+" After that, Vim asynchronously parses v:termresponse for terminals where t_RV
+" is defined, selectively enabling features based on the Secondary DA response.
+" We extend this v:termresponse logic a bit ourselves.
 function! s:TermResponse()
-  let s:is_hterm = v:termresponse ==# "\e[>0;256;0c"
-  let s:is_ms_terminal = v:termresponse ==# "\e[>0;10;1c"
+  " Prefer determining terminal based on v:termresponse (Secondary DA) since it
+  " offers more precision than the TERM environment variable.
+  let s:term = ''
+  if v:termresponse ==# "\e[>0;256;0c"
+    " hterm claims to be XTerm Patch #256, which was released in 2010. Since
+    " we'll likely never encounter anything so old, we just assume it's hterm.
+    let s:term = 'hterm'
+  elseif v:termresponse ==# "\e[>0;10;1c"
+    " Windows Terminal claims to be XTerm Patch #10, which was released in 1996.
+    " Once again, that's absurd, and hence clearly identifies this terminal. :)
+    let s:term = 'ms-terminal'
+  elseif v:termresponse =~# "\\v^\e\\[\\>84;\\d+;\\d+c$"
+    " tmux returns terminal type 'T', which is actually pretty sane.
+    let s:term = 'tmux'
+  endif
 
-  let s:is_tmux = &term =~# '\v^tmux%(-|$)'
-  let s:is_xterm = &term =~# '\v^xterm%(-|$)' && !s:is_hterm
-      \ && !s:is_ms_terminal
-
-  " Vim uses the nonstandard Cs termcap entry to mean "undercurl mode", but it's
-  " already used as an extension in terminfo meaning "set cursor color". We
-  " override it to have Vim's intended meaning, as well as setting the
-  " equivalent Ce termcap entry for XTerm-like terminals where vim_is_xterm
-  " returns false.
-  "
-  " See https://github.com/vim/vim/issues/3471 for more details.
-  if s:is_hterm || s:is_tmux
-    " SGR (character attributes): curly underline (kitty extension)
-    "   CSI 4 : 3 m
-    let &t_Cs = "\e[4:3m"
-
-    " SGR (character attributes): normal
-    "   CSI m
-    let &t_Ce = "\e[m"
-  elseif s:is_ms_terminal || s:is_xterm
-    " Real XTerm doesn't support styled underlines. Nor does Windows Terminal.
-    let &t_Cs = ""
-    let &t_Ce = ""
+  " If we weren't able to determine a more specific terminal based on
+  " v:termresponse, assume any other "xterm" terminal is a real XTerm.
+  if s:term ==# '' && &term =~# '\v^xterm%($|-)'
+    let s:term = 'xterm'
   endif
 
   " If the terminal supports it, set the cursor to a blinking bar in insert mode
   " and a blinking underline in replace mode. (This matches the default behavior
   " of the gVim cursor.)
-  if s:is_hterm || s:is_ms_terminal || s:is_tmux || s:is_xterm
+  if index(['hterm', 'ms-terminal', 'tmux', 'xterm'], s:term) >= 0
     " Set cursor to blinking bar when entering insert mode.
     "
     " DECSCUSR (set cursor style): blinking bar
@@ -53,34 +44,49 @@ function! s:TermResponse()
 
     " Reset cursor to blinking block when leaving insert or replace mode.
     "
-    " DECSCUSR (set cursor style): blinking block (in XTerm) or reset to default
-    " cursor style (in VTE: https://bugzilla.gnome.org/show_bug.cgi?id=720821)
+    " DECSCUSR (set cursor style): blinking block
     "   CSI 0 SP q
     let &t_EI = "\e[0 q"
   endif
 
-  if has('mouse')
-    " tmux implements the SGR mouse protocol (DECSET 1006) that supports
-    " terminals wider than 223 columns, but as of Vim 8.2, this isn't
-    " autodetected.
-    "
-    " hterm also supports the SGR mouse protocol, but as of February 2022, it
-    " claims to be XTerm Patch #256 (from 2012) too old to support SGR.
-    "
-    " Windows Terminal also supports the SGR mouse protocol, but as of February
-    " 2022, it claims to be XTerm Patch #10 (from 1996) too old to support SGR.
-    if s:is_hterm || s:is_ms_terminal || s:is_tmux
-      set ttymouse=sgr
-    endif
+  " Vim uses the nonstandard Cs termcap entry to mean "undercurl mode", but it's
+  " already used as an extension in terminfo meaning "set cursor color". We
+  " override it to have Vim's intended meaning.
+  if index(['hterm', 'tmux'], s:term) >= 0
+    " SGR (character attributes): curly underline (kitty extension)
+    "   CSI 4 : 3 m
+    let &t_Cs = "\e[4:3m"
+
+    " SGR (character attributes): normal
+    "   CSI m
+    let &t_Ce = "\e[m"
+  else
+    " Clear t_Cs for unrecognized terminals to avoid accidentally changing the
+    " cursor color (https://github.com/vim/vim/issues/3471).
+    let &t_Cs = ""
+    let &t_Ce = ""
+  endif
+
+  " hterm implements the SGR mouse protocol (DECSET 1006) that supports
+  " terminals wider than 223 columns, but as of February 2022, it claims to be
+  " XTerm Patch #256 (from 2012) too old to support SGR.
+  "
+  " Windows Terminal also supports the SGR mouse protocol, but as of February
+  " 2022, it claims to be XTerm Patch #10 (from 1996) too old to support SGR.
+  "
+  " tmux also supports the SGR mouse protocol, but as of Vim 8.2, isn't
+  " autodetected as an XTerm-like terminal at all.
+  if has('mouse') && index(['hterm', 'ms-terminal', 'tmux'], s:term) >= 0
+    set ttymouse=sgr
   endif
 
   " Detecting true-color support is tricky. Some terminfo entries (such as
   " xterm-direct) declare support for 16 million colors, but this isn't common.
-  " Other terminals set the COLORTERM environment variable, but again, this
-  " isn't common. See https://github.com/termstandard/colors for more details.
-  if has('termguicolors') && (&t_Co == 16777215
-      \ || $COLORTERM =~# '\v^%(truecolor|24bit)$' || s:is_hterm
-      \ || s:is_ms_terminal )
+  " Other terminals set the COLORTERM environment variable, but this isn't
+  " perfect either (https://github.com/termstandard/colors).
+  if has('termguicolors') && (&t_Co == 16777216
+      \ || index(['truecolor', '24bit'], $COLORTERM) >= 0
+      \ || index(['hterm', 'ms-terminal', 'tmux'], s:term) >= 0)
     set termguicolors
   endif
 endfunction
@@ -100,7 +106,7 @@ end
 " only look at $TERM here.
 "
 " See https://github.com/vim/vim/issues/6609 for more details.
-if $TERM =~# '\v^tmux%(-|$)'
+if $TERM =~# '\v^%(hterm|tmux)%(-|$)'
   " SGR (character attributes): set underline color, indexed (kitty extension)
   "   CSI 58 : 5 : Ps m
   "
