@@ -67,6 +67,19 @@ function! s:TermResponse()
     let &t_Ce = ""
   endif
 
+  " As of Vim 8.2, Vim clears the nonstandard 8u termcap entry in all but a few
+  " terminals because "it does not work for the real XTerm; it resets the
+  " background color." However, hterm supports it just fine, so we need to reset
+  " it now (after Vim's already cleared it).
+  if s:term ==# 'hterm'
+    " SGR (character attributes): set underline color, RGB (kitty extension)
+    "   CSI 58 : 2 : : Pr : Pg : Pb m
+    "
+    " Use colon instead of semicolon as subparameter delimiter or else mintty
+    " parses this as two separate SGR codes: 58 and 2).
+    let &t_8u="\e[58:2::%lu:%lu:%lum"
+  endif
+
   " hterm implements the SGR mouse protocol (DECSET 1006) that supports
   " terminals wider than 223 columns, but as of February 2022, it claims to be
   " XTerm Patch #256 (from 2012) too old to support SGR.
