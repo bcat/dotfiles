@@ -176,7 +176,7 @@ endif
 " in supporting terminals. This requires Vim to be compiled with clipboard
 " support or else the "+ register is not defined.
 if has('clipboard') && exists('##TextYankPost')
-    \ && $TERM =~# '\v^%(tmux|xterm)%(-|$)'
+    \ && &term =~# '\v^%(hterm|tmux|xterm)%($|-)'
   function! s:TextYankPost()
     " When yanking to "+, v:register is always '+', but v:event.regname is only
     " set to '+' if Vim successfully yanked to the X11 clipboard. This lets us
@@ -404,6 +404,7 @@ let g:go_highlight_build_constraints = 1
 " Set our personal color scheme, enabling some preferences for fancy terminals.
 let g:abbott_set_term_ansi_colors = 1
 let g:abbott_term_set_underline_color = 1
+let g:abbott_term_use_italics = 1
 let g:abbott_term_use_undercurl = 1
 colorscheme abbott
 

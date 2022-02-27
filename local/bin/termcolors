@@ -3,7 +3,7 @@
 # termcolors <https://github.com/bcat/dotfiles>
 # Display supported terminal colors and their indices.
 #
-# Copyright 2015, 2020 Jonathan Rascher
+# Copyright 2015, 2020, 2022 Jonathan Rascher
 #
 # Permission to use, copy, modify, and/or distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -269,6 +269,7 @@ fi
 if ! term_attr_reset=$(tput sgr0) || ! term_attr_bold=$(tput bold) || \
     ! term_attr_reverse=$(tput rev); then
   printf 'Missing required terminfo attribute(s).\n' >&2
+  exit 1
 fi
 
 # Detecting true-color support is tricky. Some terminfo entries (such as

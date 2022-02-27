@@ -49,11 +49,18 @@ function! s:TermResponse()
     let &t_EI = "\e[0 q"
   endif
 
-  " Vim uses the nonstandard Cs termcap entry to mean "undercurl mode", but it's
-  " already used as an extension in terminfo meaning "set cursor color". We
-  " override it to have Vim's intended meaning.
+  " hterm and tmux support colored and styled underlines, an extension
+  " originally from kitty (https://sw.kovidgoyal.net/kitty/underlines/).
   if index(['hterm', 'tmux'], s:term) >= 0
-    " SGR (character attributes): curly underline (kitty extension)
+    " SGR (Character Attributes): Set underline color, RGB
+    "   CSI 58 ; 2 ; ; Pr ; Pg ; Pb m
+    let &t_8u = "\e[58;2;%lu;%lu;%lum"
+
+    " SGR (Character Attributes): Set underline color, indexed
+    "   CSI 58 ; 5 ; Ps m
+    let &t_AU = "\e[58;5;%dm"
+
+    " SGR (character attributes): curly underline
     "   CSI 4 : 3 m
     let &t_Cs = "\e[4:3m"
 
@@ -61,23 +68,11 @@ function! s:TermResponse()
     "   CSI m
     let &t_Ce = "\e[m"
   else
-    " Clear t_Cs for unrecognized terminals to avoid accidentally changing the
-    " cursor color (https://github.com/vim/vim/issues/3471).
+    " Vim uses the nonstandard Cs termcap entry to mean "undercurl mode", but
+    " it's already used as an extension in terminfo for "set cursor color". If
+    " we don't support styled underlines, clear Cs to avoid accidentally
+    " changing the cursor color (https://github.com/vim/vim/issues/3471).
     let &t_Cs = ""
-    let &t_Ce = ""
-  endif
-
-  " As of Vim 8.2, Vim clears the nonstandard 8u termcap entry in all but a few
-  " terminals because "it does not work for the real XTerm; it resets the
-  " background color." However, hterm supports it just fine, so we need to reset
-  " it now (after Vim's already cleared it).
-  if s:term ==# 'hterm'
-    " SGR (character attributes): set underline color, RGB (kitty extension)
-    "   CSI 58 : 2 : : Pr : Pg : Pb m
-    "
-    " Use colon instead of semicolon as subparameter delimiter or else mintty
-    " parses this as two separate SGR codes: 58 and 2).
-    let &t_8u="\e[58:2::%lu:%lu:%lum"
   endif
 
   " hterm implements the SGR mouse protocol (DECSET 1006) that supports
@@ -111,60 +106,61 @@ if has('autocmd')
   augroup END
 end
 
-" When vim_is_xterm returns false, Vim's builtin XTerm termcap isn't applied, so
-" several Vim-specific termcap extensions go missing. For terminals we know
-" behave like XTerm, manually set these values.
+" When vim_is_xterm [1] returns false, Vim's builtin XTerm termcap [2] isn't
+" applied, and so several Vim-specific termcap extensions are undefined. For
+" terminals we know behave like XTerm, we manually set these values.
 "
-" Since v:termresponse isn't available until some time after we set t_RV, we can
-" only look at $TERM here.
+" It would be nice if we reuse Vim's builtin termcap ourselves, but that isn't
+" currently supported as of Vim 8.2 [3]. See the XTerm Control Sequences
+" document [4] for the canonical reference on these sequences.
 "
-" See https://github.com/vim/vim/issues/6609 for more details.
-if $TERM =~# '\v^%(hterm|tmux)%(-|$)'
-  " SGR (character attributes): set underline color, indexed (kitty extension)
-  "   CSI 58 : 5 : Ps m
-  "
-  " Use colon instead of semicolon as subparameter delimiter or else mintty
-  " parses this as two separate SGR codes: 58 and 5).
-  let &t_AU="\e[58:5:%dm"
-
-  " Send device attributes (secondary DA): request terminal identification
-  "   CSI > c
-  let &t_RV = "\e[>c"
-
-  " SGR (character attributes): set foreground color, RGB
-  "   CSI 38 ; 2 ; Pr ; Pg ; Pb m
-  let &t_8f = "\e[38;2;%lu;%lu;%lum"
-
-  " SGR (character attributes): set foreground color, RGB
-  "   CSI 48 ; 2 ; Pr ; Pg ; Pb m
-  let &t_8b = "\e[48;2;%lu;%lu;%lum"
-
-  " SGR (character attributes): set underline color, RGB (kitty extension)
-  "   CSI 58 : 2 : : Pr : Pg : Pb m
-  "
-  " Use colon instead of semicolon as subparameter delimiter or else mintty
-  " parses this as two separate SGR codes: 58 and 2).
-  let &t_8u="\e[58:2::%lu:%lu:%lum"
-
-  " DECSET (DEC private mode set): bracketed paste mode
-  "   CSI ? 2 0 0 4 h
-  let &t_BE = "\e[?2004h"
-
-  " DECRST (DEC private mode reset): bracketed paste mode
-  "   CSI ? 2 0 0 4 l
-  let &t_BD = "\e[?2004l"
-
-  " DECSCUSR (set cursor style)
+" Since v:termresponse is set asynchronously from the Secondary DA response
+" after we set t_RV, we can only look at $TERM here.
+"
+" [1]: https://github.com/vim/vim/blob/5c52be40fbab14e050d7494d85be9039f07f7f8f/src/os_unix.c#L2367-L2378
+" [2]: https://github.com/vim/vim/blob/5c52be40fbab14e050d7494d85be9039f07f7f8f/src/term.c#L815-L1007
+" [3]: https://github.com/vim/vim/issues/6609
+" [4]: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html
+if &term =~# '\v^%(hterm|tmux)%($|-)'
+  " DECSCUSR (Set Cursor Style)
   "   CSI Ps SP q
   let &t_SH = "\e[%p1%d q"
 
-  " XTWINOPS (save title): window title
+  " Send Device Attributes (Secondary DA): Request terminal identification
+  "   CSI > c
+  let &t_RV = "\e[>c"
+
+  " SGR (Character Attributes): Set foreground color, RGB
+  "   CSI 38 ; 2 ; Pr ; Pg ; Pb m
+  let &t_8f = "\e[38;2;%lu;%lu;%lum"
+
+  " SGR (Character Attributes): Set foreground color, RGB
+  "   CSI 48 ; 2 ; Pr ; Pg ; Pb m
+  let &t_8b = "\e[48;2;%lu;%lu;%lum"
+
+  " DECSET (DEC Private Mode Set): Bracketed paste mode
+  "   CSI ? 2 0 0 4 h
+  let &t_BE = "\e[?2004h"
+
+  " DECRST (DEC Private Mode Reset): Bracketed paste mode
+  "   CSI ? 2 0 0 4 l
+  let &t_BD = "\e[?2004l"
+
+  " XTWINOPS (Save Title): Window title
   "   CSI 2 2 ; 2 t
   let &t_ST = "\e[22;2t"
 
-  " XTWINOPS (restore title): window title
+  " XTWINOPS (Restore Title): Window title
   "   CSI 2 3 ; 2 t
   let &t_RT = "\e[23;2t"
+
+  " DECSET (DEC Private Mode Set): Focus tracking
+  "   CSI ? 1 0 0 4 h
+  let &t_fe = "\e[?1004h"
+
+  " DECRST (DEC Private Mode Reset): Focus tracking
+  "   CSI ? 1 0 0 4 l
+  let &t_fd = "\e[?1004l"
 
   " Start of bracketed paste
   "   ESC [ 2 0 0 ~
@@ -173,4 +169,12 @@ if $TERM =~# '\v^%(hterm|tmux)%(-|$)'
   " End of bracketed paste
   "   ESC [ 2 0 1 ~
   let &t_PE = "\e[201~"
+
+  " FocusIn event
+  "   ESC [ I
+  execute "set <FocusGained>=\e[I"
+
+  " FocusOut event
+  "   ESC [ O
+  execute "set <FocusLost>=\e[O"
 endif

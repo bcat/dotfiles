@@ -17,4 +17,4 @@ endif
 
 " This doesn't actually affect gVim itself; it sets $TERM inside :terminal
 " windows. Otherwise, they default to "xterm", which doesn't support 256 colors.
-let $TERM="xterm-256color"
+let $TERM = "xterm-256color"
