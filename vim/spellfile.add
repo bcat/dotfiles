@@ -585,6 +585,7 @@ SERPs
 SFP
 SFT
 SG
+SGR
 SGTM
 SIDs
 SIGHUP
@@ -1366,6 +1367,8 @@ submodel
 submodels
 subpackage
 subpackages
+subparameter
+subparameters
 subpath
 subpaths
 subpixel
@@ -1401,6 +1404,7 @@ sysadmin
 sysadmins
 syscall
 syscalls
+termcap
 terminfo
 tetherable
 texting
