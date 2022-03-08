@@ -26,11 +26,8 @@ shopt -s histverify  # Verify history substitutions before executing them.
 # Remove duplicate history entries; don't save commands beginning with spaces.
 HISTCONTROL=ignoreboth:erasedups
 
-# Increase command history size on disk...
-HISTFILESIZE=1000
-
-# ... and in memory.
-HISTSIZE=1000
+# Increase command history size.
+HISTSIZE=65535
 
 # Emulate ZSH's `precmd` and `preexec` functions. Credit for the technique
 # goes to Glyph Lefkowitz. See also: <http://glyf.livejournal.com/63106.html>.
