@@ -1,2 +1,0 @@
-# Use merge instead of load since /etc/sommelierrc can also set X resources.
-[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
