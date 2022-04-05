@@ -1,3 +1,4 @@
+AAAA
 ACCA
 ACK
 ACL
@@ -205,6 +206,8 @@ FER's
 FF3
 FIFOs
 FLAC
+FPM
+FQDN
 FS
 Facebook
 Fausto-Sterling
@@ -217,6 +220,7 @@ FlumeJava
 Fontenelle
 Fontspring
 Forum Boarium
+FoundryVTT
 Freakonomics
 Freebird
 Frome
@@ -421,6 +425,7 @@ Maggiorani
 Maher
 Maher's
 MapReduce
+MariaDB
 Martins's
 María
 Mayella
@@ -455,6 +460,7 @@ NPE
 NRVO
 NTS
 NUL
+NVMe
 Nabataean
 Naperville
 Natufian
@@ -695,12 +701,15 @@ VEs
 VFS
 VM
 VMs
+VPS
 Vergil
 Verizon
 Viacom
 Viacom's
 Vico
 Vollkorn
+Vultr
+Vultrs
 W3C
 WGBH
 WIP
@@ -1030,6 +1039,7 @@ hashCode
 high's
 hijab
 hostname
+hostnames
 href
 hterm
 hyperlink
@@ -1191,6 +1201,7 @@ param
 params
 parentheticals
 paritals
+passwordless
 paywalled
 per se
 personas
@@ -1383,6 +1394,7 @@ subsubfolders
 subtree
 subtrees
 sucky
+sudo
 suggestable
 superclasses
 superinterface
@@ -1404,6 +1416,8 @@ sysadmin
 sysadmins
 syscall
 syscalls
+syslog
+systemd
 termcap
 terminfo
 tetherable
@@ -1493,6 +1507,8 @@ userspace
 util
 utils
 v2
+vCPU
+vCPUs
 vararg
 varargs
 vblank
