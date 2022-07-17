@@ -235,6 +235,7 @@ GFS
 GIF
 GLEP
 GLX
+GPIO
 GPS
 GRS
 GSE
@@ -499,6 +500,7 @@ OSI
 OSIX
 Obama
 Oceana
+OctoPrint
 Odbody
 Odbody's
 OpenGL
@@ -724,6 +726,7 @@ Vultrs
 W3C
 WGBH
 WIP
+WLAN
 WLOG
 WSL
 WSL2
@@ -1049,6 +1052,8 @@ hardcoded
 hardcodes
 hardcoding
 hashCode
+heatsink
+heatsinks
 high's
 hijab
 hostname
@@ -1250,6 +1255,10 @@ prerender
 prerendered
 prerendering
 prerenders
+preseed
+preseeded
+preseeding
+preseeds
 presubmit
 prewashed
 proactively
