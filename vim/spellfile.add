@@ -112,6 +112,7 @@ CodeMirror
 ColumnIO
 Comcast
 Comcast's
+ConPTY
 Corne
 Corne's
 Cosley
@@ -525,6 +526,8 @@ POSIX
 POV
 PRT
 PTAL
+PTY
+PTYs
 PUA
 Palaephatus
 Palatino
@@ -548,6 +551,7 @@ PowerPoint
 Propp
 PuTTY
 PufferPanel
+PufferPanel's
 Q1
 Q2
 Q3
