@@ -138,6 +138,9 @@ DBMSs
 DBs
 DCL
 DDL
+DDR3
+DDR4
+DDR5
 DFS
 DMCA
 DMCA's
@@ -174,6 +177,7 @@ Dumézil
 Dundes
 Dyalog
 E4X
+ECC
 ECMA
 EER
 EFF
@@ -591,6 +595,7 @@ Readline
 Readline's
 RealPlayer
 RecordIO
+Redis
 RegExp
 Renk
 Renk's
@@ -685,6 +690,7 @@ ToC
 Tomasulo
 Tonnies
 Transjordan
+TrueNAS
 Truffaut
 Truffaut's
 Tumblr
@@ -1227,6 +1233,7 @@ param
 params
 parentheticals
 paritals
+passthrough
 passwordless
 paywalled
 per se
