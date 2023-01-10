@@ -2,8 +2,32 @@
 " Vim Tips Wiki, and the vimrc Ben Breedlove (https://github.com/benbreedlove)
 " sent me to look at. (Thanks, Ben!)
 
+" Certain enviroments feature only a minimal set of Vim features (e.g.,
+" Debian's vim-tiny package). When the eval feature is disabled, almost all
+" Vimscript commands fail with errors.
+"
+" We use the `while 0` trick (see `:help no-eval-feature`) to set some basic
+" quality of life options we'd normally get from sensible.vim.
+"
+" Additionally, when the eval feature is unavailable, Vim ignores all if
+" statements, so we use `if 1` conditionals to guard commands not supported by
+" eval-less Vim binaries.
+silent! while 0
+  set nocompatible
+
+  set backspace=indent,eol,start
+  set history=1000
+  set laststatus=2
+  set nrformats-=octal
+  set ruler
+  set smarttab
+  set ttimeout
+silent! endwhile
+
 " Patch up termcap capabilities and other terminal-specific settings.
-source ~/.term.vim
+if 1
+  source ~/.term.vim
+endif
 
 " Hide the intro screen
 set shortmess+=I
@@ -206,17 +230,19 @@ set ttimeoutlen=50
 " Set Meta-modified keys we wish to use in mappings to use the Esc prefix since
 " that's what most terminals use. (Once Vim 8.2 rolls out with modifyOtherKeys
 " support and more terminals handle XTMODKEYS, we can remove this.)
-execute "set <M-=>=\e="
-execute "set <M-h>=\eh"
-execute "set <M-j>=\ej"
-execute "set <M-k>=\ek"
-execute "set <M-l>=\el"
-execute "set <M-m>=\em"
-execute "set <M-q>=\eq"
-execute "set <M-H>=\eH"
-execute "set <M-J>=\eJ"
-execute "set <M-K>=\eK"
-execute "set <M-L>=\eL"
+if 1
+  execute "set <M-=>=\e="
+  execute "set <M-h>=\eh"
+  execute "set <M-j>=\ej"
+  execute "set <M-k>=\ek"
+  execute "set <M-l>=\el"
+  execute "set <M-m>=\em"
+  execute "set <M-q>=\eq"
+  execute "set <M-H>=\eH"
+  execute "set <M-J>=\eJ"
+  execute "set <M-K>=\eK"
+  execute "set <M-L>=\eL"
+end
 
 " Disable the help key in normal, visual, select, operator-pending, and insert
 " modes. It's useless, and annoying when it gets hit on accident.
@@ -296,8 +322,10 @@ xnoremap <silent> <M-L> <C-W>L
 
 " Begin custom keybindings with the space key.
 noremap <Space> <Nop>
-let mapleader = ' '
-let maplocalleader = ' '
+if 1
+  let mapleader = ' '
+  let maplocalleader = ' '
+end
 
 " Configure keybindings for partial commands (intentionally not silent):
 "
@@ -354,62 +382,65 @@ nnoremap <silent> <Leader>ar :CtrlP<CR>
 " <Space>z  Zoom in on current window, or zoom out if already zoomed in
 nmap <silent> <Leader>z <Plug>(zoom-toggle)
 
-" Configure the standard Java plugin.
-let g:java_highlight_functions = 'style'
+if 1
+  " Configure the standard Java plugin.
+  let g:java_highlight_functions = 'style'
 
-" Configure the standard Python plugin.
-let g:pyindent_open_paren = 'exists("*shiftwidth") ? shiftwidth() : &shiftwidth'
+  " Configure the standard Python plugin.
+  let g:pyindent_open_paren
+      \ = 'exists("*shiftwidth") ? shiftwidth() : &shiftwidth'
 
-" Configure the standard shell plugin.
-let g:is_bash = 1
+  " Configure the standard shell plugin.
+  let g:is_bash = 1
 
-" Configure the standard TeX plugin.
-let g:tex_indent_and = 0
-let g:tex_flavor = 'latex'
-let g:tex_stylish = 1
+  " Configure the standard TeX plugin.
+  let g:tex_indent_and = 0
+  let g:tex_flavor = 'latex'
+  let g:tex_stylish = 1
 
-" Configure the standard Vim plugin.
-let g:vim_indent_cont = 4
+  " Configure the standard Vim plugin.
+  let g:vim_indent_cont = 4
 
-" Configure the CtrlP plugin. Disable its default mapping.
-let g:ctrlp_map = ''
-let g:ctrlp_switch_buffer = ''
-let g:ctrlp_working_path_mode = 'c'
-let g:ctrlp_root_markers = 'METADATA'
-let g:ctrlp_open_new_file = 'r'
-let g:ctrlp_open_multiple_files = 'h'
+  " Configure the CtrlP plugin. Disable its default mapping.
+  let g:ctrlp_map = ''
+  let g:ctrlp_switch_buffer = ''
+  let g:ctrlp_working_path_mode = 'c'
+  let g:ctrlp_root_markers = 'METADATA'
+  let g:ctrlp_open_new_file = 'r'
+  let g:ctrlp_open_multiple_files = 'h'
 
-if executable('ag')
-  let g:ctrlp_user_command = 'ag -g "" -l --hidden --nocolor %s'
-endif
+  if executable('ag')
+    let g:ctrlp_user_command = 'ag -g "" -l --hidden --nocolor %s'
+  endif
 
-if exists('*pymatcher#PyMatch')
-  let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
-endif
+  if exists('*pymatcher#PyMatch')
+    let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
+  endif
 
-" Configure the haskell-vim plugin.
-let g:haskell_indent_case = 5
-let g:haskell_indent_in = 0
+  " Configure the haskell-vim plugin.
+  let g:haskell_indent_case = 5
+  let g:haskell_indent_in = 0
 
-" Configure the LaTeX Box plugin.
-let g:LatexBox_latexmk_options = '-pvc'
+  " Configure the LaTeX Box plugin.
+  let g:LatexBox_latexmk_options = '-pvc'
 
-" Configure the vim-go plugin.
-let g:go_highlight_operators = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_build_constraints = 1
+  " Configure the vim-go plugin.
+  let g:go_highlight_operators = 1
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_build_constraints = 1
 
-" Set our personal color scheme, enabling some preferences for fancy terminals.
-let g:abbott_set_term_ansi_colors = 1
-let g:abbott_term_set_underline_color = 1
-let g:abbott_term_use_italics = 1
-let g:abbott_term_use_undercurl = 1
-colorscheme abbott
+  " Set our personal color scheme, enabling preferences for fancy terminals.
+  let g:abbott_set_term_ansi_colors = 1
+  let g:abbott_term_set_underline_color = 1
+  let g:abbott_term_use_italics = 1
+  let g:abbott_term_use_undercurl = 1
+  colorscheme abbott
 
-" Force plugins to load so we can configure Google plugins via Glaive. Eww.
-packloadall
+  " Force plugins to load so we can configure Google plugins via Glaive. Eww.
+  packloadall
 
-" Configure the codefmt plugin. Enable its default mappings.
-Glaive codefmt plugin[mappings]
+  " Configure the codefmt plugin. Enable its default mappings.
+  Glaive codefmt plugin[mappings]
+end
