@@ -38,7 +38,7 @@ _bashrc_prompt_command () {
 }
 
 _bashrc_debug_trap () {
-  if [ -n "$_bashrc_run_preexec" ] && [ -z "$COMP_LINE" ]; then
+  if [ -n "$_bashrc_run_preexec" ] && [ -z "$COMP_LINE" ] && [ -t 1 ]; then
     [ "$BASH_COMMAND" != _bashrc_prompt_command ] &&
       [ "$(type -t preexec)" = function ] && preexec "$(history 1 |
       sed 's/^[[:space:]]*[[:digit:]]\{1,\}[[:space:]]*//')"
