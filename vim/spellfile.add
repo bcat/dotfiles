@@ -519,6 +519,7 @@ Ophüls
 Ou
 P.S.
 P4
+P630
 PDFs
 PHP
 PHP's
@@ -547,6 +548,7 @@ Pinboard
 Pirsig
 Pithos
 Plass
+Plex
 Plotinus
 PoV
 Pobox
@@ -669,6 +671,7 @@ Stechert
 Strunk
 Switchfoot
 Sychaeus
+Syncthing
 SysRq
 SysV
 TFAE
@@ -708,6 +711,8 @@ UAs
 UCB
 UFD
 UFR
+UFW
+UHD
 UI
 ULS
 UML
@@ -909,6 +914,7 @@ checkboxes
 cherrypick
 chromeless
 cinematographically
+cleartext
 cleveref
 clickable
 clicktrack
@@ -1082,6 +1088,7 @@ hyperlink
 hyperlinks
 hyperref
 i18n
+iGPU
 iOS
 iPhone
 iPod
@@ -1104,6 +1111,7 @@ interactional
 intercultural
 interop
 intrapersonal
+iptables
 isometry
 iterable
 jQuery
@@ -1137,6 +1145,7 @@ lithic
 lithics
 localhost
 localizable
+lockdown
 lockfree
 loggable
 macropad
@@ -1191,7 +1200,9 @@ mutexes
 n. pag.
 n.d.
 namespace
+namespaced
 namespaces
+namespacing
 nitpicky
 nitty
 noir
@@ -1302,6 +1313,7 @@ quantifiably
 querySelectorAll
 quickfix
 quux
+readonly
 reddit
 redoable
 reenable
@@ -1461,6 +1473,7 @@ sysadmin
 sysadmins
 syscall
 syscalls
+sysctl
 syslog
 systemd
 tailnet
