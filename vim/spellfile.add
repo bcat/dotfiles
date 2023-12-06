@@ -186,6 +186,7 @@ ECMA
 EER
 EFF
 EFF's
+EHLO
 EI
 EINTR
 EINVAL
@@ -283,6 +284,7 @@ Guice
 Guilbault
 Gurnee
 H2G2
+HELO
 HTML5
 HTTPS
 HW
