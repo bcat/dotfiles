@@ -1,3 +1,4 @@
+8BitDo
 AAAA
 ACCA
 ACK
@@ -197,6 +198,7 @@ ERC
 ES3
 ES5
 ESC
+ESDF
 EUC
 EUCs
 EVT
@@ -229,6 +231,7 @@ Firefox
 Flickr
 Flobots
 FlumeJava
+Fn
 Fontenelle
 Fontspring
 Forum Boarium
@@ -285,6 +288,7 @@ Guilbault
 Gurnee
 H2G2
 HELO
+HHKB
 HTML5
 HTTPS
 HW
@@ -322,6 +326,7 @@ ISPs
 IVT
 Ick
 Ikai
+Imgur
 Indo-European
 Indo-Europeans
 Irssi
@@ -467,6 +472,7 @@ Musa
 MySQL
 Müller
 Müller's
+N64
 NAK
 NCAM
 NCC's
@@ -525,6 +531,7 @@ Ou
 P.S.
 P4
 P630
+PCBs
 PDFs
 PHP
 PHP's
@@ -578,6 +585,7 @@ QuickTime
 RAII
 RE2
 README
+READMEs
 RGB
 RGI
 RHS
@@ -634,6 +642,7 @@ SIGTERM
 SLQ
 SMS
 SMTPS
+SN30
 SOA
 SPC
 SRE
@@ -706,6 +715,7 @@ Transjordan
 TrueNAS
 Truffaut
 Truffaut's
+Tsangan
 Tumblr
 Tumes
 Turnus
@@ -753,6 +763,7 @@ Vollkorn
 Vultr
 Vultrs
 W3C
+WASD
 WGBH
 WIP
 WLAN
@@ -777,7 +788,6 @@ Wipeout
 WordPress
 WordPress's
 X11
-XFE
 XFE
 XFE's
 XFEs
@@ -925,7 +935,6 @@ cleveref
 clickable
 clicktrack
 clicktracked
-clicktracking
 clicktracking
 clicktracks
 codebase
@@ -1131,6 +1140,8 @@ kern
 ketones
 keybinding
 keybindings
+keycap
+keycaps
 keycode
 keycodes
 keymap
@@ -1191,6 +1202,7 @@ modding
 modeless
 modeline
 modelines
+modkit
 monic
 monochronic
 monochronicity
@@ -1248,6 +1260,7 @@ onboards
 oncall
 onload
 optionally
+ortholinear
 overanalysis
 overprovisioned
 oxymercuration
@@ -1316,6 +1329,7 @@ px
 qtd.
 qual
 quantifiably
+quefrency
 querySelectorAll
 quickfix
 quux
