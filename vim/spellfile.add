@@ -8,6 +8,7 @@ ACLs
 ACM's
 ACPI
 ACT's
+ADB
 AFAICT
 AGSA
 AGSA's
@@ -20,6 +21,7 @@ APL
 AST
 AUR
 AVR
+AXP
 Abdullah
 Abelian
 Abeln
@@ -85,6 +87,7 @@ CLs
 CML
 CML's
 CORS
+CRLF
 CSApprox
 CSC
 CSC's
@@ -172,12 +175,15 @@ Dockerfile
 Doinel
 Donnersmarck
 Donnersmarck's
+DraStic
+Dreamcast
 Dremel
 Dremel's
 Dreyman
 Dreyman's
 Drive's
 DuPage
+DualShock
 Dumézil
 Dundes
 Dyalog
@@ -287,6 +293,7 @@ Guice
 Guilbault
 Gurnee
 H2G2
+H700
 HELO
 HHKB
 HTML5
@@ -436,6 +443,7 @@ MSCR
 MSYS
 MTA
 MTH
+MTP
 MVC
 MVT
 MacTutor
@@ -518,12 +526,14 @@ OOMs
 OOP
 OSI
 OSIX
+OTG
 Obama
 Oceana
 OctoEverywhere
 OctoPrint
 Odbody
 Odbody's
+OpenBOR
 OpenGL
 OpenType
 Ophüls
@@ -544,6 +554,7 @@ POJO
 POJOs
 POSIX
 POV
+PPSSPP
 PRT
 PTAL
 PTY
@@ -618,6 +629,7 @@ RegExp
 Renk
 Renk's
 Renteln
+RetroArch
 Ricci
 Ricci's
 Robigo
@@ -724,6 +736,7 @@ U2
 UA
 UAs
 UCB
+UDC
 UFD
 UFR
 UFW
@@ -751,6 +764,7 @@ VEDs
 VEs
 VFS
 VM
+VMU
 VMs
 VPS
 Vergil
@@ -954,6 +968,7 @@ complemental
 componentwise
 composable
 config
+configfs
 configs
 const
 constant's
@@ -1055,6 +1070,7 @@ externs
 extruders
 facework
 failover
+failsafe
 fallback
 fallbacks
 familias
@@ -1165,6 +1181,7 @@ localizable
 lockdown
 lockfree
 loggable
+mGBA
 macropad
 macropads
 marginless
@@ -1208,6 +1225,7 @@ monochronic
 monochronicity
 monomorphic
 monospaced
+muOS
 multiline
 multimap
 multimaps
@@ -1371,6 +1389,7 @@ rethrown
 rethrows
 retryability
 retryable
+rmdir
 rollforward
 rollout
 rollouts
@@ -1409,6 +1428,7 @@ smarthost
 smartphone
 smartphones
 snipMate
+snuck
 solvability
 spacebar
 spammy
@@ -1494,6 +1514,7 @@ sysadmins
 syscall
 syscalls
 sysctl
+sysfs
 syslog
 systemd
 tailnet
