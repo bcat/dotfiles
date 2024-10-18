@@ -20,6 +20,11 @@ _profile_prepend_to_path /usr/local/games
 
 # Add per-user binaries from pip and other sources to the search path.
 _profile_prepend_to_path ~/.local/bin
+_profile_prepend_to_path ~/.gem
+
+# Ruby's package management is awful
+# (https://felipec.wordpress.com/2022/08/25/fixing-ruby-gems-installation/).
+export GEM_HOME="$HOME/.gem"
 
 # Set the preferred editor.
 if which vim >/dev/null 2>&1; then
