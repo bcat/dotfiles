@@ -395,12 +395,16 @@ Kuntz
 Kuntz's
 L'Avventura
 L'Hospital's
+L1
+L2
+L3
 LG'd
 LGTM
 LHS
 LIHEAP
 LOAS
 LTR
+LVGL
 La terra trema
 Ladri di biciclette
 Lafsky
@@ -526,6 +530,7 @@ OOMs
 OOP
 OSI
 OSIX
+OTA
 OTG
 Obama
 Oceana
@@ -593,10 +598,15 @@ QMK's
 QPS
 QUIC
 QuickTime
+R1
+R2
+R3
 RAII
 RE2
 README
 READMEs
+RG28XX
+RG35XX
 RGB
 RGI
 RHS
@@ -638,12 +648,15 @@ Rolle's
 Rutulians
 SASL
 SCAP
+SD1
+SD2
 SDPY
 SERP
 SERP's
 SERPs
 SFP
 SFT
+SFTP
 SG
 SGR
 SGTM
@@ -674,6 +687,7 @@ Schutz's
 Schwarz
 Scottsboro
 ScriptDb
+ScummVM
 Segan
 Seibel
 Sep
@@ -700,6 +714,8 @@ Sychaeus
 Syncthing
 SysRq
 SysV
+TF1
+TF2
 TFAE
 TLER
 TLM
@@ -709,6 +725,7 @@ TODOs
 TSA
 TSA's
 TTLs
+TTY
 Taeopae
 Taffybar
 Tailscale
@@ -798,6 +815,7 @@ Wiki
 Wilders
 Wilders's
 Win32
+WinSCP
 Wipeout
 WordPress
 WordPress's
@@ -818,6 +836,7 @@ XSLT
 XSRF
 XSS
 XTerm
+XXs
 Xalan
 XeTeX
 Xenophanes
@@ -939,6 +958,7 @@ ceil
 changelist
 changelists
 charset
+check
 checkbox
 checkboxes
 cherrypick
@@ -964,6 +984,7 @@ codomains
 cofounder
 collab
 collectivistic
+commonize
 complemental
 componentwise
 composable
@@ -995,6 +1016,7 @@ datacenter
 datacenters
 datastore
 datastores
+deadzone
 dedent
 dedented
 dedenting
@@ -1065,6 +1087,8 @@ errno
 euthanize
 euthanized
 euthanizes
+evdev
+evsieve
 exljbris
 externs
 extruders
@@ -1073,6 +1097,7 @@ failover
 failsafe
 fallback
 fallbacks
+fallthrough
 familias
 fangirl
 fangirling
@@ -1188,6 +1213,7 @@ marginless
 marshalls
 may've
 measurability
+mem
 memcache
 memoization
 memoize
@@ -1207,6 +1233,8 @@ microtypographic
 microtypography
 middleware
 might've
+milli
+millis
 minification
 miscommunications
 misconfigured
@@ -1226,6 +1254,7 @@ monochronicity
 monomorphic
 monospaced
 muOS
+muX
 multiline
 multimap
 multimaps
@@ -1330,6 +1359,8 @@ presubmit
 prewashed
 proactively
 probers
+proc
+procs
 profferer
 profferers
 programmatically
@@ -1393,6 +1424,7 @@ rmdir
 rollforward
 rollout
 rollouts
+rsync
 run's
 rxvt
 rxvt-unicode
@@ -1417,6 +1449,8 @@ serializer
 servlet
 servlets
 setTimeout
+shader
+shaders
 sharded
 sharding
 shmup
@@ -1551,9 +1585,11 @@ unassailed
 unbirth
 unboxed
 uncached
+unconfigured
 undeletion
 undercurl
 underglow
+underrun
 underserved
 undoable
 undrain
