@@ -2,15 +2,14 @@
 #
 # Prepends DIRECTORY to the search path if it exists and isn't already present.
 _profile_prepend_to_path () {
-  [ -d "$1" ] && case :$PATH: in
-    *:$1:*) ;;
-    *) export PATH=$1:$PATH ;;
+  case ":$PATH:" in
+    *:"$1":*) ;;
+    *) [ -d "$1" ] && export PATH="$1:$PATH" ;;
   esac
 }
 
 # Add system binaries to the search path since Debian no longer includes them by
 # default (https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918754).
-_profile_prepend_to_path /sbin
 _profile_prepend_to_path /usr/sbin
 _profile_prepend_to_path /usr/local/sbin
 
@@ -22,28 +21,33 @@ _profile_prepend_to_path /usr/local/games
 _profile_prepend_to_path ~/.local/bin
 _profile_prepend_to_path ~/.gem
 
-# Ruby's package management is awful
+# Work around Ruby's awful package management
 # (https://felipec.wordpress.com/2022/08/25/fixing-ruby-gems-installation/).
 export GEM_HOME="$HOME/.gem"
 
 # Set the preferred editor.
-if which vim >/dev/null 2>&1; then
-  export EDITOR=$(which vim)
-  export FCEDIT=$(which vim)
-  export VISUAL=$(which vim)
-elif which vi >/dev/null 2>&1; then
-  export EDITOR=$(which vi)
-  export FCEDIT=$(which vi)
-  export VISUAL=$(which vi)
+if command -v vim >/dev/null; then
+  EDITOR="$(command -v vim)"
+  FCEDIT="$(command -v vim)"
+  VISUAL="$(command -v vim)"
+  export EDITOR FCEDIT VISUAL
+elif command -v vi >/dev/null; then
+  EDITOR="$(command -v vi)"
+  FCEDIT="$(command -v vi)"
+  VISUAL="$(command -v vi)"
+  export EDITOR FCEDIT VISUAL
 fi
 
 # Set the preferred pager.
-if which less >/dev/null 2>&1; then
-  export PAGER=$(which less)
+if command -v less >/dev/null; then
+  PAGER="$(command -v less)"
+  export PAGER
 fi
 
 # Make less a little bit nicer.
-type lesspipe >/dev/null 2>&1 && eval "$(lesspipe)"
+if command -v lesspipe >/dev/null; then
+  eval "$(lesspipe)"
+fi
 
 export LESS='-M -R'
 
