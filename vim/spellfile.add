@@ -1,5 +1,6 @@
 8BitDo
 AAAA
+AArch64
 ACCA
 ACK
 ACL
@@ -1171,6 +1172,7 @@ iptables
 isometry
 iterable
 jQuery
+jank
 jobset
 jobsets
 joinable
@@ -1254,6 +1256,7 @@ monochronicity
 monomorphic
 monospaced
 muOS
+muOS's
 muX
 multiline
 multimap
@@ -1584,6 +1587,7 @@ umask
 unassailed
 unbirth
 unboxed
+unbreak
 uncached
 unconfigured
 undeletion
