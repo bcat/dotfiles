@@ -61,6 +61,14 @@ if command -v dircolors >/dev/null; then
   eval "$(dircolors ~/.config/lscolors/LS_COLORS)"
 fi
 
+# Set up for muOS development.
+if [ -d ~/sdk/muos ]; then
+  export REPO_ROOT=src
+  export REPO_FRONTEND=muos-frontend
+  export REPO_INTERNAL=muos-internal
+  export REPO_LANGUAGE=muos-language
+fi
+
 # Customize the prompt.
 . ~/.bash_prompt.sh
 

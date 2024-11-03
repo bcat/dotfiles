@@ -20,6 +20,7 @@ _profile_prepend_to_path /usr/local/games
 # Add per-user binaries from pip and other sources to the search path.
 _profile_prepend_to_path ~/.local/bin
 _profile_prepend_to_path ~/.gem
+_profile_prepend_to_path ~/sdk/qmk/bin
 
 # Work around Ruby's awful package management
 # (https://felipec.wordpress.com/2022/08/25/fixing-ruby-gems-installation/).
