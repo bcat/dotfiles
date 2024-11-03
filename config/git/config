@@ -7,6 +7,9 @@
 [pull]
   ff = only
 
+[push]
+  autoSetupRemote = true
+
 [user]
   email = jon@bcat.name
   name = Jonathan Rascher
