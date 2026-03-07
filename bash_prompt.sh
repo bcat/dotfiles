@@ -1,6 +1,10 @@
 # Disable variable expansion in prompt strings.
 shopt -u promptvars
 
+# Explicitly reset prompt variables we don't use to the defaults, since distro
+# and/or systemd scripts may set defaults that don't work for our setup.
+unset PS0 PS2 PS3 PS4
+
 # If possible, use tput to generate terminal escape codes for colors/attributes.
 if type tput >/dev/null 2>&1; then
   _bash_prompt_num_colors=$(tput colors)
