@@ -69,6 +69,11 @@ if [ -d ~/sdk/muos ]; then
   export REPO_LANGUAGE=muos-language
 fi
 
+# Enable ssh-agent proxy for WSL2.
+if command -v wsl2-ssh-agent >/dev/null; then
+  eval "$(wsl2-ssh-agent)"
+fi
+
 # Customize the prompt.
 . ~/.bash_prompt.sh
 
